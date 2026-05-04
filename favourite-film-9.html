@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arabic B Y9 — My Favorite Film | فيلمي المفضل</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+  :root {
+    /* Warm Pastel Palette */
+    --peach: #FAECE7;
+    --peach-mid: #F5C4B3;
+    --peach-strong: #D85A30;
+    --peach-text: #993C1D;
+
+    --gold: #FAEEDA;
+    --gold-mid: #FAC775;
+    --gold-strong: #BA7517;
+    --gold-text: #854F0B;
+
+    --pink: #FBEAF0;
+    --pink-mid: #F4C0D1;
+    --pink-strong: #D4537E;
+    --pink-text: #993556;
+
+    --lilac: #EEEDFE;
+    --lilac-mid: #CECBF6;
+    --lilac-strong: #7F77DD;
+    --lilac-text: #3C3489;
+
+    --cream-bg: #FFFCF8;
+    --soft-gray: #F5F1EC;
+    --border-soft: #E8DDD0;
+    --ink: #3C2E26;
+    --ink-soft: #6B5B52;
+
+    --shadow: 0 4px 20px rgba(60, 46, 38, 0.06);
+    --shadow-strong: 0 8px 30px rgba(60, 46, 38, 0.10);
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream-bg);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Arabic uses Tajawal */
+  .ar { font-family: 'Tajawal', sans-serif; direction: rtl; text-align: right; }
+  .en { font-family: 'Nunito', sans-serif; direction: ltr; text-align: left; font-style: italic; opacity: 0.85; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--peach) 0%, var(--pink) 50%, var(--lilac) 100%);
+    padding: 32px 28px 24px;
+    text-align: center;
+    border-radius: 0 0 32px 32px;
+    margin-bottom: 0;
+  }
+  .header-icon {
+    display: inline-block;
+    font-size: 3rem;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+  }
+  header h1 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 900;
+    color: var(--peach-text);
+    margin-bottom: 4px;
+  }
+  header h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--lilac-text);
+    margin-bottom: 12px;
+  }
+  header .meta {
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+    font-size: 0.8rem;
+  }
+  header .meta span {
+    background: rgba(255,255,255,0.7);
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .badge-peach { background: var(--peach) !important; color: var(--peach-text) !important; }
+  .badge-pink { background: var(--pink) !important; color: var(--pink-text) !important; }
+  .badge-lilac { background: var(--lilac) !important; color: var(--lilac-text) !important; }
+  .badge-gold { background: var(--gold) !important; color: var(--gold-text) !important; }
+
+  /* ── CLOCK ── */
+  .clock-container {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: rgba(255, 252, 248, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 10px 20px;
+  }
+  .clock-bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .clock-display {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    color: var(--peach-text);
+    background: var(--peach);
+    padding: 6px 16px;
+    border-radius: 14px;
+    border: 2px solid var(--peach-mid);
+    min-width: 130px;
+    text-align: center;
+  }
+  .clock-btn {
+    background: var(--lilac-strong);
+    color: white;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: all 0.2s;
+  }
+  .clock-btn:hover { background: var(--lilac-text); transform: translateY(-2px); }
+  .clock-btn.reset { background: var(--ink-soft); }
+  .clock-btn.pause { background: var(--gold-strong); }
+  .clock-progress {
+    flex: 1;
+    min-width: 120px;
+    height: 8px;
+    background: var(--soft-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 280px;
+  }
+  .clock-progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--lilac-mid), var(--peach-mid), var(--gold-mid));
+    width: 0%;
+    transition: width 1s linear;
+  }
+
+  /* ── NAV STRIP ── */
+  .nav-wrap {
+    position: sticky;
+    top: 60px;
+    z-index: 89;
+    background: rgba(255, 252, 248, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 8px 12px;
+    overflow-x: auto;
+  }
+  #navStrip {
+    display: flex;
+    gap: 6px;
+    max-width: 1300px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+  }
+  .nav-btn {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    background: white;
+    border: 1.5px solid var(--border-soft);
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ink);
+    transition: all 0.2s;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .nav-btn:hover { background: var(--peach); border-color: var(--peach-mid); color: var(--peach-text); }
+  .nav-btn.active {
+    background: var(--peach-mid);
+    color: var(--peach-text);
+    border-color: var(--peach-strong);
+    transform: translateY(-1px);
+  }
+
+  /* ── PROGRESS BAR ── */
+  #progressBar {
+    height: 4px;
+    background: var(--soft-gray);
+    position: sticky;
+    top: 110px;
+    z-index: 88;
+  }
+  #progressFill {
+    height: 100%;
+    background: linear-gradient(to right, var(--peach-mid), var(--pink-mid), var(--lilac-mid));
+    width: 8%;
+    transition: width 0.4s;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 24px 80px;
+    position: relative;
+  }
+
+  /* ── SECTION CARDS ── */
+  .section-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    padding: 28px 30px;
+    border: 1px solid var(--border-soft);
+    display: none;
+    animation: fadeIn 0.45s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--peach-mid), var(--pink-mid), var(--lilac-mid), var(--gold-mid));
+  }
+  .section-card.visible { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed var(--border-soft);
+    flex-wrap: wrap;
+  }
+  .card-icon {
+    width: 52px; height: 52px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem;
+    flex-shrink: 0;
+  }
+  .card-title-wrap { flex: 1; min-width: 0; }
+  .card-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    font-weight: 900;
+    color: var(--peach-text);
+    direction: rtl;
+    text-align: right;
+  }
+  .card-title-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+    color: var(--lilac-text);
+    margin-top: 2px;
+  }
+  .time-chip {
+    background: var(--gold);
+    color: var(--gold-text);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.82rem;
+  }
+  .section-number {
+    background: var(--lilac);
+    color: var(--lilac-text);
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 0.78rem;
+  }
+
+  /* ── BIG QUESTION ── */
+  .big-question {
+    background: linear-gradient(135deg, var(--peach) 0%, var(--pink) 100%);
+    padding: 24px 26px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    text-align: center;
+    border: 2px solid var(--peach-mid);
+  }
+  .q-text-ar {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 900;
+    color: var(--peach-text);
+    margin-bottom: 6px;
+    direction: rtl;
+  }
+  .q-text-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    color: var(--pink-text);
+  }
+
+  /* ── OBJECTIVES ── */
+  .obj-list { list-style: none; margin-bottom: 16px; }
+  .obj-item {
+    background: var(--gold);
+    padding: 14px 18px;
+    border-right: 4px solid var(--gold-strong);
+    margin-bottom: 8px;
+    border-radius: 12px;
+    font-size: 1rem;
+  }
+  .obj-item:nth-child(2n) { background: var(--peach); border-right-color: var(--peach-strong); }
+
+  /* ── KHDA BOX ── */
+  .khda {
+    background: var(--lilac);
+    color: var(--lilac-text);
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin-top: 14px;
+    border-right: 4px solid var(--lilac-strong);
+  }
+  .khda .lbl {
+    display: inline-block;
+    background: var(--lilac-strong);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .khda .en-text { font-style: italic; opacity: 0.9; font-size: 0.85rem; margin-top: 4px; }
+
+  /* ── TEACHER BOX ── */
+  .teacher-box {
+    background: var(--gold);
+    border: 2px dashed var(--gold-strong);
+    border-radius: 14px;
+    padding: 13px 17px;
+    margin-top: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .teacher-box .icon { font-size: 1.4rem; flex-shrink: 0; }
+  .teacher-box .label {
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: var(--gold-strong);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .teacher-box p { font-size: 0.9rem; line-height: 1.5; color: var(--ink); }
+  .teacher-box .ar { font-family: 'Tajawal', sans-serif; direction: rtl; text-align: right; font-weight: 700; margin-bottom: 3px; }
+  .teacher-box .en { font-style: italic; font-size: 0.82rem; }
+
+  /* ── FILM TYPES GRID ── */
+  .film-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .film-type {
+    background: white;
+    border: 2px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .film-type:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+  .film-type.ft-1 { background: var(--peach); border-color: var(--peach-mid); }
+  .film-type.ft-2 { background: var(--pink); border-color: var(--pink-mid); }
+  .film-type.ft-3 { background: var(--lilac); border-color: var(--lilac-mid); }
+  .film-type.ft-4 { background: var(--gold); border-color: var(--gold-mid); }
+  .film-type.ft-5 { background: var(--peach); border-color: var(--peach-mid); }
+  .film-type.ft-6 { background: var(--pink); border-color: var(--pink-mid); }
+  .film-type.ft-7 { background: var(--lilac); border-color: var(--lilac-mid); }
+  .ft-emoji { font-size: 2.2rem; margin-bottom: 6px; }
+  .ft-ar {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    direction: rtl;
+    color: var(--ink);
+  }
+  .ft-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.85rem;
+    margin-top: 3px;
+    color: var(--ink-soft);
+  }
+
+  /* ── VOCAB FLIP CARDS ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .vocab-card {
+    perspective: 1000px;
+    height: 175px;
+    cursor: pointer;
+  }
+  .vocab-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+  .vocab-card.flipped .vocab-inner { transform: rotateY(180deg); }
+  .vocab-front, .vocab-back {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .vocab-front {
+    background: linear-gradient(135deg, white, var(--peach));
+    border: 2px solid var(--peach-mid);
+  }
+  .vocab-back {
+    background: linear-gradient(135deg, var(--lilac) 0%, var(--pink) 100%);
+    transform: rotateY(180deg);
+    border: 2px solid var(--lilac-mid);
+  }
+  .vocab-icon { font-size: 2rem; margin-bottom: 6px; }
+  .vocab-word {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--peach-text);
+    direction: rtl;
+  }
+  .vocab-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    color: var(--lilac-text);
+    margin-top: 4px;
+  }
+  .vocab-hint {
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    opacity: 0.7;
+    font-style: italic;
+  }
+  .vocab-back-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--lilac-text);
+  }
+  .vocab-back-en {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+
+  /* ── PASSAGE ── */
+  .passage {
+    background: var(--cream-bg);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    border-right: 5px solid var(--peach-mid);
+  }
+  .passage-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.05rem;
+    line-height: 2;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .passage-en {
+    direction: ltr;
+    text-align: left;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    font-style: italic;
+    border-top: 1px dashed var(--border-soft);
+    padding-top: 10px;
+  }
+  .char-yousef { background: var(--peach); color: var(--peach-text); padding: 1px 8px; border-radius: 6px; font-weight: 900; }
+  .char-father { background: var(--gold); color: var(--gold-text); padding: 1px 8px; border-radius: 6px; font-weight: 900; }
+  .char-mother { background: var(--pink); color: var(--pink-text); padding: 1px 8px; border-radius: 6px; font-weight: 900; }
+  .char-adam { background: var(--lilac); color: var(--lilac-text); padding: 1px 8px; border-radius: 6px; font-weight: 900; }
+  .char-sara { background: #F0D8E0; color: #7A2940; padding: 1px 8px; border-radius: 6px; font-weight: 900; }
+  .char-sofi { background: #DCF0E8; color: #1F6B4F; padding: 1px 8px; border-radius: 6px; font-weight: 900; }
+  .char-ibrahim { background: #DDE8F5; color: #1F4A7A; padding: 1px 8px; border-radius: 6px; font-weight: 900; }
+
+  /* Character Legend */
+  .char-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    justify-content: center;
+  }
+  .char-pill {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: var(--peach);
+    border-right: 5px solid var(--peach-strong);
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin: 12px 0;
+  }
+  .info-box.gold-box { background: var(--gold); border-right-color: var(--gold-strong); }
+  .info-box.pink-box { background: var(--pink); border-right-color: var(--pink-strong); }
+  .info-box.lilac-box { background: var(--lilac); border-right-color: var(--lilac-strong); }
+  .info-box .ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .info-box .en { font-size: 0.85rem; font-style: italic; opacity: 0.9; color: var(--ink-soft); }
+
+  /* ── MC ITEMS ── */
+  .mc-item {
+    background: white;
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    border-right: 4px solid var(--peach-mid);
+  }
+  .mc-item:nth-child(2n) { border-right-color: var(--lilac-mid); }
+  .mc-item:nth-child(3n) { border-right-color: var(--gold-mid); }
+  .mc-q-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .mc-q-en {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .mc-opts { display: flex; flex-direction: column; gap: 8px; }
+  .mc-opt {
+    background: var(--soft-gray);
+    padding: 11px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .mc-opt:hover { background: var(--peach); border-color: var(--peach-mid); }
+  .mc-opt.correct { background: #DCF0E8; border-color: #7BC9A4; color: #1F6B4F; pointer-events: none; }
+  .mc-opt.wrong { background: var(--peach); border-color: var(--peach-strong); color: var(--peach-text); pointer-events: none; opacity: 0.7; }
+  .mc-opt .en-opt { font-size: 0.78rem; font-style: italic; opacity: 0.85; margin-top: 2px; }
+  .mc-feedback {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 800;
+    text-align: center;
+  }
+  .mc-feedback.show { display: block; animation: fadeIn 0.3s ease; }
+  .mc-feedback.right { background: #DCF0E8; color: #1F6B4F; }
+  .mc-feedback.wrong-fb { background: var(--peach); color: var(--peach-text); }
+  .mc-reset-btn {
+    display: none;
+    background: var(--ink-soft);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  .mc-reset-btn.show { display: inline-block; }
+
+  /* ── AfL Banner ── */
+  .afl-banner {
+    background: linear-gradient(135deg, var(--lilac) 0%, var(--pink) 50%, var(--peach) 100%);
+    padding: 20px 22px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    border: 2px solid var(--lilac-mid);
+  }
+  .afl-banner h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--lilac-text);
+    margin-bottom: 6px;
+  }
+  .afl-banner p { font-size: 0.95rem; color: var(--ink); }
+  .afl-banner p.ar { font-family: 'Tajawal', sans-serif; direction: rtl; margin-top: 4px; font-weight: 700; }
+
+  /* ── SENTENCE BUILDER ── */
+  .sentence-builder {
+    background: white;
+    border: 2px solid var(--peach-mid);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .sb-frame {
+    background: var(--peach);
+    padding: 16px 18px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 2;
+  }
+  .sb-blank {
+    display: inline-block;
+    min-width: 100px;
+    background: white;
+    border: 2px dashed var(--peach-strong);
+    border-radius: 8px;
+    padding: 4px 12px;
+    color: var(--peach-strong);
+    font-weight: 900;
+    margin: 0 4px;
+  }
+  .sb-blank.filled {
+    background: var(--lilac);
+    border-style: solid;
+    border-color: var(--lilac-strong);
+    color: var(--lilac-text);
+  }
+  .sb-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .sb-opt {
+    background: var(--lilac);
+    border: 2px solid var(--lilac-mid);
+    color: var(--lilac-text);
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  .sb-opt:hover { background: var(--lilac-mid); transform: translateY(-2px); }
+  .sb-opt.used {
+    background: var(--soft-gray);
+    color: var(--ink-soft);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .sb-reset-btn {
+    background: var(--ink-soft);
+    color: white;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 12px;
+  }
+
+  /* ── OPINION BUILDER (3-column drag pattern) ── */
+  .opinion-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .opinion-col {
+    background: white;
+    border: 2px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 12px 10px;
+  }
+  .opinion-col.col-who { border-color: var(--peach-mid); background: var(--peach); }
+  .opinion-col.col-verb { border-color: var(--lilac-mid); background: var(--lilac); }
+  .opinion-col.col-thing { border-color: var(--gold-mid); background: var(--gold); }
+  .opinion-col h4 {
+    font-family: 'Tajawal', sans-serif;
+    text-align: center;
+    margin-bottom: 8px;
+    direction: rtl;
+    font-size: 0.95rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .col-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: white;
+    color: var(--ink);
+    font-weight: 900;
+    font-size: 0.9rem;
+    border: 2px solid currentColor;
+  }
+  .col-who h4 .col-num { color: var(--peach-strong); }
+  .col-verb h4 .col-num { color: var(--lilac-strong); }
+  .col-thing h4 .col-num { color: var(--gold-strong); }
+
+  .opinion-item {
+    background: white;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--ink);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .opinion-item:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .opinion-item.selected {
+    transform: scale(1.04);
+    box-shadow: var(--shadow);
+  }
+  .col-who .opinion-item.selected { background: var(--peach-mid); border-color: var(--peach-strong); }
+  .col-verb .opinion-item.selected { background: var(--lilac-mid); border-color: var(--lilac-strong); }
+  .col-thing .opinion-item.selected { background: var(--gold-mid); border-color: var(--gold-strong); }
+
+  /* Example box */
+  .example-box {
+    background: white;
+    border: 2px dashed var(--peach-strong);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .example-label {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: var(--peach-strong);
+    margin-bottom: 10px;
+    direction: rtl;
+    text-align: right;
+  }
+  .example-sentence {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 2.2;
+    margin-bottom: 10px;
+  }
+  .ex-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 18px;
+    margin: 0 3px;
+  }
+  .ex-pill.ex-who { background: var(--peach-mid); color: var(--peach-text); }
+  .ex-pill.ex-verb { background: var(--lilac-mid); color: var(--lilac-text); }
+  .ex-pill.ex-why { background: var(--gold-mid); color: var(--gold-text); }
+  .example-en {
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    border-top: 1px dashed var(--border-soft);
+    padding-top: 8px;
+  }
+
+  /* Step instructions */
+  .step-instructions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .step-instr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.95rem;
+  }
+  .step-num.step-1 { background: var(--peach-strong); }
+  .step-num.step-2 { background: var(--lilac-strong); }
+  .step-num.step-3 { background: var(--gold-strong); }
+  .step-txt {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.85rem;
+    direction: rtl;
+    color: var(--ink);
+  }
+
+  /* Live sentence frame */
+  .live-sentence {
+    background: linear-gradient(135deg, var(--peach) 0%, var(--lilac) 50%, var(--gold) 100%);
+    padding: 18px 16px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 16px;
+    border: 2px solid var(--peach-mid);
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 2;
+    min-height: 70px;
+  }
+  .live-blank {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 18px;
+    margin: 0 3px;
+    background: white;
+    border: 2px dashed var(--ink-soft);
+    color: var(--ink-soft);
+    font-style: italic;
+    transition: all 0.3s;
+  }
+  .live-blank.filled-who {
+    background: var(--peach-mid);
+    color: var(--peach-text);
+    border-color: var(--peach-strong);
+    border-style: solid;
+    font-style: normal;
+  }
+  .live-blank.filled-verb {
+    background: var(--lilac-mid);
+    color: var(--lilac-text);
+    border-color: var(--lilac-strong);
+    border-style: solid;
+    font-style: normal;
+  }
+  .live-blank.filled-why {
+    background: var(--gold-mid);
+    color: var(--gold-text);
+    border-color: var(--gold-strong);
+    border-style: solid;
+    font-style: normal;
+  }
+
+  @media (max-width: 700px) {
+    .step-instructions { grid-template-columns: 1fr; }
+  }
+
+  /* ── WRITING TASK ── */
+  .writing-frame {
+    background: white;
+    border: 2px solid var(--peach-mid);
+    border-radius: 16px;
+    padding: 20px 22px;
+  }
+  .writing-line {
+    border-bottom: 2px dotted var(--border-soft);
+    padding: 12px 4px;
+    margin-bottom: 6px;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.8;
+  }
+  .writing-helper {
+    color: var(--peach-strong);
+    font-weight: 900;
+  }
+
+  /* ── EXIT TICKET ── */
+  .exit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .exit-card {
+    border-radius: 16px;
+    padding: 18px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: 3px solid;
+  }
+  .exit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-strong); }
+  .exit-c1 { background: #DCF0E8; border-color: #7BC9A4; color: #1F6B4F; }
+  .exit-c2 { background: var(--gold); border-color: var(--gold-mid); color: var(--gold-text); }
+  .exit-c3 { background: var(--peach); border-color: var(--peach-mid); color: var(--peach-text); }
+  .exit-card.selected { transform: scale(1.04); box-shadow: var(--shadow-strong); }
+  .ec-emoji { font-size: 2.2rem; margin-bottom: 6px; }
+  .ec-label { font-family: 'Fredoka One', cursive; font-size: 1.1rem; }
+  .ec-label-ar { font-family: 'Tajawal', sans-serif; font-size: 1rem; font-weight: 800; margin-top: 2px; direction: rtl; }
+  .ec-text { font-size: 0.78rem; opacity: 0.9; margin-top: 4px; }
+  .ec-text-ar { font-family: 'Tajawal', sans-serif; font-size: 0.85rem; opacity: 0.92; direction: rtl; }
+  .exit-confirm {
+    text-align: center;
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    background: var(--lilac);
+    color: var(--lilac-text);
+    display: none;
+  }
+  .exit-confirm.show { display: block; animation: fadeIn 0.3s ease; }
+
+  .divider {
+    border: none;
+    border-top: 2px dashed var(--border-soft);
+    margin: 18px 0;
+  }
+
+  /* ── CELEBRATE ── */
+  .celebrate {
+    text-align: center;
+    padding: 24px 16px;
+    background: linear-gradient(135deg, var(--peach) 0%, var(--pink) 33%, var(--lilac) 66%, var(--gold) 100%);
+    border-radius: 20px;
+    border: 3px solid var(--peach-mid);
+  }
+
+  /* ── TABLE ── */
+  .time-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: 'Tajawal', sans-serif;
+    box-shadow: var(--shadow);
+  }
+  .time-table thead th {
+    background: var(--lilac);
+    color: var(--lilac-text);
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  .time-table thead th.col-1 { background: var(--peach); color: var(--peach-text); }
+  .time-table thead th.col-3 { background: var(--gold); color: var(--gold-text); }
+  .time-table tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    text-align: center;
+    font-size: 0.92rem;
+    direction: rtl;
+    color: var(--ink);
+  }
+  .time-table tbody tr:nth-child(2n) { background: var(--cream-bg); }
+  .time-table .cat { font-weight: 900; color: var(--peach-text); }
+  .en-row { font-size: 0.75rem; color: var(--ink-soft); font-style: italic; direction: ltr; margin-top: 2px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 22px;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    background: var(--soft-gray);
+    border-top: 1px solid var(--border-soft);
+    margin-top: 30px;
+  }
+
+  /* ── ARROWS ── */
+  .arrow-nav {
+    position: fixed;
+    bottom: 24px;
+    z-index: 95;
+    display: flex;
+    gap: 8px;
+  }
+  .arrow-nav.right { right: 30px; }
+  .arrow-btn {
+    background: var(--peach-strong);
+    color: white;
+    border: none;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-strong);
+    transition: all 0.2s;
+  }
+  .arrow-btn:hover { background: var(--peach-text); transform: scale(1.08); }
+  .arrow-btn:disabled { background: #ccc; cursor: not-allowed; opacity: 0.5; }
+
+  .g2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .g3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+
+  @media (max-width: 700px) {
+    main { padding: 18px 14px 80px; }
+    .section-card { padding: 20px 18px; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .opinion-row { grid-template-columns: 1fr; }
+    .film-types-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-icon">🎬</div>
+  <h1>فيلمي المُفَضَّل</h1>
+  <h2>My Favorite Film</h2>
+  <div class="meta">
+    <span class="badge-peach">Year 9 · Arabic B</span>
+    <span class="badge-pink">القراءة والتعبير</span>
+    <span class="badge-lilac">⏱ 45 min</span>
+    <span class="badge-gold">🌸 Easy Level</span>
+  </div>
+</header>
+
+<!-- CLOCK -->
+<div class="clock-container">
+  <div class="clock-bar">
+    <div class="clock-display" id="clockDisplay">⏱ 45:00</div>
+    <button class="clock-btn" id="startBtn" onclick="startClock()">▶ Start</button>
+    <button class="clock-btn pause" id="pauseBtn" onclick="pauseClock()" style="display:none;">⏸ Pause</button>
+    <button class="clock-btn reset" onclick="resetClock()">↻ Reset</button>
+    <div class="clock-progress"><div class="clock-progress-fill" id="clockFill"></div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap"><div id="navStrip"></div></div>
+<div id="progressBar"><div id="progressFill"></div></div>
+
+<main>
+
+<!-- ══════════════════════════════════
+     S1 — TITLE & OBJECTIVES
+══════════════════════════════════ -->
+<div class="section-card visible" id="sec-1">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--peach);color:var(--peach-text);">🎯</div>
+    <div class="card-title-wrap">
+      <div class="card-title">عنوان الدرس وأهدافه</div>
+      <div class="card-title-en">Lesson Title & Objectives</div>
+    </div>
+    <span class="time-chip">⏱ 2 min</span>
+    <span class="section-number">1 / 12</span>
+  </div>
+  <div class="card-body">
+    <div class="big-question">
+      <div class="q-text-ar">🎬 فيلمي المُفَضَّل</div>
+      <div class="q-text-en">My Favorite Film</div>
+    </div>
+
+    <h3 style="font-family:'Tajawal',sans-serif;color:var(--peach-text);font-size:1.15rem;margin-bottom:6px;direction:rtl;text-align:right;">📋 ماذا سأتعلم اليوم؟</h3>
+    <p style="font-family:'Fredoka One',cursive;color:var(--lilac-text);font-size:0.95rem;margin-bottom:14px;">What will I learn today?</p>
+
+    <ul class="obj-list">
+      <li class="obj-item">
+        <div class="ar">✅ سأتعلم <strong>أنواع الأفلام</strong> بالعربية.</div>
+        <div class="en">✅ I will learn types of films in Arabic.</div>
+      </li>
+      <li class="obj-item">
+        <div class="ar">✅ سأقرأ نصاً عن أسرة وأفلامها المفضلة.</div>
+        <div class="en">✅ I will read a text about a family and their favorite films.</div>
+      </li>
+      <li class="obj-item">
+        <div class="ar">✅ سأكتب جملة عن فيلمي المفضل.</div>
+        <div class="en">✅ I will write a sentence about my favorite film.</div>
+      </li>
+    </ul>
+
+    <div class="khda">
+      <span class="lbl">📌 KHDA · ACTFL Standard</span>
+      <div class="ar" style="font-family:'Tajawal',sans-serif;font-size:0.95rem;margin-top:8px;direction:rtl;text-align:right;font-weight:700;">يُعبّر الطالب عن تفضيلاته الشخصية باستخدام جمل بسيطة في موضوعات يومية.</div>
+      <div class="en-text">Student expresses personal preferences using simple sentences on everyday topics. (ACTFL — Novice High)</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">ابدئي بسؤال بسيط: "ما آخر فيلم شاهدته؟" — اقبلي الإجابة بالإنجليزية في الأول.</p>
+        <p class="en">Start with a simple question: "What's the last film you watched?" — accept English answers at first.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S2 — WARM-UP: FILM TYPES
+══════════════════════════════════ -->
+<div class="section-card" id="sec-2">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--pink);color:var(--pink-text);">🍿</div>
+    <div class="card-title-wrap">
+      <div class="card-title">ما فيلمك المفضل؟</div>
+      <div class="card-title-en">Warm-Up: What's Your Favorite?</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">2 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:700;color:var(--peach-text);margin-bottom:6px;">هذه أنواع الأفلام — اختر نوعك المفضل!</p>
+    <p style="font-style:italic;color:var(--ink-soft);font-size:0.9rem;margin-bottom:16px;">These are the types of films — choose your favorite!</p>
+
+    <div class="film-types-grid">
+      <div class="film-type ft-1">
+        <div class="ft-emoji">😂</div>
+        <div class="ft-ar">الكوميدية</div>
+        <div class="ft-en">Comedy</div>
+      </div>
+      <div class="film-type ft-2">
+        <div class="ft-emoji">💕</div>
+        <div class="ft-ar">العاطفية</div>
+        <div class="ft-en">Romantic</div>
+      </div>
+      <div class="film-type ft-3">
+        <div class="ft-emoji">🏔️</div>
+        <div class="ft-ar">المُغامرة</div>
+        <div class="ft-en">Adventure</div>
+      </div>
+      <div class="film-type ft-4">
+        <div class="ft-emoji">💥</div>
+        <div class="ft-ar">الأكشن</div>
+        <div class="ft-en">Action</div>
+      </div>
+      <div class="film-type ft-5">
+        <div class="ft-emoji">👻</div>
+        <div class="ft-ar">الرُعب</div>
+        <div class="ft-en">Horror</div>
+      </div>
+      <div class="film-type ft-6">
+        <div class="ft-emoji">🎨</div>
+        <div class="ft-ar">الأنيمشن</div>
+        <div class="ft-en">Animation</div>
+      </div>
+      <div class="film-type ft-7">
+        <div class="ft-emoji">🚀</div>
+        <div class="ft-ar">الخيالية</div>
+        <div class="ft-en">Fiction</div>
+      </div>
+    </div>
+
+    <div class="info-box pink-box">
+      <div class="ar">💬 <strong>تحدّث مع زميلك:</strong> أي نوع تحب؟ ولماذا؟</div>
+      <div class="en">💬 <strong>Talk to a partner:</strong> Which type do you like? Why?</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">اطلبي من كل طالب أن يقول اسم النوع بالعربية + يعطي مثال فيلم. اكتبي على السبورة.</p>
+        <p class="en">Ask each student to say the type in Arabic + give a film example. Write on the board.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S3 — VOCABULARY (8 essential words)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-3">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--lilac);color:var(--lilac-text);">📚</div>
+    <div class="card-title-wrap">
+      <div class="card-title">المفردات الأساسية</div>
+      <div class="card-title-en">Essential Vocabulary</div>
+    </div>
+    <span class="time-chip">⏱ 6 min</span>
+    <span class="section-number">3 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:700;color:var(--peach-text);margin-bottom:6px;">اضغط على البطاقة لتقلبها وترى المعنى</p>
+    <p style="font-style:italic;color:var(--ink-soft);font-size:0.9rem;margin-bottom:16px;">Click each card to flip it and see the meaning.</p>
+
+    <div class="vocab-grid">
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">❤️</div>
+            <div class="vocab-word">يُحِبّ</div>
+            <div class="vocab-en">to like / love</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">يُريد كثيراً</div>
+            <div class="vocab-back-en">to like / to love</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">⭐</div>
+            <div class="vocab-word">يُفَضِّل</div>
+            <div class="vocab-en">to prefer</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">يحب أكثر من غيره</div>
+            <div class="vocab-back-en">to prefer (likes more)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">👀</div>
+            <div class="vocab-word">يُشاهِد</div>
+            <div class="vocab-en">to watch</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">ينظر إلى الفيلم</div>
+            <div class="vocab-back-en">to watch a film</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">😄</div>
+            <div class="vocab-word">مُمْتِعَة</div>
+            <div class="vocab-en">enjoyable</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">تعطي فرحة وسعادة</div>
+            <div class="vocab-back-en">enjoyable / fun</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">😍</div>
+            <div class="vocab-word">مُسَلِّيَة</div>
+            <div class="vocab-en">entertaining</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">تجعلك تنسى الوقت</div>
+            <div class="vocab-back-en">entertaining</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">😱</div>
+            <div class="vocab-word">شَيِّقَة</div>
+            <div class="vocab-en">interesting</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">تشدّ الانتباه</div>
+            <div class="vocab-back-en">interesting / exciting</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🎭</div>
+            <div class="vocab-word">قِصَّة</div>
+            <div class="vocab-en">story</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">حكاية في الفيلم</div>
+            <div class="vocab-back-en">story / plot</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">👨‍👩‍👧‍👦</div>
+            <div class="vocab-word">أُسْرَة</div>
+            <div class="vocab-en">family</div>
+            <div class="vocab-hint">👁 Click</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">الأب والأم والأولاد</div>
+            <div class="vocab-back-en">family</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box gold-box">
+      <div class="ar">💡 <strong>نصيحة:</strong> هذه 8 كلمات مهمة فقط — احفظها قبل قراءة النص!</div>
+      <div class="en">💡 <strong>Tip:</strong> Only 8 important words — memorize them before reading the text!</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">choral drill — كل طالب ينطق الكلمة 3 مرات. يمكن استخدام Quizlet للمنزل.</p>
+        <p class="en">Choral drill — each student says the word 3 times. Quizlet can be used for homework.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S4 — READING TEXT (color-coded)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-4">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--peach);color:var(--peach-text);">📖</div>
+    <div class="card-title-wrap">
+      <div class="card-title">قصة يوسف وأسرته</div>
+      <div class="card-title-en">Yousef & His Family's Story</div>
+    </div>
+    <span class="time-chip">⏱ 6 min</span>
+    <span class="section-number">4 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:700;color:var(--peach-text);margin-bottom:6px;">اقرأ النص بصوت عالٍ — كل شخصية لها لون</p>
+    <p style="font-style:italic;color:var(--ink-soft);font-size:0.9rem;margin-bottom:14px;">Read the text aloud — each person has a color.</p>
+
+    <div class="char-legend">
+      <span class="char-pill char-yousef">يوسف</span>
+      <span class="char-pill char-father">الأب</span>
+      <span class="char-pill char-mother">الأم</span>
+      <span class="char-pill char-adam">آدم</span>
+      <span class="char-pill char-sara">سارة</span>
+      <span class="char-pill char-sofi">صوفي</span>
+      <span class="char-pill char-ibrahim">إبراهيم</span>
+    </div>
+
+    <div class="passage">
+      <div class="passage-ar">
+        <span class="char-yousef">يُوسُف</span> طَالِب فِي الصَّفِّ التَّاسِع، يَعِيش فِي دُبَي معَ أُسْرَتِه. لديه 4 إخوة: <span class="char-sara">سارة</span>، <span class="char-sofi">صوفي</span>، <span class="char-adam">آدم</span>، و<span class="char-ibrahim">إبراهيم</span>.<br><br>
+        تُحِبّ الأُسْرة مُشاهَدة الأَفْلام في السِّينما في نِهايَة الأُسْبوع. لكن كل واحد يُفَضِّل نوعاً مختلفاً!<br><br>
+        <span class="char-father">الأَبُ</span> يُحِبُّ الأَفْلام <strong>الكوميدية</strong> 😂 لأنها مُمْتِعَة.<br>
+        <span class="char-mother">الأُمّ</span> تُحِبُّ الأَفْلام <strong>العاطِفِيَّة</strong> 💕 لأن قِصَصَها جَمِيلَة.<br>
+        <span class="char-adam">آدم</span> يُحِبُّ أَفْلام <strong>المُغامَرة والأَكشن</strong> 💥 لأنها سَريعة وشَيِّقة.<br>
+        <span class="char-sara">سارة</span> تُحِبُّ أَفْلام <strong>الرُعب</strong> 👻 لأن فيها تَشْويق وإثارة.<br>
+        <span class="char-sofi">صوفي</span> تُحِبُّ أَفْلام <strong>الأنيمشن</strong> 🎨 لأنها مُناسِبة لعُمْرِها.<br>
+        <span class="char-ibrahim">إبراهيم</span> يُحِبُّ الأَفْلام <strong>الخَيالية</strong> 🚀 لأنها مُرتَبِطة بالتكنولوجيا.
+      </div>
+      <div class="passage-en">
+        <strong>Yousef</strong> is a student in Year 9. He lives in Dubai with his family. He has 4 siblings: Sara, Sofi, Adam, and Ibrahim.<br><br>
+        The family loves watching films at the cinema on weekends. But each one prefers a different type!<br><br>
+        <strong>The Father</strong> loves <strong>comedy</strong> films because they are enjoyable.<br>
+        <strong>The Mother</strong> loves <strong>romantic</strong> films because the stories are beautiful.<br>
+        <strong>Adam</strong> loves <strong>adventure & action</strong> because they are fast and exciting.<br>
+        <strong>Sara</strong> loves <strong>horror</strong> films because of the suspense.<br>
+        <strong>Sofi</strong> loves <strong>animation</strong> because it suits her age.<br>
+        <strong>Ibrahim</strong> loves <strong>sci-fi</strong> because it relates to technology.
+      </div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">اقرئي النص مرتين بصوت عالٍ. في المرة الثانية، أوقفي عند كل شخصية واسألي: "ماذا يحب؟"</p>
+        <p class="en">Read aloud twice. On the second read, pause at each character and ask: "What does he/she like?"</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S5 — COMPREHENSION QUESTIONS (MCQ)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-5">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold);color:var(--gold-text);">❓</div>
+    <div class="card-title-wrap">
+      <div class="card-title">أسئلة الفهم</div>
+      <div class="card-title-en">Comprehension Questions</div>
+    </div>
+    <span class="time-chip">⏱ 6 min</span>
+    <span class="section-number">5 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:700;color:var(--peach-text);margin-bottom:14px;">اختر الإجابة الصحيحة بناءً على النص</p>
+
+    <div class="mc-item" id="mc-q1">
+      <div class="mc-q-ar">1. أين تعيش أسرة يوسف؟</div>
+      <div class="mc-q-en">1. Where does Yousef's family live?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q1')">
+          <div>أ. أبو ظبي · Abu Dhabi</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q1')">
+          <div>ب. دبي · Dubai</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q1')">
+          <div>ج. الشارقة · Sharjah</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="mc-q1-fb"></div>
+      <button class="mc-reset-btn" id="mc-q1-rst" onclick="resetMC('mc-q1')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="mc-q2">
+      <div class="mc-q-ar">2. من يحب الأفلام الكوميدية؟</div>
+      <div class="mc-q-en">2. Who loves comedy films?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q2')">
+          <div>أ. الأب · The father</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q2')">
+          <div>ب. سارة · Sara</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q2')">
+          <div>ج. صوفي · Sofi</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="mc-q2-fb"></div>
+      <button class="mc-reset-btn" id="mc-q2-rst" onclick="resetMC('mc-q2')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="mc-q3">
+      <div class="mc-q-ar">3. لماذا تحب الأم الأفلام العاطفية؟</div>
+      <div class="mc-q-en">3. Why does the mother love romantic films?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q3')">
+          <div>أ. لأنها مُمتعة · Because enjoyable</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q3')">
+          <div>ب. لأنها سريعة · Because fast</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q3')">
+          <div>ج. لأن قصصها جميلة · Because beautiful stories</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="mc-q3-fb"></div>
+      <button class="mc-reset-btn" id="mc-q3-rst" onclick="resetMC('mc-q3')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="mc-q4">
+      <div class="mc-q-ar">4. أي شخصية تحب أفلام الرعب؟</div>
+      <div class="mc-q-en">4. Which character loves horror films?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q4')">
+          <div>أ. آدم · Adam</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q4')">
+          <div>ب. سارة · Sara</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q4')">
+          <div>ج. إبراهيم · Ibrahim</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="mc-q4-fb"></div>
+      <button class="mc-reset-btn" id="mc-q4-rst" onclick="resetMC('mc-q4')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="mc-q5">
+      <div class="mc-q-ar">5. متى تشاهد الأسرة الأفلام؟</div>
+      <div class="mc-q-en">5. When does the family watch films?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q5')">
+          <div>أ. كل يوم · Every day</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q5')">
+          <div>ب. في نهاية الأسبوع · On the weekend</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q5')">
+          <div>ج. في الصباح · In the morning</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="mc-q5-fb"></div>
+      <button class="mc-reset-btn" id="mc-q5-rst" onclick="resetMC('mc-q5')">↻ Try Again</button>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">دعي الطلاب يعودون للنص للبحث عن الإجابة. هذا يُعزز مهارة scanning.</p>
+        <p class="en">Let students go back to the text to find the answer. This builds scanning skill.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S6 — ⭐ ASSESSMENT FOR LEARNING
+══════════════════════════════════ -->
+<div class="section-card" id="sec-6">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--lilac);color:var(--lilac-text);">🎯</div>
+    <div class="card-title-wrap">
+      <div class="card-title">تقييم تعلّمي — مراجعة المنتصف</div>
+      <div class="card-title-en">Assessment for Learning — Mid-Lesson</div>
+    </div>
+    <span class="time-chip">⏱ 4 min</span>
+    <span class="section-number">6 / 12</span>
+  </div>
+  <div class="card-body">
+
+    <div class="afl-banner">
+      <h3>🎯 Assessment for Learning</h3>
+      <p>Quick check — هيا نراجع ما تعلمناه!</p>
+      <p class="ar">مراجعة سريعة لما تعلمناه حتى الآن!</p>
+    </div>
+
+    <div class="mc-item" id="afl-q1">
+      <div class="mc-q-ar">1. ما معنى "يُحِبّ" بالإنجليزية؟</div>
+      <div class="mc-q-en">1. What does "يُحِبّ" mean in English?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q1')">
+          <div>أ. to watch</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q1')">
+          <div>ب. to like / love</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q1')">
+          <div>ج. to write</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q1-fb"></div>
+      <button class="mc-reset-btn" id="afl-q1-rst" onclick="resetMC('afl-q1')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="afl-q2">
+      <div class="mc-q-ar">2. أي كلمة تعني "comedy"؟</div>
+      <div class="mc-q-en">2. Which word means "comedy"?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q2')">
+          <div>أ. الرعب</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q2')">
+          <div>ب. الأكشن</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q2')">
+          <div>ج. الكوميدية</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q2-fb"></div>
+      <button class="mc-reset-btn" id="afl-q2-rst" onclick="resetMC('afl-q2')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="afl-q3">
+      <div class="mc-q-ar">3. أكمل: الأم تُحِبّ الأفلام ___ .</div>
+      <div class="mc-q-en">3. Complete: The mother loves ___ films.</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q3')">
+          <div>أ. العاطفية · romantic</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q3')">
+          <div>ب. الكوميدية · comedy</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q3')">
+          <div>ج. الرعب · horror</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q3-fb"></div>
+      <button class="mc-reset-btn" id="afl-q3-rst" onclick="resetMC('afl-q3')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="afl-q4">
+      <div class="mc-q-ar">4. صح أم خطأ: "يوسف يعيش في القاهرة."</div>
+      <div class="mc-q-en">4. True or False: "Yousef lives in Cairo."</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q4')">
+          <div>✅ صحيح / True</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q4')">
+          <div>❌ خطأ / False</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q4-fb"></div>
+      <button class="mc-reset-btn" id="afl-q4-rst" onclick="resetMC('afl-q4')">↻ Try Again</button>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Assessment Note · ملاحظة التقييم</div>
+        <p class="ar">إذا كان أكثر من 3 طلاب أخطأوا في نفس السؤال، اشرحيه قبل المتابعة.</p>
+        <p class="en">If more than 3 students missed the same question, re-teach it before moving on.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S7 — SENTENCE BUILDER
+══════════════════════════════════ -->
+<div class="section-card" id="sec-7">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--peach);color:var(--peach-text);">🧩</div>
+    <div class="card-title-wrap">
+      <div class="card-title">ابنِ جملة — فيلمي المفضل</div>
+      <div class="card-title-en">Build a Sentence — My Favorite Film</div>
+    </div>
+    <span class="time-chip">⏱ 4 min</span>
+    <span class="section-number">7 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:700;color:var(--peach-text);margin-bottom:6px;">اضغط على الكلمات لملء الجملة</p>
+    <p style="font-style:italic;color:var(--ink-soft);font-size:0.9rem;margin-bottom:16px;">Click the words to fill the sentence.</p>
+
+    <div class="sentence-builder">
+      <div class="sb-frame">
+        <span class="sb-blank" id="sb-1" onclick="clearBlank('sb-1')">______</span>
+        أُحِبّ الأفلام
+        <span class="sb-blank" id="sb-2" onclick="clearBlank('sb-2')">______</span>
+        لأنها
+        <span class="sb-blank" id="sb-3" onclick="clearBlank('sb-3')">______</span>.
+      </div>
+      <div class="sb-options" id="sbOptions">
+        <div class="sb-opt" data-target="sb-1" data-value="أنا" onclick="fillBlank(this)">أنا</div>
+        <div class="sb-opt" data-target="sb-1" data-value="أبي" onclick="fillBlank(this)">أبي</div>
+        <div class="sb-opt" data-target="sb-1" data-value="أمي" onclick="fillBlank(this)">أمي</div>
+        <div class="sb-opt" data-target="sb-2" data-value="الكوميدية" onclick="fillBlank(this)">الكوميدية</div>
+        <div class="sb-opt" data-target="sb-2" data-value="الخيالية" onclick="fillBlank(this)">الخيالية</div>
+        <div class="sb-opt" data-target="sb-2" data-value="الأنيمشن" onclick="fillBlank(this)">الأنيمشن</div>
+        <div class="sb-opt" data-target="sb-3" data-value="مُمتعة" onclick="fillBlank(this)">مُمتعة</div>
+        <div class="sb-opt" data-target="sb-3" data-value="مُسلية" onclick="fillBlank(this)">مُسلية</div>
+        <div class="sb-opt" data-target="sb-3" data-value="شيقة" onclick="fillBlank(this)">شيقة</div>
+      </div>
+      <div style="text-align:center;">
+        <button class="sb-reset-btn" onclick="resetBuilder()">↻ ابدأ من جديد · Reset</button>
+      </div>
+    </div>
+
+    <div class="info-box gold-box">
+      <div class="ar">💡 <strong>مثال:</strong> "أنا أُحِبّ الأفلام الكوميدية لأنها مُمتعة."</div>
+      <div class="en">💡 <strong>Example:</strong> "I love comedy films because they are enjoyable."</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">كل طالب يبني جملة مختلفة وينطقها بصوت عالٍ. هذا يبني الثقة في الكلام.</p>
+        <p class="en">Each student builds a different sentence and says it aloud. This builds speaking confidence.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S8 — OPINION BUILDER (3-column drag pattern)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-8">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--pink);color:var(--pink-text);">💬</div>
+    <div class="card-title-wrap">
+      <div class="card-title">عبّر عن رأيك</div>
+      <div class="card-title-en">Express Your Opinion</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">8 / 12</span>
+  </div>
+  <div class="card-body">
+
+    <!-- 📌 EXAMPLE BOX - Show students what to do -->
+    <div class="example-box">
+      <div class="example-label">📌 مثال · Example</div>
+      <div class="example-sentence">
+        <span class="ex-pill ex-who">أبي</span>
+        <span class="ex-pill ex-verb">يحب الأفلام الكوميدية</span>
+        <span class="ex-pill ex-why">لأنها مُمتعة</span>
+        <span style="color:var(--ink);">.</span>
+      </div>
+      <div class="example-en">
+        <strong>My father</strong> + <em>loves comedy films</em> + <span style="color:var(--gold-strong);">because they are fun</span>.
+      </div>
+    </div>
+
+    <!-- Step instruction -->
+    <div class="step-instructions">
+      <div class="step-instr">
+        <div class="step-num step-1">1</div>
+        <div class="step-txt ar">اختر <strong>الشخص</strong> من العمود الأول</div>
+      </div>
+      <div class="step-instr">
+        <div class="step-num step-2">2</div>
+        <div class="step-txt ar">اختر <strong>نوع الفيلم</strong> من الثاني</div>
+      </div>
+      <div class="step-instr">
+        <div class="step-num step-3">3</div>
+        <div class="step-txt ar">اختر <strong>السبب</strong> من الثالث</div>
+      </div>
+    </div>
+
+    <!-- Live sentence frame -->
+    <div class="live-sentence" id="liveSentence">
+      <span class="live-blank live-who-blank" id="liveWho">من؟</span>
+      <span class="live-blank live-verb-blank" id="liveVerb">يحب أفلام...</span>
+      <span class="live-blank live-why-blank" id="liveWhy">لأنها...</span>
+      <span style="color:var(--ink);">.</span>
+    </div>
+
+    <!-- 3 columns -->
+    <div class="opinion-row">
+      <div class="opinion-col col-who">
+        <h4><span class="col-num">1</span> 👤 من؟ · Who?</h4>
+        <div class="opinion-item" onclick="pickOpinion(this, 'who', 'أبي')">👨 أبي · Dad</div>
+        <div class="opinion-item" onclick="pickOpinion(this, 'who', 'أمي')">👩 أمي · Mum</div>
+        <div class="opinion-item" onclick="pickOpinion(this, 'who', 'أخي')">🧑 أخي · Brother</div>
+      </div>
+      <div class="opinion-col col-verb">
+        <h4><span class="col-num">2</span> 🎬 يحب أفلام · Likes</h4>
+        <div class="opinion-item" onclick="pickOpinion(this, 'verb', 'يحب الأفلام الكوميدية')">😂 الكوميدية</div>
+        <div class="opinion-item" onclick="pickOpinion(this, 'verb', 'يحب أفلام الأكشن')">💥 الأكشن</div>
+        <div class="opinion-item" onclick="pickOpinion(this, 'verb', 'يحب الأنيمشن')">🎨 الأنيمشن</div>
+      </div>
+      <div class="opinion-col col-thing">
+        <h4><span class="col-num">3</span> 💭 لأنها · Because</h4>
+        <div class="opinion-item" onclick="pickOpinion(this, 'why', 'لأنها مُمتعة')">😄 مُمتعة · Fun</div>
+        <div class="opinion-item" onclick="pickOpinion(this, 'why', 'لأنها مُسلية')">😍 مُسلية · Entertaining</div>
+        <div class="opinion-item" onclick="pickOpinion(this, 'why', 'لأنها شَيِّقة')">😱 شيقة · Exciting</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:14px;">
+      <button class="sb-reset-btn" onclick="resetOpinion()">↻ ابدأ من جديد · Reset</button>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">اقرئي المثال أولاً مع الفصل. ثم اطلبي من كل طالب بناء جملة جديدة وقراءتها.</p>
+        <p class="en">Read the example first with the class. Then ask each student to build a new sentence and read it aloud.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S9 — WRITING TASK
+══════════════════════════════════ -->
+<div class="section-card" id="sec-9">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold);color:var(--gold-text);">✍️</div>
+    <div class="card-title-wrap">
+      <div class="card-title">مهمتك — اكتب عن أسرتك</div>
+      <div class="card-title-en">Your Task — Write About Your Family</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">9 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:700;color:var(--peach-text);margin-bottom:6px;">اكتب 3 جمل في كراستك — ساعدك القالب التالي</p>
+    <p style="font-style:italic;color:var(--ink-soft);font-size:0.9rem;margin-bottom:16px;">Write 3 sentences in your notebook — use the template below.</p>
+
+    <div class="writing-frame">
+      <div class="writing-line">
+        <span class="writing-helper">1.</span> اسمي ............... وأنا أُحِبّ أفلام ............... .
+      </div>
+      <div class="writing-line">
+        <span class="writing-helper">2.</span> أبي يُحِبّ الأفلام ............... لأنها ............... .
+      </div>
+      <div class="writing-line">
+        <span class="writing-helper">3.</span> أمي تُفَضِّل الأفلام ............... لأنها ............... .
+      </div>
+    </div>
+
+    <div class="info-box pink-box" style="margin-top:14px;">
+      <div class="ar">📝 <strong>مساعدة:</strong> استخدم الكلمات من شريحة 8 — انت بنيت الجمل!</div>
+      <div class="en">📝 <strong>Help:</strong> Use the words from slide 8 — you already built the sentences!</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">للطلاب الضعاف: اقبلي جملة واحدة فقط. للأقوى: 5 جمل عن كل أفراد الأسرة.</p>
+        <p class="en">For weak students: accept just 1 sentence. For stronger ones: 5 sentences about all family members.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S10 — FINAL QUIZ
+══════════════════════════════════ -->
+<div class="section-card" id="sec-10">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--peach);color:var(--peach-text);">🏆</div>
+    <div class="card-title-wrap">
+      <div class="card-title">اختبار سريع</div>
+      <div class="card-title-en">Final Quick Quiz</div>
+    </div>
+    <span class="time-chip">⏱ 2 min</span>
+    <span class="section-number">10 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:700;color:var(--peach-text);margin-bottom:14px;">اختر الإجابة الصحيحة</p>
+
+    <div class="mc-item" id="fq-q1">
+      <div class="mc-q-ar">1. ما معنى "Animation"؟</div>
+      <div class="mc-q-en">1. What does "Animation" mean?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q1')">
+          <div>أ. الرعب</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'fq-q1')">
+          <div>ب. الأنيمشن</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q1')">
+          <div>ج. الأكشن</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="fq-q1-fb"></div>
+      <button class="mc-reset-btn" id="fq-q1-rst" onclick="resetMC('fq-q1')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="fq-q2">
+      <div class="mc-q-ar">2. كم أخاً وأختاً ليوسف؟</div>
+      <div class="mc-q-en">2. How many siblings does Yousef have?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q2')">
+          <div>أ. اثنان · 2</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q2')">
+          <div>ب. ثلاثة · 3</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'fq-q2')">
+          <div>ج. أربعة · 4</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="fq-q2-fb"></div>
+      <button class="mc-reset-btn" id="fq-q2-rst" onclick="resetMC('fq-q2')">↻ Try Again</button>
+    </div>
+
+    <div class="mc-item" id="fq-q3">
+      <div class="mc-q-ar">3. ماذا تعني كلمة "مُسلية"؟</div>
+      <div class="mc-q-en">3. What does "مُسلية" mean?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q3')">
+          <div>أ. Scary</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'fq-q3')">
+          <div>ب. Entertaining</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q3')">
+          <div>ج. Boring</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="fq-q3-fb"></div>
+      <button class="mc-reset-btn" id="fq-q3-rst" onclick="resetMC('fq-q3')">↻ Try Again</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S11 — EXIT TICKET
+══════════════════════════════════ -->
+<div class="section-card" id="sec-11">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--lilac);color:var(--lilac-text);">🎟️</div>
+    <div class="card-title-wrap">
+      <div class="card-title">بطاقة الخروج</div>
+      <div class="card-title-en">Exit Ticket</div>
+    </div>
+    <span class="time-chip">⏱ 1 min</span>
+    <span class="section-number">11 / 12</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1.05rem;font-weight:800;color:var(--peach-text);margin-bottom:4px;">كيف تشعر بفهمك للدرس اليوم؟</p>
+    <p style="font-style:italic;color:var(--ink-soft);font-size:0.9rem;margin-bottom:16px;">How do you feel about today's lesson?</p>
+
+    <div class="exit-grid">
+      <div class="exit-card exit-c1" onclick="selectExit(this,'got-it')">
+        <div class="ec-emoji">🌟</div>
+        <div class="ec-label">Got It!</div>
+        <div class="ec-label-ar">فهمتُ كل شيء</div>
+        <div class="ec-text">I can talk about my favorite film.</div>
+        <div class="ec-text-ar">أستطيع أن أتحدّث عن فيلمي المفضل</div>
+      </div>
+      <div class="exit-card exit-c2" onclick="selectExit(this,'almost')">
+        <div class="ec-emoji">🤔</div>
+        <div class="ec-label">Almost</div>
+        <div class="ec-label-ar">تقريباً فهمت</div>
+        <div class="ec-text">I have one question.</div>
+        <div class="ec-text-ar">عندي سؤال واحد</div>
+      </div>
+      <div class="exit-card exit-c3" onclick="selectExit(this,'lost')">
+        <div class="ec-emoji">🙋</div>
+        <div class="ec-label">Need Help</div>
+        <div class="ec-label-ar">أحتاج مساعدة</div>
+        <div class="ec-text">I'd like to review again.</div>
+        <div class="ec-text-ar">أريد إعادة الشرح</div>
+      </div>
+    </div>
+    <div class="exit-confirm" id="exitConfirm"></div>
+
+    <hr class="divider">
+
+    <div style="background:white;border:2px solid var(--peach-mid);border-radius:14px;padding:16px 18px;">
+      <p style="font-family:'Tajawal',sans-serif;font-size:1.05rem;font-weight:900;color:var(--peach-text);margin-bottom:4px;direction:rtl;text-align:right;">أستطيع أن… ✅</p>
+      <p style="font-size:0.85rem;font-weight:800;color:var(--lilac-text);margin-bottom:10px;">I can…</p>
+      <div class="g2" style="gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:18px;height:18px;min-width:18px;border:2px solid var(--peach-strong);border-radius:4px;background:white;"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.92rem;font-weight:700;direction:rtl;text-align:right;color:var(--ink);">أعرف 7 أنواع من الأفلام</div>
+            <div style="font-size:0.78rem;color:var(--ink-soft);font-style:italic;">Know 7 types of films</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:18px;height:18px;min-width:18px;border:2px solid var(--lilac-strong);border-radius:4px;background:white;"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.92rem;font-weight:700;direction:rtl;text-align:right;color:var(--ink);">أعرف 8 كلمات جديدة</div>
+            <div style="font-size:0.78rem;color:var(--ink-soft);font-style:italic;">Know 8 new words</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:18px;height:18px;min-width:18px;border:2px solid var(--gold-strong);border-radius:4px;background:white;"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.92rem;font-weight:700;direction:rtl;text-align:right;color:var(--ink);">أبني جملة "أحب لأنها"</div>
+            <div style="font-size:0.78rem;color:var(--ink-soft);font-style:italic;">Build "I love because" sentence</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:18px;height:18px;min-width:18px;border:2px solid var(--pink-strong);border-radius:4px;background:white;"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.92rem;font-weight:700;direction:rtl;text-align:right;color:var(--ink);">أكتب جملة عن أسرتي</div>
+            <div style="font-size:0.78rem;color:var(--ink-soft);font-style:italic;">Write a sentence about my family</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teacher-box" style="margin-top:14px;">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Homework · الواجب</div>
+        <p class="ar">📝 اكتب 3 جمل عن فيلمك المفضل وأحضرها للحصة القادمة.</p>
+        <p class="en">📝 Write 3 sentences about your favorite film and bring them to the next class.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S12 — WELL DONE + TIME PLAN
+══════════════════════════════════ -->
+<div class="section-card" id="sec-12">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--peach);color:var(--peach-text);">🌟</div>
+    <div class="card-title-wrap">
+      <div class="card-title">أحسنتم! وخطة الوقت</div>
+      <div class="card-title-en">Well Done! & Time Plan</div>
+    </div>
+    <span class="section-number">12 / 12</span>
+  </div>
+  <div class="card-body">
+    <div class="celebrate">
+      <div style="font-size:clamp(48px,8vw,86px);margin-bottom:12px;">🎬 🍿 ⭐</div>
+      <p style="font-family:'Tajawal',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:var(--peach-text);margin-bottom:4px;">أحسنتم!</p>
+      <p style="font-family:'Fredoka One',cursive;font-size:clamp(1.4rem,3.5vw,2rem);color:var(--lilac-text);margin-bottom:14px;">Well Done!</p>
+      <p style="font-size:0.95rem;color:var(--ink);margin-bottom:6px;font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;">أكملتم درس فيلمي المفضل!</p>
+      <p style="font-size:0.88rem;color:var(--ink-soft);margin-bottom:18px;font-style:italic;">You've completed "My Favorite Film" lesson!</p>
+      <div class="g3" style="gap:12px;">
+        <div style="background:white;border:2px solid var(--peach-mid);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">🎬</div>
+          <p style="font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;color:var(--peach-text);">7 أنواع</p>
+          <p style="font-family:'Fredoka One',cursive;font-size:0.85rem;color:var(--ink-soft);">7 Film Types</p>
+        </div>
+        <div style="background:white;border:2px solid var(--lilac-mid);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">📚</div>
+          <p style="font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;color:var(--lilac-text);">8 كلمات</p>
+          <p style="font-family:'Fredoka One',cursive;font-size:0.85rem;color:var(--ink-soft);">8 New Words</p>
+        </div>
+        <div style="background:white;border:2px solid var(--gold-mid);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">✍️</div>
+          <p style="font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;color:var(--gold-text);">3 جمل</p>
+          <p style="font-family:'Fredoka One',cursive;font-size:0.85rem;color:var(--ink-soft);">3 Sentences</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 style="font-family:'Tajawal',sans-serif;color:var(--peach-text);font-size:1.15rem;margin-bottom:6px;direction:rtl;text-align:right;">⏱️ خطة توزيع الوقت — 45 دقيقة</h3>
+    <p style="font-family:'Fredoka One',cursive;color:var(--lilac-text);font-size:0.92rem;margin-bottom:14px;">45-Minute Time Plan</p>
+
+    <table class="time-table">
+      <thead>
+        <tr>
+          <th class="col-1">القسم<div class="en-row">Section</div></th>
+          <th>النشاط<div class="en-row">Activity</div></th>
+          <th class="col-3">الوقت<div class="en-row">Time</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="cat">1</td><td>عنوان وأهداف · Title & Objectives</td><td><strong>2 min</strong></td></tr>
+        <tr><td class="cat">2</td><td>أنواع الأفلام · Film Types</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">3</td><td>المفردات · Vocabulary</td><td><strong>6 min</strong></td></tr>
+        <tr><td class="cat">4</td><td>قصة يوسف · Yousef's Story</td><td><strong>6 min</strong></td></tr>
+        <tr><td class="cat">5</td><td>أسئلة الفهم · Comprehension</td><td><strong>6 min</strong></td></tr>
+        <tr style="background:var(--lilac);"><td class="cat" style="background:var(--lilac-strong);color:white;">⭐ 6</td><td><strong>تقييم تعلّمي · Assessment for Learning</strong></td><td><strong>4 min</strong></td></tr>
+        <tr><td class="cat">7</td><td>ابنِ جملة · Build a Sentence</td><td><strong>4 min</strong></td></tr>
+        <tr><td class="cat">8</td><td>عبّر عن رأيك · Opinion Builder</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">9</td><td>اكتب · Writing Task</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">10</td><td>اختبار سريع · Final Quiz</td><td><strong>2 min</strong></td></tr>
+        <tr><td class="cat">11</td><td>بطاقة الخروج · Exit Ticket</td><td><strong>1 min</strong></td></tr>
+        <tr style="background:var(--peach);font-weight:900;"><td class="cat" style="background:var(--peach-strong);color:white;">📊</td><td><strong>المجموع · Total</strong></td><td><strong style="color:var(--peach-text);">46 min ✅</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+
+<footer>✦ Arabic B · Year 9 · My Favorite Film 🎬 ✦ &nbsp;|&nbsp; Smart Board Ready &nbsp;|&nbsp; The English College, Dubai ✦</footer>
+
+<!-- Arrow Navigation -->
+<div class="arrow-nav right">
+  <button class="arrow-btn" id="prevBtn" onclick="navigateSection(-1)">→</button>
+  <button class="arrow-btn" id="nextBtn" onclick="navigateSection(1)">←</button>
+</div>
+
+<script>
+/* ── NAVIGATION SETUP ── */
+const navData = [
+  {label:'Title',ar:'العنوان',n:1},
+  {label:'Warm-Up',ar:'تحفيز',n:2},
+  {label:'Vocab',ar:'مفردات',n:3},
+  {label:'Reading',ar:'القصة',n:4},
+  {label:'Q&A',ar:'أسئلة',n:5},
+  {label:'⭐ AfL',ar:'تقييم',n:6},
+  {label:'Build',ar:'ابنِ',n:7},
+  {label:'Opinion',ar:'رأي',n:8},
+  {label:'Writing',ar:'كتابة',n:9},
+  {label:'Quiz',ar:'اختبار',n:10},
+  {label:'Exit',ar:'خروج',n:11},
+  {label:'Done',ar:'أحسنتم',n:12}
+];
+
+const navStrip = document.getElementById('navStrip');
+navData.forEach((item, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+  btn.innerHTML = `${item.ar}<br><span style="font-size:0.7rem;opacity:0.8;">${item.label}</span>`;
+  btn.onclick = () => showSection(i, btn);
+  navStrip.appendChild(btn);
+});
+
+const sections = document.querySelectorAll('.section-card');
+let currentSection = 0;
+
+function showSection(idx, btn) {
+  sections.forEach(s => s.classList.remove('visible'));
+  sections[idx].classList.add('visible');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+  currentSection = idx;
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function updateProgress() {
+  const pct = ((currentSection + 1) / sections.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('prevBtn').disabled = currentSection === 0;
+  document.getElementById('nextBtn').disabled = currentSection === sections.length - 1;
+}
+
+function navigateSection(dir) {
+  const newIdx = currentSection + dir;
+  if (newIdx >= 0 && newIdx < sections.length) {
+    showSection(newIdx);
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') navigateSection(1);
+  if (e.key === 'ArrowRight') navigateSection(-1);
+});
+
+updateProgress();
+
+/* ── CLOCK ── */
+let totalSeconds = 45 * 60;
+let remaining = totalSeconds;
+let timerId = null;
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `⏱ ${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function updateClockDisplay() {
+  document.getElementById('clockDisplay').textContent = formatTime(remaining);
+  const pct = ((totalSeconds - remaining) / totalSeconds) * 100;
+  document.getElementById('clockFill').style.width = pct + '%';
+  if (remaining <= 0) {
+    clearInterval(timerId);
+    timerId = null;
+    document.getElementById('clockDisplay').textContent = '⏱ TIME UP!';
+    document.getElementById('clockDisplay').style.background = 'var(--peach-strong)';
+    document.getElementById('clockDisplay').style.color = 'white';
+  }
+}
+
+function startClock() {
+  if (timerId) return;
+  timerId = setInterval(() => {
+    remaining--;
+    updateClockDisplay();
+  }, 1000);
+  document.getElementById('startBtn').style.display = 'none';
+  document.getElementById('pauseBtn').style.display = 'inline-block';
+}
+
+function pauseClock() {
+  clearInterval(timerId);
+  timerId = null;
+  document.getElementById('startBtn').style.display = 'inline-block';
+  document.getElementById('pauseBtn').style.display = 'none';
+}
+
+function resetClock() {
+  clearInterval(timerId);
+  timerId = null;
+  remaining = totalSeconds;
+  document.getElementById('clockDisplay').style.background = 'var(--peach)';
+  document.getElementById('clockDisplay').style.color = 'var(--peach-text)';
+  updateClockDisplay();
+  document.getElementById('startBtn').style.display = 'inline-block';
+  document.getElementById('pauseBtn').style.display = 'none';
+}
+
+/* ── FLIP CARDS ── */
+function flipCard(card) {
+  card.classList.toggle('flipped');
+}
+
+/* ── MC ANSWERS ── */
+function checkAnswer(opt, isCorrect, qId) {
+  const item = document.getElementById(qId);
+  const fb = document.getElementById(qId + '-fb');
+  const rstBtn = document.getElementById(qId + '-rst');
+  const opts = item.querySelectorAll('.mc-opt');
+
+  if (isCorrect) {
+    opt.classList.add('correct');
+    opts.forEach(o => { if (o !== opt) o.style.pointerEvents = 'none'; });
+    fb.textContent = '✅ ممتاز! إجابة صحيحة · Excellent!';
+    fb.classList.add('show', 'right');
+  } else {
+    opt.classList.add('wrong');
+    fb.textContent = '❌ حاول مرة أخرى · Try again';
+    fb.classList.add('show', 'wrong-fb');
+    rstBtn.classList.add('show');
+  }
+}
+
+function resetMC(qId) {
+  const item = document.getElementById(qId);
+  const fb = document.getElementById(qId + '-fb');
+  const rstBtn = document.getElementById(qId + '-rst');
+  item.querySelectorAll('.mc-opt').forEach(o => {
+    o.classList.remove('correct', 'wrong');
+    o.style.pointerEvents = 'auto';
+  });
+  fb.classList.remove('show', 'right', 'wrong-fb');
+  fb.textContent = '';
+  rstBtn.classList.remove('show');
+}
+
+/* ── EXIT TICKET ── */
+function selectExit(card, val) {
+  document.querySelectorAll('.exit-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const conf = document.getElementById('exitConfirm');
+  const msgs = {
+    'got-it': '🌟 رائع! استمر في التفوق · Great! Keep it up!',
+    'almost': '🤔 شكراً! اسأل سؤالك · Thanks! Ask your question.',
+    'lost': '🙋 لا بأس، سنراجع معاً · No problem, we will review.'
+  };
+  conf.textContent = msgs[val];
+  conf.classList.add('show');
+}
+
+/* ── SENTENCE BUILDER ── */
+function fillBlank(opt) {
+  const target = opt.dataset.target;
+  const value = opt.dataset.value;
+  const blank = document.getElementById(target);
+  if (blank.classList.contains('filled')) return;
+  blank.textContent = value;
+  blank.classList.add('filled');
+  opt.classList.add('used');
+  opt.dataset.linkedBlank = target;
+}
+
+function clearBlank(blankId) {
+  const blank = document.getElementById(blankId);
+  if (!blank.classList.contains('filled')) return;
+  blank.textContent = '______';
+  blank.classList.remove('filled');
+  document.querySelectorAll('.sb-opt').forEach(o => {
+    if (o.dataset.linkedBlank === blankId) {
+      o.classList.remove('used');
+      delete o.dataset.linkedBlank;
+    }
+  });
+}
+
+function resetBuilder() {
+  ['sb-1', 'sb-2', 'sb-3'].forEach(id => {
+    const b = document.getElementById(id);
+    b.textContent = '______';
+    b.classList.remove('filled');
+  });
+  document.querySelectorAll('.sb-opt').forEach(o => {
+    o.classList.remove('used');
+    delete o.dataset.linkedBlank;
+  });
+}
+
+/* ── OPINION BUILDER ── */
+const opinion = { who: '', verb: '', why: '' };
+
+function pickOpinion(item, type, value) {
+  // Mark only this column's items
+  const colClass = type === 'who' ? 'col-who' : type === 'verb' ? 'col-verb' : 'col-thing';
+  document.querySelectorAll(`.opinion-col.${colClass} .opinion-item`).forEach(i => i.classList.remove('selected'));
+  item.classList.add('selected');
+  opinion[type] = value;
+  updateLiveSentence();
+}
+
+function updateLiveSentence() {
+  const whoEl = document.getElementById('liveWho');
+  const verbEl = document.getElementById('liveVerb');
+  const whyEl = document.getElementById('liveWhy');
+
+  if (opinion.who) {
+    whoEl.textContent = opinion.who;
+    whoEl.classList.add('filled-who');
+  } else {
+    whoEl.textContent = 'من؟';
+    whoEl.classList.remove('filled-who');
+  }
+  if (opinion.verb) {
+    verbEl.textContent = opinion.verb;
+    verbEl.classList.add('filled-verb');
+  } else {
+    verbEl.textContent = 'يحب أفلام...';
+    verbEl.classList.remove('filled-verb');
+  }
+  if (opinion.why) {
+    whyEl.textContent = opinion.why;
+    whyEl.classList.add('filled-why');
+  } else {
+    whyEl.textContent = 'لأنها...';
+    whyEl.classList.remove('filled-why');
+  }
+}
+
+function resetOpinion() {
+  opinion.who = '';
+  opinion.verb = '';
+  opinion.why = '';
+  document.querySelectorAll('.opinion-item').forEach(i => i.classList.remove('selected'));
+  updateLiveSentence();
+}
+</script>
+
+</body>
+</html>
