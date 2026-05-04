@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arabic B Y8 – Unit 6 Lesson 2: Where is it? | أين الأشياء؟</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&family=Tajawal:wght@400;700;800;900&display=swap');
+
+  :root {
+    /* UAE Flag Colors */
+    --uae-red: #EF3340;
+    --uae-red-dark: #C8102E;
+    --uae-red-light: #FEE2E4;
+    --uae-green: #00732F;
+    --uae-green-dark: #005522;
+    --uae-green-light: #D9F1E2;
+    --uae-black: #000000;
+    --uae-black-soft: #1a1a1a;
+    --uae-white: #FFFFFF;
+    --cream: #FAFAFA;
+    --slate: #1e293b;
+    --grey: #f5f5f5;
+    --grey-border: #e0e0e0;
+    --gold-accent: #C9A227;
+    --amber: #f59e0b;
+    --teal: #0d9488;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-strong: 0 8px 30px rgba(0,0,0,0.12);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--uae-white);
+    color: var(--slate);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ── UAE FLAG SIDE STRIPES ── */
+  .flag-stripe {
+    position: fixed;
+    top: 0; bottom: 0;
+    right: 0;
+    width: 12px;
+    z-index: 100;
+    background: linear-gradient(to right,
+      var(--uae-red) 0%, var(--uae-red) 25%,
+      var(--uae-green) 25%, var(--uae-green) 50%,
+      var(--uae-white) 50%, var(--uae-white) 75%,
+      var(--uae-black) 75%, var(--uae-black) 100%);
+    border-left: 1px solid rgba(0,0,0,0.1);
+  }
+  .flag-stripe-left {
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0;
+    width: 12px;
+    z-index: 100;
+    background: linear-gradient(to right,
+      var(--uae-black) 0%, var(--uae-black) 25%,
+      var(--uae-white) 25%, var(--uae-white) 50%,
+      var(--uae-green) 50%, var(--uae-green) 75%,
+      var(--uae-red) 75%, var(--uae-red) 100%);
+    border-right: 1px solid rgba(0,0,0,0.1);
+  }
+
+  /* Watermark Flag */
+  .flag-watermark {
+    position: fixed;
+    bottom: 80px;
+    left: 30px;
+    width: 70px;
+    height: 38px;
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .flag-watermark .stripe-r { position:absolute; top:0; left:25%; right:0; height:33.33%; background:var(--uae-red); }
+  .flag-watermark .stripe-g { position:absolute; top:33.33%; left:25%; right:0; height:33.33%; background:var(--uae-green); }
+  .flag-watermark .stripe-w { position:absolute; top:66.66%; left:25%; right:0; height:33.34%; background:var(--uae-white); }
+  .flag-watermark .pole { position:absolute; top:0; bottom:0; left:0; width:25%; background:var(--uae-red); }
+
+  /* Arabic uses Tajawal */
+  .ar { font-family: 'Tajawal', sans-serif; direction: rtl; text-align: right; }
+  .en { font-family: 'Nunito', sans-serif; direction: ltr; text-align: left; font-style: italic; opacity: 0.85; }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--uae-white);
+    padding: 30px 40px 22px;
+    text-align: center;
+    position: relative;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(to right,
+      var(--uae-red) 0%, var(--uae-red) 25%,
+      var(--uae-green) 25%, var(--uae-green) 50%,
+      var(--uae-white) 50%, var(--uae-white) 75%,
+      var(--uae-black) 75%, var(--uae-black) 100%) 1;
+    border-image-slice: 1;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(to right,
+      var(--uae-red) 0%, var(--uae-red) 33.33%,
+      var(--uae-green) 33.33%, var(--uae-green) 66.66%,
+      var(--uae-black) 66.66%, var(--uae-black) 100%);
+  }
+  .header-flag-icon {
+    display: inline-block;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  }
+  header h1 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 900;
+    color: var(--uae-red);
+    margin-bottom: 6px;
+  }
+  header h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--uae-green);
+    margin-bottom: 8px;
+  }
+  header .meta {
+    display: inline-flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+    font-size: 0.85rem;
+  }
+  header .meta span {
+    background: var(--grey);
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: var(--slate);
+    font-weight: 700;
+  }
+  header .meta .badge-red { background: var(--uae-red-light); color: var(--uae-red-dark); }
+  header .meta .badge-green { background: var(--uae-green-light); color: var(--uae-green-dark); }
+  header .meta .badge-black { background: var(--uae-black); color: var(--uae-white); }
+
+  /* ── CLOCK / TIMER ── */
+  .clock-container {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: var(--uae-white);
+    border-bottom: 2px solid var(--grey-border);
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .clock-bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .clock-display {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--uae-red-dark);
+    background: var(--uae-red-light);
+    padding: 6px 18px;
+    border-radius: 12px;
+    border: 2px solid var(--uae-red);
+    min-width: 130px;
+    text-align: center;
+  }
+  .clock-btn {
+    background: var(--uae-green);
+    color: var(--uae-white);
+    border: none;
+    padding: 7px 16px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .clock-btn:hover { background: var(--uae-green-dark); transform: translateY(-2px); }
+  .clock-btn.reset { background: var(--uae-black); }
+  .clock-btn.pause { background: var(--amber); }
+  .clock-progress {
+    flex: 1;
+    min-width: 120px;
+    height: 8px;
+    background: var(--grey);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 280px;
+  }
+  .clock-progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--uae-green), var(--uae-red));
+    width: 0%;
+    transition: width 1s linear;
+  }
+
+  /* ── NAV STRIP ── */
+  .nav-wrap {
+    position: sticky;
+    top: 60px;
+    z-index: 89;
+    background: var(--uae-white);
+    border-bottom: 1px solid var(--grey-border);
+    padding: 8px 12px;
+    overflow-x: auto;
+  }
+  #navStrip {
+    display: flex;
+    gap: 6px;
+    max-width: 1300px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+  }
+  .nav-btn {
+    flex-shrink: 0;
+    padding: 6px 11px;
+    background: var(--grey);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--slate);
+    transition: all 0.2s;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .nav-btn:hover { background: var(--uae-red-light); color: var(--uae-red-dark); }
+  .nav-btn.active {
+    background: var(--uae-red);
+    color: var(--uae-white);
+    border-color: var(--uae-red-dark);
+    transform: translateY(-1px);
+  }
+
+  /* ── PROGRESS BAR ── */
+  #progressBar {
+    height: 4px;
+    background: var(--grey);
+    position: sticky;
+    top: 110px;
+    z-index: 88;
+  }
+  #progressFill {
+    height: 100%;
+    background: linear-gradient(to right, var(--uae-red), var(--uae-green));
+    width: 8%;
+    transition: width 0.4s;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 24px 80px;
+    position: relative;
+  }
+
+  /* ── SECTION CARDS ── */
+  .section-card {
+    background: var(--uae-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    padding: 26px 28px;
+    border: 1px solid var(--grey-border);
+    display: none;
+    animation: fadeIn 0.45s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right,
+      var(--uae-red) 0%, var(--uae-red) 33.33%,
+      var(--uae-green) 33.33%, var(--uae-green) 66.66%,
+      var(--uae-black) 66.66%, var(--uae-black) 100%);
+  }
+  .section-card.visible { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 2px dashed var(--grey-border);
+    flex-wrap: wrap;
+  }
+  .card-icon {
+    width: 50px; height: 50px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+  .card-title-wrap { flex: 1; min-width: 0; }
+  .card-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+    font-weight: 900;
+    color: var(--uae-red-dark);
+    direction: rtl;
+    text-align: right;
+  }
+  .card-title-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+    color: var(--uae-green);
+    margin-top: 2px;
+  }
+  .time-chip {
+    background: var(--uae-green-light);
+    color: var(--uae-green-dark);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.82rem;
+  }
+  .section-number {
+    background: var(--uae-black);
+    color: var(--uae-white);
+    padding: 4px 11px;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 0.78rem;
+  }
+
+  /* ── BIG QUESTION ── */
+  .big-question {
+    background: linear-gradient(135deg, var(--uae-red), var(--uae-red-dark));
+    color: var(--uae-white);
+    padding: 22px 26px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    text-align: center;
+    box-shadow: var(--shadow-strong);
+  }
+  .q-text-ar {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+    font-weight: 900;
+    margin-bottom: 6px;
+    direction: rtl;
+  }
+  .q-text-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    opacity: 0.92;
+  }
+
+  /* ── OBJECTIVES LIST ── */
+  .obj-list { list-style: none; margin-bottom: 14px; }
+  .obj-item {
+    background: var(--grey);
+    padding: 12px 16px;
+    border-right: 4px solid var(--uae-green);
+    margin-bottom: 8px;
+    border-radius: 10px;
+  }
+  .obj-item:nth-child(2n) { border-right-color: var(--uae-red); }
+
+  /* ── KHDA BOX ── */
+  .khda {
+    background: var(--uae-black);
+    color: var(--uae-white);
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-top: 14px;
+    border-right: 5px solid var(--uae-red);
+  }
+  .khda .lbl {
+    display: inline-block;
+    background: var(--uae-red);
+    color: var(--uae-white);
+    padding: 3px 10px;
+    border-radius: 14px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .khda .en-text { font-style: italic; opacity: 0.9; font-size: 0.85rem; margin-top: 4px; }
+
+  /* ── TEACHER BOX ── */
+  .teacher-box {
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFF3CD 100%);
+    border: 2px dashed var(--gold-accent);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-top: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .teacher-box .icon { font-size: 1.4rem; flex-shrink: 0; }
+  .teacher-box .label {
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: var(--gold-accent);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .teacher-box p { font-size: 0.88rem; line-height: 1.5; }
+  .teacher-box .ar { font-family: 'Tajawal', sans-serif; direction: rtl; text-align: right; font-weight: 700; margin-bottom: 3px; }
+  .teacher-box .en { font-style: italic; font-size: 0.82rem; }
+
+  /* ── VOCAB FLIP CARDS ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .vocab-card {
+    perspective: 1000px;
+    height: 175px;
+    cursor: pointer;
+  }
+  .vocab-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+  .vocab-card.flipped .vocab-inner { transform: rotateY(180deg); }
+  .vocab-front, .vocab-back {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .vocab-front {
+    background: linear-gradient(135deg, var(--uae-white), var(--uae-red-light));
+    border: 2px solid var(--uae-red);
+  }
+  .vocab-back {
+    background: linear-gradient(135deg, var(--uae-green), var(--uae-green-dark));
+    color: var(--uae-white);
+    transform: rotateY(180deg);
+  }
+  .vocab-icon { font-size: 2rem; margin-bottom: 6px; }
+  .vocab-word {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--uae-red-dark);
+    direction: rtl;
+  }
+  .vocab-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.9rem;
+    color: var(--uae-green-dark);
+    margin-top: 4px;
+  }
+  .vocab-hint {
+    font-size: 0.7rem;
+    color: var(--slate);
+    margin-top: 8px;
+    opacity: 0.7;
+    font-style: italic;
+  }
+  .vocab-back-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .vocab-back-en {
+    font-size: 0.78rem;
+    font-style: italic;
+    opacity: 0.92;
+  }
+
+  /* ── PASSAGE / EXAMPLES ── */
+  .passage {
+    background: var(--grey);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    border-right: 5px solid var(--uae-red);
+  }
+  .passage-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    font-weight: 700;
+    color: var(--uae-black);
+    margin-bottom: 12px;
+  }
+  .passage-en {
+    direction: ltr;
+    text-align: left;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #444;
+    font-style: italic;
+    border-top: 1px dashed var(--grey-border);
+    padding-top: 10px;
+  }
+  .hl { background: var(--uae-red-light); color: var(--uae-red-dark); padding: 1px 6px; border-radius: 5px; font-weight: 900; }
+  .hl-green { background: var(--uae-green-light); color: var(--uae-green-dark); padding: 1px 6px; border-radius: 5px; font-weight: 900; }
+  .hl-black { background: var(--uae-black); color: var(--uae-white); padding: 1px 6px; border-radius: 5px; font-weight: 900; }
+
+  /* ── PREPOSITION VISUAL CARDS ── */
+  .prep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .prep-card {
+    background: var(--uae-white);
+    border: 2px solid var(--uae-green);
+    border-radius: 12px;
+    padding: 12px 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.2s;
+  }
+  .prep-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-strong); }
+  .prep-card:nth-child(2n) { border-color: var(--uae-red); }
+  .prep-card:nth-child(3n) { border-color: var(--uae-black); }
+  .prep-svg {
+    width: 100%;
+    max-width: 110px;
+    height: 75px;
+    margin: 0 auto 8px;
+    display: block;
+  }
+  .prep-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--uae-red-dark);
+  }
+  .prep-en {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    color: var(--uae-green-dark);
+    margin-top: 2px;
+  }
+
+  /* ── EXAMPLES (Q→A) ── */
+  .example-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .example-card {
+    background: linear-gradient(135deg, var(--uae-white), var(--grey));
+    border: 2px solid var(--uae-green);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .example-card:nth-child(2n) { border-color: var(--uae-red); }
+  .example-card:nth-child(3n) { border-color: var(--uae-black); }
+  .example-emoji { font-size: 2.4rem; margin-bottom: 8px; }
+  .example-q {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--uae-red-dark);
+    margin-bottom: 4px;
+  }
+  .example-q-en { font-size: 0.78rem; color: #555; font-style: italic; margin-bottom: 8px; }
+  .example-a {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--uae-green-dark);
+    background: var(--uae-green-light);
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+  }
+  .example-a-en { font-size: 0.78rem; color: #555; font-style: italic; }
+
+  /* ── QA ITEM (reveal) ── */
+  .qa-item {
+    background: var(--uae-white);
+    border: 1px solid var(--grey-border);
+    border-right: 4px solid var(--uae-red);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .qa-q-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--uae-black);
+    margin-bottom: 4px;
+  }
+  .qa-q-en {
+    font-size: 0.85rem;
+    color: #555;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+  .reveal-btn {
+    background: var(--uae-red);
+    color: var(--uae-white);
+    border: none;
+    padding: 7px 14px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: all 0.2s;
+  }
+  .reveal-btn:hover { background: var(--uae-red-dark); transform: translateY(-1px); }
+  .qa-ans {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: var(--uae-green-light);
+    border-radius: 10px;
+    border-right: 4px solid var(--uae-green);
+  }
+  .qa-ans.visible { display: block; animation: fadeIn 0.3s ease; }
+  .qa-ans-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--uae-green-dark);
+    margin-bottom: 4px;
+  }
+  .qa-ans-en {
+    font-size: 0.82rem;
+    color: #444;
+    font-style: italic;
+  }
+
+  /* ── AfL Banner ── */
+  .afl-banner {
+    background: linear-gradient(135deg, var(--uae-black), #1a1a1a);
+    color: var(--uae-white);
+    padding: 18px 22px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+    border: 3px solid var(--uae-red);
+  }
+  .afl-banner h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--uae-red);
+    margin-bottom: 4px;
+  }
+  .afl-banner p { font-size: 0.92rem; opacity: 0.92; }
+  .afl-banner p.ar { font-family: 'Tajawal', sans-serif; direction: rtl; margin-top: 4px; }
+
+  /* ── MC ITEMS ── */
+  .mc-item {
+    background: var(--uae-white);
+    border: 1px solid var(--grey-border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    border-right: 4px solid var(--uae-green);
+  }
+  .mc-q-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--uae-black);
+    margin-bottom: 4px;
+  }
+  .mc-q-en {
+    font-size: 0.85rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .mc-opts { display: flex; flex-direction: column; gap: 8px; }
+  .mc-opt {
+    background: var(--grey);
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+    font-size: 0.95rem;
+  }
+  .mc-opt:hover { background: var(--uae-red-light); border-color: var(--uae-red); }
+  .mc-opt.correct { background: var(--uae-green-light); border-color: var(--uae-green); color: var(--uae-green-dark); pointer-events: none; }
+  .mc-opt.wrong { background: var(--uae-red-light); border-color: var(--uae-red); color: var(--uae-red-dark); pointer-events: none; opacity: 0.7; }
+  .mc-opt .en-opt { font-size: 0.78rem; font-style: italic; opacity: 0.85; margin-top: 2px; }
+  .mc-feedback {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .mc-feedback.show { display: block; animation: fadeIn 0.3s ease; }
+  .mc-feedback.right { background: var(--uae-green-light); color: var(--uae-green-dark); }
+  .mc-feedback.wrong-fb { background: var(--uae-red-light); color: var(--uae-red-dark); }
+  .mc-reset-btn {
+    display: none;
+    background: var(--uae-black);
+    color: var(--uae-white);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  .mc-reset-btn.show { display: inline-block; }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: var(--uae-red-light);
+    border-right: 5px solid var(--uae-red);
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin: 12px 0;
+  }
+  .info-box.green-box { background: var(--uae-green-light); border-right-color: var(--uae-green); }
+  .info-box.black-box { background: var(--uae-black); color: var(--uae-white); border-right-color: var(--uae-red); }
+  .info-box.gold-box { background: #FFF8E1; border-right-color: var(--gold-accent); }
+  .info-box .ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .info-box .en { font-size: 0.85rem; font-style: italic; opacity: 0.9; }
+
+  /* ── DRAG & DROP MATCHING ── */
+  .match-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .match-col h4 {
+    font-family: 'Tajawal', sans-serif;
+    color: var(--uae-red-dark);
+    margin-bottom: 8px;
+    direction: rtl;
+    text-align: right;
+  }
+  .match-col h4.en-h {
+    color: var(--uae-green-dark);
+    font-family: 'Fredoka One', cursive;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.92rem;
+  }
+  .match-item {
+    background: var(--uae-white);
+    border: 2px solid var(--uae-green);
+    padding: 9px 13px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    cursor: grab;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-weight: 800;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .match-item:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .match-item.en-item {
+    direction: ltr;
+    text-align: left;
+    font-family: 'Fredoka One', cursive;
+    border-color: var(--uae-red);
+    color: var(--uae-red-dark);
+  }
+  .match-item.matched {
+    background: var(--uae-green-light);
+    border-color: var(--uae-green-dark);
+    cursor: default;
+    opacity: 0.55;
+  }
+  .match-item.selected {
+    background: var(--uae-red);
+    color: var(--uae-white);
+    transform: scale(1.04);
+  }
+  .match-feedback {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    color: var(--uae-green-dark);
+    min-height: 22px;
+  }
+  .match-reset-btn {
+    background: var(--uae-black);
+    color: var(--uae-white);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 0.82rem;
+    margin-top: 6px;
+  }
+
+  /* ── FILL IN THE BLANK ── */
+  .fill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .fill-item {
+    background: var(--uae-white);
+    border: 2px solid var(--uae-green);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  .fill-item:nth-child(2n) { border-color: var(--uae-red); }
+  .fill-item:nth-child(3n) { border-color: var(--uae-black); }
+  .fill-emojis { font-size: 1.8rem; margin-bottom: 8px; }
+  .fill-q {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--uae-black);
+    margin-bottom: 8px;
+  }
+  .fill-input {
+    background: var(--grey);
+    border: 2px dashed var(--uae-red);
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: var(--uae-red-dark);
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    min-width: 60px;
+    display: inline-block;
+    margin: 0 4px;
+  }
+  .fill-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .fill-opt {
+    background: var(--uae-green-light);
+    border: 2px solid var(--uae-green);
+    color: var(--uae-green-dark);
+    padding: 5px 14px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  .fill-opt:hover { background: var(--uae-green); color: var(--uae-white); }
+  .fill-opt.correct { background: var(--uae-green); color: var(--uae-white); pointer-events: none; }
+  .fill-opt.wrong { background: var(--uae-red-light); color: var(--uae-red-dark); border-color: var(--uae-red); pointer-events: none; opacity: 0.5; }
+
+  /* ── EXIT TICKET ── */
+  .exit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .exit-card {
+    border-radius: 14px;
+    padding: 16px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: 3px solid;
+  }
+  .exit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-strong); }
+  .exit-c1 { background: var(--uae-green-light); border-color: var(--uae-green); }
+  .exit-c2 { background: #FFF8E1; border-color: var(--gold-accent); }
+  .exit-c3 { background: var(--uae-red-light); border-color: var(--uae-red); }
+  .exit-card.selected { transform: scale(1.04); box-shadow: var(--shadow-strong); }
+  .exit-c1.selected { background: var(--uae-green); color: var(--uae-white); }
+  .exit-c2.selected { background: var(--gold-accent); color: var(--uae-white); }
+  .exit-c3.selected { background: var(--uae-red); color: var(--uae-white); }
+  .ec-emoji { font-size: 2.2rem; margin-bottom: 6px; }
+  .ec-label { font-family: 'Fredoka One', cursive; font-size: 1.05rem; }
+  .ec-label-ar { font-family: 'Tajawal', sans-serif; font-size: 0.95rem; font-weight: 800; margin-top: 2px; direction: rtl; }
+  .ec-text { font-size: 0.78rem; opacity: 0.9; margin-top: 4px; }
+  .ec-text-ar { font-family: 'Tajawal', sans-serif; font-size: 0.82rem; opacity: 0.92; direction: rtl; }
+  .exit-confirm {
+    text-align: center;
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    background: var(--uae-green-light);
+    color: var(--uae-green-dark);
+    display: none;
+  }
+  .exit-confirm.show { display: block; animation: fadeIn 0.3s ease; }
+
+  .divider {
+    border: none;
+    border-top: 2px dashed var(--grey-border);
+    margin: 18px 0;
+  }
+
+  /* ── CELEBRATE ── */
+  .celebrate {
+    text-align: center;
+    padding: 22px 14px;
+    background: linear-gradient(135deg, var(--uae-red-light), var(--uae-green-light));
+    border-radius: 18px;
+    border: 3px solid var(--uae-red);
+  }
+  .g3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .g2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  /* ── TABLE ── */
+  .culture-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    box-shadow: var(--shadow);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  /* Task 1 blank lines */
+  .t1-blank {
+    color: var(--uae-red);
+    font-weight: 900;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .t1-ans {
+    color: var(--uae-green-dark);
+    font-weight: 700;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .t1-ans.show { display: inline-block !important; animation: fadeIn 0.4s ease; }
+  .culture-table thead th {
+    background: var(--uae-red);
+    color: var(--uae-white);
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  .culture-table thead th.col-cat { background: var(--uae-black); }
+  .culture-table thead th.col-other { background: var(--uae-green); }
+  .culture-table tbody td {
+    padding: 10px 12px;
+    border: 1px solid var(--grey-border);
+    text-align: center;
+    font-size: 0.92rem;
+    direction: rtl;
+  }
+  .culture-table tbody tr:nth-child(2n) { background: var(--grey); }
+  .culture-table .cat { font-weight: 900; color: var(--uae-red-dark); }
+  .culture-table .en-row { font-size: 0.75rem; color: #666; font-style: italic; direction: ltr; margin-top: 2px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 22px;
+    color: var(--slate);
+    font-size: 0.85rem;
+    background: var(--grey);
+    border-top: 4px solid;
+    border-image: linear-gradient(to right,
+      var(--uae-red) 0%, var(--uae-red) 25%,
+      var(--uae-green) 25%, var(--uae-green) 50%,
+      var(--uae-white) 50%, var(--uae-white) 75%,
+      var(--uae-black) 75%, var(--uae-black) 100%) 1;
+    border-image-slice: 1;
+  }
+
+  /* ── ARROWS ── */
+  .arrow-nav {
+    position: fixed;
+    bottom: 24px;
+    z-index: 95;
+    display: flex;
+    gap: 8px;
+  }
+  .arrow-nav.right { right: 30px; }
+  .arrow-btn {
+    background: var(--uae-red);
+    color: var(--uae-white);
+    border: none;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-strong);
+    transition: all 0.2s;
+  }
+  .arrow-btn:hover { background: var(--uae-red-dark); transform: scale(1.08); }
+  .arrow-btn:disabled { background: #ccc; cursor: not-allowed; opacity: 0.5; }
+
+  @media (max-width: 700px) {
+    main { padding: 18px 14px 80px; }
+    .section-card { padding: 18px 16px; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .prep-grid { grid-template-columns: repeat(2, 1fr); }
+    .match-wrap { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="flag-stripe"></div>
+<div class="flag-stripe-left"></div>
+<div class="flag-watermark">
+  <div class="pole"></div>
+  <div class="stripe-r"></div>
+  <div class="stripe-g"></div>
+  <div class="stripe-w"></div>
+</div>
+
+<header>
+  <div class="header-flag-icon">🇦🇪</div>
+  <h1>أين الأشياء؟ — حروف الجر</h1>
+  <h2>Where is it? — Prepositions of Place</h2>
+  <div class="meta">
+    <span class="badge-red">Year 8 · Arabic B</span>
+    <span class="badge-green">Unit 6 · Lesson 2</span>
+    <span class="badge-black">⏱ 45 min</span>
+    <span>📚 Mastering Arabic 1</span>
+  </div>
+</header>
+
+<!-- CLOCK -->
+<div class="clock-container">
+  <div class="clock-bar">
+    <div class="clock-display" id="clockDisplay">⏱ 45:00</div>
+    <button class="clock-btn" id="startBtn" onclick="startClock()">▶ Start</button>
+    <button class="clock-btn pause" id="pauseBtn" onclick="pauseClock()" style="display:none;">⏸ Pause</button>
+    <button class="clock-btn reset" onclick="resetClock()">↻ Reset</button>
+    <div class="clock-progress"><div class="clock-progress-fill" id="clockFill"></div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap"><div id="navStrip"></div></div>
+<div id="progressBar"><div id="progressFill"></div></div>
+
+<main>
+
+<!-- ══════════════════════════════════
+     S1 — TITLE & OBJECTIVES
+══════════════════════════════════ -->
+<div class="section-card visible" id="sec-1">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-red-light);color:var(--uae-red);">🎯</div>
+    <div class="card-title-wrap">
+      <div class="card-title">عنوان الدرس وأهداف التعلم</div>
+      <div class="card-title-en">Lesson Title & Learning Objectives</div>
+    </div>
+    <span class="time-chip">⏱ 2 min</span>
+    <span class="section-number">1 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="big-question">
+      <div class="q-text-ar">أين الأشياء؟</div>
+      <div class="q-text-en">Where is it? — Located Things</div>
+    </div>
+
+    <h3 style="font-family:'Tajawal',sans-serif;color:var(--uae-red);font-size:1.2rem;margin-bottom:6px;direction:rtl;text-align:right;">📋 الهدف من الدرس</h3>
+    <p style="font-family:'Fredoka One',cursive;color:var(--uae-green);font-size:0.95rem;margin-bottom:14px;">Lesson Objective</p>
+
+    <div class="info-box green-box" style="margin-bottom:14px;">
+      <div class="ar">أن يستخدم الطالب حروف الجر لوصف مكان الأشياء.</div>
+      <div class="en">To use prepositions to describe the location of things.</div>
+    </div>
+
+    <h3 style="font-family:'Tajawal',sans-serif;color:var(--uae-red);font-size:1.1rem;margin-bottom:6px;direction:rtl;text-align:right;">✅ معايير النجاح</h3>
+    <p style="font-family:'Fredoka One',cursive;color:var(--uae-green);font-size:0.92rem;margin-bottom:14px;">Success Criteria</p>
+
+    <ul class="obj-list">
+      <li class="obj-item">
+        <div class="ar">✅ أستطيع استخدام حروف الجر البسيطة (في، على، تحت، فوق) بشكل صحيح في جمل.</div>
+        <div class="en">✅ I can use simple prepositions (in, on, under, above) correctly in sentences.</div>
+      </li>
+      <li class="obj-item">
+        <div class="ar">✅ أستطيع وصف مكان الأشياء باستخدام جمل قصيرة وواضحة.</div>
+        <div class="en">✅ I can describe where objects are using short and clear sentences.</div>
+      </li>
+    </ul>
+
+    <div class="khda">
+      <span class="lbl">📌 KHDA STANDARD · معايير هيئة المعرفة</span>
+      <div class="ar" style="font-family:'Tajawal',sans-serif;font-size:0.9rem;margin-top:6px;direction:rtl;text-align:right;font-weight:700;">يستخدم اللغة العربية بشكل وظيفي لوصف الأشياء وأماكنها في حياته اليومية</div>
+      <div class="en-text">Uses Arabic functionally to describe objects and their locations in everyday life. (ACTFL — Novice Mid)</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">ابدأ الدرس بسؤال: "أين كتابك الآن؟ أين قلمك؟" ودع الطلاب يحاولون الإجابة بكلمة واحدة.</p>
+        <p class="en">Start by asking: "Where is your book? Where is your pen?" Let students try to answer in one word.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S2 — VOCABULARY (FURNITURE)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-2">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-green-light);color:var(--uae-green);">📚</div>
+    <div class="card-title-wrap">
+      <div class="card-title">المفردات — الأثاث في البيت</div>
+      <div class="card-title-en">Vocabulary — Furniture at Home</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">2 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:700;color:var(--uae-red);margin-bottom:6px;">اضغط على كل بطاقة لتقلبها وترى المعنى</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:14px;">Click each card to flip it and see the meaning.</p>
+
+    <div class="vocab-grid">
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🪑</div>
+            <div class="vocab-word">كُرْسِيّ</div>
+            <div class="vocab-en">Chair</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">قطعة أثاث للجلوس عليها</div>
+            <div class="vocab-back-en">A piece of furniture you sit on.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🛏️</div>
+            <div class="vocab-word">سَرِير</div>
+            <div class="vocab-en">Bed</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">قطعة أثاث للنوم عليها</div>
+            <div class="vocab-back-en">A piece of furniture for sleeping.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🍽️</div>
+            <div class="vocab-word">مَائِدَة</div>
+            <div class="vocab-en">Table</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">طاولة لوضع الأشياء أو الطعام عليها</div>
+            <div class="vocab-back-en">A table to put things or food on.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🚪</div>
+            <div class="vocab-word">بَاب</div>
+            <div class="vocab-en">Door</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">المدخل إلى الغرفة أو البيت</div>
+            <div class="vocab-back-en">The entrance to a room or a house.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🪟</div>
+            <div class="vocab-word">شُبَّاك</div>
+            <div class="vocab-en">Window</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">فتحة في الجدار للضوء والهواء</div>
+            <div class="vocab-back-en">An opening in the wall for light and air.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">📺</div>
+            <div class="vocab-word">تِلْفِزْيُون</div>
+            <div class="vocab-en">Television</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">جهاز نشاهد عليه البرامج والأفلام</div>
+            <div class="vocab-back-en">A device for watching shows and films.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🚪</div>
+            <div class="vocab-word">خِزَانَة</div>
+            <div class="vocab-en">Cupboard</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">مكان لحفظ الملابس والأشياء</div>
+            <div class="vocab-back-en">A place to keep clothes and things.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">🖼️</div>
+            <div class="vocab-word">صُورَة</div>
+            <div class="vocab-en">Picture</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">رسم أو صورة فوتوغرافية</div>
+            <div class="vocab-back-en">A drawing or a photograph.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="flipCard(this)">
+        <div class="vocab-inner">
+          <div class="vocab-front">
+            <div class="vocab-icon">⛵</div>
+            <div class="vocab-word">مَرْكَب</div>
+            <div class="vocab-en">Boat</div>
+            <div class="vocab-hint">👁 Click to flip</div>
+          </div>
+          <div class="vocab-back">
+            <div class="vocab-back-ar">وسيلة نقل في الماء</div>
+            <div class="vocab-back-en">A means of transport on water.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box black-box">
+      <div class="ar">🔗 <strong>روابط:</strong> Quizlet · Wordwall · Blooket — للمراجعة في البيت</div>
+      <div class="en">🔗 <strong>Links:</strong> Quizlet · Wordwall · Blooket — for home practice</div>
+    </div>
+
+    <div class="teacher-box" style="margin-top:14px;">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">اطلب من الطلاب نطق الكلمة قبل قلب البطاقة. اعمل drill سريع: تشير لشيء في الفصل ويسموه.</p>
+        <p class="en">Ask students to say each word before flipping. Quick drill: point at items in the classroom and have them name each.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S3 — PREPOSITIONS VISUAL
+══════════════════════════════════ -->
+<div class="section-card" id="sec-3">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-red-light);color:var(--uae-red);">📍</div>
+    <div class="card-title-wrap">
+      <div class="card-title">حروف الجر — تعلّم بالصورة</div>
+      <div class="card-title-en">Prepositions — Visual Learning</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">3 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:700;color:var(--uae-red);margin-bottom:6px;">انظر إلى الكرة والصندوق — أين الكرة؟</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:14px;">Look at the ball and the box — where is the ball?</p>
+
+    <div class="prep-grid">
+      <div class="prep-card">
+        <svg class="prep-svg" viewBox="0 0 110 75">
+          <rect x="20" y="20" width="70" height="40" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <circle cx="55" cy="40" r="10" fill="#EF3340"/>
+        </svg>
+        <div class="prep-ar">في</div>
+        <div class="prep-en">in</div>
+      </div>
+      <div class="prep-card">
+        <svg class="prep-svg" viewBox="0 0 110 75">
+          <rect x="20" y="35" width="70" height="30" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <circle cx="55" cy="25" r="10" fill="#00732F"/>
+        </svg>
+        <div class="prep-ar">على</div>
+        <div class="prep-en">on</div>
+      </div>
+      <div class="prep-card">
+        <svg class="prep-svg" viewBox="0 0 110 75">
+          <rect x="20" y="45" width="70" height="20" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <circle cx="55" cy="15" r="10" fill="#000000"/>
+        </svg>
+        <div class="prep-ar">فوق</div>
+        <div class="prep-en">above</div>
+      </div>
+      <div class="prep-card">
+        <svg class="prep-svg" viewBox="0 0 110 75">
+          <rect x="20" y="10" width="70" height="20" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <circle cx="55" cy="55" r="10" fill="#EF3340"/>
+        </svg>
+        <div class="prep-ar">تحت</div>
+        <div class="prep-en">under / below</div>
+      </div>
+      <div class="prep-card">
+        <svg class="prep-svg" viewBox="0 0 110 75">
+          <rect x="50" y="20" width="40" height="40" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <circle cx="25" cy="40" r="10" fill="#00732F"/>
+        </svg>
+        <div class="prep-ar">بجانب</div>
+        <div class="prep-en">beside</div>
+      </div>
+      <div class="prep-card">
+        <svg class="prep-svg" viewBox="0 0 110 75">
+          <rect x="10" y="20" width="30" height="40" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <rect x="70" y="20" width="30" height="40" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <circle cx="55" cy="40" r="10" fill="#000000"/>
+        </svg>
+        <div class="prep-ar">بين</div>
+        <div class="prep-en">between</div>
+      </div>
+    </div>
+
+    <div class="info-box gold-box">
+      <div class="ar">💡 <strong>قاعدة:</strong> حروف الجر تأتي قبل الاسم، والاسم بعدها يكون <strong>مجروراً</strong>.</div>
+      <div class="en">💡 <strong>Rule:</strong> Prepositions come before the noun, and the noun after is in the <strong>genitive case</strong>.</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">استخدم كرة حقيقية وصندوقاً في الفصل وأظهر كل وضع. اسأل الطلاب: "أين الكرة الآن؟"</p>
+        <p class="en">Use a real ball and box in class to demonstrate each position. Ask: "Where is the ball now?"</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S4 — EXAMPLES (Q→A)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-4">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-green-light);color:var(--uae-green);">💬</div>
+    <div class="card-title-wrap">
+      <div class="card-title">أمثلة — أين؟</div>
+      <div class="card-title-en">Examples — Where is it?</div>
+    </div>
+    <span class="time-chip">⏱ 4 min</span>
+    <span class="section-number">4 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:700;color:var(--uae-red);margin-bottom:6px;">اقرأ السؤال والإجابة بصوت عالٍ</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:14px;">Read the question and answer aloud.</p>
+
+    <div class="example-grid">
+      <div class="example-card">
+        <div class="example-emoji">📺</div>
+        <div class="example-q">أين التِّلْفَاز؟</div>
+        <div class="example-q-en">Where is the TV?</div>
+        <div class="example-a">التلفاز <span class="hl-green">على</span> الطاولة.</div>
+        <div class="example-a-en">The TV is <strong>on</strong> the table.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="example-emoji">🛏️</div>
+        <div class="example-q">أين الْوَلَد؟</div>
+        <div class="example-q-en">Where is the boy?</div>
+        <div class="example-a">الولد <span class="hl">على</span> السرير.</div>
+        <div class="example-a-en">The boy is <strong>on</strong> the bed.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="example-emoji">👕</div>
+        <div class="example-q">أين الْمَلَابِس؟</div>
+        <div class="example-q-en">Where are the clothes?</div>
+        <div class="example-a">الملابس <span class="hl-black">في</span> الخزانة.</div>
+        <div class="example-a-en">The clothes are <strong>in</strong> the cupboard.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="example-emoji">💍</div>
+        <div class="example-q">أين الْخَاتَم؟</div>
+        <div class="example-q-en">Where is the ring?</div>
+        <div class="example-a">الخاتم <span class="hl-green">تحت</span> الكرسي.</div>
+        <div class="example-a-en">The ring is <strong>under</strong> the chair.</div>
+      </div>
+    </div>
+
+    <div class="info-box green-box">
+      <div class="ar">🌟 <strong>تذكّر:</strong> نبدأ الجواب باسم الشيء، ثم حرف الجر، ثم المكان.</div>
+      <div class="en">🌟 <strong>Remember:</strong> Start the answer with the object → preposition → location.</div>
+    </div>
+
+    <div class="info-box black-box" style="margin-top:12px;">
+      <div class="ar">⚠️ <strong>انتبه — على ≠ فوق:</strong></div>
+      <div class="ar" style="margin-top:6px;">📺 <strong>على</strong> = ملامس للسطح (touching). مثال: التلفاز <span class="hl">على</span> الطاولة.</div>
+      <div class="ar" style="margin-top:4px;">✈️ <strong>فوق</strong> = في الأعلى وغير ملامس (above, not touching). مثال: الطائرة <span class="hl-green">فوق</span> البيت.</div>
+      <div class="en" style="margin-top:6px;">⚠️ <strong>Watch out — على vs فوق:</strong> "على" = on (touching the surface). "فوق" = above (in the air, not touching).</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">choral reading — اقرأ مع الفصل بصوت عالٍ مرتين على الأقل لكل مثال.</p>
+        <p class="en">Choral reading — read aloud with the class at least twice for each example.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S5 — MATCHING (English ↔ Arabic)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-5">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-red-light);color:var(--uae-red);">🔗</div>
+    <div class="card-title-wrap">
+      <div class="card-title">صِل الكلمة بمعناها</div>
+      <div class="card-title-en">Match the Word to its Meaning</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">5 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:700;color:var(--uae-red);margin-bottom:6px;">اضغط على كلمة من اليمين، ثم على معناها من اليسار</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:14px;">Click an Arabic word on the right, then its English match on the left.</p>
+
+    <div class="match-wrap">
+      <div class="match-col">
+        <h4>الكلمات العربية</h4>
+        <div class="match-item" data-key="chair" onclick="selectMatch(this,'ar')">كُرْسِيّ</div>
+        <div class="match-item" data-key="table" onclick="selectMatch(this,'ar')">مَائِدَة</div>
+        <div class="match-item" data-key="bed" onclick="selectMatch(this,'ar')">سَرِير</div>
+        <div class="match-item" data-key="door" onclick="selectMatch(this,'ar')">بَاب</div>
+        <div class="match-item" data-key="window" onclick="selectMatch(this,'ar')">شُبَّاك</div>
+        <div class="match-item" data-key="picture" onclick="selectMatch(this,'ar')">صُورَة</div>
+        <div class="match-item" data-key="cupboard" onclick="selectMatch(this,'ar')">خِزَانَة</div>
+        <div class="match-item" data-key="boat" onclick="selectMatch(this,'ar')">مَرْكَب</div>
+      </div>
+      <div class="match-col">
+        <h4 class="en-h">English Words</h4>
+        <div class="match-item en-item" data-key="window" onclick="selectMatch(this,'en')">Window</div>
+        <div class="match-item en-item" data-key="bed" onclick="selectMatch(this,'en')">Bed</div>
+        <div class="match-item en-item" data-key="boat" onclick="selectMatch(this,'en')">Boat</div>
+        <div class="match-item en-item" data-key="chair" onclick="selectMatch(this,'en')">Chair</div>
+        <div class="match-item en-item" data-key="picture" onclick="selectMatch(this,'en')">Picture</div>
+        <div class="match-item en-item" data-key="cupboard" onclick="selectMatch(this,'en')">Cupboard</div>
+        <div class="match-item en-item" data-key="door" onclick="selectMatch(this,'en')">Door</div>
+        <div class="match-item en-item" data-key="table" onclick="selectMatch(this,'en')">Table</div>
+      </div>
+    </div>
+
+    <div class="match-feedback" id="matchFb">جاهز؟ ابدأ بالضغط على كلمة عربية</div>
+    <div style="text-align:center;">
+      <button class="match-reset-btn" onclick="resetMatch()">↻ إعادة · Reset</button>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">يمكن أن يلعبه طالبان معاً على نفس الجهاز كمسابقة سرعة.</p>
+        <p class="en">Two students can play together on the same device as a speed race.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S6 — MATCH BALL TO PREPOSITION
+══════════════════════════════════ -->
+<div class="section-card" id="sec-6">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-green-light);color:var(--uae-green);">⚽</div>
+    <div class="card-title-wrap">
+      <div class="card-title">أين الكرة؟</div>
+      <div class="card-title-en">Where is the Ball?</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">6 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:700;color:var(--uae-red);margin-bottom:6px;">انظر إلى الكرة والزجاجة، واختر حرف الجر الصحيح</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:14px;">Look at the ball and bottle, then choose the correct preposition.</p>
+
+    <div class="fill-grid">
+      <div class="fill-item" id="fb1">
+        <svg viewBox="0 0 100 80" style="width:100%;max-width:130px;height:80px;margin:0 auto;display:block;">
+          <rect x="40" y="10" width="22" height="55" fill="none" stroke="#1a1a1a" stroke-width="2.5" rx="3"/>
+          <rect x="44" y="5" width="14" height="8" fill="#1a1a1a"/>
+          <circle cx="78" cy="55" r="9" fill="#EF3340"/>
+          <text x="78" y="58" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">⚽</text>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input" id="ans-fb1">__</span> الزجاجة.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'fb1','بجانب',true)">بجانب</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb1','فوق',false)">فوق</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb1','تحت',false)">تحت</div>
+        </div>
+      </div>
+
+      <div class="fill-item" id="fb2">
+        <svg viewBox="0 0 100 80" style="width:100%;max-width:130px;height:80px;margin:0 auto;display:block;">
+          <rect x="40" y="20" width="22" height="55" fill="none" stroke="#1a1a1a" stroke-width="2.5" rx="3"/>
+          <rect x="44" y="15" width="14" height="8" fill="#1a1a1a"/>
+          <circle cx="51" cy="48" r="8" fill="#00732F"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input" id="ans-fb2">__</span> الزجاجة.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'fb2','بين',false)">بين</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb2','في',true)">في</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb2','بجانب',false)">بجانب</div>
+        </div>
+      </div>
+
+      <div class="fill-item" id="fb3">
+        <svg viewBox="0 0 140 80" style="width:100%;max-width:160px;height:80px;margin:0 auto;display:block;">
+          <rect x="15" y="15" width="20" height="55" fill="none" stroke="#1a1a1a" stroke-width="2.5" rx="3"/>
+          <rect x="19" y="10" width="12" height="6" fill="#1a1a1a"/>
+          <circle cx="70" cy="50" r="8" fill="#000"/>
+          <rect x="105" y="15" width="20" height="55" fill="none" stroke="#1a1a1a" stroke-width="2.5" rx="3"/>
+          <rect x="109" y="10" width="12" height="6" fill="#1a1a1a"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input" id="ans-fb3">__</span> الزجاجتين.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'fb3','تحت',false)">تحت</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb3','بين',true)">بين</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb3','في',false)">في</div>
+        </div>
+      </div>
+
+      <div class="fill-item" id="fb4">
+        <svg viewBox="0 0 100 90" style="width:100%;max-width:130px;height:90px;margin:0 auto;display:block;">
+          <rect x="40" y="35" width="22" height="50" fill="none" stroke="#1a1a1a" stroke-width="2.5" rx="3"/>
+          <rect x="44" y="30" width="14" height="8" fill="#1a1a1a"/>
+          <circle cx="51" cy="15" r="8" fill="#EF3340"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input" id="ans-fb4">__</span> الزجاجة.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'fb4','تحت',false)">تحت</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb4','في',false)">في</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb4','فوق',true)">فوق</div>
+        </div>
+      </div>
+
+      <div class="fill-item" id="fb5">
+        <svg viewBox="0 0 100 90" style="width:100%;max-width:130px;height:90px;margin:0 auto;display:block;">
+          <rect x="40" y="10" width="22" height="50" fill="none" stroke="#1a1a1a" stroke-width="2.5" rx="3"/>
+          <rect x="44" y="5" width="14" height="8" fill="#1a1a1a"/>
+          <circle cx="51" cy="78" r="8" fill="#00732F"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input" id="ans-fb5">__</span> الزجاجة.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'fb5','فوق',false)">فوق</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb5','تحت',true)">تحت</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb5','على',false)">على</div>
+        </div>
+      </div>
+
+      <div class="fill-item" id="fb6">
+        <svg viewBox="0 0 100 90" style="width:100%;max-width:130px;height:90px;margin:0 auto;display:block;">
+          <rect x="40" y="25" width="22" height="55" fill="none" stroke="#1a1a1a" stroke-width="2.5" rx="3"/>
+          <rect x="44" y="20" width="14" height="8" fill="#1a1a1a"/>
+          <circle cx="51" cy="15" r="7" fill="#000"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input" id="ans-fb6">__</span> الزجاجة.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'fb6','تحت',false)">تحت</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb6','بجانب',false)">بجانب</div>
+          <div class="fill-opt" onclick="checkFill(this,'fb6','على',true)">على</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">دع الطلاب يحاولون فردياً، ثم يقارنون مع زميل قبل الكشف عن الإجابة.</p>
+        <p class="en">Students try individually, then compare with a partner before revealing the answer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S7 — ⭐ ASSESSMENT FOR LEARNING
+══════════════════════════════════ -->
+<div class="section-card" id="sec-7">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-black);color:var(--uae-white);">🎯</div>
+    <div class="card-title-wrap">
+      <div class="card-title">تقييم تعلّمي — مراجعة منتصف الدرس</div>
+      <div class="card-title-en">Assessment for Learning — Mid-Lesson Check</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">7 / 13</span>
+  </div>
+  <div class="card-body">
+
+    <div class="afl-banner">
+      <h3>🎯 Assessment for Learning</h3>
+      <p>Quick check to see what you've learned so far!</p>
+      <p class="ar">مراجعة سريعة لنرى ماذا تعلّمت حتى الآن!</p>
+    </div>
+
+    <!-- AFL Q1 -->
+    <div class="mc-item" id="afl-q1">
+      <div class="mc-q-ar">1. ما معنى كلمة "كُرْسِيّ"؟</div>
+      <div class="mc-q-en">1. What does the word "كُرْسِيّ" mean?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q1')">
+          <div>أ. سرير</div>
+          <div class="en-opt">a. Bed</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q1')">
+          <div>ب. كرسي</div>
+          <div class="en-opt">b. Chair</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q1')">
+          <div>ج. مائدة</div>
+          <div class="en-opt">c. Table</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q1-fb"></div>
+      <button class="mc-reset-btn" id="afl-q1-rst" onclick="resetMC('afl-q1')">↻ Try Again · أعد المحاولة</button>
+    </div>
+
+    <!-- AFL Q2 -->
+    <div class="mc-item" id="afl-q2">
+      <div class="mc-q-ar">2. أكمل: التلفاز ___ الطاولة.</div>
+      <div class="mc-q-en">2. Complete: The TV is ___ the table.</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q2')">
+          <div>أ. تحت</div>
+          <div class="en-opt">a. under</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q2')">
+          <div>ب. على</div>
+          <div class="en-opt">b. on</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q2')">
+          <div>ج. في</div>
+          <div class="en-opt">c. in</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q2-fb"></div>
+      <button class="mc-reset-btn" id="afl-q2-rst" onclick="resetMC('afl-q2')">↻ Try Again · أعد المحاولة</button>
+    </div>
+
+    <!-- AFL Q3 -->
+    <div class="mc-item" id="afl-q3">
+      <div class="mc-q-ar">3. ما معنى "between" بالعربية؟</div>
+      <div class="mc-q-en">3. What is "between" in Arabic?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q3')">
+          <div>أ. بجانب</div>
+          <div class="en-opt">a. beside</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q3')">
+          <div>ب. بين</div>
+          <div class="en-opt">b. between</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q3')">
+          <div>ج. على</div>
+          <div class="en-opt">c. on</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q3-fb"></div>
+      <button class="mc-reset-btn" id="afl-q3-rst" onclick="resetMC('afl-q3')">↻ Try Again · أعد المحاولة</button>
+    </div>
+
+    <!-- AFL Q4 - True/False -->
+    <div class="mc-item" id="afl-q4">
+      <div class="mc-q-ar">4. صح أم خطأ: "الملابس في الخزانة" — جملة صحيحة.</div>
+      <div class="mc-q-en">4. True or False: "الملابس في الخزانة" is a correct sentence.</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'afl-q4')">
+          <div>✅ صحيح / True</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'afl-q4')">
+          <div>❌ خطأ / False</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="afl-q4-fb"></div>
+      <button class="mc-reset-btn" id="afl-q4-rst" onclick="resetMC('afl-q4')">↻ Try Again · أعد المحاولة</button>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Assessment Note · ملاحظة التقييم</div>
+        <p class="ar">لاحظ من يجيب بسرعة ومن يحتاج مساعدة. استخدم هذه المعلومات لتعديل النصف الثاني من الدرس.</p>
+        <p class="en">Note who answers quickly and who needs help. Use this feedback to adapt the second half of the lesson.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S8 — READING + Q&A
+══════════════════════════════════ -->
+<div class="section-card" id="sec-8">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-green-light);color:var(--uae-green);">📖</div>
+    <div class="card-title-wrap">
+      <div class="card-title">اقرأ ثم أجب</div>
+      <div class="card-title-en">Read, then Answer</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">8 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="passage">
+      <div class="passage-ar">
+        هذه <span class="hl">غرفتي</span>. <span class="hl-green">الكتاب</span> على المائدة. <span class="hl-green">القلم</span> بجانب الكتاب. <span class="hl-black">الكرسي</span> أمام المائدة. <span class="hl">السرير</span> في وسط الغرفة. <span class="hl-green">الصورة</span> فوق السرير. <span class="hl-black">الخزانة</span> بين الباب والشباك.
+      </div>
+      <div class="passage-en">
+        This is <strong>my room</strong>. The <strong>book</strong> is on the table. The <strong>pen</strong> is beside the book. The <strong>chair</strong> is in front of the table. The <strong>bed</strong> is in the middle of the room. The <strong>picture</strong> is above the bed. The <strong>cupboard</strong> is between the door and the window.
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q-ar">أ. أين الكتاب؟</div>
+      <div class="qa-q-en">A. Where is the book?</div>
+      <button class="reveal-btn" onclick="toggleReveal('qa-a', this)">👁 Show Answer · أظهر الإجابة</button>
+      <div class="qa-ans" id="qa-a">
+        <div class="qa-ans-ar">الكتاب <strong>على</strong> المائدة.</div>
+        <div class="qa-ans-en">The book is <strong>on</strong> the table.</div>
+      </div>
+    </div>
+
+    <div class="qa-item" style="border-right-color:var(--uae-green);">
+      <div class="qa-q-ar">ب. أين الصورة؟</div>
+      <div class="qa-q-en">B. Where is the picture?</div>
+      <button class="reveal-btn" onclick="toggleReveal('qa-b', this)" style="background:var(--uae-green);">👁 Show Answer · أظهر الإجابة</button>
+      <div class="qa-ans" id="qa-b">
+        <div class="qa-ans-ar">الصورة <strong>فوق</strong> السرير.</div>
+        <div class="qa-ans-en">The picture is <strong>above</strong> the bed.</div>
+      </div>
+    </div>
+
+    <div class="qa-item" style="border-right-color:var(--uae-black);">
+      <div class="qa-q-ar">ج. أين الخزانة؟</div>
+      <div class="qa-q-en">C. Where is the cupboard?</div>
+      <button class="reveal-btn" onclick="toggleReveal('qa-c', this)" style="background:var(--uae-black);">👁 Show Answer · أظهر الإجابة</button>
+      <div class="qa-ans" id="qa-c">
+        <div class="qa-ans-ar">الخزانة <strong>بين</strong> الباب والشباك.</div>
+        <div class="qa-ans-en">The cupboard is <strong>between</strong> the door and the window.</div>
+      </div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">اقرأ النص مرتين بصوت عالٍ. ادفع الطلاب للإجابة بجملة كاملة، ليس بكلمة واحدة.</p>
+        <p class="en">Read the text aloud twice. Push students to answer in a full sentence, not one word.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S9 — WRITING TASK (Your Task 1)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-9">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-red-light);color:var(--uae-red);">✏️</div>
+    <div class="card-title-wrap">
+      <div class="card-title">مهمتك الأولى — اكتب الجملة</div>
+      <div class="card-title-en">Your Task 1 — Complete the Sentence</div>
+    </div>
+    <span class="time-chip">⏱ 5 min</span>
+    <span class="section-number">9 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:700;color:var(--uae-red);margin-bottom:6px;">انظر إلى الصور وأكمل الجمل في كراستك</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:14px;">Look at the pictures and complete the sentences in your notebook.</p>
+
+    <div class="info-box gold-box" style="margin-bottom:14px;">
+      <div class="ar">📝 <strong>مثال:</strong> 💍 تحت 🪑 → الخاتم تحت الكرسي.</div>
+      <div class="en">📝 <strong>Example:</strong> 💍 under 🪑 → The ring is under the chair.</div>
+    </div>
+
+    <table class="culture-table" id="task1Table">
+      <thead>
+        <tr>
+          <th class="col-cat">رقم<div style="font-size:0.78rem;font-weight:600;opacity:0.85;">No.</div></th>
+          <th>الصورة + حرف الجر<div style="font-size:0.78rem;font-weight:600;opacity:0.85;">Picture + Preposition</div></th>
+          <th class="col-other">اكتب الجملة في كراستك<div style="font-size:0.78rem;font-weight:600;opacity:0.85;">Write the Sentence in your notebook</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="cat">1</td><td>🔑 في 🚪<div class="en-row">key + in + door</div></td><td><span class="t1-blank">_____________________</span><span class="t1-ans" style="display:none;">المفتاح في الباب.<div class="en-row">The key is in the door.</div></span></td></tr>
+        <tr><td class="cat">2</td><td>🖼️ فوق 🛏️<div class="en-row">picture + above + bed</div></td><td><span class="t1-blank">_____________________</span><span class="t1-ans" style="display:none;">الصورة فوق السرير.<div class="en-row">The picture is above the bed.</div></span></td></tr>
+        <tr><td class="cat">3</td><td>📕 في 🚗<div class="en-row">book + in + car</div></td><td><span class="t1-blank">_____________________</span><span class="t1-ans" style="display:none;">الكتاب في السيارة؟<div class="en-row">Is the book in the car?</div></span></td></tr>
+        <tr><td class="cat">4</td><td>💼 على 🚪<div class="en-row">bag + on + cupboard</div></td><td><span class="t1-blank">_____________________</span><span class="t1-ans" style="display:none;">الحقيبة على الخزانة؟<div class="en-row">Is the bag on the cupboard?</div></span></td></tr>
+        <tr><td class="cat">5</td><td>🖼️ بجانب 📺<div class="en-row">picture + beside + TV</div></td><td><span class="t1-blank">_____________________</span><span class="t1-ans" style="display:none;">الصورة بجانب التلفاز.<div class="en-row">The picture is beside the TV.</div></span></td></tr>
+        <tr><td class="cat">6</td><td>🛏️ بين 🍽️ و 🪟<div class="en-row">bed + between + table & window</div></td><td><span class="t1-blank">_____________________</span><span class="t1-ans" style="display:none;">السرير بين المائدة والشباك.<div class="en-row">The bed is between the table and the window.</div></span></td></tr>
+      </tbody>
+    </table>
+
+    <div style="text-align:center;margin-top:14px;">
+      <button class="reveal-btn" id="t1RevealBtn" onclick="toggleTask1Answers()" style="background:var(--uae-black);padding:10px 20px;font-size:0.9rem;">🔒 إجابات المعلم · Teacher's Answers</button>
+    </div>
+
+    <div class="teacher-box" style="margin-top:14px;">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">يكتب الطلاب في كراساتهم أولاً. لا تظهر الإجابات إلا بعد انتهاء الطلاب من الكتابة. اضغطي على الزر الأسود للمراجعة الجماعية.</p>
+        <p class="en">Students write in their notebooks first. Do not reveal answers until students finish writing. Click the black button for whole-class review.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S10 — WRITING TASK 2 (Ball & Box)
+══════════════════════════════════ -->
+<div class="section-card" id="sec-10">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-green-light);color:var(--uae-green);">⚽</div>
+    <div class="card-title-wrap">
+      <div class="card-title">مهمتك الثانية — الكرة والصندوق</div>
+      <div class="card-title-en">Your Task 2 — The Ball & the Box</div>
+    </div>
+    <span class="time-chip">⏱ 4 min</span>
+    <span class="section-number">10 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:700;color:var(--uae-red);margin-bottom:6px;">انظر إلى الصورة واختر حرف الجر الصحيح</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:14px;">Look at the picture and choose the correct preposition.</p>
+
+    <div class="fill-grid">
+      <!-- Q1: Ball IN the box -->
+      <div class="fill-item" id="t2-1">
+        <svg viewBox="0 0 120 90" style="width:100%;max-width:140px;height:90px;margin:0 auto;display:block;">
+          <!-- Box (open top) -->
+          <path d="M 25 30 L 25 75 L 95 75 L 95 30" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <line x1="25" y1="30" x2="35" y2="20" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="95" y1="30" x2="85" y2="20" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="35" y1="20" x2="85" y2="20" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="3,2"/>
+          <!-- Ball INSIDE -->
+          <circle cx="60" cy="55" r="12" fill="#EF3340" stroke="#000" stroke-width="1.5"/>
+          <path d="M 48 55 Q 60 49 72 55" fill="none" stroke="#000" stroke-width="1"/>
+          <path d="M 60 43 L 60 67" stroke="#000" stroke-width="1"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input">__</span> الصندوق.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'t2-1','في',true)">في</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-1','تحت',false)">تحت</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-1','بجانب',false)">بجانب</div>
+        </div>
+      </div>
+
+      <!-- Q2: Ball UNDER the box -->
+      <div class="fill-item" id="t2-2">
+        <svg viewBox="0 0 120 90" style="width:100%;max-width:140px;height:90px;margin:0 auto;display:block;">
+          <!-- Box (closed) above -->
+          <rect x="30" y="20" width="60" height="35" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <line x1="30" y1="20" x2="40" y2="12" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="90" y1="20" x2="100" y2="12" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="40" y1="12" x2="100" y2="12" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="90" y1="55" x2="100" y2="47" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="100" y1="12" x2="100" y2="47" stroke="#1a1a1a" stroke-width="2"/>
+          <!-- Ball UNDER -->
+          <circle cx="60" cy="72" r="11" fill="#00732F" stroke="#000" stroke-width="1.5"/>
+          <path d="M 49 72 Q 60 66 71 72" fill="none" stroke="#000" stroke-width="1"/>
+          <path d="M 60 61 L 60 83" stroke="#000" stroke-width="1"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input">__</span> الصندوق.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'t2-2','في',false)">في</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-2','تحت',true)">تحت</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-2','على',false)">على</div>
+        </div>
+      </div>
+
+      <!-- Q3: Ball BETWEEN box and chair -->
+      <div class="fill-item" id="t2-3">
+        <svg viewBox="0 0 160 90" style="width:100%;max-width:180px;height:90px;margin:0 auto;display:block;">
+          <!-- Box on left -->
+          <rect x="10" y="35" width="40" height="40" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <line x1="10" y1="35" x2="18" y2="28" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="50" y1="35" x2="58" y2="28" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="18" y1="28" x2="58" y2="28" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="50" y1="75" x2="58" y2="68" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="58" y1="28" x2="58" y2="68" stroke="#1a1a1a" stroke-width="2"/>
+          <!-- Ball in middle -->
+          <circle cx="80" cy="60" r="11" fill="#000" stroke="#fff" stroke-width="1"/>
+          <path d="M 69 60 Q 80 54 91 60" fill="none" stroke="#fff" stroke-width="1"/>
+          <path d="M 80 49 L 80 71" stroke="#fff" stroke-width="1"/>
+          <!-- Chair on right -->
+          <rect x="115" y="55" width="35" height="6" fill="#1a1a1a"/>
+          <rect x="115" y="35" width="6" height="40" fill="#1a1a1a"/>
+          <line x1="118" y1="61" x2="118" y2="80" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="147" y1="61" x2="147" y2="80" stroke="#1a1a1a" stroke-width="2"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input">__</span> الصندوق والكرسي.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'t2-3','تحت',false)">تحت</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-3','بين',true)">بين</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-3','في',false)">في</div>
+        </div>
+      </div>
+
+      <!-- Q4: Ball BESIDE the box -->
+      <div class="fill-item" id="t2-4">
+        <svg viewBox="0 0 130 90" style="width:100%;max-width:150px;height:90px;margin:0 auto;display:block;">
+          <!-- Box -->
+          <rect x="20" y="30" width="50" height="45" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <line x1="20" y1="30" x2="28" y2="22" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="70" y1="30" x2="78" y2="22" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="28" y1="22" x2="78" y2="22" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="70" y1="75" x2="78" y2="67" stroke="#1a1a1a" stroke-width="2"/>
+          <line x1="78" y1="22" x2="78" y2="67" stroke="#1a1a1a" stroke-width="2"/>
+          <!-- Ball BESIDE (right of box) -->
+          <circle cx="100" cy="60" r="12" fill="#EF3340" stroke="#000" stroke-width="1.5"/>
+          <path d="M 88 60 Q 100 54 112 60" fill="none" stroke="#000" stroke-width="1"/>
+          <path d="M 100 48 L 100 72" stroke="#000" stroke-width="1"/>
+        </svg>
+        <div class="fill-q">الكرة <span class="fill-input">__</span> الصندوق.</div>
+        <div class="fill-options">
+          <div class="fill-opt" onclick="checkFill(this,'t2-4','في',false)">في</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-4','بجانب',true)">بجانب</div>
+          <div class="fill-opt" onclick="checkFill(this,'t2-4','تحت',false)">تحت</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box gold-box" style="margin-top:14px;">
+      <div class="ar">💡 <strong>تذكّر:</strong> انظر إلى الصورة جيداً قبل اختيار حرف الجر.</div>
+      <div class="en">💡 <strong>Remember:</strong> Look at the picture carefully before choosing the preposition.</div>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">يجيب الطلاب فردياً، ثم نراجع الإجابات معاً. ممكن تستخدمي كرة وصندوق حقيقيين في الفصل لتأكيد الفهم.</p>
+        <p class="en">Students answer individually, then we review answers together. You can use a real ball and box in class to confirm understanding.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S11 — FINAL QUIZ
+══════════════════════════════════ -->
+<div class="section-card" id="sec-11">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-red-light);color:var(--uae-red);">🎮</div>
+    <div class="card-title-wrap">
+      <div class="card-title">اختبر نفسك!</div>
+      <div class="card-title-en">Final Quick Quiz</div>
+    </div>
+    <span class="time-chip">⏱ 3 min</span>
+    <span class="section-number">11 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:0.95rem;font-weight:700;color:var(--uae-red);margin-bottom:14px;">اختر الإجابة الصحيحة</p>
+
+    <div class="mc-item" id="fq-q1">
+      <div class="mc-q-ar">1. أي حرف جر يعني "in"؟</div>
+      <div class="mc-q-en">1. Which preposition means "in"?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q1')">
+          <div>أ. على</div>
+          <div class="en-opt">a. on</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'fq-q1')">
+          <div>ب. في</div>
+          <div class="en-opt">b. in</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q1')">
+          <div>ج. بجانب</div>
+          <div class="en-opt">c. beside</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="fq-q1-fb"></div>
+      <button class="mc-reset-btn" id="fq-q1-rst" onclick="resetMC('fq-q1')">↻ Try Again · أعد المحاولة</button>
+    </div>
+
+    <div class="mc-item" id="fq-q2">
+      <div class="mc-q-ar">2. القطة ___ السرير. (نَفسُ ارتفاع السرير من فوق)</div>
+      <div class="mc-q-en">2. The cat is ___ the bed. (sitting on top)</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'fq-q2')">
+          <div>أ. على</div>
+          <div class="en-opt">a. on</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q2')">
+          <div>ب. تحت</div>
+          <div class="en-opt">b. under</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q2')">
+          <div>ج. بين</div>
+          <div class="en-opt">c. between</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="fq-q2-fb"></div>
+      <button class="mc-reset-btn" id="fq-q2-rst" onclick="resetMC('fq-q2')">↻ Try Again · أعد المحاولة</button>
+    </div>
+
+    <div class="mc-item" id="fq-q3">
+      <div class="mc-q-ar">3. ما معنى "شُبَّاك"؟</div>
+      <div class="mc-q-en">3. What does "شُبَّاك" mean?</div>
+      <div class="mc-opts">
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q3')">
+          <div>أ. Door</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, true, 'fq-q3')">
+          <div>ب. Window</div>
+        </div>
+        <div class="mc-opt" onclick="checkAnswer(this, false, 'fq-q3')">
+          <div>ج. Cupboard</div>
+        </div>
+      </div>
+      <div class="mc-feedback" id="fq-q3-fb"></div>
+      <button class="mc-reset-btn" id="fq-q3-rst" onclick="resetMC('fq-q3')">↻ Try Again · أعد المحاولة</button>
+    </div>
+
+    <div class="teacher-box">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Teacher Note · ملاحظة للمعلم</div>
+        <p class="ar">يمكن اللعب جماعياً أو فردياً.</p>
+        <p class="en">Can be played as a group or individually.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S12 — EXIT TICKET
+══════════════════════════════════ -->
+<div class="section-card" id="sec-12">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-green-light);color:var(--uae-green);">🎟️</div>
+    <div class="card-title-wrap">
+      <div class="card-title">بطاقة الخروج</div>
+      <div class="card-title-en">Exit Ticket</div>
+    </div>
+    <span class="time-chip">⏱ 1 min</span>
+    <span class="section-number">12 / 13</span>
+  </div>
+  <div class="card-body">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:1rem;font-weight:800;color:var(--uae-red);margin-bottom:4px;">كيف تشعر بفهمك للدرس اليوم؟</p>
+    <p style="font-style:italic;color:#555;font-size:0.88rem;margin-bottom:16px;">How do you feel about your understanding today?</p>
+
+    <div class="exit-grid">
+      <div class="exit-card exit-c1" onclick="selectExit(this,'got-it')">
+        <div class="ec-emoji">🌟</div>
+        <div class="ec-label">Got It!</div>
+        <div class="ec-label-ar">فهمتُ كل شيء</div>
+        <div class="ec-text">I can use prepositions in sentences.</div>
+        <div class="ec-text-ar">أستطيع استخدام حروف الجر في جمل</div>
+      </div>
+      <div class="exit-card exit-c2" onclick="selectExit(this,'almost')">
+        <div class="ec-emoji">🤔</div>
+        <div class="ec-label">Almost There</div>
+        <div class="ec-label-ar">تقريباً فهمت</div>
+        <div class="ec-text">I have one or two questions.</div>
+        <div class="ec-text-ar">عندي سؤال أو سؤالين</div>
+      </div>
+      <div class="exit-card exit-c3" onclick="selectExit(this,'lost')">
+        <div class="ec-emoji">🙋</div>
+        <div class="ec-label">Need More Help</div>
+        <div class="ec-label-ar">أحتاج إلى مساعدة</div>
+        <div class="ec-text">I'd like to go over this again.</div>
+        <div class="ec-text-ar">أريد إعادة الشرح</div>
+      </div>
+    </div>
+    <div class="exit-confirm" id="exitConfirm"></div>
+
+    <hr class="divider">
+
+    <div style="background:var(--uae-white);border:2px solid var(--uae-black);border-radius:14px;padding:14px 18px;">
+      <p style="font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;color:var(--uae-red);margin-bottom:4px;direction:rtl;text-align:right;">أستطيع أن… ✅</p>
+      <p style="font-size:0.85rem;font-weight:800;color:var(--uae-green);margin-bottom:10px;">I can…</p>
+      <div class="g2" style="gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:17px;height:17px;min-width:17px;border:2px solid var(--uae-red);border-radius:4px;background:var(--uae-white);"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:700;direction:rtl;text-align:right;color:var(--uae-black);">أعرف 6 حروف جر بالعربية</div>
+            <div style="font-size:0.78rem;color:#555;font-style:italic;">Know 6 Arabic prepositions</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:17px;height:17px;min-width:17px;border:2px solid var(--uae-green);border-radius:4px;background:var(--uae-white);"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:700;direction:rtl;text-align:right;color:var(--uae-black);">أسمي الأثاث في الغرفة</div>
+            <div style="font-size:0.78rem;color:#555;font-style:italic;">Name the furniture in a room</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:17px;height:17px;min-width:17px;border:2px solid var(--uae-red);border-radius:4px;background:var(--uae-white);"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:700;direction:rtl;text-align:right;color:var(--uae-black);">أسأل "أين؟" وأجيب</div>
+            <div style="font-size:0.78rem;color:#555;font-style:italic;">Ask "Where?" and answer</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:17px;height:17px;min-width:17px;border:2px solid var(--uae-black);border-radius:4px;background:var(--uae-white);"></div>
+          <div>
+            <div style="font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:700;direction:rtl;text-align:right;color:var(--uae-black);">أكتب جملة قصيرة بحرف جر</div>
+            <div style="font-size:0.78rem;color:#555;font-style:italic;">Write a short sentence with a preposition</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teacher-box" style="margin-top:14px;">
+      <span class="icon">🎓</span>
+      <div>
+        <div class="label">Homework · الواجب</div>
+        <p class="ar">📝 ارسم غرفتك واكتب 5 جمل عن أماكن الأشياء فيها (مثال: السرير بجانب الشباك).</p>
+        <p class="en">📝 Draw your room and write 5 sentences about where things are (e.g., The bed is beside the window).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S13 — WELL DONE + TIME PLAN
+══════════════════════════════════ -->
+<div class="section-card" id="sec-13">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--uae-red-light);color:var(--uae-red);">🌟</div>
+    <div class="card-title-wrap">
+      <div class="card-title">أحسنتم! وخطة الوقت</div>
+      <div class="card-title-en">Well Done! & Time Plan</div>
+    </div>
+    <span class="section-number">13 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="celebrate">
+      <div style="font-size:clamp(48px,8vw,86px);margin-bottom:12px;">🇦🇪 📍 🏠</div>
+      <p style="font-family:'Tajawal',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:var(--uae-red);margin-bottom:4px;">أحسنتم!</p>
+      <p style="font-family:'Fredoka One',cursive;font-size:clamp(1.4rem,3.5vw,2rem);color:var(--uae-green);margin-bottom:14px;">Well Done!</p>
+      <p style="font-size:0.95rem;color:var(--uae-black);margin-bottom:6px;font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;">أكملتم الوحدة 6 — الدرس 2: أين الأشياء؟</p>
+      <p style="font-size:0.88rem;color:#555;margin-bottom:18px;font-style:italic;">You've completed Unit 6 — Lesson 2: Where is it?</p>
+      <div class="g3" style="gap:12px;">
+        <div style="background:var(--uae-red-light);border:2px solid var(--uae-red);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">📍</div>
+          <p style="font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;color:var(--uae-red-dark);">حروف الجر</p>
+          <p style="font-family:'Fredoka One',cursive;font-size:0.85rem;color:var(--uae-black);">Prepositions</p>
+          <p style="font-size:0.75rem;color:var(--uae-red-dark);margin-top:3px;font-family:'Tajawal',sans-serif;">6 كلمات جديدة</p>
+          <p style="font-size:0.7rem;color:#777;font-style:italic;">6 new words</p>
+        </div>
+        <div style="background:var(--uae-green-light);border:2px solid var(--uae-green);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">🏠</div>
+          <p style="font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;color:var(--uae-green-dark);">أثاث البيت</p>
+          <p style="font-family:'Fredoka One',cursive;font-size:0.85rem;color:var(--uae-black);">Home Furniture</p>
+          <p style="font-size:0.75rem;color:var(--uae-green-dark);margin-top:3px;font-family:'Tajawal',sans-serif;">9 كلمات</p>
+          <p style="font-size:0.7rem;color:#777;font-style:italic;">9 words</p>
+        </div>
+        <div style="background:var(--uae-black);border:2px solid var(--uae-black);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">🇦🇪</div>
+          <p style="font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;color:var(--uae-red);">العربية لغتنا</p>
+          <p style="font-family:'Fredoka One',cursive;font-size:0.85rem;color:var(--uae-white);">Arabic is Our Language</p>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.85);margin-top:3px;font-family:'Tajawal',sans-serif;">نتعلم ونتقدم</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.7);font-style:italic;">we learn and grow</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 style="font-family:'Tajawal',sans-serif;color:var(--uae-red);font-size:1.15rem;margin-bottom:6px;direction:rtl;text-align:right;">⏱️ خطة توزيع الوقت — 45 دقيقة</h3>
+    <p style="font-family:'Fredoka One',cursive;color:var(--uae-green);font-size:0.92rem;margin-bottom:14px;">45-Minute Time Plan</p>
+
+    <table class="culture-table" style="font-size:0.88rem;">
+      <thead>
+        <tr>
+          <th class="col-cat">القسم<div style="font-size:0.78rem;font-weight:600;opacity:0.85;">Section</div></th>
+          <th>النشاط<div style="font-size:0.78rem;font-weight:600;opacity:0.85;">Activity</div></th>
+          <th class="col-other">الوقت<div style="font-size:0.78rem;font-weight:600;opacity:0.85;">Time</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="cat">1</td><td>عنوان وأهداف · Title & Objectives</td><td><strong>2 min</strong></td></tr>
+        <tr><td class="cat">2</td><td>المفردات · Vocabulary</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">3</td><td>حروف الجر بالصور · Prepositions Visual</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">4</td><td>أمثلة · Examples</td><td><strong>4 min</strong></td></tr>
+        <tr><td class="cat">5</td><td>صل الكلمة · Matching</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">6</td><td>أين الكرة؟ · Where is the Ball?</td><td><strong>5 min</strong></td></tr>
+        <tr style="background:var(--uae-black);"><td class="cat" style="background:var(--uae-red);color:var(--uae-white);">⭐ 7</td><td style="background:var(--uae-black);color:var(--uae-white);"><strong>تقييم تعلّمي · Assessment for Learning</strong></td><td style="background:var(--uae-black);color:var(--uae-white);"><strong>5 min</strong></td></tr>
+        <tr><td class="cat">8</td><td>القراءة وأسئلة · Reading & Q&A</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">9</td><td>مهمة 1 · Task 1</td><td><strong>5 min</strong></td></tr>
+        <tr><td class="cat">10</td><td>مهمة 2 · Task 2</td><td><strong>4 min</strong></td></tr>
+        <tr><td class="cat">11</td><td>الاختبار النهائي · Final Quiz</td><td><strong>3 min</strong></td></tr>
+        <tr><td class="cat">12</td><td>بطاقة الخروج · Exit Ticket</td><td><strong>1 min</strong></td></tr>
+        <tr style="background:var(--uae-red-light);font-weight:900;"><td class="cat" style="background:var(--uae-red);color:var(--uae-white);">📊</td><td><strong>المجموع · Total</strong></td><td><strong style="color:var(--uae-red-dark);">49 min</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+
+<footer>✦ Arabic B · Year 8 · Unit 6 · Lesson 2 — Where is it? 🇦🇪 ✦ &nbsp;|&nbsp; Smart Board Ready &nbsp;|&nbsp; The English College, Dubai ✦</footer>
+
+<!-- Arrow Navigation -->
+<div class="arrow-nav right">
+  <button class="arrow-btn" id="prevBtn" onclick="navigateSection(-1)">→</button>
+  <button class="arrow-btn" id="nextBtn" onclick="navigateSection(1)">←</button>
+</div>
+
+<script>
+/* ── NAVIGATION SETUP ── */
+const navData = [
+  {label:'Title',ar:'العنوان',n:1},
+  {label:'Vocab',ar:'المفردات',n:2},
+  {label:'Prep',ar:'حروف الجر',n:3},
+  {label:'Examples',ar:'أمثلة',n:4},
+  {label:'Match',ar:'صل',n:5},
+  {label:'Ball',ar:'الكرة',n:6},
+  {label:'⭐ AfL',ar:'تقييم',n:7},
+  {label:'Reading',ar:'قراءة',n:8},
+  {label:'Task 1',ar:'مهمة 1',n:9},
+  {label:'Task 2',ar:'مهمة 2',n:10},
+  {label:'Quiz',ar:'اختبار',n:11},
+  {label:'Exit',ar:'خروج',n:12},
+  {label:'Done',ar:'أحسنتم',n:13}
+];
+
+const navStrip = document.getElementById('navStrip');
+navData.forEach((item, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+  btn.innerHTML = `${item.ar}<br><span style="font-size:0.7rem;opacity:0.8;">${item.label}</span>`;
+  btn.onclick = () => showSection(i, btn);
+  navStrip.appendChild(btn);
+});
+
+const sections = document.querySelectorAll('.section-card');
+let currentSection = 0;
+
+function showSection(idx, btn) {
+  sections.forEach(s => s.classList.remove('visible'));
+  sections[idx].classList.add('visible');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+  currentSection = idx;
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function updateProgress() {
+  const pct = ((currentSection + 1) / sections.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('prevBtn').disabled = currentSection === 0;
+  document.getElementById('nextBtn').disabled = currentSection === sections.length - 1;
+}
+
+function navigateSection(dir) {
+  const newIdx = currentSection + dir;
+  if (newIdx >= 0 && newIdx < sections.length) {
+    showSection(newIdx);
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') navigateSection(1);
+  if (e.key === 'ArrowRight') navigateSection(-1);
+});
+
+updateProgress();
+
+/* ── CLOCK / TIMER ── */
+let totalSeconds = 45 * 60;
+let remaining = totalSeconds;
+let timerId = null;
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `⏱ ${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function updateClockDisplay() {
+  document.getElementById('clockDisplay').textContent = formatTime(remaining);
+  const pct = ((totalSeconds - remaining) / totalSeconds) * 100;
+  document.getElementById('clockFill').style.width = pct + '%';
+  if (remaining <= 0) {
+    clearInterval(timerId);
+    timerId = null;
+    document.getElementById('clockDisplay').textContent = '⏱ TIME UP!';
+    document.getElementById('clockDisplay').style.background = 'var(--uae-black)';
+    document.getElementById('clockDisplay').style.color = 'var(--uae-white)';
+  }
+}
+
+function startClock() {
+  if (timerId) return;
+  timerId = setInterval(() => {
+    remaining--;
+    updateClockDisplay();
+  }, 1000);
+  document.getElementById('startBtn').style.display = 'none';
+  document.getElementById('pauseBtn').style.display = 'inline-block';
+}
+
+function pauseClock() {
+  clearInterval(timerId);
+  timerId = null;
+  document.getElementById('startBtn').style.display = 'inline-block';
+  document.getElementById('pauseBtn').style.display = 'none';
+}
+
+function resetClock() {
+  clearInterval(timerId);
+  timerId = null;
+  remaining = totalSeconds;
+  document.getElementById('clockDisplay').style.background = 'var(--uae-red-light)';
+  document.getElementById('clockDisplay').style.color = 'var(--uae-red-dark)';
+  updateClockDisplay();
+  document.getElementById('startBtn').style.display = 'inline-block';
+  document.getElementById('pauseBtn').style.display = 'none';
+}
+
+/* ── FLIP CARDS ── */
+function flipCard(card) {
+  card.classList.toggle('flipped');
+}
+
+/* ── REVEAL ANSWERS ── */
+function toggleReveal(id, btn) {
+  const ans = document.getElementById(id);
+  ans.classList.toggle('visible');
+  btn.textContent = ans.classList.contains('visible')
+    ? '🙈 Hide Answer · إخفاء الإجابة'
+    : '👁 Show Answer · أظهر الإجابة';
+}
+
+/* ── MC ANSWERS ── */
+function checkAnswer(opt, isCorrect, qId) {
+  const item = document.getElementById(qId);
+  const fb = document.getElementById(qId + '-fb');
+  const rstBtn = document.getElementById(qId + '-rst');
+  const opts = item.querySelectorAll('.mc-opt');
+
+  if (isCorrect) {
+    opt.classList.add('correct');
+    opts.forEach(o => { if (o !== opt) o.style.pointerEvents = 'none'; });
+    fb.textContent = '✅ ممتاز! إجابة صحيحة · Excellent! Correct answer';
+    fb.classList.add('show', 'right');
+  } else {
+    opt.classList.add('wrong');
+    fb.textContent = '❌ حاول مرة أخرى · Try again';
+    fb.classList.add('show', 'wrong-fb');
+    rstBtn.classList.add('show');
+  }
+}
+
+function resetMC(qId) {
+  const item = document.getElementById(qId);
+  const fb = document.getElementById(qId + '-fb');
+  const rstBtn = document.getElementById(qId + '-rst');
+  item.querySelectorAll('.mc-opt').forEach(o => {
+    o.classList.remove('correct', 'wrong');
+    o.style.pointerEvents = 'auto';
+  });
+  fb.classList.remove('show', 'right', 'wrong-fb');
+  fb.textContent = '';
+  rstBtn.classList.remove('show');
+}
+
+/* ── EXIT TICKET ── */
+function selectExit(card, val) {
+  document.querySelectorAll('.exit-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const conf = document.getElementById('exitConfirm');
+  const msgs = {
+    'got-it': '🌟 شكراً لمشاركتك! استمر في التفوق · Thanks for sharing! Keep it up!',
+    'almost': '🤔 شكراً! اسأل سؤالك في الفصل · Thanks! Ask your question in class.',
+    'lost': '🙋 شكراً! سنراجع في الحصة القادمة · Thanks! We will review next class.'
+  };
+  conf.textContent = msgs[val];
+  conf.classList.add('show');
+}
+
+/* ── MATCHING GAME ── */
+let selectedMatchAr = null;
+let selectedMatchEn = null;
+
+function selectMatch(item, type) {
+  if (item.classList.contains('matched')) return;
+
+  if (type === 'ar') {
+    if (selectedMatchAr) selectedMatchAr.classList.remove('selected');
+    selectedMatchAr = item;
+    item.classList.add('selected');
+  } else {
+    if (selectedMatchEn) selectedMatchEn.classList.remove('selected');
+    selectedMatchEn = item;
+    item.classList.add('selected');
+  }
+
+  if (selectedMatchAr && selectedMatchEn) {
+    const fb = document.getElementById('matchFb');
+    if (selectedMatchAr.dataset.key === selectedMatchEn.dataset.key) {
+      selectedMatchAr.classList.add('matched');
+      selectedMatchEn.classList.add('matched');
+      selectedMatchAr.classList.remove('selected');
+      selectedMatchEn.classList.remove('selected');
+      fb.textContent = '✅ ممتاز! إجابة صحيحة · Excellent match!';
+      fb.style.color = 'var(--uae-green-dark)';
+    } else {
+      fb.textContent = '❌ حاول مرة أخرى · Try again';
+      fb.style.color = 'var(--uae-red-dark)';
+      setTimeout(() => {
+        selectedMatchAr.classList.remove('selected');
+        selectedMatchEn.classList.remove('selected');
+        selectedMatchAr = null;
+        selectedMatchEn = null;
+      }, 800);
+      return;
+    }
+    selectedMatchAr = null;
+    selectedMatchEn = null;
+
+    const allMatched = document.querySelectorAll('.match-item:not(.matched)').length === 0;
+    if (allMatched) {
+      fb.textContent = '🎉 أحسنت! طابقت كل الكلمات · Well done! All matched!';
+      fb.style.color = 'var(--uae-green-dark)';
+    }
+  }
+}
+
+function resetMatch() {
+  document.querySelectorAll('.match-item').forEach(i => {
+    i.classList.remove('matched', 'selected');
+  });
+  selectedMatchAr = null;
+  selectedMatchEn = null;
+  document.getElementById('matchFb').textContent = 'جاهز؟ ابدأ بالضغط على كلمة عربية';
+  document.getElementById('matchFb').style.color = 'var(--uae-green-dark)';
+}
+
+/* ── TASK 1 REVEAL ANSWERS ── */
+function toggleTask1Answers() {
+  const blanks = document.querySelectorAll('.t1-blank');
+  const answers = document.querySelectorAll('.t1-ans');
+  const btn = document.getElementById('t1RevealBtn');
+  const isShown = answers[0].classList.contains('show');
+
+  if (isShown) {
+    answers.forEach(a => { a.style.display = 'none'; a.classList.remove('show'); });
+    blanks.forEach(b => { b.style.display = 'inline-block'; });
+    btn.innerHTML = '🔒 إجابات المعلم · Teacher\'s Answers';
+    btn.style.background = 'var(--uae-black)';
+  } else {
+    answers.forEach(a => { a.style.display = 'inline-block'; a.classList.add('show'); });
+    blanks.forEach(b => { b.style.display = 'none'; });
+    btn.innerHTML = '🙈 إخفاء الإجابات · Hide Answers';
+    btn.style.background = 'var(--uae-red)';
+  }
+}
+
+/* ── FILL IN THE BLANK ── */
+function checkFill(opt, itemId, value, isCorrect) {
+  const item = document.getElementById(itemId);
+  const ansSpan = item.querySelector('.fill-input');
+  const opts = item.querySelectorAll('.fill-opt');
+
+  if (isCorrect) {
+    opt.classList.add('correct');
+    opts.forEach(o => { if (o !== opt) o.style.pointerEvents = 'none'; });
+    if (ansSpan) {
+      ansSpan.textContent = value;
+      ansSpan.style.background = 'var(--uae-green-light)';
+      ansSpan.style.borderColor = 'var(--uae-green)';
+      ansSpan.style.color = 'var(--uae-green-dark)';
+    }
+  } else {
+    opt.classList.add('wrong');
+  }
+}
+</script>
+
+</body>
+</html>
