@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة تفاعلية - الصف التاسع - فيلمي المفضل</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #fff5f7 0%, #fef3ff 50%, #f0fdfa 100%);
+    min-height: 100vh;
+    color: #2d1b4e;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  .main-header {
+    background: linear-gradient(135deg, #8B1538 0%, #C73E5C 100%);
+    color: white;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(139, 21, 56, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .main-header::before {
+    content: '🎬';
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 30px;
+    opacity: 0.4;
+  }
+  .main-header::after {
+    content: '🍿';
+    position: absolute;
+    bottom: 10px; left: 15px;
+    font-size: 30px;
+    opacity: 0.4;
+  }
+  .main-header h1 { font-size: 2em; font-weight: 800; margin-bottom: 8px; }
+  .main-header p { font-size: 1.1em; opacity: 0.95; }
+  .teacher-name {
+    margin-top: 12px;
+    font-size: 0.95em;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 18px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  /* Navigation */
+  .nav-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  .nav-tab {
+    background: white;
+    border: 2px solid #C73E5C;
+    color: #C73E5C;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    transition: all 0.3s;
+    box-shadow: 0 3px 10px rgba(199, 62, 92, 0.15);
+  }
+  .nav-tab:hover { transform: translateY(-2px); }
+  .nav-tab.active {
+    background: #C73E5C;
+    color: white;
+    box-shadow: 0 5px 15px rgba(199, 62, 92, 0.4);
+  }
+
+  /* Sheet sections */
+  .sheet { display: none; }
+  .sheet.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sheet-title {
+    background: linear-gradient(135deg, #fff 0%, #fef0f3 100%);
+    border: 3px solid #C73E5C;
+    border-radius: 18px;
+    padding: 18px 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #8B1538;
+    box-shadow: 0 5px 15px rgba(199, 62, 92, 0.1);
+  }
+
+  /* Text passage */
+  .passage {
+    background: white;
+    border-right: 6px solid #C73E5C;
+    border-radius: 15px;
+    padding: 22px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    font-family: 'Amiri', serif;
+    font-size: 1.25em;
+    line-height: 2.1;
+    color: #2d1b4e;
+  }
+  .passage-label {
+    display: inline-block;
+    background: #C73E5C;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.7em;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .highlight-pink { color: #C73E5C; font-weight: 700; }
+  .highlight-purple { color: #8B1538; font-weight: 700; }
+  .highlight-teal { color: #00a9a5; font-weight: 700; }
+
+  /* Section heading */
+  .section-heading {
+    background: linear-gradient(135deg, #8B1538 0%, #C73E5C 100%);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    margin: 25px 0 18px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(139, 21, 56, 0.25);
+  }
+
+  /* Question card */
+  .question {
+    background: white;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-right: 5px solid #00a9a5;
+    transition: all 0.25s;
+  }
+  .question:hover {
+    transform: translateX(-3px);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+  }
+  .q-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2d1b4e;
+    margin-bottom: 6px;
+  }
+  .q-translation {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-style: italic;
+    margin-bottom: 4px;
+    direction: ltr;
+    text-align: left;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .q-pronunciation {
+    font-size: 0.88em;
+    color: #00a9a5;
+    direction: ltr;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .option {
+    background: #fef0f3;
+    border: 2px solid #fed7df;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #2d1b4e;
+    font-weight: 500;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+
+  /* Answer reveal */
+  .show-answer-btn {
+    background: linear-gradient(135deg, #00a9a5 0%, #02c39a 100%);
+    color: white;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 25px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.25s;
+    box-shadow: 0 3px 10px rgba(0, 169, 165, 0.3);
+  }
+  .show-answer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 169, 165, 0.45);
+  }
+  .show-answer-btn.shown {
+    background: linear-gradient(135deg, #8B1538 0%, #C73E5C 100%);
+  }
+  .answer-box {
+    display: none;
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #e6fffa 0%, #f0fdfa 100%);
+    border-right: 4px solid #00a9a5;
+    border-radius: 10px;
+    animation: slideDown 0.3s ease;
+  }
+  .answer-box.visible { display: block; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answer-label {
+    font-weight: 700;
+    color: #00766c;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+  }
+  .answer-text {
+    color: #1a4d4a;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .answer-explain {
+    color: #475569;
+    font-size: 0.9em;
+    margin-top: 5px;
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* Vocab table */
+  .vocab-container {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-right: 5px solid #8b5cf6;
+    margin-bottom: 18px;
+  }
+  .vocab-card {
+    background: #faf5ff;
+    border: 2px solid #e9d8fd;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .vocab-card:hover {
+    background: #f3e8ff;
+    border-color: #c084fc;
+    transform: translateX(-3px);
+  }
+  .vocab-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #8B1538;
+    margin-bottom: 5px;
+  }
+  .vocab-meaning {
+    display: none;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px dashed #c084fc;
+  }
+  .vocab-card.revealed .vocab-meaning { display: block; }
+  .vocab-english {
+    color: #00766c;
+    font-weight: 600;
+    direction: ltr;
+    text-align: left;
+    font-size: 1em;
+  }
+  .vocab-pronounce {
+    color: #6b7280;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.85em;
+    margin-top: 3px;
+  }
+  .tap-hint {
+    color: #9ca3af;
+    font-size: 0.8em;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+  }
+  .vocab-card.revealed .tap-hint { display: none; }
+
+  /* Question word card */
+  .qword-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-right: 5px solid #f59e0b;
+  }
+  .qword-arabic {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #C73E5C;
+    margin-bottom: 4px;
+  }
+  .qword-meaning {
+    color: #2d1b4e;
+    margin-bottom: 4px;
+    font-size: 1em;
+  }
+  .qword-english {
+    color: #6b7280;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+  }
+  .qword-example {
+    background: #fef3c7;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #78350f;
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .qword-example-trans {
+    color: #92400e;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.85em;
+    margin-top: 3px;
+  }
+
+  /* Writing sample */
+  .writing-sample {
+    background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+    border: 2px dashed #f59e0b;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 18px;
+  }
+  .writing-prompt {
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+  }
+  .writing-text {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    font-family: 'Amiri', serif;
+    font-size: 1.15em;
+    line-height: 2;
+    color: #2d1b4e;
+    margin-bottom: 10px;
+  }
+  .writing-trans {
+    color: #78350f;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.9em;
+    line-height: 1.7;
+  }
+
+  /* Footer note */
+  .footer-note {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #8B1538 0%, #C73E5C 100%);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.95em;
+    box-shadow: 0 5px 15px rgba(139, 21, 56, 0.25);
+  }
+  .footer-note .star { color: #fbbf24; font-size: 1.3em; }
+
+  /* Show all toggle */
+  .show-all-bar {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .show-all-btn {
+    background: linear-gradient(135deg, #C73E5C 0%, #8B1538 100%);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  .progress-text {
+    color: #8B1538;
+    font-weight: 700;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 600px) {
+    .main-header h1 { font-size: 1.5em; }
+    .passage { font-size: 1.05em; }
+    .nav-tab { padding: 8px 14px; font-size: 0.9em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Main Header -->
+  <div class="main-header">
+    <h1>🎬 مراجعة تفاعلية - الصف التاسع 🍿</h1>
+    <p>Year 9 Interactive Review – My Favourite Film</p>
+    <div class="teacher-name">إعداد المعلمة: غادة مرتضى</div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSheet(1)">📚 المفردات</button>
+    <button class="nav-tab" onclick="showSheet(2)">❓ أدوات الاستفهام</button>
+    <button class="nav-tab" onclick="showSheet(3)">📖 قراءة النص</button>
+    <button class="nav-tab" onclick="showSheet(4)">✍️ الكتابة</button>
+  </div>
+
+  <!-- =================== SHEET 1: VOCABULARY =================== -->
+  <div class="sheet active" id="sheet-1">
+    <div class="sheet-title">📚 المفردات - فيلمي المفضل</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على الكلمة لمعرفة معناها</span>
+      <button class="show-all-btn" onclick="toggleAllVocab()">إظهار / إخفاء كل المعاني</button>
+    </div>
+
+    <!-- Main vocabulary -->
+    <div class="section-heading">📝 المفردات الأساسية - Key Vocabulary</div>
+
+    <div class="vocab-container">
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">فيلمي المفضل</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">My favourite film</div>
+          <div class="vocab-pronounce">Feelmi al-mufaddal</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">تُحِب</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">She loves / likes</div>
+          <div class="vocab-pronounce">Tuhibb</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">مُشَاهَدَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Watching</div>
+          <div class="vocab-pronounce">Mushaahada</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">يُفَضِّل</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">He prefers</div>
+          <div class="vocab-pronounce">Yufaddil</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">أَوَّلًا بِأَوَّل</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">First-hand / immediately / as soon as released</div>
+          <div class="vocab-pronounce">Awwalan bi-awwal</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">إِجَازَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Holiday / vacation</div>
+          <div class="vocab-pronounce">Ijaaza</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">نِهَايَة الأُسْبُوع</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">The weekend</div>
+          <div class="vocab-pronounce">Nihaayat al-usboo'</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">تَذْكِرَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Ticket</div>
+          <div class="vocab-pronounce">Tathkira</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">صَالَة عَرْض</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Show hall / cinema theatre</div>
+          <div class="vocab-pronounce">Saalat 'ard</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">فُشَار</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Popcorn</div>
+          <div class="vocab-pronounce">Fushaar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Film types -->
+    <div class="section-heading">🎭 أنواع الأفلام - Types of Films</div>
+
+    <div class="vocab-container">
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">العَاطِفِيَّة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Romantic</div>
+          <div class="vocab-pronounce">Al-'aatifiyya</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">المُغَامَرَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Adventure</div>
+          <div class="vocab-pronounce">Al-mughaamara</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">الرُّعْب</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Horror</div>
+          <div class="vocab-pronounce">Ar-ru'b</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">الأَنِيمِيشِن</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Animation</div>
+          <div class="vocab-pronounce">Al-aneemeeshen</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">الخَيَالِيَّة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Fantasy / fictional</div>
+          <div class="vocab-pronounce">Al-khayaaliyya</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">مُضْحِكَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Funny / comedy</div>
+          <div class="vocab-pronounce">Mudhika</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">مُسَلِّيَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Entertaining</div>
+          <div class="vocab-pronounce">Musalliya</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">شَيِّقَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Exciting / interesting</div>
+          <div class="vocab-pronounce">Shayyiqa</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">أَحْدَاثُهَا مُمْتِعَة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">Its events are enjoyable</div>
+          <div class="vocab-pronounce">Ahdaathuhaa mumti'a</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sentences -->
+    <div class="section-heading">📌 جمل نموذجية - Example Sentences</div>
+
+    <div class="question">
+      <div class="q-text">1) أحداث</div>
+      <div class="q-translation">Events</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الجملة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أحداث الفيلم شيقة جداً.</div>
+        <div class="answer-explain">The events of the film are very exciting. – "Ahdaath al-feelm shayyiqa jiddan"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) الخيالية</div>
+      <div class="q-translation">Fantasy / fictional</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الجملة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أحب الأفلام الخيالية لأنها ممتعة.</div>
+        <div class="answer-explain">I love fantasy films because they are enjoyable. – "Uhibb al-aflaam al-khayaaliyya li-annahaa mumti'a"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) أولًا بأول</div>
+      <div class="q-translation">First-hand / as soon as released</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الجملة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">نشاهد الأفلام الجديدة أولًا بأول.</div>
+        <div class="answer-explain">We watch new films first-hand (as soon as they come out). – "Nushaahid al-aflaam al-jadeeda awwalan bi-awwal"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) فشار</div>
+      <div class="q-translation">Popcorn</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الجملة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أكلت فشارًا بالملح في السينما.</div>
+        <div class="answer-explain">I ate salted popcorn at the cinema. – "Akalt fushaaran bil-milh fis-seenima"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) شيقة</div>
+      <div class="q-translation">Exciting / interesting</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الجملة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">القصة شيقة ومسلية.</div>
+        <div class="answer-explain">The story is exciting and entertaining. – "Al-qissa shayyiqa wa musalliya"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">6) أفضل</div>
+      <div class="q-translation">I prefer</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الجملة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أفضل أفلام المغامرة على أفلام الرعب.</div>
+        <div class="answer-explain">I prefer adventure films over horror films. – "Ufaddil aflaam al-mughaamara 'ala aflaam ar-ru'b"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 2: QUESTION WORDS =================== -->
+  <div class="sheet" id="sheet-2">
+    <div class="sheet-title">❓ أدوات الاستفهام - Question Words</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 11 أداة استفهام أساسية في اللغة العربية</span>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">ما؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن غير العاقل (الأشياء).</div>
+      <div class="qword-english">What – used for things (non-human)</div>
+      <div class="qword-example">مثال: ما رأيك في الفيلم؟</div>
+      <div class="qword-example-trans">"Maa ra'yuk fil-feelm?" – What's your opinion about the film?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">ماذا؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن الفعل أو الحدث.</div>
+      <div class="qword-english">What – used for actions/events</div>
+      <div class="qword-example">مثال: ماذا تشاهد؟</div>
+      <div class="qword-example-trans">"Maathaa tushaahid?" – What are you watching?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">كيف؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن الحال أو الكيفية.</div>
+      <div class="qword-english">How – asks about state/manner</div>
+      <div class="qword-example">مثال: كيف حالك؟</div>
+      <div class="qword-example-trans">"Kayfa haaluk?" – How are you?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">هل؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال الذي إجابته نعم أو لا.</div>
+      <div class="qword-english">Is/Do – yes/no question</div>
+      <div class="qword-example">مثال: هل تحب السينما؟</div>
+      <div class="qword-example-trans">"Hal tuhibb as-seenima?" – Do you like the cinema?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">مع من؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن المرافق (الشخص اللي معاه).</div>
+      <div class="qword-english">With whom – asks about companion</div>
+      <div class="qword-example">مثال: مع من ذهبت إلى السينما؟</div>
+      <div class="qword-example-trans">"Ma'a man thahabt ilas-seenima?" – With whom did you go to the cinema?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">إلى أين؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن المكان (الذهاب إليه).</div>
+      <div class="qword-english">To where – asks about destination</div>
+      <div class="qword-example">مثال: إلى أين تذهب؟</div>
+      <div class="qword-example-trans">"Ilaa ayna tathhab?" – Where are you going?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">لماذا؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن السبب.</div>
+      <div class="qword-english">Why – asks about reason</div>
+      <div class="qword-example">مثال: لماذا تحب أفلام الخيال؟</div>
+      <div class="qword-example-trans">"Limaathaa tuhibb aflaam al-khayaal?" – Why do you like fantasy films?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">أين؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن المكان.</div>
+      <div class="qword-english">Where – asks about place</div>
+      <div class="qword-example">مثال: أين السينما؟</div>
+      <div class="qword-example-trans">"Ayna as-seenima?" – Where is the cinema?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">ما رأيك؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن الرأي.</div>
+      <div class="qword-english">What do you think – asks for opinion</div>
+      <div class="qword-example">مثال: ما رأيك في الفيلم؟</div>
+      <div class="qword-example-trans">"Maa ra'yuk fil-feelm?" – What do you think of the film?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">مَنْ؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن العاقل (الأشخاص).</div>
+      <div class="qword-english">Who – asks about people</div>
+      <div class="qword-example">مثال: من اختار الفيلم؟</div>
+      <div class="qword-example-trans">"Man ikhtaar al-feelm?" – Who chose the film?</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">مِنْ أين؟</div>
+      <div class="qword-meaning">تُستخدم للسؤال عن مكان القدوم (المصدر).</div>
+      <div class="qword-english">From where – asks about origin</div>
+      <div class="qword-example">مثال: من أين أنت؟</div>
+      <div class="qword-example-trans">"Min ayna ant?" – Where are you from?</div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 3: READING =================== -->
+  <div class="sheet" id="sheet-3">
+    <div class="sheet-title">📖 قراءة النص - عائلة سعيد في السينما</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اقرأ النص ثم أجب عن الأسئلة</span>
+      <button class="show-all-btn" onclick="toggleAll(3)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <!-- Passage -->
+    <div class="passage">
+      <span class="passage-label">📖 النص</span><br>
+      سعيدٌ أبٌ لثلاثةِ أبناءٍ، وكلُّ الأسرةِ تُحبُّ أن تذهبَ إلى <span class="highlight-pink">السينما</span> خِلَالَ <span class="highlight-purple">إجازةِ نهايةِ الأسبوعِ</span> وأن يُشاهدوا الأفلامَ الجديدةَ في السينما <span class="highlight-teal">أوَّلًا بأوَّلٍ</span>.<br><br>
+      اختارَ سعيدٌ فيلمَ <span class="highlight-pink">رعبٍ</span> ولكنَّ زوجتَه لا تحبُّ أفلامَ الرعبِ، واختارت فيلمًا <span class="highlight-pink">كوميديًا</span>، وابنُه الأكبرُ <span class="highlight-purple">حسام</span> وعمرُه <span class="highlight-teal">18 عامًا</span> اختارَ فيلمَ <span class="highlight-pink">مغامرةٍ</span> أمريكيًا، لأن أحداثَه شيقةٌ، واختارت ابنتُه <span class="highlight-purple">صفاء</span> نفسَ الفيلمِ الذي اختارَه حسامٌ.<br><br>
+      أما ابنُه <span class="highlight-purple">أحمد</span> فعمرُه <span class="highlight-teal">12 عامًا</span> وهو يحبُّ أفلامَ <span class="highlight-pink">الخيالِ</span>، لأنها شيقةٌ ومسليةٌ، وأما ابنتُه <span class="highlight-purple">سارة</span> فاختارت فيلمَ <span class="highlight-pink">أنيميشن</span>.<br><br>
+      كانت الأفلامُ تُعرضُ في صالاتِ عرضٍ مختلفةٍ ولكن في نفسِ الوقتِ في حفلِ الساعةِ <span class="highlight-teal">8 مساءً</span>؛ حيث ذهبوا في <span class="highlight-teal">السابعةِ والنصف</span>ِ واختاروا جميعًا <span class="highlight-pink">فشارًا بالملح</span> و<span class="highlight-pink">عصيرَ فراولة</span>.<br><br>
+      بعد انتهاءِ الأفلامِ كانت الأسرةُ تشعرُ <span class="highlight-purple">بسعادةٍ كبيرةٍ</span>، وكان تقييمُهم للأفلامِ رائعًا.
+    </div>
+
+    <!-- Multiple Choice -->
+    <div class="section-heading">📝 (1) اختر الإجابة الصحيحة - Multiple Choice</div>
+
+    <div class="question">
+      <div class="q-text">1) يبلغ عمر حسام:</div>
+      <div class="q-translation">How old is Hossam?</div>
+      <div class="q-pronunciation">Yablugh 'umr Hossam?</div>
+      <div class="options">
+        <div class="option">أ) 12 عاماً</div>
+        <div class="option">ب) 15 عاماً</div>
+        <div class="option">ج) 18 عاماً</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ج) 18 عاماً</div>
+        <div class="answer-explain">Correct: (c) 18 years old (Hossam is the eldest son) – "thamaaniyat 'ashar 'aaman"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) ستشاهد سارة فيلم:</div>
+      <div class="q-translation">Sara will watch a ____ film.</div>
+      <div class="q-pronunciation">Satushaahid Sara feelm...?</div>
+      <div class="options">
+        <div class="option">أ) أكشن</div>
+        <div class="option">ب) أنيميشن</div>
+        <div class="option">ج) مغامرة</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) أنيميشن</div>
+        <div class="answer-explain">Correct: (b) Animation – "aneemeeshen"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) اختارت الأم:</div>
+      <div class="q-translation">The mother chose:</div>
+      <div class="q-pronunciation">Ikhtaarat al-umm...?</div>
+      <div class="options">
+        <div class="option">أ) فيلم عاطفي</div>
+        <div class="option">ب) فيلم رعب</div>
+        <div class="option">ج) فيلم كوميدي</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ج) فيلم كوميدي (مضحك)</div>
+        <div class="answer-explain">Correct: (c) Comedy film – "feelm koomeedi" (she doesn't like horror films)</div>
+      </div>
+    </div>
+
+    <!-- Open Questions -->
+    <div class="section-heading">💬 (2) أسئلة الإجابة الكاملة - Full Answer Questions</div>
+
+    <div class="question">
+      <div class="q-text">1) متى تشاهد الأسرة الأفلام في السينما؟</div>
+      <div class="q-translation">When does the family watch films at the cinema?</div>
+      <div class="q-pronunciation">Mataa tushaahid al-usra al-aflaam fis-seenima?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">تشاهد الأسرة الأفلام في السينما خلال إجازة نهاية الأسبوع.</div>
+        <div class="answer-explain">The family watches films at the cinema during the weekend holiday.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) لماذا يحب أحمد أفلام الخيال؟</div>
+      <div class="q-translation">Why does Ahmed love fantasy films?</div>
+      <div class="q-pronunciation">Limaathaa yuhibb Ahmad aflaam al-khayaal?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">يحب أحمد أفلام الخيال لأنها شيقة ومسلية.</div>
+        <div class="answer-explain">Ahmed loves fantasy films because they are exciting and entertaining.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) ما الطعام والشراب الذي طلبته الأسرة؟</div>
+      <div class="q-translation">What food and drink did the family order?</div>
+      <div class="q-pronunciation">Maa at-ta'aam wash-sharaab allathee talabat-hu al-usra?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">طلبت الأسرة فشاراً بالملح وعصير فراولة.</div>
+        <div class="answer-explain">The family ordered salted popcorn and strawberry juice.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) صف شعور الأسرة بعد المشاهدة.</div>
+      <div class="q-translation">Describe the family's feelings after watching.</div>
+      <div class="q-pronunciation">Sif shu'oor al-usra ba'd al-mushaahada.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">شعرت الأسرة بسعادة كبيرة بعد مشاهدة الأفلام، وكان تقييمهم للأفلام رائعاً.</div>
+        <div class="answer-explain">The family felt very happy after watching the films, and their rating of the films was excellent.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) قارن بين حسام وأحمد من خلال العمر ونوع الفيلم.</div>
+      <div class="q-translation">Compare Hossam and Ahmed by age and film type.</div>
+      <div class="q-pronunciation">Qaarin bayna Hossam wa Ahmad min khilaal al-'umr wa naw' al-feelm.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">حسام أكبر سناً من أحمد؛ عمر حسام 18 عاماً بينما عمر أحمد 12 عاماً. اختار حسام فيلم مغامرة أمريكي لأن أحداثه شيقة، أما أحمد فاختار فيلم خيال لأنه شيق ومسلي.</div>
+        <div class="answer-explain">Hossam is older than Ahmed; Hossam is 18 years old while Ahmed is 12. Hossam chose an American adventure film because its events are exciting, while Ahmed chose a fantasy film because it is exciting and entertaining.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 4: WRITING =================== -->
+  <div class="sheet" id="sheet-4">
+    <div class="sheet-title">✍️ نموذج للكتابة - Writing Sample</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 نموذج إجابة فقرة من 70-90 كلمة</span>
+    </div>
+
+    <div class="writing-sample">
+      <div class="writing-prompt">📝 اكتب فقرة من 70-90 كلمة عن فيلمك المفضل.</div>
+      <div class="writing-prompt" style="font-size:0.95em; color:#92400e;">Write a paragraph of 70-90 words about your favourite film.</div>
+
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار نموذج الإجابة ✨</button>
+      <div class="answer-box" style="background: white; border-right: 4px solid #f59e0b;">
+        <div class="answer-label" style="color: #92400e;">📄 نموذج إجابة:</div>
+        <div class="writing-text">
+          فيلمي المفضل هو فيلم "الأسد الملك". هو فيلم أنيميشن مسلٍّ وشيق جداً. أحب هذا الفيلم لأن أحداثه ممتعة وقصته جميلة. شاهدت هذا الفيلم في السينما مع عائلتي في إجازة نهاية الأسبوع. ذهبنا إلى السينما في الساعة الثامنة مساءً، وأكلنا الفشار وشربنا العصير. تعلمت من هذا الفيلم قيمة الشجاعة والصداقة. أنصح كل أصدقائي بمشاهدة هذا الفيلم الرائع لأنه مسلٍ ومفيد في نفس الوقت.
+        </div>
+        <div class="writing-trans">
+          My favourite film is "The Lion King". It is a very fun and exciting animation film. I love this film because its events are enjoyable and its story is beautiful. I watched this film at the cinema with my family during the weekend holiday. We went to the cinema at 8 PM, ate popcorn and drank juice. I learned from this film the value of courage and friendship. I recommend all my friends to watch this wonderful film because it is fun and useful at the same time.
+        </div>
+      </div>
+    </div>
+
+    <!-- Writing tips -->
+    <div class="section-heading">💡 نصائح للكتابة - Writing Tips</div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">1️⃣ المقدمة</div>
+      <div class="qword-meaning">ابدأ بذكر اسم الفيلم ونوعه.</div>
+      <div class="qword-english">Introduction – State the name and type of the film</div>
+      <div class="qword-example">فيلمي المفضل هو فيلم "..." وهو فيلم...</div>
+      <div class="qword-example-trans">My favourite film is "..." and it's a ... film</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">2️⃣ السبب</div>
+      <div class="qword-meaning">اشرح لماذا تحب هذا الفيلم.</div>
+      <div class="qword-english">The reason – Explain why you love this film</div>
+      <div class="qword-example">أحبه لأن أحداثه شيقة / مسلية / ممتعة...</div>
+      <div class="qword-example-trans">I love it because its events are exciting / entertaining / enjoyable...</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">3️⃣ التجربة</div>
+      <div class="qword-meaning">اذكر متى وأين شاهدته ومع من.</div>
+      <div class="qword-english">The experience – Mention when, where you watched it and with whom</div>
+      <div class="qword-example">شاهدته في السينما مع عائلتي في إجازة...</div>
+      <div class="qword-example-trans">I watched it at the cinema with my family during the holiday...</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">4️⃣ التفاصيل</div>
+      <div class="qword-meaning">اذكر تفاصيل عن الطعام والوقت.</div>
+      <div class="qword-english">Details – Mention food and timing details</div>
+      <div class="qword-example">ذهبنا الساعة... وأكلنا الفشار وشربنا...</div>
+      <div class="qword-example-trans">We went at ... o'clock and we ate popcorn and drank...</div>
+    </div>
+
+    <div class="qword-card">
+      <div class="qword-arabic">5️⃣ الخاتمة</div>
+      <div class="qword-meaning">اختم برأيك أو نصيحة للآخرين.</div>
+      <div class="qword-english">Conclusion – End with your opinion or advice to others</div>
+      <div class="qword-example">أنصح أصدقائي بمشاهدته لأنه...</div>
+      <div class="qword-example-trans">I recommend my friends to watch it because...</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <span class="star">⭐</span> بالتوفيق للطلاب <span class="star">⭐</span><br>
+    <span style="font-size: 0.85em; opacity: 0.9;">Good luck students! – إعداد المعلمة: غادة مرتضى - The English College</span>
+  </div>
+
+</div>
+
+<script>
+  // Tab navigation
+  function showSheet(num) {
+    document.querySelectorAll('.sheet').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('sheet-' + num).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Toggle single answer
+  function toggleAnswer(btn) {
+    const answerBox = btn.nextElementSibling;
+    answerBox.classList.toggle('visible');
+    btn.classList.toggle('shown');
+    const baseText = btn.textContent.includes('نموذج') ? 'نموذج الإجابة' :
+                     btn.textContent.includes('الجملة') ? 'الجملة' : 'الإجابة';
+    btn.textContent = answerBox.classList.contains('visible')
+      ? 'إخفاء ' + baseText + ' 🙈'
+      : 'إظهار ' + baseText + ' ✨';
+  }
+
+  // Toggle vocab card
+  function toggleVocab(card) {
+    card.classList.toggle('revealed');
+  }
+
+  // Toggle all vocab
+  function toggleAllVocab() {
+    const cards = document.querySelectorAll('#sheet-1 .vocab-card');
+    const revealed = document.querySelectorAll('#sheet-1 .vocab-card.revealed').length;
+    const shouldReveal = revealed < cards.length / 2;
+    cards.forEach(card => {
+      if (shouldReveal) card.classList.add('revealed');
+      else card.classList.remove('revealed');
+    });
+  }
+
+  // Toggle all answers in a sheet
+  function toggleAll(sheetNum) {
+    const sheet = document.getElementById('sheet-' + sheetNum);
+    const buttons = sheet.querySelectorAll('.show-answer-btn');
+    const visibleCount = sheet.querySelectorAll('.answer-box.visible').length;
+    const shouldShow = visibleCount < buttons.length / 2;
+
+    buttons.forEach(btn => {
+      const answerBox = btn.nextElementSibling;
+      if (shouldShow && !answerBox.classList.contains('visible')) {
+        answerBox.classList.add('visible');
+        btn.classList.add('shown');
+        btn.textContent = 'إخفاء الإجابة 🙈';
+      } else if (!shouldShow && answerBox.classList.contains('visible')) {
+        answerBox.classList.remove('visible');
+        btn.classList.remove('shown');
+        btn.textContent = 'إظهار الإجابة ✨';
+      }
+    });
+  }
+</script>
+</body>
+</html>
