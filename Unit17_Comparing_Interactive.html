@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة تفاعلية - Unit 17 - أفعل التفضيل والمقارنة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 50%, #fce7f3 100%);
+    min-height: 100vh;
+    color: #1e293b;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .main-header {
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+    color: white;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(146, 64, 14, 0.3);
+    position: relative;
+  }
+  .main-header::before { content: '🏆'; position: absolute; top: 10px; right: 15px; font-size: 30px; opacity: 0.5; }
+  .main-header::after { content: '📅'; position: absolute; bottom: 10px; left: 15px; font-size: 30px; opacity: 0.5; }
+  .main-header h1 { font-size: 1.9em; font-weight: 800; margin-bottom: 8px; }
+  .main-header p { font-size: 1.05em; opacity: 0.95; }
+  .teacher-name {
+    margin-top: 12px;
+    font-size: 0.95em;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 18px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  .nav-tab {
+    background: white;
+    border: 2px solid #d97706;
+    color: #d97706;
+    padding: 10px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.9em;
+    transition: all 0.3s;
+    box-shadow: 0 3px 10px rgba(217, 119, 6, 0.15);
+  }
+  .nav-tab:hover { transform: translateY(-2px); }
+  .nav-tab.active {
+    background: #d97706;
+    color: white;
+    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.4);
+  }
+
+  .sheet { display: none; }
+  .sheet.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sheet-title {
+    background: linear-gradient(135deg, #fff 0%, #fffbeb 100%);
+    border: 3px solid #d97706;
+    border-radius: 18px;
+    padding: 18px 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 800;
+    color: #92400e;
+    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.1);
+  }
+
+  .passage {
+    background: white;
+    border-right: 6px solid #d97706;
+    border-radius: 15px;
+    padding: 22px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    font-family: 'Amiri', serif;
+    font-size: 1.25em;
+    line-height: 2.1;
+    color: #1e293b;
+  }
+  .passage-label {
+    display: inline-block;
+    background: #d97706;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.7em;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .highlight-amber { color: #d97706; font-weight: 700; }
+  .highlight-rose { color: #be185d; font-weight: 700; }
+  .highlight-purple { color: #6d2e8a; font-weight: 700; }
+
+  .section-heading {
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    margin: 25px 0 18px 0;
+    font-size: 1.15em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(146, 64, 14, 0.25);
+  }
+
+  /* Grammar rule box */
+  .rule-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px dashed #d97706;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+  }
+  .rule-title {
+    font-weight: 700;
+    color: #92400e;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+  }
+  .rule-text {
+    color: #1e293b;
+    font-size: 1em;
+    line-height: 1.7;
+  }
+  .rule-formula {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin: 10px 0;
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: 1.3em;
+    color: #be185d;
+    font-weight: 700;
+    box-shadow: inset 0 0 0 2px #fbbf24;
+  }
+
+  .question {
+    background: white;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-right: 5px solid #be185d;
+    transition: all 0.25s;
+  }
+  .question:hover {
+    transform: translateX(-3px);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+  }
+  .q-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+  }
+  .q-translation {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-style: italic;
+    margin-bottom: 4px;
+    direction: ltr;
+    text-align: left;
+  }
+  .q-pronunciation {
+    font-size: 0.88em;
+    color: #d97706;
+    direction: ltr;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .option {
+    background: #fffbeb;
+    border: 2px solid #fde68a;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #1e293b;
+    font-weight: 500;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+  }
+
+  .show-answer-btn {
+    background: linear-gradient(135deg, #be185d 0%, #ec4899 100%);
+    color: white;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 25px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.25s;
+    box-shadow: 0 3px 10px rgba(190, 24, 93, 0.3);
+  }
+  .show-answer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(190, 24, 93, 0.45);
+  }
+  .show-answer-btn.shown {
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+  }
+  .answer-box {
+    display: none;
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+    border-right: 4px solid #be185d;
+    border-radius: 10px;
+    animation: slideDown 0.3s ease;
+  }
+  .answer-box.visible { display: block; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answer-label {
+    font-weight: 700;
+    color: #9d174d;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+  }
+  .answer-text {
+    color: #831843;
+    font-size: 1.05em;
+    font-weight: 600;
+  }
+  .answer-explain {
+    color: #475569;
+    font-size: 0.9em;
+    margin-top: 5px;
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* Vocab table cards */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .vocab-card-mini {
+    background: white;
+    border: 2px solid #fde68a;
+    border-radius: 12px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .vocab-card-mini:hover {
+    border-color: #d97706;
+    transform: translateY(-2px);
+  }
+  .vocab-adj {
+    font-family: 'Amiri', serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+  }
+  .vocab-arrow {
+    color: #d97706;
+    font-size: 1.5em;
+    margin: 5px 0;
+  }
+  .vocab-comparative {
+    display: none;
+    font-family: 'Amiri', serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #be185d;
+    margin: 5px 0;
+  }
+  .vocab-card-mini.revealed .vocab-comparative { display: block; }
+  .vocab-meaning-mini {
+    display: none;
+    color: #6b7280;
+    font-size: 0.85em;
+    font-style: italic;
+    direction: ltr;
+    margin-top: 5px;
+  }
+  .vocab-card-mini.revealed .vocab-meaning-mini { display: block; }
+  .vocab-card-mini .tap-hint-mini {
+    color: #9ca3af;
+    font-size: 0.8em;
+    font-style: italic;
+    direction: ltr;
+  }
+  .vocab-card-mini.revealed .tap-hint-mini { display: none; }
+
+  /* Days of week grid */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .day-card {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid #fbbf24;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .day-card:hover { transform: translateY(-2px); }
+  .day-ar {
+    font-family: 'Amiri', serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 5px;
+  }
+  .day-en {
+    display: none;
+    color: #be185d;
+    font-weight: 700;
+    margin-top: 5px;
+  }
+  .day-card.revealed .day-en { display: block; }
+
+  /* Kan table */
+  .kan-table {
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  }
+  .kan-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #fde68a;
+    align-items: center;
+  }
+  .kan-row:last-child { border-bottom: none; }
+  .kan-row.header {
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+    color: white;
+    font-weight: 700;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .kan-pronoun {
+    font-family: 'Amiri', serif;
+    font-size: 1.2em;
+    color: #1e293b;
+    text-align: center;
+  }
+  .kan-form {
+    font-family: 'Amiri', serif;
+    font-size: 1.4em;
+    color: #be185d;
+    font-weight: 700;
+    text-align: center;
+  }
+  .kan-trans {
+    color: #6b7280;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.9em;
+  }
+
+  /* Footer */
+  .footer-note {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.95em;
+    box-shadow: 0 5px 15px rgba(146, 64, 14, 0.25);
+  }
+  .footer-note .star { color: #fbbf24; font-size: 1.3em; }
+
+  .show-all-bar {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .show-all-btn {
+    background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  .progress-text {
+    color: #92400e;
+    font-weight: 700;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 600px) {
+    .main-header h1 { font-size: 1.4em; }
+    .passage { font-size: 1.05em; }
+    .nav-tab { padding: 8px 12px; font-size: 0.82em; }
+    .kan-row { grid-template-columns: 1fr; text-align: center; gap: 5px; }
+    .kan-trans { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="main-header">
+    <h1>🏆 مراجعة تفاعلية - أفعل التفضيل والمقارنة 🏆</h1>
+    <p>Unit 17 Interactive Review – Comparing Things</p>
+    <div class="teacher-name">إعداد المعلمة: غادة مرتضى</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSheet(1)">📚 الصفات</button>
+    <button class="nav-tab" onclick="showSheet(2)">📅 أيام الأسبوع</button>
+    <button class="nav-tab" onclick="showSheet(3)">📐 المقارنة</button>
+    <button class="nav-tab" onclick="showSheet(4)">⏰ كان</button>
+    <button class="nav-tab" onclick="showSheet(5)">🌐 الترجمة</button>
+    <button class="nav-tab" onclick="showSheet(6)">📖 القراءة</button>
+  </div>
+
+  <!-- =================== SHEET 1: ADJECTIVES =================== -->
+  <div class="sheet active" id="sheet-1">
+    <div class="sheet-title">📚 الصفات وأفعل التفضيل - Adjectives & Comparatives</div>
+
+    <div class="rule-box">
+      <div class="rule-title">💡 القاعدة - The Rule:</div>
+      <div class="rule-text">
+        نأخذ جذر الصفة ونضعه في وزن <b>أَفْعَل</b><br>
+        Take the root letters of an adjective and put them in the pattern <b>af'al</b>
+      </div>
+      <div class="rule-formula">
+        طويل (taweel) ← أَطْوَل (atwal) = taller/tallest
+      </div>
+    </div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على البطاقة لمعرفة أفعل التفضيل</span>
+      <button class="show-all-btn" onclick="toggleAllAdj()">إظهار / إخفاء الكل</button>
+    </div>
+
+    <div class="vocab-grid">
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">كبير</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أكبر</div>
+        <div class="vocab-meaning-mini">big → bigger/biggest (akbar)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">قديم</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أقدم</div>
+        <div class="vocab-meaning-mini">old → older/oldest (aqdam)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">جميل</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أجمل</div>
+        <div class="vocab-meaning-mini">beautiful → more beautiful (ajmal)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">قبيح</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أقبح</div>
+        <div class="vocab-meaning-mini">ugly → uglier (aqbah)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">صغير</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أصغر</div>
+        <div class="vocab-meaning-mini">small → smaller (asghar)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">طويل</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أطول</div>
+        <div class="vocab-meaning-mini">tall/long → taller (atwal)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">جديد</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أجدّ</div>
+        <div class="vocab-meaning-mini">new → newer (ajadd)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">سريع</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أسرع</div>
+        <div class="vocab-meaning-mini">fast → faster (asra')</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">كثير</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أكثر</div>
+        <div class="vocab-meaning-mini">many → more (akthar)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">فاضل</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أفضل</div>
+        <div class="vocab-meaning-mini">good → better (afdal)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">رخيص</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أرخص</div>
+        <div class="vocab-meaning-mini">cheap → cheaper (arkhas)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">غني</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أغنى</div>
+        <div class="vocab-meaning-mini">rich → richer (aghna)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">فقير</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أفقر</div>
+        <div class="vocab-meaning-mini">poor → poorer (afqar)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">هام</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أهم</div>
+        <div class="vocab-meaning-mini">important → more important (ahamm)</div>
+      </div>
+      <div class="vocab-card-mini" onclick="this.classList.toggle('revealed')">
+        <div class="vocab-adj">غالي</div>
+        <div class="tap-hint-mini">Tap to reveal ↓</div>
+        <div class="vocab-arrow">↓</div>
+        <div class="vocab-comparative">أغلى</div>
+        <div class="vocab-meaning-mini">expensive → more expensive (aghla)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 2: DAYS OF WEEK =================== -->
+  <div class="sheet" id="sheet-2">
+    <div class="sheet-title">📅 أيام الأسبوع - Days of the Week</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على اليوم لمعرفة اسمه بالإنجليزية</span>
+      <button class="show-all-btn" onclick="toggleAllDays()">إظهار / إخفاء الكل</button>
+    </div>
+
+    <div class="days-grid">
+      <div class="day-card" onclick="this.classList.toggle('revealed')">
+        <div class="day-ar">يوم السبت</div>
+        <div class="day-en">Saturday<br><small>(yawm as-sabt)</small></div>
+      </div>
+      <div class="day-card" onclick="this.classList.toggle('revealed')">
+        <div class="day-ar">يوم الأحد</div>
+        <div class="day-en">Sunday<br><small>(yawm al-ahad)</small></div>
+      </div>
+      <div class="day-card" onclick="this.classList.toggle('revealed')">
+        <div class="day-ar">يوم الاثنين</div>
+        <div class="day-en">Monday<br><small>(yawm al-ithnayn)</small></div>
+      </div>
+      <div class="day-card" onclick="this.classList.toggle('revealed')">
+        <div class="day-ar">يوم الثلاثاء</div>
+        <div class="day-en">Tuesday<br><small>(yawm ath-thulaathaa')</small></div>
+      </div>
+      <div class="day-card" onclick="this.classList.toggle('revealed')">
+        <div class="day-ar">يوم الأربعاء</div>
+        <div class="day-en">Wednesday<br><small>(yawm al-arbi'aa')</small></div>
+      </div>
+      <div class="day-card" onclick="this.classList.toggle('revealed')">
+        <div class="day-ar">يوم الخميس</div>
+        <div class="day-en">Thursday<br><small>(yawm al-khamees)</small></div>
+      </div>
+      <div class="day-card" onclick="this.classList.toggle('revealed')">
+        <div class="day-ar">يوم الجمعة</div>
+        <div class="day-en">Friday<br><small>(yawm al-jum'a)</small></div>
+      </div>
+    </div>
+
+    <div class="rule-box">
+      <div class="rule-title">💡 قبل وبعد - Before & After:</div>
+      <div class="rule-formula">
+        قَبْلَ (qabla) = before  &nbsp;|&nbsp;  بَعْدَ (ba'da) = after
+      </div>
+    </div>
+
+    <div class="section-heading">📝 استخدم (قبل) أو (بعد) - Use 'before' or 'after'</div>
+
+    <div class="question">
+      <div class="q-text">1) يوم الأربعاء ________ يوم الثلاثاء.</div>
+      <div class="q-translation">Wednesday ___ Tuesday.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">بعد - "يوم الأربعاء بعد يوم الثلاثاء"</div>
+        <div class="answer-explain">Wednesday is AFTER Tuesday. – "yawm al-arbi'aa' ba'da yawm ath-thulaathaa'"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) يوم الاثنين ________ يوم الثلاثاء.</div>
+      <div class="q-translation">Monday ___ Tuesday.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">قبل - "يوم الاثنين قبل يوم الثلاثاء"</div>
+        <div class="answer-explain">Monday is BEFORE Tuesday. – "yawm al-ithnayn qabla yawm ath-thulaathaa'"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) يوم الجمعة ________ يوم السبت.</div>
+      <div class="q-translation">Friday ___ Saturday.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">قبل - "يوم الجمعة قبل يوم السبت"</div>
+        <div class="answer-explain">Friday is BEFORE Saturday. – "yawm al-jum'a qabla yawm as-sabt"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) يوم الخميس ________ يوم الأربعاء.</div>
+      <div class="q-translation">Thursday ___ Wednesday.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">بعد - "يوم الخميس بعد يوم الأربعاء"</div>
+        <div class="answer-explain">Thursday is AFTER Wednesday. – "yawm al-khamees ba'da yawm al-arbi'aa'"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) يوم الأحد ________ يوم الاثنين.</div>
+      <div class="q-translation">Sunday ___ Monday.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">قبل - "يوم الأحد قبل يوم الاثنين"</div>
+        <div class="answer-explain">Sunday is BEFORE Monday. – "yawm al-ahad qabla yawm al-ithnayn"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 3: COMPARATIVES IN SENTENCES =================== -->
+  <div class="sheet" id="sheet-3">
+    <div class="sheet-title">📐 أفعل التفضيل في الجمل - Comparatives in Sentences</div>
+
+    <div class="rule-box">
+      <div class="rule-title">💡 التركيب - Pattern:</div>
+      <div class="rule-formula">
+        اسم + أفعل التفضيل + مِنْ + اسم
+      </div>
+      <div class="rule-text">
+        Example: هو أطول من البنت (He is taller than the girl)
+      </div>
+    </div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 أكمل الجمل بأفعل التفضيل المناسب</span>
+      <button class="show-all-btn" onclick="toggleAll(3)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="section-heading">📝 (1) اكتب أفعل التفضيل - Write the comparative</div>
+
+    <div class="question">
+      <div class="q-text">1) كبير ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أكبر</div>
+        <div class="answer-explain">akbar (bigger/biggest)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) قديم ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أقدم</div>
+        <div class="answer-explain">aqdam (older/oldest)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) جميل ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أجمل</div>
+        <div class="answer-explain">ajmal (more beautiful)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) سريع ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أسرع</div>
+        <div class="answer-explain">asra' (faster/fastest)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) صغير ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أصغر</div>
+        <div class="answer-explain">asghar (smaller/smallest)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">6) رخيص ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أرخص</div>
+        <div class="answer-explain">arkhas (cheaper/cheapest)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">7) غالي ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أغلى</div>
+        <div class="answer-explain">aghla (more expensive)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">8) جديد ← __________</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-text">أجد</div>
+        <div class="answer-explain">ajadd (newer/newest)</div>
+      </div>
+    </div>
+
+    <div class="section-heading">📝 (2) أكمل الجمل - Complete the sentences</div>
+
+    <div class="question">
+      <div class="q-text">1) النيل ________ نهر في العالم. (طويل)</div>
+      <div class="q-translation">The Nile is the ___ river in the world. (long)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">أطول - "النيل أطول نهر في العالم"</div>
+        <div class="answer-explain">The Nile is the LONGEST river in the world. – "an-Nile atwal nahr fil-'aalam"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) القاهرة ________ مدينة في أفريقيا. (كبير)</div>
+      <div class="q-translation">Cairo is the ___ city in Africa. (big)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">أكبر - "القاهرة أكبر مدينة في أفريقيا"</div>
+        <div class="answer-explain">Cairo is the BIGGEST city in Africa. – "al-Qaahira akbar madeena fee Afreeqya"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) آسيا ________ قارة في العالم. (كبير)</div>
+      <div class="q-translation">Asia is the ___ continent in the world. (big)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">أكبر - "آسيا أكبر قارة في العالم"</div>
+        <div class="answer-explain">Asia is the BIGGEST continent in the world. – "Aasya akbar qaarra fil-'aalam"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) الفضة ________ من الذهب. (رخيص)</div>
+      <div class="q-translation">Silver is ___ than gold. (cheap)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">أرخص - "الفضة أرخص من الذهب"</div>
+        <div class="answer-explain">Silver is CHEAPER than gold. – "al-fidda arkhas min ath-thahab"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) السيارة ________ من الدراجة. (سريع)</div>
+      <div class="q-translation">The car is ___ than the bicycle. (fast)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">أسرع - "السيارة أسرع من الدراجة"</div>
+        <div class="answer-explain">The car is FASTER than the bicycle. – "as-sayyaara asra' min ad-darraaja"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">6) برج خليفة ________ بناء في العالم. (طويل)</div>
+      <div class="q-translation">Burj Khalifa is the ___ building in the world. (tall)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">أطول - "برج خليفة أطول بناء في العالم"</div>
+        <div class="answer-explain">Burj Khalifa is the TALLEST building in the world. – "Burj Khaleefa atwal binaa' fil-'aalam"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 4: KAN =================== -->
+  <div class="sheet" id="sheet-4">
+    <div class="sheet-title">⏰ الفعل (كان) - The Verb 'was/were'</div>
+
+    <div class="rule-box">
+      <div class="rule-title">💡 متى نستخدم (كان)؟</div>
+      <div class="rule-text">
+        نستخدم الفعل (كان) للتعبير عن الماضي في اللغة العربية.<br>
+        We use the verb كان (kāna) to express the past tense in Arabic.
+      </div>
+      <div class="rule-formula">
+        منذ ... سنة + كان/كانت + الخبر
+      </div>
+    </div>
+
+    <div class="section-heading">📋 جدول تصريف (كان) - Conjugation Table</div>
+
+    <div class="kan-table">
+      <div class="kan-row header">
+        <div>الضمير</div>
+        <div>كان (was/were)</div>
+        <div>Translation</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">أنا (I)</div>
+        <div class="kan-form">كنتُ</div>
+        <div class="kan-trans">I was (kuntu)</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">أنتَ (you-m)</div>
+        <div class="kan-form">كنتَ</div>
+        <div class="kan-trans">you (m) were (kunta)</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">أنتِ (you-f)</div>
+        <div class="kan-form">كنتِ</div>
+        <div class="kan-trans">you (f) were (kunti)</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">هو (he)</div>
+        <div class="kan-form">كان</div>
+        <div class="kan-trans">he was (kāna)</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">هي (she)</div>
+        <div class="kan-form">كانت</div>
+        <div class="kan-trans">she was (kānat)</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">نحن (we)</div>
+        <div class="kan-form">كنا</div>
+        <div class="kan-trans">we were (kunnā)</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">أنتم (you-pl)</div>
+        <div class="kan-form">كنتم</div>
+        <div class="kan-trans">you (pl) were (kuntum)</div>
+      </div>
+      <div class="kan-row">
+        <div class="kan-pronoun">هم (they)</div>
+        <div class="kan-form">كانوا</div>
+        <div class="kan-trans">they were (kānū)</div>
+      </div>
+    </div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 أكمل بـ (كان) المناسب</span>
+      <button class="show-all-btn" onclick="toggleAll(4)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="section-heading">📝 أكمل بالشكل الصحيح - Complete with the correct form</div>
+
+    <div class="question">
+      <div class="q-text">1) منذ عشرين سنة ________ فوزي غنياً. (هو)</div>
+      <div class="q-translation">Twenty years ago Fawzi ___ rich. (he)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كان - "كان فوزي غنياً"</div>
+        <div class="answer-explain">Fawzi WAS rich. – "kāna Fawzi ghaniyyan"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) ________ زوجته فوزية ممثلة. (هي)</div>
+      <div class="q-translation">His wife Fawzia ___ an actress. (she)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كانت - "كانت زوجته فوزية ممثلة"</div>
+        <div class="answer-explain">His wife Fawzia WAS an actress. – "kānat zawjatuhu Fawziyya mumaththila"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) أنا ________ في المكتب يوم السبت. (أنا)</div>
+      <div class="q-translation">I ___ in the office on Saturday. (I)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كنتُ - "أنا كنتُ في المكتب يوم السبت"</div>
+        <div class="answer-explain">I WAS in the office on Saturday. – "ana kuntu fil-maktab yawm as-sabt"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) ________ الجو حاراً أمس. (هو)</div>
+      <div class="q-translation">The weather ___ hot yesterday. (it)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كان - "كان الجو حاراً أمس"</div>
+        <div class="answer-explain">The weather WAS hot yesterday. – "kāna al-jaw haaran ams"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) منذ أسبوعين هم ________ في القاهرة. (هم)</div>
+      <div class="q-translation">Two weeks ago they ___ in Cairo. (they)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كانوا - "هم كانوا في القاهرة"</div>
+        <div class="answer-explain">They WERE in Cairo. – "hum kānū fil-Qaahira"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">6) نحن ________ في المدرسة. (نحن)</div>
+      <div class="q-translation">We ___ at school. (we)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كنا - "نحن كنا في المدرسة"</div>
+        <div class="answer-explain">We WERE at school. – "nahnu kunnā fil-madrasa"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">7) هل ________ مدرساً؟ (أنتَ)</div>
+      <div class="q-translation">Were you a teacher? (you-m)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كنتَ - "هل كنتَ مدرساً؟"</div>
+        <div class="answer-explain">Were YOU a teacher? – "hal kunta mudarrisan?"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">8) أحمد ________ مهندساً. (هو)</div>
+      <div class="q-translation">Ahmed ___ an engineer. (he)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كان - "أحمد كان مهندساً"</div>
+        <div class="answer-explain">Ahmed WAS an engineer. – "Ahmad kāna muhandisan"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 5: TRANSLATION =================== -->
+  <div class="sheet" id="sheet-5">
+    <div class="sheet-title">🌐 الترجمة - Translation</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 ترجم من الإنجليزية إلى العربية</span>
+      <button class="show-all-btn" onclick="toggleAll(5)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="section-heading">📝 Translate into Arabic</div>
+
+    <div class="question">
+      <div class="q-text" style="direction: ltr; text-align: left;">1) In the past, Ahmed was an engineer.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الترجمة:</div>
+        <div class="answer-text">في الماضي، كان أحمد مهندساً.</div>
+        <div class="answer-explain">"fil-maadi, kāna Ahmad muhandisan"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text" style="direction: ltr; text-align: left;">2) Twenty years ago, there was a school in this street.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الترجمة:</div>
+        <div class="answer-text">منذ عشرين سنة، كان هناك مدرسة في هذا الشارع.</div>
+        <div class="answer-explain">"munthu 'ishreen sana, kāna hunaaka madrasa fee haatha ash-shaari'"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text" style="direction: ltr; text-align: left;">3) The car is faster than the bicycle.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الترجمة:</div>
+        <div class="answer-text">السيارة أسرع من الدراجة.</div>
+        <div class="answer-explain">"as-sayyaara asra' min ad-darraaja"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text" style="direction: ltr; text-align: left;">4) The Nile is the longest river in the world.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الترجمة:</div>
+        <div class="answer-text">النيل أطول نهر في العالم.</div>
+        <div class="answer-explain">"an-Nile atwal nahr fil-'aalam"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text" style="direction: ltr; text-align: left;">5) She was rich, but now she is poor.</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الترجمة:</div>
+        <div class="answer-text">كانت غنية، ولكنها الآن فقيرة.</div>
+        <div class="answer-explain">"kānat ghaniyya, walaakinnaha al-aan faqeera"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 6: READING =================== -->
+  <div class="sheet" id="sheet-6">
+    <div class="sheet-title">📖 القراءة - فوزي وفوزية</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اقرأ النص ثم أجب عن الأسئلة</span>
+      <button class="show-all-btn" onclick="toggleAll(6)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="passage">
+      <span class="passage-label">👴 فوزي وفوزية</span><br>
+      <span class="highlight-amber">منذ عشرين سنة</span>، كان <span class="highlight-rose">فوزي غنياً</span>. كان <span class="highlight-purple">أغنى رجل في المدينة</span>.<br>
+      كانت زوجته <span class="highlight-rose">فوزية ممثلة</span> في الأفلام السينمائية.<br>
+      كان لها <span class="highlight-purple">أكبر سيارة</span> في الشارع.<br>
+      <span class="highlight-amber">ولكنها الآن</span> فقيرة وليس لها سيارة، لها <span class="highlight-rose">دراجة مكسورة</span>.<br>
+      هو الآن <span class="highlight-rose">فقير وضعيف</span>.
+    </div>
+
+    <div class="section-heading">📝 أجب عن الأسئلة - Answer the questions</div>
+
+    <div class="question">
+      <div class="q-text">1) متى كان فوزي غنياً؟</div>
+      <div class="q-translation">When was Fawzi rich?</div>
+      <div class="q-pronunciation">Mataa kāna Fawzi ghaniyyan?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كان فوزي غنياً منذ عشرين سنة.</div>
+        <div class="answer-explain">Fawzi was rich twenty years ago.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) ماذا كانت زوجته فوزية؟</div>
+      <div class="q-translation">What was his wife Fawzia?</div>
+      <div class="q-pronunciation">Maathaa kānat zawjatuhu Fawziyya?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كانت فوزية ممثلة في الأفلام السينمائية.</div>
+        <div class="answer-explain">Fawzia was an actress in cinema films.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) ماذا كان لفوزية في الماضي؟</div>
+      <div class="q-translation">What did Fawzia have in the past?</div>
+      <div class="q-pronunciation">Maathaa kāna li-Fawziyya fil-maadi?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">كان لها أكبر سيارة في الشارع.</div>
+        <div class="answer-explain">She had the biggest car in the street.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) كيف فوزية الآن؟</div>
+      <div class="q-translation">How is Fawzia now?</div>
+      <div class="q-pronunciation">Kayfa Fawziyya al-aan?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">فوزية الآن فقيرة وليس لها سيارة، لها دراجة مكسورة.</div>
+        <div class="answer-explain">Fawzia is now poor with no car - she has a broken bicycle.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) كيف فوزي الآن؟</div>
+      <div class="q-translation">How is Fawzi now?</div>
+      <div class="q-pronunciation">Kayfa Fawzi al-aan?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">فوزي الآن فقير وضعيف.</div>
+        <div class="answer-explain">Fawzi is now poor and weak.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <span class="star">⭐</span> أحسنتم! استمروا في التعلم <span class="star">⭐</span><br>
+    <span style="font-size: 0.85em; opacity: 0.9;">Well done! – إعداد المعلمة: غادة مرتضى - The English College</span>
+  </div>
+
+</div>
+
+<script>
+  function showSheet(num) {
+    document.querySelectorAll('.sheet').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('sheet-' + num).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleAnswer(btn) {
+    const answerBox = btn.nextElementSibling;
+    answerBox.classList.toggle('visible');
+    btn.classList.toggle('shown');
+    btn.textContent = answerBox.classList.contains('visible') ? 'إخفاء الإجابة 🙈' : 'إظهار الإجابة ✨';
+  }
+
+  function toggleAllAdj() {
+    const cards = document.querySelectorAll('#sheet-1 .vocab-card-mini');
+    const revealed = document.querySelectorAll('#sheet-1 .vocab-card-mini.revealed').length;
+    const shouldReveal = revealed < cards.length / 2;
+    cards.forEach(card => {
+      if (shouldReveal) card.classList.add('revealed');
+      else card.classList.remove('revealed');
+    });
+  }
+
+  function toggleAllDays() {
+    const cards = document.querySelectorAll('#sheet-2 .day-card');
+    const revealed = document.querySelectorAll('#sheet-2 .day-card.revealed').length;
+    const shouldReveal = revealed < cards.length / 2;
+    cards.forEach(card => {
+      if (shouldReveal) card.classList.add('revealed');
+      else card.classList.remove('revealed');
+    });
+  }
+
+  function toggleAll(sheetNum) {
+    const sheet = document.getElementById('sheet-' + sheetNum);
+    const buttons = sheet.querySelectorAll('.show-answer-btn');
+    const visibleCount = sheet.querySelectorAll('.answer-box.visible').length;
+    const shouldShow = visibleCount < buttons.length / 2;
+
+    buttons.forEach(btn => {
+      const answerBox = btn.nextElementSibling;
+      if (shouldShow && !answerBox.classList.contains('visible')) {
+        answerBox.classList.add('visible');
+        btn.classList.add('shown');
+        btn.textContent = 'إخفاء الإجابة 🙈';
+      } else if (!shouldShow && answerBox.classList.contains('visible')) {
+        answerBox.classList.remove('visible');
+        btn.classList.remove('shown');
+        btn.textContent = 'إظهار الإجابة ✨';
+      }
+    });
+  }
+</script>
+</body>
+</html>

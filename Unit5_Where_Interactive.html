@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة تفاعلية - Unit 5 - أين الأشياء؟</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #ecfdf5 100%);
+    min-height: 100vh;
+    color: #1e293b;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .main-header {
+    background: linear-gradient(135deg, #0c4a6e 0%, #0891b2 100%);
+    color: white;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(12, 74, 110, 0.3);
+    position: relative;
+  }
+  .main-header::before { content: '📍'; position: absolute; top: 10px; right: 15px; font-size: 30px; opacity: 0.5; }
+  .main-header::after { content: '🛏️'; position: absolute; bottom: 10px; left: 15px; font-size: 30px; opacity: 0.5; }
+  .main-header h1 { font-size: 2em; font-weight: 800; margin-bottom: 8px; }
+  .main-header p { font-size: 1.1em; opacity: 0.95; }
+  .teacher-name {
+    margin-top: 12px;
+    font-size: 0.95em;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 18px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  .nav-tab {
+    background: white;
+    border: 2px solid #0891b2;
+    color: #0891b2;
+    padding: 10px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.95em;
+    transition: all 0.3s;
+    box-shadow: 0 3px 10px rgba(8, 145, 178, 0.15);
+  }
+  .nav-tab:hover { transform: translateY(-2px); }
+  .nav-tab.active {
+    background: #0891b2;
+    color: white;
+    box-shadow: 0 5px 15px rgba(8, 145, 178, 0.4);
+  }
+
+  .sheet { display: none; }
+  .sheet.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sheet-title {
+    background: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
+    border: 3px solid #0891b2;
+    border-radius: 18px;
+    padding: 18px 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 800;
+    color: #0c4a6e;
+    box-shadow: 0 5px 15px rgba(8, 145, 178, 0.1);
+  }
+
+  .passage {
+    background: white;
+    border-right: 6px solid #0891b2;
+    border-radius: 15px;
+    padding: 22px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    font-family: 'Amiri', serif;
+    font-size: 1.25em;
+    line-height: 2.1;
+    color: #1e293b;
+  }
+  .passage-label {
+    display: inline-block;
+    background: #0891b2;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.7em;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .highlight-blue { color: #0891b2; font-weight: 700; }
+  .highlight-purple { color: #6d2e8a; font-weight: 700; }
+  .highlight-green { color: #059669; font-weight: 700; }
+
+  .section-heading {
+    background: linear-gradient(135deg, #0c4a6e 0%, #0891b2 100%);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    margin: 25px 0 18px 0;
+    font-size: 1.15em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(12, 74, 110, 0.25);
+  }
+
+  .question {
+    background: white;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-right: 5px solid #059669;
+    transition: all 0.25s;
+  }
+  .question:hover {
+    transform: translateX(-3px);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+  }
+  .q-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+  }
+  .q-translation {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-style: italic;
+    margin-bottom: 4px;
+    direction: ltr;
+    text-align: left;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .q-pronunciation {
+    font-size: 0.88em;
+    color: #0891b2;
+    direction: ltr;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .option {
+    background: #f0f9ff;
+    border: 2px solid #bae6fd;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #1e293b;
+    font-weight: 500;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+  }
+
+  .show-answer-btn {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: white;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 25px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.25s;
+    box-shadow: 0 3px 10px rgba(5, 150, 105, 0.3);
+  }
+  .show-answer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(5, 150, 105, 0.45);
+  }
+  .show-answer-btn.shown {
+    background: linear-gradient(135deg, #0c4a6e 0%, #0891b2 100%);
+  }
+  .answer-box {
+    display: none;
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 100%);
+    border-right: 4px solid #059669;
+    border-radius: 10px;
+    animation: slideDown 0.3s ease;
+  }
+  .answer-box.visible { display: block; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answer-label {
+    font-weight: 700;
+    color: #047857;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+  }
+  .answer-text {
+    color: #064e3b;
+    font-size: 1.05em;
+    font-weight: 600;
+  }
+  .answer-explain {
+    color: #475569;
+    font-size: 0.9em;
+    margin-top: 5px;
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* Vocab cards */
+  .vocab-container {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-right: 5px solid #8b5cf6;
+    margin-bottom: 18px;
+  }
+  .vocab-card {
+    background: #faf5ff;
+    border: 2px solid #e9d8fd;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .vocab-card:hover {
+    background: #f3e8ff;
+    border-color: #c084fc;
+    transform: translateX(-3px);
+  }
+  .vocab-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #6d2e8a;
+    margin-bottom: 5px;
+  }
+  .vocab-meaning {
+    display: none;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px dashed #c084fc;
+  }
+  .vocab-card.revealed .vocab-meaning { display: block; }
+  .vocab-english {
+    color: #047857;
+    font-weight: 600;
+    direction: ltr;
+    text-align: left;
+    font-size: 1em;
+  }
+  .vocab-pronounce {
+    color: #6b7280;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.85em;
+    margin-top: 3px;
+  }
+  .tap-hint {
+    color: #9ca3af;
+    font-size: 0.8em;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+  }
+  .vocab-card.revealed .tap-hint { display: none; }
+
+  /* Fill in blank questions */
+  .fillblank {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-right: 5px solid #f59e0b;
+  }
+  .fillblank-text {
+    font-size: 1.15em;
+    color: #1e293b;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .fillblank-hint {
+    color: #92400e;
+    background: #fef3c7;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  /* True/False */
+  .tf-question {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-right: 4px solid #f59e0b;
+    flex-wrap: wrap;
+  }
+  .tf-num {
+    background: #f59e0b;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .tf-text {
+    flex: 1;
+    min-width: 200px;
+    font-size: 1.05em;
+    color: #1e293b;
+    font-weight: 500;
+  }
+  .tf-trans {
+    font-size: 0.85em;
+    color: #6b7280;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    margin-top: 3px;
+  }
+  .tf-mark-btn {
+    background: white;
+    border: 2px solid #f59e0b;
+    color: #f59e0b;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tf-mark-btn:hover { background: #fef3c7; }
+  .tf-mark-btn.revealed { color: white; }
+  .tf-mark-btn.correct { background: #10b981; border-color: #10b981; }
+  .tf-mark-btn.wrong { background: #ef4444; border-color: #ef4444; }
+
+  /* Room image / scene */
+  .scene-box {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 2px dashed #f59e0b;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .scene-emoji {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+  .scene-desc {
+    font-family: 'Amiri', serif;
+    font-size: 1.2em;
+    line-height: 2;
+    color: #1e293b;
+  }
+  .scene-desc-en {
+    color: #6b7280;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.9em;
+    margin-top: 8px;
+  }
+
+  /* Footer */
+  .footer-note {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #0c4a6e 0%, #0891b2 100%);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.95em;
+    box-shadow: 0 5px 15px rgba(12, 74, 110, 0.25);
+  }
+  .footer-note .star { color: #fbbf24; font-size: 1.3em; }
+
+  .show-all-bar {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .show-all-btn {
+    background: linear-gradient(135deg, #0891b2 0%, #0c4a6e 100%);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  .progress-text {
+    color: #0c4a6e;
+    font-weight: 700;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 600px) {
+    .main-header h1 { font-size: 1.5em; }
+    .passage { font-size: 1.05em; }
+    .nav-tab { padding: 8px 14px; font-size: 0.85em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="main-header">
+    <h1>📍 مراجعة تفاعلية - أين الأشياء؟ 🛏️</h1>
+    <p>Unit 5 Interactive Review – Where is it? (Year 7 & 8)</p>
+    <div class="teacher-name">إعداد المعلمة: غادة مرتضى</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSheet(1)">📚 المفردات</button>
+    <button class="nav-tab" onclick="showSheet(2)">📐 حروف الجر</button>
+    <button class="nav-tab" onclick="showSheet(3)">❓ أسئلة هل</button>
+    <button class="nav-tab" onclick="showSheet(4)">🔍 أسئلة أين</button>
+    <button class="nav-tab" onclick="showSheet(5)">✅ صح/خطأ</button>
+    <button class="nav-tab" onclick="showSheet(6)">📖 القراءة</button>
+  </div>
+
+  <!-- =================== SHEET 1: VOCABULARY =================== -->
+  <div class="sheet active" id="sheet-1">
+    <div class="sheet-title">📚 المفردات - Vocabulary</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على الكلمة لمعرفة معناها</span>
+      <button class="show-all-btn" onclick="toggleAllVocab()">إظهار / إخفاء كل المعاني</button>
+    </div>
+
+    <div class="section-heading">📍 حروف الجر - Prepositions of Place</div>
+
+    <div class="vocab-container">
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">في</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">in / inside</div>
+          <div class="vocab-pronounce">fee</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">على</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">on</div>
+          <div class="vocab-pronounce">'ala</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">فوق</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">above / over</div>
+          <div class="vocab-pronounce">fawq</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">تحت</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">below / under</div>
+          <div class="vocab-pronounce">taht</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">بجانب</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">beside / next to</div>
+          <div class="vocab-pronounce">bi-jaanib</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">بين</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">between</div>
+          <div class="vocab-pronounce">bayna</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">أين؟</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">where?</div>
+          <div class="vocab-pronounce">ayna</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">هل؟</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">(question word for yes/no)</div>
+          <div class="vocab-pronounce">hal</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">نعم</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">yes</div>
+          <div class="vocab-pronounce">na'am</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">لا</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">no</div>
+          <div class="vocab-pronounce">la</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-heading">🪑 أشياء في الغرفة - Things in the Room</div>
+
+    <div class="vocab-container">
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">كرسي</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">chair</div>
+          <div class="vocab-pronounce">kursee</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">مائدة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">table</div>
+          <div class="vocab-pronounce">maa'ida</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">سرير</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">bed</div>
+          <div class="vocab-pronounce">sareer</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">باب</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">door</div>
+          <div class="vocab-pronounce">baab</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">شباك</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">window</div>
+          <div class="vocab-pronounce">shubbaak</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">تلفزيون</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">television</div>
+          <div class="vocab-pronounce">television</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">صورة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">picture / photo</div>
+          <div class="vocab-pronounce">soora</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">خزانة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">cupboard / wardrobe</div>
+          <div class="vocab-pronounce">khizaana</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">مركب</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">boat</div>
+          <div class="vocab-pronounce">markab</div>
+        </div>
+      </div>
+
+      <div class="vocab-card" onclick="toggleVocab(this)">
+        <div class="vocab-arabic">قمرة</div>
+        <div class="tap-hint">Tap to reveal meaning ↓</div>
+        <div class="vocab-meaning">
+          <div class="vocab-english">cabin</div>
+          <div class="vocab-pronounce">qamara</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 2: PREPOSITIONS =================== -->
+  <div class="sheet" id="sheet-2">
+    <div class="sheet-title">📐 استخدام حروف الجر - Using Prepositions</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اختر الحرف المناسب</span>
+      <button class="show-all-btn" onclick="toggleAll(2)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="section-heading">📌 أكمل بحرف الجر المناسب - Complete with the correct preposition</div>
+
+    <div class="question">
+      <div class="q-text">1) الكتاب ________ المائدة.</div>
+      <div class="q-translation">The book is _____ the table. (on)</div>
+      <div class="options">
+        <div class="option">في</div>
+        <div class="option">على</div>
+        <div class="option">تحت</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">على - "الكتاب على المائدة"</div>
+        <div class="answer-explain">The book is ON the table. – "al-kitaab 'ala al-maa'ida"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) الصورة ________ الشباك.</div>
+      <div class="q-translation">The picture is _____ the window. (above)</div>
+      <div class="options">
+        <div class="option">فوق</div>
+        <div class="option">في</div>
+        <div class="option">بين</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">فوق - "الصورة فوق الشباك"</div>
+        <div class="answer-explain">The picture is ABOVE the window. – "as-soora fawq ash-shubbaak"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) الكلب ________ السرير.</div>
+      <div class="q-translation">The dog is _____ the bed. (under)</div>
+      <div class="options">
+        <div class="option">فوق</div>
+        <div class="option">تحت</div>
+        <div class="option">على</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">تحت - "الكلب تحت السرير"</div>
+        <div class="answer-explain">The dog is UNDER the bed. – "al-kalb taht as-sareer"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) الكرسي ________ المائدة والخزانة.</div>
+      <div class="q-translation">The chair is _____ the table and the cupboard. (between)</div>
+      <div class="options">
+        <div class="option">في</div>
+        <div class="option">بجانب</div>
+        <div class="option">بين</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">بين - "الكرسي بين المائدة والخزانة"</div>
+        <div class="answer-explain">The chair is BETWEEN the table and the cupboard. – "al-kursee bayna al-maa'ida wal-khizaana"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) التلفزيون ________ الخزانة.</div>
+      <div class="q-translation">The TV is _____ the cupboard. (beside)</div>
+      <div class="options">
+        <div class="option">في</div>
+        <div class="option">بجانب</div>
+        <div class="option">تحت</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">بجانب - "التلفزيون بجانب الخزانة"</div>
+        <div class="answer-explain">The TV is BESIDE the cupboard. – "at-television bi-jaanib al-khizaana"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">6) المفتاح ________ الحقيبة.</div>
+      <div class="q-translation">The key is _____ the bag. (in)</div>
+      <div class="options">
+        <div class="option">في</div>
+        <div class="option">فوق</div>
+        <div class="option">على</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">في - "المفتاح في الحقيبة"</div>
+        <div class="answer-explain">The key is IN the bag. – "al-miftaah fil-haqeeba"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">7) القلم ________ الكتاب.</div>
+      <div class="q-translation">The pen is _____ the book. (on)</div>
+      <div class="options">
+        <div class="option">على</div>
+        <div class="option">تحت</div>
+        <div class="option">بين</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">على - "القلم على الكتاب"</div>
+        <div class="answer-explain">The pen is ON the book. – "al-qalam 'ala al-kitaab"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">8) القطة ________ الكرسي.</div>
+      <div class="q-translation">The cat is _____ the chair. (under)</div>
+      <div class="options">
+        <div class="option">تحت</div>
+        <div class="option">في</div>
+        <div class="option">فوق</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">تحت - "القطة تحت الكرسي"</div>
+        <div class="answer-explain">The cat is UNDER the chair. – "al-qitta taht al-kursee"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 3: HAL QUESTIONS =================== -->
+  <div class="sheet" id="sheet-3">
+    <div class="sheet-title">❓ الأسئلة بـ (هل) - Yes/No Questions</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 هل + جملة = سؤال (نعم/لا)</span>
+      <button class="show-all-btn" onclick="toggleAll(3)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="section-heading">🔄 (1) حول الجمل إلى أسئلة - Turn into questions</div>
+
+    <div class="question">
+      <div class="q-text">1) هذا كرسي. → ؟</div>
+      <div class="q-translation">This is a chair. → Question?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">هل هذا كرسي؟</div>
+        <div class="answer-explain">Is this a chair? – "hal haatha kursee?"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) هذه صورة. → ؟</div>
+      <div class="q-translation">This is a picture. → Question?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">هل هذه صورة؟</div>
+        <div class="answer-explain">Is this a picture? – "hal haathihi soora?"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) هذا سرير. → ؟</div>
+      <div class="q-translation">This is a bed. → Question?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">هل هذا سرير؟</div>
+        <div class="answer-explain">Is this a bed? – "hal haatha sareer?"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) هذه خزانة. → ؟</div>
+      <div class="q-translation">This is a cupboard. → Question?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">هل هذه خزانة؟</div>
+        <div class="answer-explain">Is this a cupboard? – "hal haathihi khizaana?"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) هذا تلفزيون. → ؟</div>
+      <div class="q-translation">This is a TV. → Question?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">هل هذا تلفزيون؟</div>
+        <div class="answer-explain">Is this a television? – "hal haatha television?"</div>
+      </div>
+    </div>
+
+    <div class="section-heading">💬 (2) أجب بـ (نعم) أو (لا) - Answer Yes or No</div>
+
+    <div class="question">
+      <div class="q-text">1) هل هذا قلم؟ (الإجابة: نعم)</div>
+      <div class="q-translation">Is this a pen? (Yes)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">نعم، هذا قلم.</div>
+        <div class="answer-explain">Yes, this is a pen. – "na'am, haatha qalam"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) هل هذه سيارة؟ (الإجابة: لا - دراجة)</div>
+      <div class="q-translation">Is this a car? (No - bicycle)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">لا، هذه دراجة.</div>
+        <div class="answer-explain">No, this is a bicycle. – "la, haathihi darraaja"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) هل هذا باب؟ (الإجابة: لا - شباك)</div>
+      <div class="q-translation">Is this a door? (No - window)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">لا، هذا شباك.</div>
+        <div class="answer-explain">No, this is a window. – "la, haatha shubbaak"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) هل هذه صورة؟ (الإجابة: نعم)</div>
+      <div class="q-translation">Is this a picture? (Yes)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">نعم، هذه صورة.</div>
+        <div class="answer-explain">Yes, this is a picture. – "na'am, haathihi soora"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) هل هذا مفتاح؟ (الإجابة: لا - خاتم)</div>
+      <div class="q-translation">Is this a key? (No - ring)</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">لا، هذا خاتم.</div>
+        <div class="answer-explain">No, this is a ring. – "la, haatha khaatim"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 4: AYNA QUESTIONS =================== -->
+  <div class="sheet" id="sheet-4">
+    <div class="sheet-title">🔍 الأسئلة بـ (أين) - Where Questions</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 أين = where (للسؤال عن المكان)</span>
+      <button class="show-all-btn" onclick="toggleAll(4)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="scene-box">
+      <div class="scene-emoji">🛏️🪟🪑📺</div>
+      <div class="scene-desc">
+        في الغرفة: السرير بجانب الشباك. الكرسي بين المائدة والخزانة. التلفزيون فوق الخزانة. الصورة بجانب الشباك. الباب بجانب الخزانة.
+      </div>
+      <div class="scene-desc-en">
+        In the room: The bed is beside the window. The chair is between the table and the cupboard. The TV is above the cupboard. The picture is beside the window. The door is beside the cupboard.
+      </div>
+    </div>
+
+    <div class="section-heading">📍 انظر إلى الوصف وأجب - Look at the description and answer</div>
+
+    <div class="question">
+      <div class="q-text">1) أين السرير؟</div>
+      <div class="q-translation">Where is the bed?</div>
+      <div class="q-pronunciation">Ayna as-sareer?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">السرير بجانب الشباك.</div>
+        <div class="answer-explain">The bed is beside the window. – "as-sareer bi-jaanib ash-shubbaak"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) أين الكرسي؟</div>
+      <div class="q-translation">Where is the chair?</div>
+      <div class="q-pronunciation">Ayna al-kursee?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">الكرسي بين المائدة والخزانة.</div>
+        <div class="answer-explain">The chair is between the table and the cupboard. – "al-kursee bayna al-maa'ida wal-khizaana"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) أين التلفزيون؟</div>
+      <div class="q-translation">Where is the TV?</div>
+      <div class="q-pronunciation">Ayna at-television?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">التلفزيون فوق الخزانة.</div>
+        <div class="answer-explain">The TV is above the cupboard. – "at-television fawq al-khizaana"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) أين الصورة؟</div>
+      <div class="q-translation">Where is the picture?</div>
+      <div class="q-pronunciation">Ayna as-soora?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">الصورة بجانب الشباك.</div>
+        <div class="answer-explain">The picture is beside the window. – "as-soora bi-jaanib ash-shubbaak"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) أين الباب؟</div>
+      <div class="q-translation">Where is the door?</div>
+      <div class="q-pronunciation">Ayna al-baab?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">الباب بجانب الخزانة.</div>
+        <div class="answer-explain">The door is beside the cupboard. – "al-baab bi-jaanib al-khizaana"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 5: TRUE/FALSE =================== -->
+  <div class="sheet" id="sheet-5">
+    <div class="sheet-title">✅ صح أم خطأ - True or False</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 بناءً على وصف الغرفة في تاب "أسئلة أين"</span>
+    </div>
+
+    <div class="scene-box">
+      <div class="scene-emoji">🛏️🪟🪑📺</div>
+      <div class="scene-desc">
+        السرير بجانب الشباك. الكرسي بين المائدة والخزانة. التلفزيون فوق الخزانة. الصورة بجانب الشباك. الباب بجانب الخزانة.
+      </div>
+    </div>
+
+    <div class="section-heading">✔️ ضع علامة (✓) أو (✗)</div>
+
+    <div class="tf-question">
+      <div class="tf-num">1</div>
+      <div>
+        <div class="tf-text">التلفزيون تحت الخزانة.</div>
+        <div class="tf-trans">The TV is under the cupboard.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">2</div>
+      <div>
+        <div class="tf-text">السرير بجانب الشباك.</div>
+        <div class="tf-trans">The bed is beside the window.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">3</div>
+      <div>
+        <div class="tf-text">الكرسي بجانب الباب.</div>
+        <div class="tf-trans">The chair is beside the door.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">4</div>
+      <div>
+        <div class="tf-text">الصورة فوق السرير.</div>
+        <div class="tf-trans">The picture is above the bed.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">5</div>
+      <div>
+        <div class="tf-text">الباب بجانب الخزانة.</div>
+        <div class="tf-trans">The door is beside the cupboard.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">6</div>
+      <div>
+        <div class="tf-text">الكرسي بين المائدة والخزانة.</div>
+        <div class="tf-trans">The chair is between the table and the cupboard.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 6: READING =================== -->
+  <div class="sheet" id="sheet-6">
+    <div class="sheet-title">📖 القراءة - مدونة أنور</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اقرأ النص ثم أجب عن الأسئلة</span>
+      <button class="show-all-btn" onclick="toggleAll(6)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="passage">
+      <span class="passage-label">📝 مدونة أنور</span><br>
+      نحن على <span class="highlight-blue">المركب</span> بين <span class="highlight-purple">الأقصر وأسوان</span>! هذه صورة النهر في <span class="highlight-green">الصباح</span>...<br>
+      وهذه هي <span class="highlight-blue">القمرة</span>.<br>
+      القمرة كبيرة وجميلة. السرير كبير و<span class="highlight-purple">بجانب الشباك</span>. المائدة صغيرة والخزانة صغيرة كذلك.<br>
+      التلفزيون <span class="highlight-purple">فوق الخزانة</span> وهو <span class="highlight-green">جديد وسليم</span>.<br>
+      نهر النيل جميل!
+    </div>
+
+    <div class="section-heading">📝 أجب عن الأسئلة - Answer the questions</div>
+
+    <div class="question">
+      <div class="q-text">1) أين أنور؟</div>
+      <div class="q-translation">Where is Anwar?</div>
+      <div class="q-pronunciation">Ayna Anwar?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">أنور على المركب بين الأقصر وأسوان.</div>
+        <div class="answer-explain">Anwar is on the boat between Luxor and Aswan.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2) كيف القمرة؟</div>
+      <div class="q-translation">How is the cabin?</div>
+      <div class="q-pronunciation">Kayfa al-qamara?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">القمرة كبيرة وجميلة.</div>
+        <div class="answer-explain">The cabin is big and beautiful.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3) أين السرير؟</div>
+      <div class="q-translation">Where is the bed?</div>
+      <div class="q-pronunciation">Ayna as-sareer?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">السرير بجانب الشباك.</div>
+        <div class="answer-explain">The bed is beside the window.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4) أين التلفزيون؟</div>
+      <div class="q-translation">Where is the TV?</div>
+      <div class="q-pronunciation">Ayna at-television?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">التلفزيون فوق الخزانة.</div>
+        <div class="answer-explain">The TV is above the cupboard.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5) كيف التلفزيون؟</div>
+      <div class="q-translation">How is the TV?</div>
+      <div class="q-pronunciation">Kayfa at-television?</div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة:</div>
+        <div class="answer-text">التلفزيون جديد وسليم.</div>
+        <div class="answer-explain">The TV is new and unbroken.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <span class="star">⭐</span> أحسنتم! استمروا في التعلم <span class="star">⭐</span><br>
+    <span style="font-size: 0.85em; opacity: 0.9;">Well done! – إعداد المعلمة: غادة مرتضى - The English College</span>
+  </div>
+
+</div>
+
+<script>
+  function showSheet(num) {
+    document.querySelectorAll('.sheet').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('sheet-' + num).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleAnswer(btn) {
+    const answerBox = btn.nextElementSibling;
+    answerBox.classList.toggle('visible');
+    btn.classList.toggle('shown');
+    btn.textContent = answerBox.classList.contains('visible') ? 'إخفاء الإجابة 🙈' : 'إظهار الإجابة ✨';
+  }
+
+  function toggleVocab(card) {
+    card.classList.toggle('revealed');
+  }
+
+  function toggleAllVocab() {
+    const cards = document.querySelectorAll('#sheet-1 .vocab-card');
+    const revealed = document.querySelectorAll('#sheet-1 .vocab-card.revealed').length;
+    const shouldReveal = revealed < cards.length / 2;
+    cards.forEach(card => {
+      if (shouldReveal) card.classList.add('revealed');
+      else card.classList.remove('revealed');
+    });
+  }
+
+  function toggleAll(sheetNum) {
+    const sheet = document.getElementById('sheet-' + sheetNum);
+    const buttons = sheet.querySelectorAll('.show-answer-btn');
+    const tfButtons = sheet.querySelectorAll('.tf-mark-btn');
+    const visibleCount = sheet.querySelectorAll('.answer-box.visible').length;
+    const shouldShow = visibleCount < buttons.length / 2;
+
+    buttons.forEach(btn => {
+      const answerBox = btn.nextElementSibling;
+      if (shouldShow && !answerBox.classList.contains('visible')) {
+        answerBox.classList.add('visible');
+        btn.classList.add('shown');
+        btn.textContent = 'إخفاء الإجابة 🙈';
+      } else if (!shouldShow && answerBox.classList.contains('visible')) {
+        answerBox.classList.remove('visible');
+        btn.classList.remove('shown');
+        btn.textContent = 'إظهار الإجابة ✨';
+      }
+    });
+
+    tfButtons.forEach(btn => {
+      if (shouldShow && !btn.classList.contains('revealed')) btn.click();
+      else if (!shouldShow && btn.classList.contains('revealed')) {
+        btn.classList.remove('revealed', 'correct', 'wrong');
+        btn.textContent = 'إظهار';
+      }
+    });
+  }
+
+  function markTF(btn, isTrue) {
+    if (btn.classList.contains('revealed')) {
+      btn.classList.remove('revealed', 'correct', 'wrong');
+      btn.textContent = 'إظهار';
+    } else {
+      btn.classList.add('revealed');
+      if (isTrue) {
+        btn.classList.add('correct');
+        btn.innerHTML = '✓ صحيحة';
+      } else {
+        btn.classList.add('wrong');
+        btn.innerHTML = '✗ خاطئة';
+      }
+    }
+  }
+</script>
+</body>
+</html>
