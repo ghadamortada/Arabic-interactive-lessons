@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Studies Review — Year 7 | Asia & India</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1620;
+    --bg-2: #142033;
+    --card: #182840;
+    --card-2: #1f3354;
+    --ink: #e8eef7;
+    --muted: #9fb1c7;
+    --accent: #ff7a59;
+    --accent-2: #ffc46b;
+    --good: #4ade80;
+    --bad: #f87171;
+    --line: rgba(255,255,255,0.08);
+    --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #1c2c4a 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, #2a1a3a 0%, transparent 55%),
+      var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px 24px;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    background: rgba(255,196,107,0.06);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0 0 10px;
+    background: linear-gradient(120deg, #fff 0%, var(--accent-2) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .grade {
+    display: inline-block;
+    background: var(--accent);
+    color: #1a0d08;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+
+  /* Navigation */
+  nav.section-nav {
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  nav.section-nav a {
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  nav.section-nav a:hover {
+    background: var(--accent);
+    color: #1a0d08;
+    transform: translateY(-2px);
+  }
+
+  /* Global controls */
+  .controls {
+    max-width: 1100px;
+    margin: 0 auto 24px;
+    padding: 0 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-global {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #1a0d08;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: transform 0.15s;
+  }
+  .btn-global:hover { transform: translateY(-2px); }
+  .btn-global.ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+
+  /* Sections */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+  }
+  section.task {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 20px;
+  }
+  section.task h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    margin: 0 0 6px;
+    color: var(--accent-2);
+  }
+  section.task .task-en {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .instruction {
+    color: var(--muted);
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+
+  /* Q&A */
+  .q {
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .q:hover { border-color: rgba(255,122,89,0.3); }
+  .q-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #1a0d08;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-right: 10px;
+  }
+  .q-text { font-size: 1.02rem; font-weight: 500; }
+
+  /* MCQ options */
+  .options {
+    list-style: none;
+    padding: 12px 0 0 38px;
+    margin: 0;
+  }
+  .options li {
+    padding: 10px 14px;
+    margin: 6px 0;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .options li:hover {
+    background: rgba(255,196,107,0.08);
+    border-color: var(--accent-2);
+  }
+  .options li.correct {
+    background: rgba(74,222,128,0.15);
+    border-color: var(--good);
+    color: var(--good);
+    font-weight: 600;
+  }
+  .options li.wrong {
+    background: rgba(248,113,113,0.15);
+    border-color: var(--bad);
+    color: var(--bad);
+  }
+
+  /* Reveal button + answer */
+  .reveal-btn {
+    margin-top: 12px;
+    margin-left: 38px;
+    background: transparent;
+    color: var(--accent-2);
+    border: 1px solid var(--accent-2);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .reveal-btn:hover {
+    background: var(--accent-2);
+    color: #1a0d08;
+  }
+  .answer {
+    display: none;
+    margin-top: 12px;
+    margin-left: 38px;
+    padding: 12px 16px;
+    background: rgba(74,222,128,0.08);
+    border-left: 3px solid var(--good);
+    border-radius: 6px;
+    color: #c7f5d4;
+    font-weight: 500;
+  }
+  .answer.show { display: block; animation: fadeIn 0.3s; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answer::before {
+    content: "✓ Answer: ";
+    font-weight: 700;
+    color: var(--good);
+  }
+
+  /* Fill in blanks */
+  .blank {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 2px dashed var(--accent-2);
+    height: 1.2em;
+    margin: 0 4px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px 24px 50px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .closing {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    color: var(--accent-2);
+    margin-bottom: 14px;
+  }
+  .watermark {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px dashed var(--line);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-top: 12px;
+  }
+  .top-link {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .top-link:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    section.task { padding: 20px 18px; }
+    .options, .reveal-btn, .answer { margin-left: 0; padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Social Studies Review</div>
+  <h1>📚 Asia • Republic of India • UAE Relations</h1>
+  <div class="sub">An interactive review covering the continent of Asia, India, and India–UAE cooperation.</div>
+  <div class="grade">Year 7</div>
+</header>
+
+<nav class="section-nav">
+  <a href="#s1">1. Quick Review</a>
+  <a href="#s2">2. Multiple Choice</a>
+  <a href="#s3">3. Explain Why</a>
+  <a href="#s4">4. Fill the Blanks</a>
+  <a href="#s5">5. Deep Thinking</a>
+  <a href="#s6">6. Progress Check</a>
+</nav>
+
+<div class="controls">
+  <button class="btn-global" onclick="showAll()">Show All Answers</button>
+  <button class="btn-global ghost" onclick="hideAll()">Hide All Answers</button>
+</div>
+
+<main>
+
+<!-- SECTION 1 -->
+<section class="task" id="s1">
+  <h2>First: Quick Review</h2>
+  <div class="task-en">Review Task — Answer the following questions:</div>
+
+  <div class="q">
+    <span class="q-num">1</span><span class="q-text">Why is the continent of Asia considered the most important continent in the world?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Because Asia is the largest continent in area and the most populated, and it has great economic and trade importance.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2</span><span class="q-text">What is meant by "natural features"?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Natural features are the landforms created by God, such as mountains, plains, plateaus, and rivers.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3</span><span class="q-text">What is the difference between mountains, plains, and plateaus?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Mountains are high elevations, plains are flat lands, and plateaus are elevated lands with a level surface.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4</span><span class="q-text">Why are large numbers of people concentrated in India?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Because of fertile soil, the availability of water, and a climate suitable for agriculture.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">5</span><span class="q-text">Mention two areas of cooperation between the UAE and India.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Trade and investment.</div>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="task" id="s2">
+  <h2>Second: Multiple Choice</h2>
+  <div class="task-en">MCQ — Choose the correct answer. Tap an option to check it.</div>
+
+  <div class="q">
+    <span class="q-num">1</span><span class="q-text">The largest continent in the world by area is:</span>
+    <ul class="options" data-correct="2">
+      <li onclick="checkMCQ(this, 0)">Africa</li>
+      <li onclick="checkMCQ(this, 1)">Europe</li>
+      <li onclick="checkMCQ(this, 2)">Asia</li>
+      <li onclick="checkMCQ(this, 3)">Australia</li>
+    </ul>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Asia</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2</span><span class="q-text">India has a climate that is:</span>
+    <ul class="options" data-correct="2">
+      <li onclick="checkMCQ(this, 0)">Polar</li>
+      <li onclick="checkMCQ(this, 1)">Desert</li>
+      <li onclick="checkMCQ(this, 2)">Monsoon</li>
+      <li onclick="checkMCQ(this, 3)">Cool temperate</li>
+    </ul>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Monsoon</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3</span><span class="q-text">One of India's most famous mountain ranges is:</span>
+    <ul class="options" data-correct="2">
+      <li onclick="checkMCQ(this, 0)">The Alps</li>
+      <li onclick="checkMCQ(this, 1)">The Atlas</li>
+      <li onclick="checkMCQ(this, 2)">The Himalayas</li>
+      <li onclick="checkMCQ(this, 3)">The Zagros</li>
+    </ul>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">The Himalayas</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4</span><span class="q-text">One of the most important economic activities in India is:</span>
+    <ul class="options" data-correct="1">
+      <li onclick="checkMCQ(this, 0)">Fishing only</li>
+      <li onclick="checkMCQ(this, 1)">Agriculture</li>
+      <li onclick="checkMCQ(this, 2)">Mining only</li>
+      <li onclick="checkMCQ(this, 3)">Herding only</li>
+    </ul>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Agriculture</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">5</span><span class="q-text">One area of cooperation between the UAE and India is:</span>
+    <ul class="options" data-correct="0">
+      <li onclick="checkMCQ(this, 0)">Trade and investment</li>
+      <li onclick="checkMCQ(this, 1)">Wars</li>
+      <li onclick="checkMCQ(this, 2)">Illegal migration</li>
+      <li onclick="checkMCQ(this, 3)">Political conflicts</li>
+    </ul>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Trade and investment</div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="task" id="s3">
+  <h2>Third: Explain Why</h2>
+  <div class="task-en">Explain — Give reasons for each statement:</div>
+
+  <div class="q">
+    <span class="q-num">1</span><span class="q-text">Asia is considered to be of great global importance.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Because it is the largest continent in area, the most populated, and includes many economically important countries.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2</span><span class="q-text">The population is concentrated in the northern plains of India.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Because of fertile soil, availability of water, and a suitable climate for agriculture.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3</span><span class="q-text">India is considered an important economic power.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Because of the development of its industry, agriculture, technology, and trade.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4</span><span class="q-text">The UAE has strong relations with India.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Because of trade, investment, and cultural cooperation between the two countries.</div>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section class="task" id="s4">
+  <h2>Fourth: Fill the Blanks</h2>
+  <div class="task-en">Complete each sentence:</div>
+
+  <div class="q">
+    <span class="q-num">1</span><span class="q-text">The Republic of India is located in the continent of <span class="blank"></span>.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Asia</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2</span><span class="q-text">India's largest plateau is the <span class="blank"></span> Plateau.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Deccan</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3</span><span class="q-text">One of India's most famous mountain ranges is the <span class="blank"></span>.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Himalayas</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4</span><span class="q-text">One of the most important areas of cooperation between the UAE and India is <span class="blank"></span>.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Trade and investment</div>
+  </div>
+</section>
+
+<!-- SECTION 5 -->
+<section class="task" id="s5">
+  <h2>Fifth: Deep Thinking (HOTS)</h2>
+  <div class="task-en">Higher-Order Thinking Skills — Think carefully and answer:</div>
+
+  <div class="q">
+    <span class="q-num">1</span><span class="q-text">How did India's geographic location help in the development of its economy?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">India's geographic location helped develop its economy because of its proximity to important maritime trade routes.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2</span><span class="q-text">What is the effect of a large population density on the Republic of India?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">A large population density leads to increased pressure on resources and services, but it also provides a large workforce.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3</span><span class="q-text">How does the UAE benefit from its relationship with India?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">The UAE benefits from its relationship with India in areas such as trade, investment, energy, and technology.</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4</span><span class="q-text">In your opinion, why is Asia considered an important center of global trade?</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">Asia is an important center of global trade because of its distinguished geographic location, large population, and the economic development of many of its countries.</div>
+  </div>
+</section>
+
+<!-- SECTION 6 -->
+<section class="task" id="s6">
+  <h2>Sixth: Progress Check — True / False</h2>
+  <div class="task-en">Place ✔ next to the correct statement and ✘ next to the false one:</div>
+
+  <div class="q">
+    <span class="q-num">1</span><span class="q-text">India is located in the south of the continent of Asia.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">True ✔</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2</span><span class="q-text">The Himalayan mountains are located in Europe.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">False ✘ (they are located in Asia)</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3</span><span class="q-text">Agriculture is one of the important economic activities in India.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">True ✔</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4</span><span class="q-text">There are no economic relations between the UAE and India.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">False ✘ (there are strong relations in trade and investment)</div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">5</span><span class="q-text">Asia is the most populated continent in the world.</span>
+    <button class="reveal-btn" onclick="toggle(this)">Show Answer</button>
+    <div class="answer">True ✔</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="closing">✨ Good luck, champions — End of Review ✨</div>
+  <a href="#" class="top-link">↑ Back to top</a>
+  <div><span class="watermark">Prepared by: Ms. Ghada Mortada — إعداد المعلمة: غادة مرتضى</span></div>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
+  }
+
+  function showAll() {
+    document.querySelectorAll('.answer').forEach(a => a.classList.add('show'));
+    document.querySelectorAll('.reveal-btn').forEach(b => b.textContent = 'Hide Answer');
+  }
+
+  function hideAll() {
+    document.querySelectorAll('.answer').forEach(a => a.classList.remove('show'));
+    document.querySelectorAll('.reveal-btn').forEach(b => b.textContent = 'Show Answer');
+    document.querySelectorAll('.options li').forEach(li => {
+      li.classList.remove('correct', 'wrong');
+    });
+  }
+
+  function checkMCQ(li, idx) {
+    const ul = li.parentElement;
+    const correct = parseInt(ul.dataset.correct);
+    // Clear previous states
+    ul.querySelectorAll('li').forEach(item => item.classList.remove('correct', 'wrong'));
+    if (idx === correct) {
+      li.classList.add('correct');
+    } else {
+      li.classList.add('wrong');
+      ul.children[correct].classList.add('correct');
+    }
+  }
+</script>
+
+</body>
+</html>
