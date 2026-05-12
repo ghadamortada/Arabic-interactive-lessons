@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة الدراسات الاجتماعية — الصف السابع</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #fef9ee 0%, #f5ead0 100%);
+    color: #3d2f1f;
+    min-height: 100vh;
+    line-height: 1.7;
+    padding: 20px 12px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    background: linear-gradient(135deg, #fff5d9 0%, #ffe9b5 100%);
+    border-radius: 18px;
+    padding: 26px 18px;
+    margin: 0 auto 24px;
+    max-width: 1000px;
+    box-shadow: 0 6px 18px rgba(180,140,60,0.18);
+    border: 2px solid #f0d690;
+  }
+  .header h1 {
+    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+    color: #6b4d1a;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    color: #8a6a30;
+    font-weight: 500;
+  }
+  .header .grade {
+    display: inline-block;
+    background: #f0d690;
+    color: #6b4d1a;
+    padding: 4px 16px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+
+  /* Quick navigation */
+  .quick-nav {
+    max-width: 1000px;
+    margin: 0 auto 28px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 4px 12px rgba(180,140,60,0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .quick-nav a {
+    background: #fef0d0;
+    color: #6b4d1a;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1.5px solid #f0d690;
+    transition: all 0.2s;
+  }
+  .quick-nav a:hover {
+    background: #f0d690;
+    transform: translateY(-2px);
+  }
+
+  /* Main wrapper */
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Section */
+  .section {
+    background: #fff;
+    border-radius: 18px;
+    padding: 24px 22px;
+    margin-bottom: 24px;
+    box-shadow: 0 5px 16px rgba(180,140,60,0.10);
+    border-right: 6px solid #d4a04b;
+    scroll-margin-top: 16px;
+  }
+  .section h2 {
+    color: #6b4d1a;
+    font-size: clamp(1.2rem, 2.8vw, 1.55rem);
+    font-weight: 800;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .section h2 .badge {
+    background: #d4a04b;
+    color: #fff;
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .section .section-intro {
+    color: #8a6a30;
+    font-size: 0.98rem;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  /* Question block */
+  .q {
+    background: #fefaf0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    border: 1.5px solid #f4e4c0;
+  }
+  .q-num {
+    display: inline-block;
+    background: #d4a04b;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-left: 8px;
+  }
+  .q-text {
+    display: inline;
+    color: #3d2f1f;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+  .q-options {
+    margin-top: 10px;
+    margin-right: 36px;
+  }
+  .q-options li {
+    list-style: none;
+    background: #fff;
+    border: 1.5px solid #f0d690;
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin-bottom: 6px;
+    color: #5a4520;
+    font-size: 0.98rem;
+    font-weight: 500;
+  }
+  .reveal-btn {
+    margin-top: 12px;
+    background: linear-gradient(135deg, #f0c060 0%, #d4a04b 100%);
+    color: #fff;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.98rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(212,160,75,0.35);
+    transition: all 0.2s;
+  }
+  .reveal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(212,160,75,0.45);
+  }
+  .reveal-btn.shown {
+    background: linear-gradient(135deg, #6b8a4a 0%, #4a6a30 100%);
+    box-shadow: 0 3px 8px rgba(74,106,48,0.35);
+  }
+  .answer {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #f0f7e8;
+    border-right: 4px solid #6b8a4a;
+    border-radius: 8px;
+    color: #2c4015;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.7;
+    animation: slideDown 0.3s ease;
+  }
+  .answer.hidden { display: none; }
+  .answer-label {
+    color: #4a6a30;
+    font-weight: 800;
+    margin-left: 6px;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 1000px; }
+  }
+
+  /* Reveal-all + Hide-all controls */
+  .controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .controls button {
+    background: #fff;
+    color: #6b4d1a;
+    border: 1.5px solid #d4a04b;
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .controls button:hover {
+    background: #d4a04b;
+    color: #fff;
+  }
+
+  /* Back-to-top button */
+  .top-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #d4a04b;
+    color: #fff;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: none;
+    transition: all 0.2s;
+    z-index: 100;
+  }
+  .top-btn.visible { display: block; }
+  .top-btn:hover { transform: translateY(-3px); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 18px;
+    color: #8a6a30;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { padding: 14px 8px 60px; }
+    .section { padding: 18px 14px; }
+    .q { padding: 14px; }
+    .q-text { font-size: 1rem; }
+    .q-num { width: 26px; height: 26px; line-height: 26px; }
+    .q-options { margin-right: 30px; }
+  }
+
+  @media print {
+    .quick-nav, .controls, .top-btn { display: none; }
+    .answer { display: block !important; }
+    .reveal-btn { display: none; }
+    .section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>📚 مراجعة الدراسات الاجتماعية</h1>
+  <div class="subtitle">قارة آسيا — جمهورية الهند — العلاقة مع دولة الإمارات</div>
+  <span class="grade">الصف السابع</span>
+</header>
+
+<nav class="quick-nav">
+  <a href="#s1">١. مراجعة سريعة</a>
+  <a href="#s2">٢. اختر الإجابة</a>
+  <a href="#s3">٣. علِّل</a>
+  <a href="#s4">٤. أكمل</a>
+  <a href="#s5">٥. تفكير عميق</a>
+  <a href="#s6">٦. Progress Check</a>
+</nav>
+
+<div class="controls" style="max-width:1000px;margin:0 auto 20px;">
+  <button onclick="revealAll()">إظهار كل الإجابات</button>
+  <button onclick="hideAll()">إخفاء كل الإجابات</button>
+</div>
+
+<main>
+
+  <!-- Section 1: Quick Review -->
+  <section class="section" id="s1">
+    <h2>أولاً: مراجعة سريعة <span class="badge">Review Task</span></h2>
+    <p class="section-intro">أجب عن الأسئلة التالية:</p>
+
+    <div class="q">
+      <span class="q-num">١</span>
+      <span class="q-text">لماذا تُعد قارة آسيا أكبر قارات العالم أهمية؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        لأن آسيا أكبر القارات مساحة وأكثرها سكاناً، وتتميز بأهمية اقتصادية وتجارية كبيرة.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٢</span>
+      <span class="q-text">ما المقصود بالملامح الطبيعية؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        الملامح الطبيعية هي المظاهر التي خلقها الله مثل الجبال والسهول والهضاب والأنهار.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٣</span>
+      <span class="q-text">ما الفرق بين الجبال والسهول والهضاب؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        الجبال مرتفعات عالية، والسهول أراضٍ منبسطة، والهضاب أراضٍ مرتفعة مستوية السطح.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٤</span>
+      <span class="q-text">لماذا تتركز أعداد كبيرة من السكان في الهند؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        بسبب خصوبة التربة، وتوفر المياه، والمناخ المناسب للزراعة.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٥</span>
+      <span class="q-text">اذكر مجالين من مجالات التعاون بين الإمارات والهند.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        التجارة والاستثمار.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section 2: Multiple Choice -->
+  <section class="section" id="s2">
+    <h2>ثانياً: اختر الإجابة الصحيحة <span class="badge">MCQ</span></h2>
+
+    <div class="q">
+      <span class="q-num">١</span>
+      <span class="q-text">أكبر قارات العالم مساحة هي:</span>
+      <ul class="q-options">
+        <li>□ أفريقيا</li>
+        <li>□ أوروبا</li>
+        <li>□ آسيا</li>
+        <li>□ أستراليا</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> آسيا
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٢</span>
+      <span class="q-text">تمتاز الهند بالمناخ:</span>
+      <ul class="q-options">
+        <li>□ القطبي</li>
+        <li>□ الصحراوي</li>
+        <li>□ الموسمي</li>
+        <li>□ المعتدل البارد</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> الموسمي
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٣</span>
+      <span class="q-text">من أشهر جبال الهند:</span>
+      <ul class="q-options">
+        <li>□ الألب</li>
+        <li>□ الأطلس</li>
+        <li>□ الهيمالايا</li>
+        <li>□ زاجروس</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> الهيمالايا
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٤</span>
+      <span class="q-text">من أهم الأنشطة الاقتصادية في الهند:</span>
+      <ul class="q-options">
+        <li>□ صيد الأسماك فقط</li>
+        <li>□ الزراعة</li>
+        <li>□ التعدين فقط</li>
+        <li>□ الرعي فقط</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> الزراعة
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٥</span>
+      <span class="q-text">من مجالات التعاون بين الإمارات والهند:</span>
+      <ul class="q-options">
+        <li>□ التجارة والاستثمار</li>
+        <li>□ الحروب</li>
+        <li>□ الهجرة غير الشرعية</li>
+        <li>□ النزاعات السياسية</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> التجارة والاستثمار
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section 3: علِّل -->
+  <section class="section" id="s3">
+    <h2>ثالثاً: علِّل <span class="badge">Explain</span></h2>
+
+    <div class="q">
+      <span class="q-num">١</span>
+      <span class="q-text">تُعد قارة آسيا ذات أهمية عالمية كبيرة.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        لأنها أكبر القارات مساحة، وأكثرها سكاناً، وتضم دولاً اقتصادية مهمة.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٢</span>
+      <span class="q-text">يتركز السكان في السهول الشمالية للهند.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        بسبب خصوبة التربة، وتوفر المياه، وملاءمة المناخ للزراعة.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٣</span>
+      <span class="q-text">تُعد الهند قوة اقتصادية مهمة.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        بسبب تطور الصناعة والزراعة والتكنولوجيا والتجارة.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٤</span>
+      <span class="q-text">ترتبط الإمارات بعلاقات قوية مع الهند.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        بسبب التعاون التجاري والاستثماري والثقافي بين البلدين.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section 4: أكمل -->
+  <section class="section" id="s4">
+    <h2>رابعاً: أكمل <span class="badge">Fill the Blanks</span></h2>
+
+    <div class="q">
+      <span class="q-num">١</span>
+      <span class="q-text">تقع جمهورية الهند في قارة ____________.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> آسيا
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٢</span>
+      <span class="q-text">أكبر هضاب الهند هي هضبة ____________.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> الدكن
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٣</span>
+      <span class="q-text">من أشهر جبال الهند جبال ____________.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> الهيمالايا
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٤</span>
+      <span class="q-text">من أهم مجالات التعاون بين الإمارات والهند ____________.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> التجارة والاستثمار
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section 5: التفكير العميق -->
+  <section class="section" id="s5">
+    <h2>خامساً: التفكير العميق <span class="badge">HOTS</span></h2>
+
+    <div class="q">
+      <span class="q-num">١</span>
+      <span class="q-text">كيف ساعد الموقع الجغرافي للهند في تطور اقتصادها؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        ساعد الموقع الجغرافي للهند على تطور اقتصادها بسبب قربها من طرق التجارة البحرية المهمة.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٢</span>
+      <span class="q-text">ما أثر الكثافة السكانية الكبيرة على جمهورية الهند؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        تؤدي الكثافة السكانية الكبيرة إلى زيادة الضغط على الموارد والخدمات، لكنها توفر قوة عاملة كبيرة.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٣</span>
+      <span class="q-text">كيف تستفيد دولة الإمارات من علاقتها مع الهند؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        تستفيد الإمارات من علاقتها مع الهند في مجالات التجارة والاستثمار والطاقة والتكنولوجيا.
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٤</span>
+      <span class="q-text">برأيك، لماذا تُعد آسيا مركزاً مهماً للتجارة العالمية؟</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span>
+        تُعد آسيا مركزاً مهماً للتجارة العالمية بسبب موقعها الجغرافي المميز، وكثرة السكان، وتطور الاقتصاد في العديد من دولها.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section 6: Progress Check -->
+  <section class="section" id="s6">
+    <h2>سادساً: Progress Check <span class="badge">صح / خطأ</span></h2>
+    <p class="section-intro">ضع ✔ أمام العبارة الصحيحة و ✘ أمام العبارة الخاطئة:</p>
+
+    <div class="q">
+      <span class="q-num">١</span>
+      <span class="q-text">تقع الهند في جنوب قارة آسيا.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> صح ✔
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٢</span>
+      <span class="q-text">جبال الهيمالايا تقع في أوروبا.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> خطأ ✘ (تقع في آسيا)
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٣</span>
+      <span class="q-text">الزراعة من الأنشطة الاقتصادية المهمة في الهند.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> صح ✔
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٤</span>
+      <span class="q-text">لا توجد علاقات اقتصادية بين الإمارات والهند.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> خطأ ✘ (توجد علاقات قوية في التجارة والاستثمار)
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-num">٥</span>
+      <span class="q-text">آسيا أكبر قارات العالم سكاناً.</span>
+      <br><button class="reveal-btn" onclick="toggle(this)">إظهار الإجابة</button>
+      <div class="answer hidden">
+        <span class="answer-label">✅ الإجابة:</span> صح ✔
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="footer">
+  ✨ بالتوفيق يا أبطال — نهاية المراجعة ✨
+</div>
+
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى">↑</button>
+
+<script>
+  function toggle(btn) {
+    const ans = btn.nextElementSibling;
+    if (!ans) return;
+    if (ans.classList.contains('hidden')) {
+      ans.classList.remove('hidden');
+      btn.classList.add('shown');
+      btn.textContent = 'إخفاء الإجابة';
+    } else {
+      ans.classList.add('hidden');
+      btn.classList.remove('shown');
+      btn.textContent = 'إظهار الإجابة';
+    }
+  }
+
+  function revealAll() {
+    document.querySelectorAll('.reveal-btn').forEach(btn => {
+      const ans = btn.nextElementSibling;
+      if (ans && ans.classList.contains('hidden')) {
+        ans.classList.remove('hidden');
+        btn.classList.add('shown');
+        btn.textContent = 'إخفاء الإجابة';
+      }
+    });
+  }
+
+  function hideAll() {
+    document.querySelectorAll('.reveal-btn').forEach(btn => {
+      const ans = btn.nextElementSibling;
+      if (ans && !ans.classList.contains('hidden')) {
+        ans.classList.add('hidden');
+        btn.classList.remove('shown');
+        btn.textContent = 'إظهار الإجابة';
+      }
+    });
+  }
+
+  // Show "back to top" button when scrolled
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('topBtn');
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  });
+</script>
+
+</body>
+</html>
