@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 7 Review — رحلة سامي إلى المغرب</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Nunito:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+  :root {
+    /* Moroccan Palette - inspired by Chefchaouen blue, desert sand, terracotta */
+    --gold: #D4A437;
+    --gold-light: #F5E5B5;
+    --gold-soft: #FBF3DB;
+    --gold-dark: #8B6914;
+
+    --blue: #4A89B8;
+    --blue-light: #C5DCEA;
+    --blue-soft: #EAF3F9;
+    --blue-dark: #1F4A6B;
+
+    --sand: #E8D9B5;
+    --sand-light: #F7EFDC;
+    --sand-soft: #FCF8EE;
+    --sand-dark: #8B7235;
+
+    --deep-blue: #2F5F8F;
+    --deep-blue-soft: #D6E0EE;
+
+    --terracotta: #C77B5C;
+    --terracotta-soft: #F4E0D5;
+
+    --papyrus: #FCFAF2;
+    --ink: #3A2E1F;
+    --ink-soft: #6B5A45;
+    --border-soft: #E5DDC8;
+
+    --shadow: 0 4px 20px rgba(58, 46, 31, 0.06);
+    --shadow-strong: 0 8px 30px rgba(58, 46, 31, 0.10);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--papyrus);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(212, 164, 55, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(74, 137, 184, 0.04) 0%, transparent 50%);
+  }
+
+  .ar { font-family: 'Tajawal', sans-serif; direction: rtl; text-align: right; }
+  .en { font-family: 'Nunito', sans-serif; direction: ltr; text-align: left; font-style: italic; opacity: 0.85; }
+
+  /* ── WATERMARK ── */
+  .watermark {
+    position: fixed;
+    bottom: 8px;
+    right: 12px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    opacity: 0.5;
+    z-index: 1000;
+    direction: rtl;
+    background: rgba(252, 250, 242, 0.7);
+    padding: 3px 8px;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--deep-blue) 50%, var(--blue) 100%);
+    padding: 36px 28px 26px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold), var(--gold-dark), var(--gold));
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--gold-dark));
+  }
+  .hier-deco {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.25;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+  }
+  .hier-deco.left { top: 18px; left: 20px; }
+  .hier-deco.right { top: 18px; right: 20px; }
+  .header-icon {
+    font-size: 3.2rem;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+  }
+  header h1 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    font-weight: 900;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--gold);
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+  }
+  header .meta {
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+    font-size: 0.82rem;
+  }
+  header .meta span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: var(--gold-light);
+    font-weight: 700;
+    border: 1px solid rgba(212,164,55,0.3);
+  }
+  .badge-gold { background: rgba(212,164,55,0.25) !important; color: var(--gold-light) !important; border-color: var(--gold) !important; }
+
+  /* ── NAV STRIP ── */
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 89;
+    background: rgba(252, 250, 242, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 10px 12px;
+    overflow-x: auto;
+  }
+  #navStrip {
+    display: flex;
+    gap: 6px;
+    max-width: 1300px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+  }
+  .nav-btn {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    background: white;
+    border: 1.5px solid var(--border-soft);
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ink);
+    transition: all 0.2s;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .nav-btn:hover { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-dark); }
+  .nav-btn.active {
+    background: var(--gold);
+    color: white;
+    border-color: var(--gold-dark);
+    transform: translateY(-1px);
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 24px 80px;
+    position: relative;
+  }
+
+  /* ── SECTION CARDS ── */
+  .section-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    padding: 28px 30px;
+    border: 1px solid var(--border-soft);
+    display: none;
+    animation: fadeIn 0.45s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+  }
+  .section-card.visible { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed var(--border-soft);
+    flex-wrap: wrap;
+  }
+  .card-icon {
+    width: 54px; height: 54px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem;
+    flex-shrink: 0;
+    border: 2px solid currentColor;
+  }
+  .card-title-wrap { flex: 1; min-width: 0; }
+  .card-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    font-weight: 900;
+    color: var(--blue-dark);
+    direction: rtl;
+    text-align: right;
+  }
+  .card-title-en {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+    color: var(--gold-dark);
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+  .section-number {
+    background: var(--blue-soft);
+    color: var(--blue-dark);
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 0.78rem;
+    border: 1.5px solid var(--blue);
+  }
+
+  /* ── BIG QUESTION ── */
+  .big-question {
+    background: linear-gradient(135deg, var(--gold-soft) 0%, var(--sand-light) 100%);
+    padding: 26px 28px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    text-align: center;
+    border: 3px solid var(--gold);
+    position: relative;
+  }
+  .big-question::before {
+    content: '✦';
+    position: absolute;
+    top: 8px; left: 14px;
+    font-size: 1.4rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+  .big-question::after {
+    content: '✦';
+    position: absolute;
+    bottom: 8px; right: 14px;
+    font-size: 1.4rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+  .q-text-ar {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 900;
+    color: var(--blue-dark);
+    margin-bottom: 6px;
+    direction: rtl;
+  }
+  .q-text-en {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    color: var(--gold-dark);
+    letter-spacing: 2px;
+  }
+
+  /* ── READING BOX ── */
+  .reading-box {
+    background: var(--sand-light);
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .reading-box .ar-text {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.15rem;
+    line-height: 2;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .reading-box .en-text {
+    font-family: 'Nunito', sans-serif;
+    direction: ltr;
+    text-align: left;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1.5px dashed var(--gold-dark);
+  }
+
+  /* ── TEACHER BOX ── */
+  .teacher-box {
+    background: var(--gold-soft);
+    border: 2px dashed var(--gold-dark);
+    border-radius: 14px;
+    padding: 13px 17px;
+    margin-top: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .teacher-box .icon { font-size: 1.4rem; flex-shrink: 0; }
+  .teacher-box .label {
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: var(--gold-dark);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .teacher-box p { font-size: 0.9rem; line-height: 1.5; color: var(--ink); }
+  .teacher-box .ar { font-family: 'Tajawal', sans-serif; direction: rtl; text-align: right; font-weight: 700; margin-bottom: 3px; }
+  .teacher-box .en { font-style: italic; font-size: 0.82rem; }
+
+  /* ── REVEAL BUTTON ── */
+  .reveal-btn {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+  }
+  .reveal-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(31,74,107,0.3); }
+  .answer-box {
+    display: none;
+    background: var(--blue-soft);
+    border-right: 4px solid var(--blue);
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-top: 12px;
+  }
+  .answer-box.show { display: block; animation: fadeIn 0.3s ease; }
+  .answer-box .ans-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-weight: 700;
+    color: var(--blue-dark);
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .answer-box .ans-en {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+  }
+
+  /* ── TRUE/FALSE ── */
+  .tf-item {
+    background: white;
+    border: 1.5px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+  }
+  .tf-item:hover { border-color: var(--gold); }
+  .tf-q-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .tf-q-en {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  .tf-opts {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tf-opt {
+    flex: 1;
+    min-width: 120px;
+    padding: 9px 14px;
+    background: var(--sand-light);
+    border: 2px solid var(--border-soft);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .tf-opt:hover { background: var(--gold-soft); border-color: var(--gold); }
+  .tf-opt.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+  .tf-opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+  /* ── MCQ ── */
+  .mc-item {
+    background: white;
+    border: 1.5px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .mc-q-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-weight: 800;
+    font-size: 1.08rem;
+    color: var(--blue-dark);
+    margin-bottom: 4px;
+  }
+  .mc-q-en {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+  }
+  .mc-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mc-opt {
+    padding: 10px 14px;
+    background: var(--sand-light);
+    border: 2px solid var(--border-soft);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.96rem;
+    transition: all 0.2s;
+  }
+  .mc-opt:hover { background: var(--gold-soft); border-color: var(--gold); }
+  .mc-opt.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
+  .mc-opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
+  .mc-feedback {
+    margin-top: 10px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    min-height: 1.4em;
+  }
+  .mc-reset-btn {
+    display: none;
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .mc-reset-btn.show { display: inline-block; }
+
+  /* ── MATCH ── */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .match-card {
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 700;
+    border: 2px solid var(--border-soft);
+    background: white;
+    transition: all 0.2s;
+    font-size: 1rem;
+  }
+  .match-card.ar { font-family: 'Tajawal', sans-serif; direction: rtl; background: var(--gold-soft); }
+  .match-card.en { font-family: 'Nunito', sans-serif; background: var(--blue-soft); }
+  .match-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .match-card.selected { border-color: var(--gold-dark); background: var(--gold-light); transform: scale(1.02); }
+  .match-card.matched { background: #d4edda !important; border-color: #28a745 !important; color: #155724; pointer-events: none; opacity: 0.7; }
+
+  /* ── VOCAB CARDS ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .vocab-card {
+    background: white;
+    border: 2px solid var(--gold-light);
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .vocab-card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: var(--shadow-strong); }
+  .vocab-card .face-ar {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--blue-dark);
+    margin-bottom: 4px;
+  }
+  .vocab-card .face-translit {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    color: var(--gold-dark);
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+  .vocab-card .face-en {
+    display: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--terracotta);
+  }
+  .vocab-card.flipped .face-ar,
+  .vocab-card.flipped .face-translit { display: none; }
+  .vocab-card.flipped .face-en { display: block; }
+  .vocab-card.flipped { background: var(--terracotta-soft); border-color: var(--terracotta); }
+
+  /* ── WRITING PROMPT ── */
+  .writing-prompt {
+    background: linear-gradient(135deg, var(--blue-soft) 0%, var(--sand-light) 100%);
+    border: 2px solid var(--blue);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+  }
+  .writing-prompt .points {
+    list-style: none;
+    margin-top: 10px;
+  }
+  .writing-prompt .points li {
+    background: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    border-right: 3px solid var(--blue);
+    font-weight: 600;
+  }
+  .writing-prompt .points li span {
+    display: block;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  /* ── LESSON MAP ── */
+  .lesson-map {
+    margin-top: 20px;
+  }
+  .map-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .map-table th {
+    background: var(--blue-dark);
+    color: var(--gold-light);
+    padding: 12px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+  }
+  .map-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 0.92rem;
+  }
+  .map-table tr.current {
+    background: var(--gold);
+    color: white;
+    font-weight: 900;
+  }
+  .map-table tr.current td { color: white; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    main { padding: 20px 14px 60px; }
+    .section-card { padding: 20px 18px; }
+    .nav-btn { padding: 5px 10px; font-size: 0.74rem; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <span class="hier-deco left">✦ ☪ ✦</span>
+  <span class="hier-deco right">✦ ☪ ✦</span>
+  <div class="header-icon">🇲🇦</div>
+  <h1>مراجعة الصف السابع</h1>
+  <h2>YEAR 7 REVIEW · ARABIC B</h2>
+  <div class="meta">
+    <span class="badge-gold">Arabic B Booklet</span>
+    <span>📖 رحلة سامي إلى المغرب</span>
+    <span>🎯 Sami's Trip to Morocco</span>
+  </div>
+</header>
+
+<!-- ── NAV STRIP ── -->
+<div class="nav-wrap">
+  <div id="navStrip">
+    <button class="nav-btn active" onclick="showSection(1)">1. النص · Text</button>
+    <button class="nav-btn" onclick="showSection(2)">2. صح/خطأ · T/F</button>
+    <button class="nav-btn" onclick="showSection(3)">3. اختيار · MCQ</button>
+    <button class="nav-btn" onclick="showSection(4)">4. أجب · Answer</button>
+    <button class="nav-btn" onclick="showSection(5)">5. استخرج · Extract</button>
+    <button class="nav-btn" onclick="showSection(6)">6. صل · Match</button>
+    <button class="nav-btn" onclick="showSection(7)">7. مفردات · Vocab</button>
+    <button class="nav-btn" onclick="showSection(8)">8. كتابة · Writing</button>
+    <button class="nav-btn" onclick="showSection(9)">9. الخريطة · Map</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════
+     S1 — READING TEXT
+══════════════════════════════════ -->
+<div class="section-card visible" id="sec-1">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold-soft);color:var(--gold-dark);">📖</div>
+    <div class="card-title-wrap">
+      <div class="card-title">اقرأ النص</div>
+      <div class="card-title-en">Read the Text</div>
+    </div>
+    <span class="section-number">1 / 9</span>
+  </div>
+
+  <div class="big-question">
+    <div class="q-text-ar">رحلة سامي إلى المغرب</div>
+    <div class="q-text-en">SAMI'S TRIP TO MOROCCO</div>
+  </div>
+
+  <div class="reading-box">
+    <div class="ar-text">
+      أنا اسمي سامي. أنا في الصف السابع. أعيش في دبي مع عائلتي.<br>
+      في الصيف الماضي، سافرتُ مع عائلتي إلى المغرب. المغرب دولة جميلة في قارة <strong>أفريقيا</strong>.<br>
+      عاصمة المغرب هي <strong>الرباط</strong>، والعملة هي <strong>الدرهم المغربي</strong>، واللغة هي <strong>اللغة العربية</strong>.<br>
+      زرنا مدناً جميلة مثل <strong>مراكش</strong> و<strong>الدار البيضاء</strong> و<strong>طنجة</strong>.<br>
+      ومن أشهر الأماكن في المغرب: مدينة <strong>شفشاون</strong> الزرقاء، و<strong>مسجد الحسن الثاني</strong>، و<strong>قصر الباهية</strong>.<br>
+      الطقس في الصيف مشمس وحار، وفي الشتاء بارد ومعتدل.<br>
+      الشعب المغربي <strong>ودود</strong> و<strong>كريم</strong>، والطعام لذيذ جداً.<br>
+      أحببتُ المغرب كثيراً وأتمنى أن أعود إليه مرة أخرى.
+    </div>
+    <div class="en-text">
+      My name is Sami. I am in Year 7. I live in Dubai with my family. Last summer, I travelled with my family to Morocco. Morocco is a beautiful country in the continent of <strong>Africa</strong>. The capital of Morocco is <strong>Rabat</strong>, the currency is the <strong>Moroccan Dirham</strong>, and the language is <strong>Arabic</strong>. We visited beautiful cities like <strong>Marrakech</strong>, <strong>Casablanca</strong>, and <strong>Tangier</strong>. Among the most famous places: the blue city of <strong>Chefchaouen</strong>, <strong>Hassan II Mosque</strong>, and <strong>Bahia Palace</strong>. The weather in summer is sunny and hot, and in winter cold and mild. The Moroccan people are <strong>friendly</strong> and <strong>generous</strong>, and the food is very delicious. I loved Morocco very much and hope to return again.
+    </div>
+  </div>
+
+  <div class="teacher-box">
+    <span class="icon">🎓</span>
+    <div>
+      <div class="label">Teacher Note · ملاحظة للمعلم</div>
+      <p class="ar">اقرئي النص بصوت عالٍ مع الطلاب مرتين، ثم اطلبي من كل طالب قراءة جملة.</p>
+      <p class="en">Read aloud twice with students, then ask each student to read one sentence.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S2 — TRUE / FALSE
+══════════════════════════════════ -->
+<div class="section-card" id="sec-2">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark);">✓✗</div>
+    <div class="card-title-wrap">
+      <div class="card-title">صح أم خطأ؟</div>
+      <div class="card-title-en">True or False?</div>
+    </div>
+    <span class="section-number">2 / 9</span>
+  </div>
+
+  <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-weight:700;color:var(--blue-dark);margin-bottom:14px;">اضغط على الإجابة الصحيحة · Click the correct answer</p>
+
+  <div class="tf-item">
+    <div class="tf-q-ar">1. سامي في الصف السابع.</div>
+    <div class="tf-q-en">Sami is in Year 7.</div>
+    <div class="tf-opts">
+      <div class="tf-opt" onclick="tfCheck(this, true)">✅ صح · True</div>
+      <div class="tf-opt" onclick="tfCheck(this, false)">❌ خطأ · False</div>
+    </div>
+  </div>
+
+  <div class="tf-item">
+    <div class="tf-q-ar">2. سامي يعيش في القاهرة.</div>
+    <div class="tf-q-en">Sami lives in Cairo.</div>
+    <div class="tf-opts">
+      <div class="tf-opt" onclick="tfCheck(this, false)">✅ صح · True</div>
+      <div class="tf-opt" onclick="tfCheck(this, true)">❌ خطأ · False</div>
+    </div>
+  </div>
+
+  <div class="tf-item">
+    <div class="tf-q-ar">3. عاصمة المغرب هي الرباط.</div>
+    <div class="tf-q-en">The capital of Morocco is Rabat.</div>
+    <div class="tf-opts">
+      <div class="tf-opt" onclick="tfCheck(this, true)">✅ صح · True</div>
+      <div class="tf-opt" onclick="tfCheck(this, false)">❌ خطأ · False</div>
+    </div>
+  </div>
+
+  <div class="tf-item">
+    <div class="tf-q-ar">4. المغرب في قارة آسيا.</div>
+    <div class="tf-q-en">Morocco is in the continent of Asia.</div>
+    <div class="tf-opts">
+      <div class="tf-opt" onclick="tfCheck(this, false)">✅ صح · True</div>
+      <div class="tf-opt" onclick="tfCheck(this, true)">❌ خطأ · False</div>
+    </div>
+  </div>
+
+  <div class="tf-item">
+    <div class="tf-q-ar">5. عملة المغرب هي الدرهم المغربي.</div>
+    <div class="tf-q-en">Morocco's currency is the Moroccan Dirham.</div>
+    <div class="tf-opts">
+      <div class="tf-opt" onclick="tfCheck(this, true)">✅ صح · True</div>
+      <div class="tf-opt" onclick="tfCheck(this, false)">❌ خطأ · False</div>
+    </div>
+  </div>
+
+  <div class="tf-item">
+    <div class="tf-q-ar">6. الطقس في الصيف بارد.</div>
+    <div class="tf-q-en">The weather in summer is cold.</div>
+    <div class="tf-opts">
+      <div class="tf-opt" onclick="tfCheck(this, false)">✅ صح · True</div>
+      <div class="tf-opt" onclick="tfCheck(this, true)">❌ خطأ · False</div>
+    </div>
+  </div>
+
+  <div class="tf-item">
+    <div class="tf-q-ar">7. الشعب المغربي ودود وكريم.</div>
+    <div class="tf-q-en">The Moroccan people are friendly and generous.</div>
+    <div class="tf-opts">
+      <div class="tf-opt" onclick="tfCheck(this, true)">✅ صح · True</div>
+      <div class="tf-opt" onclick="tfCheck(this, false)">❌ خطأ · False</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S3 — MCQ
+══════════════════════════════════ -->
+<div class="section-card" id="sec-3">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold-soft);color:var(--gold-dark);">🔤</div>
+    <div class="card-title-wrap">
+      <div class="card-title">اختر الإجابة الصحيحة</div>
+      <div class="card-title-en">Choose the Correct Answer</div>
+    </div>
+    <span class="section-number">3 / 9</span>
+  </div>
+
+  <div class="mc-item" id="mc-q1">
+    <div class="mc-q-ar">1. أين سافر سامي؟</div>
+    <div class="mc-q-en">Where did Sami travel?</div>
+    <div class="mc-opts">
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q1')">أ. مصر · Egypt</div>
+      <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q1')">ب. المغرب · Morocco</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q1')">ج. الأردن · Jordan</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q1')">د. لبنان · Lebanon</div>
+    </div>
+    <div class="mc-feedback" id="mc-q1-fb"></div>
+    <button class="mc-reset-btn" id="mc-q1-rst" onclick="resetMC('mc-q1')">↻ Try Again</button>
+  </div>
+
+  <div class="mc-item" id="mc-q2">
+    <div class="mc-q-ar">2. ما هي عاصمة المغرب؟</div>
+    <div class="mc-q-en">What is the capital of Morocco?</div>
+    <div class="mc-opts">
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q2')">أ. مراكش · Marrakech</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q2')">ب. الدار البيضاء · Casablanca</div>
+      <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q2')">ج. الرباط · Rabat</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q2')">د. طنجة · Tangier</div>
+    </div>
+    <div class="mc-feedback" id="mc-q2-fb"></div>
+    <button class="mc-reset-btn" id="mc-q2-rst" onclick="resetMC('mc-q2')">↻ Try Again</button>
+  </div>
+
+  <div class="mc-item" id="mc-q3">
+    <div class="mc-q-ar">3. في أي قارة المغرب؟</div>
+    <div class="mc-q-en">In which continent is Morocco?</div>
+    <div class="mc-opts">
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q3')">أ. آسيا · Asia</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q3')">ب. أوروبا · Europe</div>
+      <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q3')">ج. أفريقيا · Africa</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q3')">د. أستراليا · Australia</div>
+    </div>
+    <div class="mc-feedback" id="mc-q3-fb"></div>
+    <button class="mc-reset-btn" id="mc-q3-rst" onclick="resetMC('mc-q3')">↻ Try Again</button>
+  </div>
+
+  <div class="mc-item" id="mc-q4">
+    <div class="mc-q-ar">4. ما هي عملة المغرب؟</div>
+    <div class="mc-q-en">What is Morocco's currency?</div>
+    <div class="mc-opts">
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q4')">أ. الدينار · Dinar</div>
+      <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q4')">ب. الدرهم المغربي · Moroccan Dirham</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q4')">ج. الريال · Riyal</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q4')">د. الجنيه · Pound</div>
+    </div>
+    <div class="mc-feedback" id="mc-q4-fb"></div>
+    <button class="mc-reset-btn" id="mc-q4-rst" onclick="resetMC('mc-q4')">↻ Try Again</button>
+  </div>
+
+  <div class="mc-item" id="mc-q5">
+    <div class="mc-q-ar">5. ما لون مدينة شفشاون؟</div>
+    <div class="mc-q-en">What colour is Chefchaouen city?</div>
+    <div class="mc-opts">
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q5')">أ. أحمر · Red</div>
+      <div class="mc-opt" onclick="checkAnswer(this, true, 'mc-q5')">ب. أزرق · Blue</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q5')">ج. أخضر · Green</div>
+      <div class="mc-opt" onclick="checkAnswer(this, false, 'mc-q5')">د. أصفر · Yellow</div>
+    </div>
+    <div class="mc-feedback" id="mc-q5-fb"></div>
+    <button class="mc-reset-btn" id="mc-q5-rst" onclick="resetMC('mc-q5')">↻ Try Again</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S4 — SHORT ANSWERS
+══════════════════════════════════ -->
+<div class="section-card" id="sec-4">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark);">✍️</div>
+    <div class="card-title-wrap">
+      <div class="card-title">أجب عن الأسئلة</div>
+      <div class="card-title-en">Answer the Questions</div>
+    </div>
+    <span class="section-number">4 / 9</span>
+  </div>
+
+  <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-weight:700;color:var(--blue-dark);margin-bottom:14px;">اقرأ السؤال، فكّر في الإجابة، ثم اضغط لإظهار الإجابة الصحيحة.</p>
+  <p style="font-style:italic;color:var(--ink-soft);font-size:0.88rem;margin-bottom:18px;">Read the question, think of your answer, then click to reveal.</p>
+
+  <div class="reading-box" style="margin-bottom:14px;">
+    <div class="ar-text" style="font-size:1.05rem;">
+      <strong>1. أين يعيش سامي؟</strong><br>
+      <em style="font-style:italic;font-size:0.88rem;color:var(--ink-soft);">Where does Sami live?</em>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">سامي يعيش في دبي مع عائلته.</div>
+      <div class="ans-en">Sami lives in Dubai with his family.</div>
+    </div>
+  </div>
+
+  <div class="reading-box" style="margin-bottom:14px;">
+    <div class="ar-text" style="font-size:1.05rem;">
+      <strong>2. متى سافر سامي إلى المغرب؟</strong><br>
+      <em style="font-style:italic;font-size:0.88rem;color:var(--ink-soft);">When did Sami travel to Morocco?</em>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">سافر سامي إلى المغرب في الصيف الماضي.</div>
+      <div class="ans-en">Sami travelled to Morocco last summer.</div>
+    </div>
+  </div>
+
+  <div class="reading-box" style="margin-bottom:14px;">
+    <div class="ar-text" style="font-size:1.05rem;">
+      <strong>3. ما هي اللغة في المغرب؟</strong><br>
+      <em style="font-style:italic;font-size:0.88rem;color:var(--ink-soft);">What is the language in Morocco?</em>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">اللغة في المغرب هي اللغة العربية.</div>
+      <div class="ans-en">The language in Morocco is Arabic.</div>
+    </div>
+  </div>
+
+  <div class="reading-box" style="margin-bottom:14px;">
+    <div class="ar-text" style="font-size:1.05rem;">
+      <strong>4. اذكر مدينتين مشهورتين في المغرب.</strong><br>
+      <em style="font-style:italic;font-size:0.88rem;color:var(--ink-soft);">Mention two famous cities in Morocco.</em>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">مراكش والدار البيضاء (أو طنجة).</div>
+      <div class="ans-en">Marrakech and Casablanca (or Tangier).</div>
+    </div>
+  </div>
+
+  <div class="reading-box" style="margin-bottom:14px;">
+    <div class="ar-text" style="font-size:1.05rem;">
+      <strong>5. كيف الطقس في المغرب في الشتاء؟</strong><br>
+      <em style="font-style:italic;font-size:0.88rem;color:var(--ink-soft);">How is the weather in Morocco in winter?</em>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">الطقس في الشتاء بارد ومعتدل.</div>
+      <div class="ans-en">The weather in winter is cold and mild.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S5 — EXTRACT NOUN/VERB/ADJ
+══════════════════════════════════ -->
+<div class="section-card" id="sec-5">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold-soft);color:var(--gold-dark);">🔍</div>
+    <div class="card-title-wrap">
+      <div class="card-title">استخرج من النص</div>
+      <div class="card-title-en">Extract from the Text</div>
+    </div>
+    <span class="section-number">5 / 9</span>
+  </div>
+
+  <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-weight:700;color:var(--blue-dark);margin-bottom:14px;">استخرج من النص: اسماً، فعلاً، صفة.</p>
+  <p style="font-style:italic;color:var(--ink-soft);font-size:0.88rem;margin-bottom:18px;">Extract from the text: a noun, a verb, and an adjective.</p>
+
+  <div class="reading-box" style="margin-bottom:14px;background:var(--gold-soft);">
+    <div class="ar-text" style="font-size:1.1rem;">
+      <strong>📌 اسم · Noun</strong>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">سامي · المغرب · الرباط · مراكش (أمثلة)</div>
+      <div class="ans-en">Sami · Morocco · Rabat · Marrakech (examples)</div>
+    </div>
+  </div>
+
+  <div class="reading-box" style="margin-bottom:14px;background:var(--blue-soft);">
+    <div class="ar-text" style="font-size:1.1rem;">
+      <strong>🏃 فعل · Verb</strong>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">أعيش · سافرتُ · زرنا · أحببتُ (أمثلة)</div>
+      <div class="ans-en">I live · I travelled · We visited · I loved (examples)</div>
+    </div>
+  </div>
+
+  <div class="reading-box" style="margin-bottom:14px;background:var(--terracotta-soft);">
+    <div class="ar-text" style="font-size:1.1rem;">
+      <strong>✨ صفة · Adjective</strong>
+    </div>
+    <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر الإجابة · Show Answer</button>
+    <div class="answer-box">
+      <div class="ans-ar">جميلة · ودود · كريم · لذيذ · مشمس (أمثلة)</div>
+      <div class="ans-en">Beautiful · Friendly · Generous · Delicious · Sunny (examples)</div>
+    </div>
+  </div>
+
+  <div class="teacher-box">
+    <span class="icon">🎓</span>
+    <div>
+      <div class="label">Teacher Note · ملاحظة للمعلم</div>
+      <p class="ar">اطلبي من كل طالب أن يستخرج كلمة مختلفة من النص ويكتبها على السبورة.</p>
+      <p class="en">Ask each student to extract a different word from the text and write it on the board.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S6 — MATCH ARABIC TO ENGLISH
+══════════════════════════════════ -->
+<div class="section-card" id="sec-6">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark);">🔗</div>
+    <div class="card-title-wrap">
+      <div class="card-title">صل الكلمة بمعناها</div>
+      <div class="card-title-en">Match Arabic with English</div>
+    </div>
+    <span class="section-number">6 / 9</span>
+  </div>
+
+  <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-weight:700;color:var(--blue-dark);margin-bottom:8px;">اضغط على كلمة عربية، ثم على معناها بالإنجليزية.</p>
+  <p style="font-style:italic;color:var(--ink-soft);font-size:0.88rem;margin-bottom:14px;">Click an Arabic word, then click its English meaning.</p>
+
+  <div id="matchFb" style="margin-bottom:10px;font-weight:800;font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;min-height:1.4em;"></div>
+
+  <div class="match-grid" id="matchGrid">
+    <div class="match-card ar" data-pair="lang" onclick="matchClick(this)">اللغة</div>
+    <div class="match-card en" data-pair="lang" onclick="matchClick(this)">Language</div>
+
+    <div class="match-card ar" data-pair="summer" onclick="matchClick(this)">الصيف</div>
+    <div class="match-card en" data-pair="summer" onclick="matchClick(this)">Summer</div>
+
+    <div class="match-card ar" data-pair="weather" onclick="matchClick(this)">الطقس</div>
+    <div class="match-card en" data-pair="weather" onclick="matchClick(this)">Weather</div>
+
+    <div class="match-card ar" data-pair="mild" onclick="matchClick(this)">معتدل</div>
+    <div class="match-card en" data-pair="mild" onclick="matchClick(this)">Mild</div>
+
+    <div class="match-card ar" data-pair="people" onclick="matchClick(this)">الشعب</div>
+    <div class="match-card en" data-pair="people" onclick="matchClick(this)">People</div>
+
+    <div class="match-card ar" data-pair="kind" onclick="matchClick(this)">لطيف</div>
+    <div class="match-card en" data-pair="kind" onclick="matchClick(this)">Kind</div>
+  </div>
+
+  <div style="text-align:center;margin-top:14px;">
+    <button class="reveal-btn" onclick="resetMatch()" style="background:var(--terracotta);">↻ ابدأ من جديد · Reset</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S7 — VOCAB CARDS
+══════════════════════════════════ -->
+<div class="section-card" id="sec-7">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold-soft);color:var(--gold-dark);">📚</div>
+    <div class="card-title-wrap">
+      <div class="card-title">المفردات المهمة</div>
+      <div class="card-title-en">Key Vocabulary</div>
+    </div>
+    <span class="section-number">7 / 9</span>
+  </div>
+
+  <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-weight:700;color:var(--blue-dark);margin-bottom:14px;">اضغط على الكلمة لرؤية معناها بالإنجليزية.</p>
+  <p style="font-style:italic;color:var(--ink-soft);font-size:0.88rem;margin-bottom:14px;">Tap each card to flip and see the English meaning.</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">دولة</div>
+      <div class="face-translit">dawla</div>
+      <div class="face-en">Country</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">قارة</div>
+      <div class="face-translit">qaarra</div>
+      <div class="face-en">Continent</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">عاصمة</div>
+      <div class="face-translit">'aasima</div>
+      <div class="face-en">Capital</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">عملة</div>
+      <div class="face-translit">'umla</div>
+      <div class="face-en">Currency</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">لغة</div>
+      <div class="face-translit">lugha</div>
+      <div class="face-en">Language</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">طقس</div>
+      <div class="face-translit">taqs</div>
+      <div class="face-en">Weather</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">شعب</div>
+      <div class="face-translit">sha'b</div>
+      <div class="face-en">People</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">ودود</div>
+      <div class="face-translit">waduud</div>
+      <div class="face-en">Friendly</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">كريم</div>
+      <div class="face-translit">kareem</div>
+      <div class="face-en">Generous</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">مشمس</div>
+      <div class="face-translit">mushmis</div>
+      <div class="face-en">Sunny</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">بارد</div>
+      <div class="face-translit">baarid</div>
+      <div class="face-en">Cold</div>
+    </div>
+    <div class="vocab-card" onclick="flipCard(this)">
+      <div class="face-ar">معتدل</div>
+      <div class="face-translit">mu'tadil</div>
+      <div class="face-en">Mild</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S8 — WRITING TASK
+══════════════════════════════════ -->
+<div class="section-card" id="sec-8">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark);">📝</div>
+    <div class="card-title-wrap">
+      <div class="card-title">اكتب فقرة</div>
+      <div class="card-title-en">Writing Task</div>
+    </div>
+    <span class="section-number">8 / 9</span>
+  </div>
+
+  <div class="writing-prompt">
+    <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-weight:900;color:var(--blue-dark);font-size:1.1rem;margin-bottom:6px;">اكتب فقرة عن رحلة إلى الإمارات العربية المتحدة</p>
+    <p style="font-style:italic;color:var(--ink-soft);font-size:0.92rem;margin-bottom:10px;">Write a paragraph about a trip to the UAE — use the following points:</p>
+    <ul class="points">
+      <li>1. اسمك وصفك (مثلاً: أنا في الصف...)
+        <span>Your name and class</span>
+      </li>
+      <li>2. أين تعيش؟
+        <span>Where do you live?</span>
+      </li>
+      <li>3. متى سافرت؟
+        <span>When did you travel?</span>
+      </li>
+      <li>4. مع من سافرت؟
+        <span>Who did you travel with?</span>
+      </li>
+      <li>5. اسم الدولة التي زرتها
+        <span>Name of the country you visited</span>
+      </li>
+      <li>6. في أي قارة؟
+        <span>Which continent?</span>
+      </li>
+      <li>7. ما هي العاصمة؟
+        <span>What is the capital?</span>
+      </li>
+      <li>8. ما هي العملة؟
+        <span>What is the currency?</span>
+      </li>
+      <li>9. الأماكن التي زرتها
+        <span>Places you visited</span>
+      </li>
+      <li>10. شعورك عن الرحلة
+        <span>Your feeling about the trip</span>
+      </li>
+    </ul>
+  </div>
+
+  <button class="reveal-btn" onclick="toggleAns(this)">👁️ أظهر النموذج · Show Sample Answer</button>
+  <div class="answer-box">
+    <div class="ans-ar" style="line-height:2;font-size:1rem;">
+      أنا اسمي [...] وأنا في الصف السابع. أعيش في [مدينتك] مع عائلتي. في الصيف الماضي، سافرتُ مع عائلتي إلى الإمارات العربية المتحدة. الإمارات دولة جميلة في قارة آسيا. عاصمة الإمارات هي أبوظبي، والعملة هي الدرهم الإماراتي، واللغة هي اللغة العربية. زرتُ مدناً جميلة مثل دبي وأبوظبي والشارقة. ومن أشهر الأماكن: برج خليفة وجامع الشيخ زايد الكبير. الطقس في الصيف حار جداً، وفي الشتاء معتدل ومشمس. الشعب الإماراتي ودود وكريم. أحببتُ الرحلة كثيراً.
+    </div>
+    <div class="ans-en" style="line-height:1.7;margin-top:10px;">
+      My name is [...] and I am in Year 7. I live in [your city] with my family. Last summer, I travelled with my family to the United Arab Emirates. The UAE is a beautiful country in Asia. The capital is Abu Dhabi, the currency is the UAE Dirham, and the language is Arabic. I visited beautiful cities like Dubai, Abu Dhabi, and Sharjah. Famous places include Burj Khalifa and Sheikh Zayed Grand Mosque. The weather in summer is very hot, and in winter mild and sunny. Emirati people are friendly and generous. I loved the trip very much.
+    </div>
+  </div>
+
+  <div class="teacher-box">
+    <span class="icon">🎓</span>
+    <div>
+      <div class="label">Teacher Note · ملاحظة للمعلم</div>
+      <p class="ar">ذكّري الطلاب باستخدام أفعال الماضي (سافرتُ، زرتُ، أحببتُ).</p>
+      <p class="en">Remind students to use past-tense verbs (travelled, visited, loved).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     S9 — LESSON MAP
+══════════════════════════════════ -->
+<div class="section-card" id="sec-9">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold-soft);color:var(--gold-dark);">🗺️</div>
+    <div class="card-title-wrap">
+      <div class="card-title">خريطة الدروس</div>
+      <div class="card-title-en">Lesson Map</div>
+    </div>
+    <span class="section-number">9 / 9</span>
+  </div>
+
+  <p style="font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-weight:700;color:var(--blue-dark);margin-bottom:14px;">هذا الدرس جزء من سلسلة دروس المراجعة للصف السابع.</p>
+
+  <table class="map-table">
+    <thead>
+      <tr>
+        <th>الدرس · Lesson</th>
+        <th>الموضوع · Topic</th>
+        <th>المستوى · Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Year 7 — Lesson 1</td>
+        <td>التعريف بالنفس · Introducing Yourself</td>
+        <td>Novice Mid</td>
+      </tr>
+      <tr>
+        <td>Year 7 — Lesson 2</td>
+        <td>عائلتي · My Family</td>
+        <td>Novice Mid</td>
+      </tr>
+      <tr>
+        <td>Year 7 — Lesson 3</td>
+        <td>مدرستي · My School</td>
+        <td>Novice High</td>
+      </tr>
+      <tr class="current">
+        <td>★ Year 7 Review</td>
+        <td>رحلة سامي إلى المغرب · Sami's Trip to Morocco</td>
+        <td>Novice High</td>
+      </tr>
+      <tr>
+        <td>Year 7 — Next</td>
+        <td>وقت الفراغ · Free Time</td>
+        <td>Intermediate Low</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:20px;text-align:center;padding:18px;background:var(--gold-soft);border-radius:12px;border:2px dashed var(--gold);">
+    <div style="font-family:'Tajawal',sans-serif;font-size:1.15rem;font-weight:900;color:var(--blue-dark);">🎉 أحسنتم! · Well done!</div>
+    <div style="font-style:italic;color:var(--ink-soft);margin-top:4px;">انتهت المراجعة. تابعوا التدريب وحظاً سعيداً في الامتحان!</div>
+    <div style="font-family:'Cinzel',serif;color:var(--gold-dark);margin-top:2px;font-size:0.92rem;">End of review. Keep practising — good luck in your exam!</div>
+  </div>
+</div>
+
+</main>
+
+<!-- ── WATERMARK ── -->
+<div class="watermark">إعداد المعلمة: غادة مرتضى</div>
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+  // Show/hide sections + nav active
+  function showSection(n) {
+    document.querySelectorAll('.section-card').forEach(s => s.classList.remove('visible'));
+    document.getElementById('sec-' + n).classList.add('visible');
+    document.querySelectorAll('.nav-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === n - 1);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const active = document.querySelector('.section-card.visible');
+    if (!active) return;
+    const id = parseInt(active.id.split('-')[1]);
+    if (e.key === 'ArrowRight' && id < 9) showSection(id + 1);
+    if (e.key === 'ArrowLeft' && id > 1) showSection(id - 1);
+  });
+
+  // Reveal answer toggle
+  function toggleAns(btn) {
+    const box = btn.nextElementSibling;
+    box.classList.toggle('show');
+    btn.textContent = box.classList.contains('show')
+      ? '🙈 إخفاء · Hide Answer'
+      : '👁️ أظهر الإجابة · Show Answer';
+  }
+
+  // True / False
+  function tfCheck(el, isCorrect) {
+    const parent = el.parentElement;
+    parent.querySelectorAll('.tf-opt').forEach(o => {
+      o.classList.remove('correct', 'wrong');
+      o.style.pointerEvents = 'none';
+    });
+    if (isCorrect) {
+      el.classList.add('correct');
+    } else {
+      el.classList.add('wrong');
+      // also highlight correct
+      parent.querySelectorAll('.tf-opt').forEach(o => {
+        if (o !== el && (o.textContent.includes('صح') && el.textContent.includes('خطأ') || o.textContent.includes('خطأ') && el.textContent.includes('صح'))) {
+          // not used — handled differently
+        }
+      });
+    }
+    // Allow re-try
+    setTimeout(() => {
+      parent.querySelectorAll('.tf-opt').forEach(o => o.style.pointerEvents = 'auto');
+    }, 1500);
+  }
+
+  // MCQ
+  function checkAnswer(el, isCorrect, qId) {
+    const fb = document.getElementById(qId + '-fb');
+    const rst = document.getElementById(qId + '-rst');
+    if (isCorrect) {
+      el.classList.add('correct');
+      fb.textContent = '🎉 إجابة صحيحة! · Correct!';
+      fb.style.color = '#28a745';
+      // disable all
+      el.parentElement.querySelectorAll('.mc-opt').forEach(o => o.style.pointerEvents = 'none');
+    } else {
+      el.classList.add('wrong');
+      fb.textContent = '❌ خطأ — حاول مرة أخرى · Try again';
+      fb.style.color = '#dc3545';
+      rst.classList.add('show');
+    }
+  }
+
+  function resetMC(qId) {
+    const item = document.getElementById(qId);
+    item.querySelectorAll('.mc-opt').forEach(o => {
+      o.classList.remove('correct', 'wrong');
+      o.style.pointerEvents = 'auto';
+    });
+    document.getElementById(qId + '-fb').textContent = '';
+    document.getElementById(qId + '-rst').classList.remove('show');
+  }
+
+  // Match game
+  let matchSelected = null;
+  function matchClick(el) {
+    if (el.classList.contains('matched')) return;
+    const fb = document.getElementById('matchFb');
+
+    if (!matchSelected) {
+      matchSelected = el;
+      el.classList.add('selected');
+      fb.textContent = '';
+      return;
+    }
+
+    if (matchSelected === el) {
+      el.classList.remove('selected');
+      matchSelected = null;
+      return;
+    }
+
+    // Check match
+    if (matchSelected.dataset.pair === el.dataset.pair) {
+      matchSelected.classList.remove('selected');
+      matchSelected.classList.add('matched');
+      el.classList.add('matched');
+      fb.textContent = '✓ مطابقة صحيحة! · Correct match!';
+      fb.style.color = '#28a745';
+
+      // Check if all matched
+      const remaining = document.querySelectorAll('.match-card:not(.matched)').length;
+      if (remaining === 0) {
+        fb.textContent = '🎉 ممتاز! أكملت كل المطابقات · Excellent! All matched!';
+      }
+    } else {
+      const wrong1 = matchSelected;
+      const wrong2 = el;
+      wrong1.style.borderColor = '#dc3545';
+      wrong2.style.borderColor = '#dc3545';
+      fb.textContent = '❌ غير مطابق — حاول مرة أخرى · Not a match — try again';
+      fb.style.color = '#dc3545';
+      setTimeout(() => {
+        wrong1.style.borderColor = '';
+        wrong2.style.borderColor = '';
+        wrong1.classList.remove('selected');
+      }, 900);
+    }
+    matchSelected = null;
+  }
+
+  function resetMatch() {
+    document.querySelectorAll('.match-card').forEach(c => {
+      c.classList.remove('matched', 'selected');
+      c.style.borderColor = '';
+    });
+    matchSelected = null;
+    document.getElementById('matchFb').textContent = '';
+  }
+
+  // Vocab flip
+  function flipCard(el) {
+    el.classList.toggle('flipped');
+  }
+</script>
+
+</body>
+</html>
