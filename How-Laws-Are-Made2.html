@@ -3,882 +3,595 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Laws Are Made — Interactive Lesson</title>
+<title>How Laws Are Made - Interactive Lesson</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { overflow-x: hidden; height: 100%; }
-  body {
-    font-family: 'Quicksand', 'Tajawal', sans-serif;
-    background: linear-gradient(135deg, #f5efe1 0%, #e8dcc4 100%);
-    color: #2c2416;
-    min-height: 100vh;
-    padding: 20px 12px 30px;
-  }
-
-  .header {
-    text-align: center;
-    margin-bottom: 18px;
-  }
-  .header h1 {
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    color: #3a3020;
-    letter-spacing: 1px;
-    font-weight: 700;
-  }
-  .header .sub {
-    color: #6a5a3e;
-    font-size: 0.95rem;
-    margin-top: 4px;
-  }
-
-  /* Top nav: slide counter + arrows */
-  .top-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  .top-nav button {
-    background: #3a3020;
-    color: #f5efe1;
-    border: none;
-    border-radius: 999px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s;
-  }
-  .top-nav button:hover:not(:disabled) {
-    background: #5a4a30;
-    transform: translateY(-1px);
-  }
-  .top-nav button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-  .counter {
-    background: #fff;
-    padding: 8px 16px;
-    border-radius: 999px;
-    font-weight: 700;
-    color: #3a3020;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    min-width: 90px;
-    text-align: center;
-  }
-
-  /* Slide container — bigger image area */
-  main {
-    max-width: 1500px;
-    margin: 0 auto;
-  }
-  .slide {
-    display: none;
-    animation: fadeIn 0.35s ease;
-  }
-  .slide.active {
-    display: block;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .slide-image-wrap {
-    background: white;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(58,48,32,0.18);
-    margin-bottom: 18px;
-  }
-  .slide-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-
-  /* Questions / answers panel */
-  .questions {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .question-block {
-    background: #fff;
-    border-radius: 14px;
-    padding: 16px 18px;
-    box-shadow: 0 4px 12px rgba(58,48,32,0.10);
-    border-left: 5px solid #c8954a;
-  }
-  .question-prompt {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #3a3020;
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
-  .reveal-btn {
-    background: linear-gradient(135deg, #c8954a 0%, #a87330 100%);
-    color: #fff;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 999px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-    box-shadow: 0 3px 8px rgba(168,115,48,0.3);
-    transition: all 0.2s;
-  }
-  .reveal-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(168,115,48,0.4);
-  }
-  .reveal-btn.shown {
-    background: linear-gradient(135deg, #6a5a3e 0%, #4a3e28 100%);
-  }
-  .answer {
-    margin-top: 14px;
-    padding: 14px 16px;
-    background: #f9f3e3;
-    border-radius: 10px;
-    border-left: 4px solid #4a8a4a;
-    line-height: 1.7;
-    font-size: 1rem;
-    color: #2c2416;
-    animation: slideDown 0.3s ease;
-  }
-  .answer.hidden {
-    display: none;
-  }
-  .answer strong {
-    color: #2a5a2a;
-  }
-  @keyframes slideDown {
-    from { opacity: 0; max-height: 0; }
-    to { opacity: 1; max-height: 1000px; }
-  }
-
-  /* (Nav dots removed for cleaner view) */
-
-  /* Mobile / tablet tweaks */
-  @media (max-width: 600px) {
-    body { padding: 12px 8px 30px; }
-    .header h1 { font-size: 1.3rem; }
-    .top-nav button { padding: 8px 16px; font-size: 0.95rem; }
-    .question-prompt { font-size: 1rem; }
-    .reveal-btn { font-size: 0.95rem; padding: 9px 18px; }
-  }
-
-  /* Print friendliness — show all */
-  @media print {
-    .slide { display: block !important; page-break-after: always; }
-    .top-nav { display: none; }
-    .answer { display: block !important; }
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; height: 100%; }
+body {
+  font-family: 'Quicksand', 'Tajawal', sans-serif;
+  background: linear-gradient(135deg, #f5efe1 0%, #e8dcc4 100%);
+  color: #2c2416;
+  min-height: 100vh;
+  padding: 20px 12px 30px;
+}
+.header { text-align: center; margin-bottom: 18px; }
+.header h1 {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: #3a3020; letter-spacing: 1px; font-weight: 700;
+}
+.header .sub { color: #6a5a3e; font-size: 0.95rem; margin-top: 4px; }
+.top-nav {
+  display: flex; justify-content: center; align-items: center;
+  gap: 14px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.top-nav button {
+  background: #3a3020; color: #f5efe1; border: none;
+  border-radius: 999px; padding: 10px 20px; font-size: 1rem;
+  font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s;
+}
+.top-nav button:hover:not(:disabled) { background: #5a4a30; transform: translateY(-1px); }
+.top-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.counter {
+  background: #fff; padding: 8px 16px; border-radius: 999px;
+  font-weight: 700; color: #3a3020;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  min-width: 90px; text-align: center;
+}
+main { max-width: 1500px; margin: 0 auto; }
+.slide { display: none; animation: fadeIn 0.35s ease; }
+.slide.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide-image-wrap {
+  background: white; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 8px 24px rgba(58,48,32,0.18); margin-bottom: 18px;
+}
+.slide-image {
+  display: block; width: 100%; height: auto;
+  image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;
+}
+.questions { display: flex; flex-direction: column; gap: 14px; }
+.question-block {
+  background: #fff; border-radius: 14px; padding: 16px 18px;
+  box-shadow: 0 4px 12px rgba(58,48,32,0.10);
+  border-left: 5px solid #c8954a;
+}
+.question-prompt {
+  font-size: 1.05rem; font-weight: 600; color: #3a3020;
+  line-height: 1.6; margin-bottom: 12px;
+}
+.reveal-btn {
+  background: linear-gradient(135deg, #c8954a 0%, #a87330 100%);
+  color: #fff; border: none; padding: 10px 22px;
+  border-radius: 999px; font-size: 1rem; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+  box-shadow: 0 3px 8px rgba(168,115,48,0.3); transition: all 0.2s;
+}
+.reveal-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 12px rgba(168,115,48,0.4); }
+.reveal-btn.shown { background: linear-gradient(135deg, #6a5a3e 0%, #4a3e28 100%); }
+.answer {
+  margin-top: 14px; padding: 14px 16px; background: #f9f3e3;
+  border-radius: 10px; border-left: 4px solid #4a8a4a;
+  line-height: 1.7; font-size: 1rem; color: #2c2416;
+  animation: slideDown 0.3s ease;
+}
+.answer.hidden { display: none; }
+.answer strong { color: #2a5a2a; }
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 1000px; }
+}
+@media (max-width: 600px) {
+  body { padding: 12px 8px 30px; }
+  .header h1 { font-size: 1.3rem; }
+  .top-nav button { padding: 8px 16px; font-size: 0.95rem; }
+  .question-prompt { font-size: 1rem; }
+  .reveal-btn { font-size: 0.95rem; padding: 9px 18px; }
+}
+@media print {
+  .slide { display: block !important; page-break-after: always; }
+  .top-nav { display: none; }
+  .answer { display: block !important; }
+}
 </style>
 </head>
 <body>
-
 <div class="header">
   <h1>How Laws Are Made</h1>
-  <div class="sub">Interactive Lesson · Year 7 · MSC Studies</div>
+  <div class="sub">Interactive Lesson - Year 7 - MSC Studies</div>
 </div>
-
 <div class="top-nav">
-  <button id="prevBtn" onclick="prev()">◀ Previous</button>
+  <button id="prevBtn" onclick="prev()">Previous</button>
   <div class="counter"><span id="curNum">1</span> / 40</div>
-  <button id="nextBtn" onclick="next()">Next ▶</button>
+  <button id="nextBtn" onclick="next()">Next</button>
 </div>
-
 <main id="slidesRoot">
-  
-    <section class="slide" id="slide-1" data-slide="1">
-        <div class="slide-image-wrap">
-            <img src="images/slide_01.jpg" alt="Slide 1: How Laws Are Made" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
 
-    <section class="slide" id="slide-2" data-slide="2">
-        <div class="slide-image-wrap">
-            <img src="images/slide_02.jpg" alt="Slide 2: Learning Objectives" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-1" data-slide="1">
+  <div class="slide-image-wrap">
+    <img src="slide_01.jpg" alt="Slide 1: How Laws Are Made" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-3" data-slide="3">
-        <div class="slide-image-wrap">
-            <img src="images/slide_03.jpg" alt="Slide 3: Success Criteria" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-2" data-slide="2">
+  <div class="slide-image-wrap">
+    <img src="slide_02.jpg" alt="Slide 2: Learning Objectives" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-4" data-slide="4">
-        <div class="slide-image-wrap">
-            <img src="images/slide_04.jpg" alt="Slide 4: Retrieval Starter – School Rules" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ What rules help keep our school safe?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s4q0')" id="btn-s4q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s4q0">
-                    <strong>✅ Answer:</strong><br>Rules like walking in corridors, no fighting, listening to teachers, following safety drills, and respecting others — they keep everyone safe and help learning happen.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ What would happen if there were no laws?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s4q1')" id="btn-s4q1">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s4q1">
-                    <strong>✅ Answer:</strong><br>Without laws there would be chaos: people could harm each other without consequences, no one would feel safe, and society would not function. Laws protect rights, keep order, and give fair consequences.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-3" data-slide="3">
+  <div class="slide-image-wrap">
+    <img src="slide_03.jpg" alt="Slide 3: Success Criteria" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-5" data-slide="5">
-        <div class="slide-image-wrap">
-            <img src="images/slide_05.jpg" alt="Slide 5: Hook – Real-Life Scenario" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Should there be consequences? Who decides the punishment? Why do societies need laws?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s5q0')" id="btn-s5q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s5q0">
-                    <strong>✅ Answer:</strong><br>Yes — stealing harms others and breaks trust. The court (judicial branch) decides the punishment based on the law. Societies need laws to protect people, ensure fairness, and keep order.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-4" data-slide="4">
+  <div class="slide-image-wrap">
+    <img src="slide_04.jpg" alt="Slide 4: Retrieval Starter - School Rules" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">What rules help keep our school safe?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s4q0')" id="btn-s4q0">Show Answer</button>
+      <div class="answer hidden" id="s4q0"><strong>Answer:</strong><br>Rules like walking in corridors, no fighting, listening to teachers, following safety drills, and respecting others - they keep everyone safe and help learning happen.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">What would happen if there were no laws?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s4q1')" id="btn-s4q1">Show Answer</button>
+      <div class="answer hidden" id="s4q1"><strong>Answer:</strong><br>Without laws there would be chaos: people could harm each other without consequences, no one would feel safe, and society would not function. Laws protect rights, keep order, and give fair consequences.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-6" data-slide="6">
-        <div class="slide-image-wrap">
-            <img src="images/slide_06.jpg" alt="Slide 6: Law" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Is a school rule a law? Why or why not?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s6q0')" id="btn-s6q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s6q0">
-                    <strong>✅ Answer:</strong><br>No — a school rule is not a law. Laws are made by the government and apply to everyone in society, with official consequences. School rules apply only inside the school and are enforced by the school.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-5" data-slide="5">
+  <div class="slide-image-wrap">
+    <img src="slide_05.jpg" alt="Slide 5: Hook - Real-Life Scenario" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Should there be consequences? Who decides the punishment? Why do societies need laws?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s5q0')" id="btn-s5q0">Show Answer</button>
+      <div class="answer hidden" id="s5q0"><strong>Answer:</strong><br>Yes - stealing harms others and breaks trust. The court (judicial branch) decides the punishment based on the law. Societies need laws to protect people, ensure fairness, and keep order.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-7" data-slide="7">
-        <div class="slide-image-wrap">
-            <img src="images/slide_07.jpg" alt="Slide 7: Bill" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: What happens to a bill after it is proposed?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s7q0')" id="btn-s7q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s7q0">
-                    <strong>✅ Answer:</strong><br>After a bill is proposed, it is debated, then voted on. If approved, it becomes an official law that must be followed.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-6" data-slide="6">
+  <div class="slide-image-wrap">
+    <img src="slide_06.jpg" alt="Slide 6: Law" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Is a school rule a law? Why or why not?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s6q0')" id="btn-s6q0">Show Answer</button>
+      <div class="answer hidden" id="s6q0"><strong>Answer:</strong><br>No - a school rule is not a law. Laws are made by the government and apply to everyone in society, with official consequences. School rules apply only inside the school and are enforced by the school.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-8" data-slide="8">
-        <div class="slide-image-wrap">
-            <img src="images/slide_08.jpg" alt="Slide 8: Legislative Branch" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Who elects members of the legislative branch in the UAE?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s8q0')" id="btn-s8q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s8q0">
-                    <strong>✅ Answer:</strong><br>Members of the Federal National Council (FNC) are partly elected by Emirati citizens and partly appointed by the rulers of each emirate.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-7" data-slide="7">
+  <div class="slide-image-wrap">
+    <img src="slide_07.jpg" alt="Slide 7: Bill" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: What happens to a bill after it is proposed?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s7q0')" id="btn-s7q0">Show Answer</button>
+      <div class="answer hidden" id="s7q0"><strong>Answer:</strong><br>After a bill is proposed, it is debated, then voted on. If approved, it becomes an official law that must be followed.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-9" data-slide="9">
-        <div class="slide-image-wrap">
-            <img src="images/slide_09.jpg" alt="Slide 9: Executive Branch" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Name a group in the executive branch.</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s9q0')" id="btn-s9q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s9q0">
-                    <strong>✅ Answer:</strong><br>The police, the Ministry of Interior, and other government ministries are part of the executive branch — they enforce and carry out the laws.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-8" data-slide="8">
+  <div class="slide-image-wrap">
+    <img src="slide_08.jpg" alt="Slide 8: Legislative Branch" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Who elects members of the legislative branch in the UAE?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s8q0')" id="btn-s8q0">Show Answer</button>
+      <div class="answer hidden" id="s8q0"><strong>Answer:</strong><br>Members of the Federal National Council (FNC) are partly elected by Emirati citizens and partly appointed by the rulers of each emirate.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-10" data-slide="10">
-        <div class="slide-image-wrap">
-            <img src="images/slide_10.jpg" alt="Slide 10: Judicial Branch" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Who decides if someone is innocent or guilty?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s10q0')" id="btn-s10q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s10q0">
-                    <strong>✅ Answer:</strong><br>Judges in the courts (the judicial branch) decide if someone is innocent or guilty, based on evidence and the law.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-9" data-slide="9">
+  <div class="slide-image-wrap">
+    <img src="slide_09.jpg" alt="Slide 9: Executive Branch" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Name a group in the executive branch.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s9q0')" id="btn-s9q0">Show Answer</button>
+      <div class="answer hidden" id="s9q0"><strong>Answer:</strong><br>The police, the Ministry of Interior, and other government ministries are part of the executive branch - they enforce and carry out the laws.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-11" data-slide="11">
-        <div class="slide-image-wrap">
-            <img src="images/slide_11.jpg" alt="Slide 11: Civil Law" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Is a traffic fine civil or criminal law?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s11q0')" id="btn-s11q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s11q0">
-                    <strong>✅ Answer:</strong><br>A traffic fine is usually criminal law — it is the state punishing someone for breaking traffic rules. (However, if the traffic accident causes damage and one driver sues another for compensation, that part is civil law.)
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-10" data-slide="10">
+  <div class="slide-image-wrap">
+    <img src="slide_10.jpg" alt="Slide 10: Judicial Branch" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Who decides if someone is innocent or guilty?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s10q0')" id="btn-s10q0">Show Answer</button>
+      <div class="answer hidden" id="s10q0"><strong>Answer:</strong><br>Judges in the courts (the judicial branch) decide if someone is innocent or guilty, based on evidence and the law.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-12" data-slide="12">
-        <div class="slide-image-wrap">
-            <img src="images/slide_12.jpg" alt="Slide 12: Criminal Law" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: What is a criminal law example in UAE?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s12q0')" id="btn-s12q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s12q0">
-                    <strong>✅ Answer:</strong><br>Examples: theft, cybercrime, assault, drug offences, traffic violations like reckless driving. These are crimes against society and are prosecuted by the state.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-11" data-slide="11">
+  <div class="slide-image-wrap">
+    <img src="slide_11.jpg" alt="Slide 11: Civil Law" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Is a traffic fine civil or criminal law?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s11q0')" id="btn-s11q0">Show Answer</button>
+      <div class="answer hidden" id="s11q0"><strong>Answer:</strong><br>A traffic fine is usually criminal law - it is the state punishing someone for breaking traffic rules. (However, if the traffic accident causes damage and one driver sues another for compensation, that part is civil law.)</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-13" data-slide="13">
-        <div class="slide-image-wrap">
-            <img src="images/slide_13.jpg" alt="Slide 13: Jury" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Who listens to evidence in a trial?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s13q0')" id="btn-s13q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s13q0">
-                    <strong>✅ Answer:</strong><br>The judge listens to evidence in a trial. In some countries a jury also listens and decides on guilt or innocence. In the UAE, judges (not juries) usually decide cases.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-12" data-slide="12">
+  <div class="slide-image-wrap">
+    <img src="slide_12.jpg" alt="Slide 12: Criminal Law" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: What is a criminal law example in UAE?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s12q0')" id="btn-s12q0">Show Answer</button>
+      <div class="answer hidden" id="s12q0"><strong>Answer:</strong><br>Examples: theft, cybercrime, assault, drug offences, traffic violations like reckless driving. These are crimes against society and are prosecuted by the state.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-14" data-slide="14">
-        <div class="slide-image-wrap">
-            <img src="images/slide_14.jpg" alt="Slide 14: Debate" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Why is debating important in law-making?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s14q0')" id="btn-s14q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s14q0">
-                    <strong>✅ Answer:</strong><br>Debating helps lawmakers hear different viewpoints, consider pros and cons, and improve the law before it is passed. It makes laws fairer and stronger because many sides are considered.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-13" data-slide="13">
+  <div class="slide-image-wrap">
+    <img src="slide_13.jpg" alt="Slide 13: Jury" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Who listens to evidence in a trial?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s13q0')" id="btn-s13q0">Show Answer</button>
+      <div class="answer hidden" id="s13q0"><strong>Answer:</strong><br>The judge listens to evidence in a trial. In some countries a jury also listens and decides on guilt or innocence. In the UAE, judges (not juries) usually decide cases.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-15" data-slide="15">
-        <div class="slide-image-wrap">
-            <img src="images/slide_15.jpg" alt="Slide 15: Enforce" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Mini Check: Who enforces laws in your community?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s15q0')" id="btn-s15q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s15q0">
-                    <strong>✅ Answer:</strong><br>The police enforce laws in the community. Other authorities like traffic police, customs officers, and government inspectors also help enforce specific laws.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-14" data-slide="14">
+  <div class="slide-image-wrap">
+    <img src="slide_14.jpg" alt="Slide 14: Debate" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Why is debating important in law-making?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s14q0')" id="btn-s14q0">Show Answer</button>
+      <div class="answer hidden" id="s14q0"><strong>Answer:</strong><br>Debating helps lawmakers hear different viewpoints, consider pros and cons, and improve the law before it is passed. It makes laws fairer and stronger because many sides are considered.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-16" data-slide="16">
-        <div class="slide-image-wrap">
-            <img src="images/slide_16.jpg" alt="Slide 16: Three Branches of Government" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-15" data-slide="15">
+  <div class="slide-image-wrap">
+    <img src="slide_15.jpg" alt="Slide 15: Enforce" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Mini Check: Who enforces laws in your community?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s15q0')" id="btn-s15q0">Show Answer</button>
+      <div class="answer hidden" id="s15q0"><strong>Answer:</strong><br>The police enforce laws in the community. Other authorities like traffic police, customs officers, and government inspectors also help enforce specific laws.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-17" data-slide="17">
-        <div class="slide-image-wrap">
-            <img src="images/slide_17.jpg" alt="Slide 17: Three Branches – Student Task" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Match each description: Creates laws → ? | Enforces laws → ? | Decides legal cases → ?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s17q0')" id="btn-s17q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s17q0">
-                    <strong>✅ Answer:</strong><br>Creates laws → Legislative branch (Federal National Council in the UAE)<br>Enforces laws → Executive branch (police, Ministry of Interior)<br>Decides legal cases → Judicial branch (the courts)<br><br>The Federal National Council belongs to the Legislative branch. The police belong to the Executive branch.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-16" data-slide="16">
+  <div class="slide-image-wrap">
+    <img src="slide_16.jpg" alt="Slide 16: Three Branches of Government" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-18" data-slide="18">
-        <div class="slide-image-wrap">
-            <img src="images/slide_18.jpg" alt="Slide 18: Three Branches – Model Answer" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-17" data-slide="17">
+  <div class="slide-image-wrap">
+    <img src="slide_17.jpg" alt="Slide 17: Three Branches - Student Task" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Match each description: Creates laws / Enforces laws / Decides legal cases</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s17q0')" id="btn-s17q0">Show Answer</button>
+      <div class="answer hidden" id="s17q0"><strong>Answer:</strong><br>Creates laws -> Legislative branch (Federal National Council in the UAE)<br>Enforces laws -> Executive branch (police, Ministry of Interior)<br>Decides legal cases -> Judicial branch (the courts)</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-19" data-slide="19">
-        <div class="slide-image-wrap">
-            <img src="images/slide_19.jpg" alt="Slide 19: Government Systems" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-18" data-slide="18">
+  <div class="slide-image-wrap">
+    <img src="slide_18.jpg" alt="Slide 18: Three Branches - Model Answer" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-20" data-slide="20">
-        <div class="slide-image-wrap">
-            <img src="images/slide_20.jpg" alt="Slide 20: Student Task – Government Systems" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Decide if each is Parliamentary or Presidential, and which fits the UAE.</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s20q0')" id="btn-s20q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s20q0">
-                    <strong>✅ Answer:</strong><br>1. Leader elected directly by people, head of state → Presidential system.<br>2. Prime Minister chosen from the party with most seats in parliament → Parliamentary system.<br>3. UAE has a Federal National Council that advises the government → UAE uses a federal system with a consultative council, combining elements of both systems.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-19" data-slide="19">
+  <div class="slide-image-wrap">
+    <img src="slide_19.jpg" alt="Slide 19: Government Systems" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-21" data-slide="21">
-        <div class="slide-image-wrap">
-            <img src="images/slide_21.jpg" alt="Slide 21: Model Answer – Government Systems" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-20" data-slide="20">
+  <div class="slide-image-wrap">
+    <img src="slide_20.jpg" alt="Slide 20: Student Task - Government Systems" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Decide if each is Parliamentary or Presidential, and which fits the UAE.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s20q0')" id="btn-s20q0">Show Answer</button>
+      <div class="answer hidden" id="s20q0"><strong>Answer:</strong><br>1. Leader elected directly by people, head of state -> Presidential system.<br>2. Prime Minister chosen from the party with most seats in parliament -> Parliamentary system.<br>3. UAE has a Federal National Council that advises the government -> UAE uses a federal system with a consultative council, combining elements of both systems.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-22" data-slide="22">
-        <div class="slide-image-wrap">
-            <img src="images/slide_22.jpg" alt="Slide 22: Civil vs Criminal Law" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-21" data-slide="21">
+  <div class="slide-image-wrap">
+    <img src="slide_21.jpg" alt="Slide 21: Model Answer - Government Systems" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-23" data-slide="23">
-        <div class="slide-image-wrap">
-            <img src="images/slide_23.jpg" alt="Slide 23: Civil vs Criminal Law – Student Task" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Classify each: traffic fine, neighbour property dispute, cybercrime hacking, broken business contract, shoplifting.</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s23q0')" id="btn-s23q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s23q0">
-                    <strong>✅ Answer:</strong><br>1. A person receives a traffic violation fine → Criminal Law (breaking state rules).<br>2. Two neighbours dispute property boundaries → Civil Law (dispute between individuals).<br>3. Someone commits cybercrime by hacking accounts → Criminal Law (crime against society).<br>4. A business breaks a contract agreement → Civil Law (disagreement between parties).<br>5. A person is caught shoplifting → Criminal Law (offence against the state).
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-22" data-slide="22">
+  <div class="slide-image-wrap">
+    <img src="slide_22.jpg" alt="Slide 22: Civil vs Criminal Law" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-24" data-slide="24">
-        <div class="slide-image-wrap">
-            <img src="images/slide_24.jpg" alt="Slide 24: Model Answer – Civil vs Criminal Law" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-23" data-slide="23">
+  <div class="slide-image-wrap">
+    <img src="slide_23.jpg" alt="Slide 23: Civil vs Criminal Law - Student Task" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Classify each: traffic fine, neighbour property dispute, cybercrime hacking, broken business contract, shoplifting.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s23q0')" id="btn-s23q0">Show Answer</button>
+      <div class="answer hidden" id="s23q0"><strong>Answer:</strong><br>1. Traffic violation fine -> Criminal Law (breaking state rules).<br>2. Neighbours dispute property boundaries -> Civil Law (dispute between individuals).<br>3. Cybercrime by hacking accounts -> Criminal Law (crime against society).<br>4. Business breaks a contract agreement -> Civil Law (disagreement between parties).<br>5. Person caught shoplifting -> Criminal Law (offence against the state).</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-25" data-slide="25">
-        <div class="slide-image-wrap">
-            <img src="images/slide_25.jpg" alt="Slide 25: How Laws Are Made (Steps)" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-24" data-slide="24">
+  <div class="slide-image-wrap">
+    <img src="slide_24.jpg" alt="Slide 24: Model Answer - Civil vs Criminal Law" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-26" data-slide="26">
-        <div class="slide-image-wrap">
-            <img src="images/slide_26.jpg" alt="Slide 26: Law-Making Process – Student Task" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Put these law-making steps in the correct order (1–5):<br>• Law is enforced by police and authorities<br>• Bill is drafted and proposed<br>• Courts and judges interpret the law<br>• Bill is debated in parliament<br>• Bill is approved and becomes law</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s26q0')" id="btn-s26q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s26q0">
-                    <strong>✅ Answer:</strong><br>1. Bill is drafted and proposed<br>2. Bill is debated in parliament<br>3. Bill is approved and becomes law<br>4. Law is enforced by police and authorities<br>5. Courts and judges interpret the law
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-25" data-slide="25">
+  <div class="slide-image-wrap">
+    <img src="slide_25.jpg" alt="Slide 25: How Laws Are Made (Steps)" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-27" data-slide="27">
-        <div class="slide-image-wrap">
-            <img src="images/slide_27.jpg" alt="Slide 27: Law-Making Process – Model Answer" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-26" data-slide="26">
+  <div class="slide-image-wrap">
+    <img src="slide_26.jpg" alt="Slide 26: Law-Making Process - Student Task" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Put these law-making steps in the correct order (1-5): Law enforced / Bill drafted / Courts interpret / Bill debated / Bill approved</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s26q0')" id="btn-s26q0">Show Answer</button>
+      <div class="answer hidden" id="s26q0"><strong>Answer:</strong><br>1. Bill is drafted and proposed<br>2. Bill is debated in parliament<br>3. Bill is approved and becomes law<br>4. Law is enforced by police and authorities<br>5. Courts and judges interpret the law</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-28" data-slide="28">
-        <div class="slide-image-wrap">
-            <img src="images/slide_28.jpg" alt="Slide 28: Concept Check: Match the Terms" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Match: 1. Legislative Branch  2. Presidential System  3. Civil Law  4. Criminal Law  5. Jury<br>A. Laws dealing with crimes against society<br>B. Group deciding guilt or innocence in trials<br>C. The part of government that creates laws<br>D. Laws dealing with disputes between individuals<br>E. System where branches are separate with balance of power</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s28q0')" id="btn-s28q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s28q0">
-                    <strong>✅ Answer:</strong><br>1. Legislative Branch → C. The part of government that creates laws<br>2. Presidential System → E. System where branches are separate with balance of power<br>3. Civil Law → D. Laws dealing with disputes between individuals<br>4. Criminal Law → A. Laws dealing with crimes against society<br>5. Jury → B. Group deciding guilt or innocence in trials
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-27" data-slide="27">
+  <div class="slide-image-wrap">
+    <img src="slide_27.jpg" alt="Slide 27: Law-Making Process - Model Answer" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-29" data-slide="29">
-        <div class="slide-image-wrap">
-            <img src="images/slide_29.jpg" alt="Slide 29: Activity 1 – Model Answer" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-28" data-slide="28">
+  <div class="slide-image-wrap">
+    <img src="slide_28.jpg" alt="Slide 28: Concept Check: Match the Terms" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Match: 1. Legislative Branch 2. Presidential System 3. Civil Law 4. Criminal Law 5. Jury</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s28q0')" id="btn-s28q0">Show Answer</button>
+      <div class="answer hidden" id="s28q0"><strong>Answer:</strong><br>1. Legislative Branch -> C. The part of government that creates laws<br>2. Presidential System -> E. System where branches are separate with balance of power<br>3. Civil Law -> D. Laws dealing with disputes between individuals<br>4. Criminal Law -> A. Laws dealing with crimes against society<br>5. Jury -> B. Group deciding guilt or innocence in trials</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-30" data-slide="30">
-        <div class="slide-image-wrap">
-            <img src="images/slide_30.jpg" alt="Slide 30: Textbook Activity 2" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Number these law-making steps 1–5 in correct order:<br>• Bill is debated by the Federal National Council<br>• Law is enforced by police and authorities<br>• A new bill is drafted and proposed<br>• Courts interpret the law in legal cases<br>• Bill is approved and becomes official law</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s30q0')" id="btn-s30q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s30q0">
-                    <strong>✅ Answer:</strong><br>1. A new bill is drafted and proposed<br>2. Bill is debated by the Federal National Council<br>3. Bill is approved and becomes official law<br>4. Law is enforced by police and authorities<br>5. Courts interpret the law in legal cases
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-29" data-slide="29">
+  <div class="slide-image-wrap">
+    <img src="slide_29.jpg" alt="Slide 29: Activity 1 - Model Answer" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-31" data-slide="31">
-        <div class="slide-image-wrap">
-            <img src="images/slide_31.jpg" alt="Slide 31: Model Answer – Activity 2" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-30" data-slide="30">
+  <div class="slide-image-wrap">
+    <img src="slide_30.jpg" alt="Slide 30: Textbook Activity 2" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Number these law-making steps 1-5 in correct order.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s30q0')" id="btn-s30q0">Show Answer</button>
+      <div class="answer hidden" id="s30q0"><strong>Answer:</strong><br>1. A new bill is drafted and proposed<br>2. Bill is debated by the Federal National Council<br>3. Bill is approved and becomes official law<br>4. Law is enforced by police and authorities<br>5. Courts interpret the law in legal cases</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-32" data-slide="32">
-        <div class="slide-image-wrap">
-            <img src="images/slide_32.jpg" alt="Slide 32: Textbook Activity 3" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Classify each as Civil Law, Criminal Law, or Both:<br>1. A driver receives a fine for running a red light in Dubai<br>2. Two neighbours dispute the boundary line between properties<br>3. A person is arrested for stealing from a shop in Abu Dhabi<br>4. A company sues another for breaking a business contract<br>5. Someone commits cybercrime by hacking personal bank accounts<br>6. A tenant and landlord disagree over rent payment terms</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s32q0')" id="btn-s32q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s32q0">
-                    <strong>✅ Answer:</strong><br>1. Running a red light → Criminal Law (breaking state traffic rules)<br>2. Property boundary dispute → Civil Law (between individuals)<br>3. Stealing from a shop → Criminal Law (offence against the state)<br>4. Company suing for broken contract → Civil Law (dispute between parties)<br>5. Cybercrime hacking bank accounts → Criminal Law (crime against society)<br>6. Tenant–landlord rent disagreement → Civil Law (private dispute)
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-31" data-slide="31">
+  <div class="slide-image-wrap">
+    <img src="slide_31.jpg" alt="Slide 31: Model Answer - Activity 2" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-33" data-slide="33">
-        <div class="slide-image-wrap">
-            <img src="images/slide_33.jpg" alt="Slide 33: Model Answer – Activity 3" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-32" data-slide="32">
+  <div class="slide-image-wrap">
+    <img src="slide_32.jpg" alt="Slide 32: Textbook Activity 3" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Classify each as Civil Law, Criminal Law, or Both.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s32q0')" id="btn-s32q0">Show Answer</button>
+      <div class="answer hidden" id="s32q0"><strong>Answer:</strong><br>1. Running a red light -> Criminal Law<br>2. Property boundary dispute -> Civil Law<br>3. Stealing from a shop -> Criminal Law<br>4. Company suing for broken contract -> Civil Law<br>5. Cybercrime hacking bank accounts -> Criminal Law<br>6. Tenant-landlord rent disagreement -> Civil Law</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-34" data-slide="34">
-        <div class="slide-image-wrap">
-            <img src="images/slide_34.jpg" alt="Slide 34: Debate – Classroom Bills" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Discuss the pros and cons of each bill. Who benefits? Who might be harmed? Is it fair?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s34q0')" id="btn-s34q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s34q0">
-                    <strong>✅ Answer:</strong><br>Bill 1 — Mark students absent if late more than 5 minutes:<br>  Pros: encourages punctuality, fair to students who arrive on time.<br>  Cons: unfair to students who face traffic, transport, or family issues.<br><br>Bill 2 — Pass/Fail grading instead of percentages:<br>  Pros: less stress, focus on learning not numbers.<br>  Cons: hides effort differences, may hurt university applications.<br><br>Bill 3 — Ban group work for all assignments:<br>  Pros: stops 'free riders', everyone graded fairly.<br>  Cons: students miss teamwork and communication skills they need for life and work.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-33" data-slide="33">
+  <div class="slide-image-wrap">
+    <img src="slide_33.jpg" alt="Slide 33: Model Answer - Activity 3" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-35" data-slide="35">
-        <div class="slide-image-wrap">
-            <img src="images/slide_35.jpg" alt="Slide 35: Model Reflection" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-34" data-slide="34">
+  <div class="slide-image-wrap">
+    <img src="slide_34.jpg" alt="Slide 34: Debate - Classroom Bills" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Discuss the pros and cons of each bill. Who benefits? Who might be harmed? Is it fair?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s34q0')" id="btn-s34q0">Show Answer</button>
+      <div class="answer hidden" id="s34q0"><strong>Answer:</strong><br>Bill 1 - Mark students absent if late more than 5 minutes: Pros: encourages punctuality. Cons: unfair to students who face traffic or family issues.<br><br>Bill 2 - Pass/Fail grading instead of percentages: Pros: less stress. Cons: hides effort differences, may hurt university applications.<br><br>Bill 3 - Ban group work for all assignments: Pros: stops free riders. Cons: students miss teamwork and communication skills.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-36" data-slide="36">
-        <div class="slide-image-wrap">
-            <img src="images/slide_36.jpg" alt="Slide 36: Real-Life UAE Applications" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-35" data-slide="35">
+  <div class="slide-image-wrap">
+    <img src="slide_35.jpg" alt="Slide 35: Model Reflection" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-37" data-slide="37">
-        <div class="slide-image-wrap">
-            <img src="images/slide_37.jpg" alt="Slide 37: Good Struggle – Challenge Questions" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Which branch should handle a cybercrime case? Why?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s37q0')" id="btn-s37q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s37q0">
-                    <strong>✅ Answer:</strong><br>All three branches play a role:<br>• Legislative — creates the cyber-crime laws (e.g. UAE Cybercrime Law).<br>• Executive — police investigate and arrest suspects.<br>• Judicial — courts decide guilt and sentence.<br>The judicial branch handles the actual case in court.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ Is a traffic fine civil or criminal law? Explain.</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s37q1')" id="btn-s37q1">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s37q1">
-                    <strong>✅ Answer:</strong><br>A traffic fine is criminal law because the driver has broken a rule made by the state, and the state issues the punishment. (If a driver causes damage and is sued by another driver for compensation, that separate lawsuit would be civil law.)
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ What could happen if cyber-safety laws did not exist in the UAE?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s37q2')" id="btn-s37q2">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s37q2">
-                    <strong>✅ Answer:</strong><br>Without cyber-safety laws, hackers could steal personal information, money, and identities with no consequences. People would not trust online banking or shopping. Children would be exposed to harmful content. Businesses would suffer cyber-attacks. Society and the economy would be much less safe.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ Should students debate school rules? Why or why not?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s37q3')" id="btn-s37q3">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s37q3">
-                    <strong>✅ Answer:</strong><br>Yes — debating school rules helps students think about fairness, learn how laws are made, and feel respected. Their feedback can improve the rules. However, the final decision still rests with the school leadership to ensure safety and learning are protected.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ How do laws protect you in your daily life?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s37q4')" id="btn-s37q4">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s37q4">
-                    <strong>✅ Answer:</strong><br>Laws protect you every day: traffic laws keep roads safe, cyber-safety laws protect your data online, criminal laws protect you from theft and violence, school and labour laws protect your right to education and fair treatment, and consumer laws protect you when you shop.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-36" data-slide="36">
+  <div class="slide-image-wrap">
+    <img src="slide_36.jpg" alt="Slide 36: Real-Life UAE Applications" class="slide-image" loading="lazy">
+  </div>
+</section>
 
-    <section class="slide" id="slide-38" data-slide="38">
-        <div class="slide-image-wrap">
-            <img src="images/slide_38.jpg" alt="Slide 38: Check Your Progress" class="slide-image" loading="lazy">
-        </div>
-        <div class="questions">
-            <div class="question-block">
-                <div class="question-prompt">❓ Which branch creates laws? (Legislative / Executive / Judicial)</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s38q0')" id="btn-s38q0">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s38q0">
-                    <strong>✅ Answer:</strong><br>Legislative branch — in the UAE, the Federal National Council drafts and proposes laws.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ True or False: Civil law deals with crimes against society.</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s38q1')" id="btn-s38q1">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s38q1">
-                    <strong>✅ Answer:</strong><br>False. Civil law deals with disputes between individuals or organisations. Criminal law deals with crimes against society.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ Scenario: A student's phone is stolen — civil or criminal?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s38q2')" id="btn-s38q2">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s38q2">
-                    <strong>✅ Answer:</strong><br>Criminal law — theft is a crime against the state. The thief can be arrested and prosecuted by the police and courts.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ After a bill is drafted, what happens next?</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s38q3')" id="btn-s38q3">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s38q3">
-                    <strong>✅ Answer:</strong><br>The bill is debated by the legislative body (in the UAE, the Federal National Council). Members discuss the pros and cons before voting.
-                </div>
-            </div>
-            
-            <div class="question-block">
-                <div class="question-prompt">❓ Name one role of the judicial branch.</div>
-                <button class="reveal-btn" onclick="toggleAnswer('s38q4')" id="btn-s38q4">
-                    Show Answer / إظهار الإجابة
-                </button>
-                <div class="answer hidden" id="s38q4">
-                    <strong>✅ Answer:</strong><br>The judicial branch interprets laws, decides legal cases, judges guilt or innocence, and ensures justice is delivered fairly.
-                </div>
-            </div>
-            </div>
-    </section>
-    
+<section class="slide" id="slide-37" data-slide="37">
+  <div class="slide-image-wrap">
+    <img src="slide_37.jpg" alt="Slide 37: Good Struggle - Challenge Questions" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Which branch should handle a cybercrime case? Why?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s37q0')" id="btn-s37q0">Show Answer</button>
+      <div class="answer hidden" id="s37q0"><strong>Answer:</strong><br>All three branches play a role:<br>- Legislative creates the cyber-crime laws.<br>- Executive (police) investigate and arrest suspects.<br>- Judicial (courts) decide guilt and sentence.<br>The judicial branch handles the actual case in court.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">Is a traffic fine civil or criminal law? Explain.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s37q1')" id="btn-s37q1">Show Answer</button>
+      <div class="answer hidden" id="s37q1"><strong>Answer:</strong><br>A traffic fine is criminal law because the driver has broken a rule made by the state, and the state issues the punishment.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">What could happen if cyber-safety laws did not exist in the UAE?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s37q2')" id="btn-s37q2">Show Answer</button>
+      <div class="answer hidden" id="s37q2"><strong>Answer:</strong><br>Without cyber-safety laws, hackers could steal personal information, money, and identities with no consequences. People would not trust online banking. Children would be exposed to harmful content. Businesses would suffer cyber-attacks.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">Should students debate school rules? Why or why not?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s37q3')" id="btn-s37q3">Show Answer</button>
+      <div class="answer hidden" id="s37q3"><strong>Answer:</strong><br>Yes - debating school rules helps students think about fairness, learn how laws are made, and feel respected. The final decision still rests with the school leadership.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">How do laws protect you in your daily life?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s37q4')" id="btn-s37q4">Show Answer</button>
+      <div class="answer hidden" id="s37q4"><strong>Answer:</strong><br>Laws protect you every day: traffic laws keep roads safe, cyber-safety laws protect your data online, criminal laws protect you from theft, school and labour laws protect your right to education, and consumer laws protect you when you shop.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-39" data-slide="39">
-        <div class="slide-image-wrap">
-            <img src="images/slide_39.jpg" alt="Slide 39: Lesson Reflection & Next Steps" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-38" data-slide="38">
+  <div class="slide-image-wrap">
+    <img src="slide_38.jpg" alt="Slide 38: Check Your Progress" class="slide-image" loading="lazy">
+  </div>
+  <div class="questions">
+    <div class="question-block">
+      <div class="question-prompt">Which branch creates laws? (Legislative / Executive / Judicial)</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s38q0')" id="btn-s38q0">Show Answer</button>
+      <div class="answer hidden" id="s38q0"><strong>Answer:</strong><br>Legislative branch - in the UAE, the Federal National Council drafts and proposes laws.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">True or False: Civil law deals with crimes against society.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s38q1')" id="btn-s38q1">Show Answer</button>
+      <div class="answer hidden" id="s38q1"><strong>Answer:</strong><br>False. Civil law deals with disputes between individuals or organisations. Criminal law deals with crimes against society.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">Scenario: A students phone is stolen - civil or criminal?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s38q2')" id="btn-s38q2">Show Answer</button>
+      <div class="answer hidden" id="s38q2"><strong>Answer:</strong><br>Criminal law - theft is a crime against the state.</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">After a bill is drafted, what happens next?</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s38q3')" id="btn-s38q3">Show Answer</button>
+      <div class="answer hidden" id="s38q3"><strong>Answer:</strong><br>The bill is debated by the legislative body (in the UAE, the Federal National Council).</div>
+    </div>
+    <div class="question-block">
+      <div class="question-prompt">Name one role of the judicial branch.</div>
+      <button class="reveal-btn" onclick="toggleAnswer('s38q4')" id="btn-s38q4">Show Answer</button>
+      <div class="answer hidden" id="s38q4"><strong>Answer:</strong><br>The judicial branch interprets laws, decides legal cases, judges guilt or innocence, and ensures justice is delivered fairly.</div>
+    </div>
+  </div>
+</section>
 
-    <section class="slide" id="slide-40" data-slide="40">
-        <div class="slide-image-wrap">
-            <img src="images/slide_40.jpg" alt="Slide 40: Thank You!" class="slide-image" loading="lazy">
-        </div>
-        
-    </section>
-    
+<section class="slide" id="slide-39" data-slide="39">
+  <div class="slide-image-wrap">
+    <img src="slide_39.jpg" alt="Slide 39: Lesson Reflection and Next Steps" class="slide-image" loading="lazy">
+  </div>
+</section>
+
+<section class="slide" id="slide-40" data-slide="40">
+  <div class="slide-image-wrap">
+    <img src="slide_40.jpg" alt="Slide 40: Thank You" class="slide-image" loading="lazy">
+  </div>
+</section>
+
 </main>
-
 <script>
-  const TOTAL = 40;
-  let current = 1;
-
-  function goTo(idx) {
-    if (idx < 1 || idx > TOTAL) return;
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    const target = document.getElementById('slide-' + idx);
-    if (target) target.classList.add('active');
-    current = idx;
-    document.getElementById('curNum').textContent = idx;
-    document.getElementById('prevBtn').disabled = (idx === 1);
-    document.getElementById('nextBtn').disabled = (idx === TOTAL);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+const TOTAL = 40;
+let current = 1;
+function goTo(idx) {
+  if (idx < 1 || idx > TOTAL) return;
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('slide-' + idx);
+  if (target) target.classList.add('active');
+  current = idx;
+  document.getElementById('curNum').textContent = idx;
+  document.getElementById('prevBtn').disabled = (idx === 1);
+  document.getElementById('nextBtn').disabled = (idx === TOTAL);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function next() { goTo(current + 1); }
+function prev() { goTo(current - 1); }
+function toggleAnswer(id) {
+  const ans = document.getElementById(id);
+  const btn = document.getElementById('btn-' + id);
+  if (!ans) return;
+  if (ans.classList.contains('hidden')) {
+    ans.classList.remove('hidden');
+    btn.classList.add('shown');
+    btn.textContent = 'Hide Answer';
+  } else {
+    ans.classList.add('hidden');
+    btn.classList.remove('shown');
+    btn.textContent = 'Show Answer';
   }
-
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
-
-  function toggleAnswer(id) {
-    const ans = document.getElementById(id);
-    const btn = document.getElementById('btn-' + id);
-    if (!ans) return;
-    if (ans.classList.contains('hidden')) {
-      ans.classList.remove('hidden');
-      btn.classList.add('shown');
-      btn.textContent = 'Hide Answer / إخفاء الإجابة';
-    } else {
-      ans.classList.add('hidden');
-      btn.classList.remove('shown');
-      btn.textContent = 'Show Answer / إظهار الإجابة';
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      if (e.key === 'ArrowRight') next();
-      else if (e.key === 'ArrowLeft') prev();
-      else if (e.key === 'Home') goTo(1);
-      else if (e.key === 'End') goTo(TOTAL);
-    });
-    goTo(1);
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
+    else if (e.key === 'Home') goTo(1);
+    else if (e.key === 'End') goTo(TOTAL);
   });
+  goTo(1);
+});
 </script>
-
 </body>
 </html>
