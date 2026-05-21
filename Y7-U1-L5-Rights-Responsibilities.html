@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 7 — Unit 1 Lesson 5: Rights and Responsibilities</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #0a1929 0%, #1a2942 50%, #0f1b2e 100%);
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .ar { font-family: 'Cairo', 'Tajawal', sans-serif; direction: rtl; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(78,205,196,0.15));
+    border-radius: 24px;
+    margin-bottom: 30px;
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,107,107,0.9);
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  header h1 {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  header h2.ar {
+    font-size: 36px;
+    color: #4ecdc4;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  header .subtitle {
+    font-size: 18px;
+    color: #b8c5d6;
+    margin-top: 12px;
+  }
+
+  /* Lesson Map */
+  .map {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(78,205,196,0.3);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+  .map h3 {
+    font-size: 22px;
+    color: #4ecdc4;
+    margin-bottom: 8px;
+  }
+  .map h3.ar { color: #ffd93d; font-size: 20px; margin-bottom: 16px; }
+  .map-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+  .map-table th, .map-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .map-table th {
+    background: rgba(78,205,196,0.2);
+    color: #4ecdc4;
+    font-weight: 700;
+  }
+  .map-table td:first-child {
+    font-weight: 700;
+    color: #ffd93d;
+    width: 80px;
+  }
+
+  /* Learning Outcomes */
+  .outcomes {
+    background: linear-gradient(135deg, rgba(255,217,61,0.1), rgba(255,107,107,0.1));
+    border-left: 5px solid #ffd93d;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+  }
+  .outcomes h3 { color: #ffd93d; font-size: 22px; margin-bottom: 12px; }
+  .outcomes ul { list-style: none; padding-right: 0; }
+  .outcomes li {
+    padding: 8px 0;
+    padding-left: 30px;
+    position: relative;
+  }
+  .outcomes li::before {
+    content: '🎯';
+    position: absolute;
+    left: 0;
+  }
+  .outcomes .ar-text {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+    padding-right: 30px;
+    padding-left: 0;
+    color: #b8c5d6;
+    font-size: 15px;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Sections */
+  .section {
+    background: rgba(255,255,255,0.04);
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  .section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ff6b6b;
+    margin-bottom: 8px;
+    border-bottom: 3px solid #ff6b6b;
+    padding-bottom: 10px;
+    display: inline-block;
+  }
+  .section-title-ar {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    font-size: 22px;
+    color: #4ecdc4;
+    margin-bottom: 24px;
+    margin-top: 4px;
+  }
+
+  /* Vocabulary cards */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .vocab-card {
+    background: linear-gradient(135deg, #ffd93d, #ffb84d);
+    color: #0a1929;
+    padding: 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    user-select: none;
+  }
+  .vocab-card:hover, .vocab-card:active {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(255,217,61,0.3);
+  }
+  .vocab-card .en {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .vocab-card .reveal {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .vocab-card.active .reveal {
+    max-height: 200px;
+    margin-top: 12px;
+  }
+  .vocab-card .ar-word {
+    font-family: 'Cairo', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #8b0000;
+    margin-bottom: 4px;
+    direction: rtl;
+  }
+  .vocab-card .meaning {
+    font-size: 14px;
+    color: #2c3e50;
+    font-style: italic;
+  }
+  .tap-hint {
+    font-size: 11px;
+    color: #555;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  /* Warm-up brainstorm */
+  .brainstorm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  @media (max-width: 700px) {
+    .brainstorm { grid-template-columns: 1fr; }
+  }
+  .brainstorm-box {
+    background: rgba(78,205,196,0.1);
+    border: 2px solid #4ecdc4;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+  .brainstorm-box h4 {
+    font-size: 22px;
+    color: #4ecdc4;
+    margin-bottom: 16px;
+  }
+  .idea-btn {
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 8px 4px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .idea-btn:hover { background: #ff5252; transform: scale(1.05); }
+  .ideas-list {
+    margin-top: 16px;
+    text-align: left;
+    min-height: 100px;
+  }
+  .idea-item {
+    background: rgba(255,255,255,0.1);
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 8px;
+    border-right: 3px solid #ffd93d;
+    animation: slideIn 0.3s;
+  }
+  .idea-item .ar { color: #ffd93d; font-weight: 700; margin-left: 8px; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Reading passage */
+  .passage {
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 16px;
+    border-left: 4px solid #4ecdc4;
+  }
+  .passage p { margin-bottom: 14px; font-size: 16px; }
+  .passage .ar-text {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+    color: #b8c5d6;
+    font-size: 15px;
+    margin-top: 6px;
+    padding-right: 12px;
+    border-right: 3px solid rgba(255,217,61,0.4);
+  }
+  .key-term {
+    background: rgba(255,217,61,0.25);
+    color: #ffd93d;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+
+  /* Question cards (tap to reveal) */
+  .q-card {
+    background: linear-gradient(135deg, #4ecdc4, #44a39a);
+    color: #fff;
+    padding: 20px 24px;
+    border-radius: 16px;
+    margin: 14px 0;
+    cursor: pointer;
+    transition: all 0.25s;
+    user-select: none;
+    border: 2px solid transparent;
+  }
+  .q-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(78,205,196,0.4); }
+  .q-card.active { background: linear-gradient(135deg, #2d3748, #1a2942); border-color: #4ecdc4; }
+  .q-card .q-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .q-num {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .q-text { font-size: 17px; font-weight: 600; flex: 1; }
+  .q-text-ar {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 15px;
+    color: #ffd93d;
+    margin-top: 6px;
+    display: block;
+  }
+  .options { margin-top: 12px; padding-left: 48px; display: none; }
+  .q-card.active .options { display: block; animation: fadeIn 0.3s; }
+  .option {
+    background: rgba(255,255,255,0.08);
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin: 6px 0;
+    font-size: 15px;
+  }
+  .option.correct {
+    background: rgba(72,187,120,0.3);
+    border-left: 4px solid #48bb78;
+    font-weight: 700;
+  }
+  .option .ar-text {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 13px;
+    color: #b8c5d6;
+    display: block;
+    margin-top: 2px;
+  }
+  .answer-reveal {
+    margin-top: 14px;
+    padding: 14px;
+    background: rgba(72,187,120,0.2);
+    border-radius: 10px;
+    border-left: 4px solid #48bb78;
+    display: none;
+  }
+  .q-card.active .answer-reveal { display: block; animation: fadeIn 0.3s; }
+  .answer-reveal strong { color: #48bb78; }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Compare Rights — image cards */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+  @media (max-width: 700px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+  .compare-card {
+    background: rgba(255,255,255,0.06);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    user-select: none;
+  }
+  .compare-card:hover { transform: translateY(-4px); border-color: #4ecdc4; }
+  .compare-icon { font-size: 72px; margin-bottom: 12px; display: block; }
+  .compare-desc { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .compare-desc-ar { font-family: 'Cairo', sans-serif; font-size: 14px; color: #b8c5d6; }
+  .compare-answer {
+    margin-top: 14px;
+    padding: 12px;
+    background: rgba(255,217,61,0.2);
+    border-radius: 10px;
+    border: 2px solid #ffd93d;
+    display: none;
+    font-weight: 700;
+    color: #ffd93d;
+  }
+  .compare-card.active .compare-answer { display: block; animation: fadeIn 0.3s; }
+  .tap-label {
+    display: inline-block;
+    background: #ff6b6b;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: 700;
+  }
+
+  /* Categorize table */
+  .cat-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin-top: 20px;
+  }
+  .cat-row {
+    background: rgba(255,255,255,0.06);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cat-row:hover { background: rgba(78,205,196,0.15); }
+  .cat-row td {
+    padding: 14px 18px;
+    border: none;
+  }
+  .cat-row td:first-child { border-radius: 10px 0 0 10px; font-weight: 600; }
+  .cat-row td:last-child { border-radius: 0 10px 10px 0; text-align: center; width: 80px; font-size: 22px; }
+  .cat-row .cat-ar { font-family: 'Cairo', sans-serif; color: #b8c5d6; font-size: 13px; display: block; margin-top: 4px; }
+  .cat-answer { color: transparent; transition: color 0.3s; }
+  .cat-row.revealed .cat-answer { color: #48bb78; }
+  .cat-row.revealed { background: rgba(72,187,120,0.2); border: 2px solid #48bb78; }
+
+  /* Critical Thinking */
+  .think-card {
+    background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(255,217,61,0.15));
+    border: 2px solid #ff6b6b;
+    border-radius: 16px;
+    padding: 24px;
+    margin: 16px 0;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.25s;
+  }
+  .think-card:hover { transform: translateY(-3px); }
+  .think-q { font-size: 18px; font-weight: 700; color: #ffd93d; margin-bottom: 4px; }
+  .think-q-ar { font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; font-size: 16px; color: #4ecdc4; margin-bottom: 12px; }
+  .think-answer { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px dashed rgba(255,255,255,0.2); }
+  .think-card.active .think-answer { display: block; animation: fadeIn 0.3s; }
+  .think-answer p { margin-bottom: 10px; }
+  .think-answer .ar-text {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+    color: #b8c5d6;
+    font-size: 14px;
+    padding-right: 12px;
+    border-right: 3px solid rgba(255,217,61,0.4);
+  }
+
+  /* Reflection */
+  .reflection-box {
+    background: linear-gradient(135deg, rgba(78,205,196,0.1), rgba(255,217,61,0.1));
+    border: 2px solid #4ecdc4;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+  .reflection-box h4 {
+    color: #4ecdc4;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .reflection-box h4.ar { color: #ffd93d; font-family: 'Cairo', sans-serif; direction: rtl; }
+  .reflect-questions { margin: 16px 0; }
+  .reflect-q {
+    background: rgba(255,255,255,0.06);
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin: 8px 0;
+    border-left: 4px solid #ffd93d;
+  }
+  .reflect-q .ar-text {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+    color: #b8c5d6;
+    font-size: 14px;
+    margin-top: 4px;
+    display: block;
+  }
+  .sample-toggle {
+    background: #ffd93d;
+    color: #0a1929;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 16px;
+    font-family: inherit;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+  .sample-toggle:hover { background: #ffb84d; transform: scale(1.03); }
+  .sample-answer {
+    display: none;
+    margin-top: 16px;
+    padding: 18px;
+    background: rgba(72,187,120,0.15);
+    border-radius: 12px;
+    border-left: 4px solid #48bb78;
+  }
+  .sample-answer.show { display: block; animation: fadeIn 0.4s; }
+  .sample-answer .ar-text {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+    color: #b8c5d6;
+    font-size: 14px;
+    margin-top: 10px;
+    padding-right: 12px;
+    border-right: 3px solid rgba(255,217,61,0.4);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: #6b7a8f;
+    font-size: 14px;
+    margin-top: 40px;
+  }
+
+  .emoji-large { font-size: 24px; margin-right: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <span class="badge">YEAR 7 • UNIT 1 • LESSON 5</span>
+    <h1>Rights and Responsibilities</h1>
+    <h2 class="ar">الحقوق والواجبات</h2>
+    <p class="subtitle">Moral, Social and Cultural Studies — Impacts of Transitions in Europe</p>
+  </header>
+
+  <!-- Lesson Map -->
+  <div class="map">
+    <h3>🗺️ Lesson Map</h3>
+    <h3 class="ar">خريطة الدرس</h3>
+    <table class="map-table">
+      <tr><th>#</th><th>Activity</th><th>Skill</th></tr>
+      <tr><td>1</td><td>Warm-up: Brainstorm — Responsibilities</td><td>Speaking</td></tr>
+      <tr><td>2</td><td>Vocabulary (6 key words)</td><td>Vocabulary</td></tr>
+      <tr><td>3</td><td>Reading: Rights and Responsibilities</td><td>Reading</td></tr>
+      <tr><td>4</td><td>Activity 1: Concept Check (MCQ)</td><td>Comprehension</td></tr>
+      <tr><td>5</td><td>Activity 2: Compare Rights</td><td>Analysis</td></tr>
+      <tr><td>6</td><td>Activity 3: Categorize Actions</td><td>Classification</td></tr>
+      <tr><td>7</td><td>Activity 4: Critical Thinking</td><td>Discussion</td></tr>
+      <tr><td>8</td><td>Activity 5: Reflection</td><td>Writing</td></tr>
+    </table>
+  </div>
+
+  <!-- Learning Outcomes -->
+  <div class="outcomes">
+    <h3>🎯 Learning Outcomes</h3>
+    <ul>
+      <li>Learn about the rights and responsibilities of citizens in different political systems.
+        <span class="ar-text">التعرف على حقوق وواجبات المواطنين في الأنظمة السياسية المختلفة.</span>
+      </li>
+      <li>Compare and contrast the rights and responsibilities of individuals.
+        <span class="ar-text">المقارنة بين حقوق وواجبات الأفراد.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ============ SECTION 1: WARM-UP ============ -->
+  <div class="section">
+    <h2 class="section-title">🔥 Warm-up: Brainstorm</h2>
+    <div class="section-title-ar">التمهيد: العصف الذهني</div>
+    <p>What are your responsibilities <strong>at home</strong> and <strong>at school</strong>? Tap the buttons to add ideas!</p>
+    <p class="ar" style="color:#b8c5d6; margin-top:6px;">ما هي مسؤولياتك في البيت والمدرسة؟ اضغط على الأزرار لإضافة أفكار!</p>
+
+    <div class="brainstorm">
+      <div class="brainstorm-box">
+        <h4>🏠 AT HOME / في البيت</h4>
+        <button class="idea-btn" onclick="addIdea('home', 'Helping with chores', 'المساعدة في الأعمال المنزلية')">+ Chores</button>
+        <button class="idea-btn" onclick="addIdea('home', 'Respecting parents', 'احترام الوالدين')">+ Respect</button>
+        <button class="idea-btn" onclick="addIdea('home', 'Caring for siblings', 'الاهتمام بالإخوة')">+ Siblings</button>
+        <button class="idea-btn" onclick="addIdea('home', 'Tidying my room', 'ترتيب غرفتي')">+ Tidy room</button>
+        <div class="ideas-list" id="home-list"></div>
+      </div>
+      <div class="brainstorm-box">
+        <h4>🏫 AT SCHOOL / في المدرسة</h4>
+        <button class="idea-btn" onclick="addIdea('school', 'Doing homework', 'أداء الواجبات')">+ Homework</button>
+        <button class="idea-btn" onclick="addIdea('school', 'Listening to teachers', 'الاستماع للمعلمين')">+ Listen</button>
+        <button class="idea-btn" onclick="addIdea('school', 'Wearing uniform', 'ارتداء الزي')">+ Uniform</button>
+        <button class="idea-btn" onclick="addIdea('school', 'Being on time', 'الالتزام بالوقت')">+ Punctual</button>
+        <div class="ideas-list" id="school-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 2: VOCABULARY ============ -->
+  <div class="section">
+    <h2 class="section-title">📚 Vocabulary</h2>
+    <div class="section-title-ar">المفردات</div>
+    <p>Tap each card to reveal the Arabic translation and meaning.</p>
+    <p class="ar" style="color:#b8c5d6; margin-top:6px;">اضغط على كل بطاقة لتظهر الترجمة العربية والمعنى.</p>
+
+    <div class="vocab-grid">
+      <div class="vocab-card" onclick="this.classList.toggle('active')">
+        <div class="en">right</div>
+        <div class="tap-hint">👆 TAP TO REVEAL</div>
+        <div class="reveal">
+          <div class="ar-word">حق</div>
+          <div class="meaning">something a person is allowed to have or do</div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('active')">
+        <div class="en">according to</div>
+        <div class="tap-hint">👆 TAP TO REVEAL</div>
+        <div class="reveal">
+          <div class="ar-word">وفقاً لـ / حسب</div>
+          <div class="meaning">based on what is said or stated</div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('active')">
+        <div class="en">to categorize</div>
+        <div class="tap-hint">👆 TAP TO REVEAL</div>
+        <div class="reveal">
+          <div class="ar-word">يُصنّف</div>
+          <div class="meaning">to put things into groups</div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('active')">
+        <div class="en">to hold office</div>
+        <div class="tap-hint">👆 TAP TO REVEAL</div>
+        <div class="reveal">
+          <div class="ar-word">يتولى منصباً</div>
+          <div class="meaning">to have an official government job</div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('active')">
+        <div class="en">to extend to</div>
+        <div class="tap-hint">👆 TAP TO REVEAL</div>
+        <div class="reveal">
+          <div class="ar-word">يمتد إلى / يشمل</div>
+          <div class="meaning">to include or apply to</div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('active')">
+        <div class="en">to be reserved for</div>
+        <div class="tap-hint">👆 TAP TO REVEAL</div>
+        <div class="reveal">
+          <div class="ar-word">مخصص لـ</div>
+          <div class="meaning">to be kept only for certain people</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 3: READING ============ -->
+  <div class="section">
+    <h2 class="section-title">📖 Reading: Rights and Responsibilities</h2>
+    <div class="section-title-ar">القراءة: الحقوق والواجبات</div>
+
+    <div class="passage">
+      <p>One main focus of <span class="key-term">government</span> is protecting the welfare of the people who live in the country. The people who live in a country could be <span class="key-term">citizens</span> or <span class="key-term">residents</span>. Citizens are people who have the nationality of the country. Residents are people who are not citizens but live in the country.</p>
+      <div class="ar-text">من أهم أهداف الحكومة حماية رفاهية الناس الذين يعيشون في البلاد. والناس الذين يعيشون في بلد ما إما أن يكونوا مواطنين أو مقيمين. المواطنون هم الذين يحملون جنسية البلد، والمقيمون هم الذين يعيشون في البلد دون أن يكونوا مواطنين.</div>
+
+      <p style="margin-top:18px;">Rights given to people who live in the country can be categorized as <span class="key-term">'civil rights'</span> and <span class="key-term">'political rights.'</span> Examples of civil rights are the right to own property, the right to move around inside the country, and equality for people of any race, gender, or religion.</p>
+      <div class="ar-text">الحقوق التي تُمنح للناس الذين يعيشون في البلد تُصنّف إلى "حقوق مدنية" و"حقوق سياسية". من أمثلة الحقوق المدنية: حق التملّك، وحق التنقل داخل البلد، والمساواة بين الناس بغض النظر عن العرق أو الجنس أو الدين.</div>
+
+      <p style="margin-top:18px;">Political rights are the rights that citizens have to participate in government by election or by holding office.</p>
+      <div class="ar-text">أما الحقوق السياسية فهي الحقوق التي يتمتع بها المواطنون للمشاركة في الحكومة عن طريق الانتخاب أو تولّي المناصب.</div>
+
+      <p style="margin-top:18px;">Civil rights typically extend to citizens and residents, while political rights are normally reserved for citizens. For example, in the UAE citizens and residents enjoy safety and security. However, only citizens may vote in the <span class="key-term">FNC</span> elections or be appointed to FNC seats.</p>
+      <div class="ar-text">الحقوق المدنية تمتد عادةً للمواطنين والمقيمين، أما الحقوق السياسية فتكون عادةً مخصصة للمواطنين فقط. مثلاً، في الإمارات يتمتع المواطنون والمقيمون بالأمن والأمان، لكن المواطنين فقط هم من يحق لهم التصويت في انتخابات المجلس الوطني الاتحادي (FNC) أو التعيين فيه.</div>
+
+      <p style="margin-top:18px;">Rights come with responsibilities. It is the responsibility of everyone who lives in a country to understand and obey the laws of the country they live in. <strong>The rights and responsibilities balance.</strong></p>
+      <div class="ar-text">الحقوق تأتي مع الواجبات. من واجب كل شخص يعيش في بلد أن يفهم قوانين البلد ويلتزم بها. <strong>الحقوق والواجبات متوازنة.</strong></div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 4: ACTIVITY 1 — CONCEPT CHECK ============ -->
+  <div class="section">
+    <h2 class="section-title">✅ Activity 1: Concept Check</h2>
+    <div class="section-title-ar">النشاط الأول: التحقق من المفاهيم</div>
+    <p>Tap each question to see the correct answer.</p>
+    <p class="ar" style="color:#b8c5d6;">اضغط على كل سؤال لرؤية الإجابة الصحيحة.</p>
+
+    <!-- Q1 -->
+    <div class="q-card" onclick="this.classList.toggle('active')">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-text">
+          What is the difference between a right and a responsibility?
+          <span class="q-text-ar">ما الفرق بين الحق والواجب؟</span>
+        </div>
+      </div>
+      <div class="options">
+        <div class="option">a. A right is for individuals, but a responsibility is for everyone.</div>
+        <div class="option correct">✔ b. A right is something people <em>can</em> have but a responsibility is something people <em>must</em> do.
+          <span class="ar-text">الحق شيء يمكن للناس امتلاكه، أما الواجب فهو شيء يجب على الناس فعله.</span>
+        </div>
+        <div class="option">c. A right is something that exists in a democracy, but a responsibility is not.</div>
+        <div class="option">d. There is no difference between a right and a responsibility.</div>
+      </div>
+      <div class="answer-reveal"><strong>✓ Correct answer: B</strong></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card" onclick="this.classList.toggle('active')">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-text">
+          What is an example of a civil right?
+          <span class="q-text-ar">ما مثال على الحق المدني؟</span>
+        </div>
+      </div>
+      <div class="options">
+        <div class="option">a. going to college</div>
+        <div class="option">b. participating in national service</div>
+        <div class="option correct">✔ c. moving freely in the country
+          <span class="ar-text">التنقل بحرية داخل البلد</span>
+        </div>
+        <div class="option">d. running for office</div>
+      </div>
+      <div class="answer-reveal"><strong>✓ Correct answer: C</strong></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-card" onclick="this.classList.toggle('active')">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-text">
+          What is a responsibility for all people who live in a country?
+          <span class="q-text-ar">ما الواجب الذي يقع على جميع الناس الذين يعيشون في بلد ما؟</span>
+        </div>
+      </div>
+      <div class="options">
+        <div class="option">a. hold political office</div>
+        <div class="option">b. speak freely</div>
+        <div class="option correct">✔ c. understand and obey the country's laws
+          <span class="ar-text">فهم قوانين البلد والالتزام بها</span>
+        </div>
+        <div class="option">d. become wealthy</div>
+      </div>
+      <div class="answer-reveal"><strong>✓ Correct answer: C</strong></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-card" onclick="this.classList.toggle('active')">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-text">
+          What is an example of a political right?
+          <span class="q-text-ar">ما مثال على الحق السياسي؟</span>
+        </div>
+      </div>
+      <div class="options">
+        <div class="option correct">✔ a. voting in an election
+          <span class="ar-text">التصويت في الانتخابات</span>
+        </div>
+        <div class="option">b. owning a mobile phone</div>
+        <div class="option">c. driving a car</div>
+        <div class="option">d. opening a business</div>
+      </div>
+      <div class="answer-reveal"><strong>✓ Correct answer: A</strong></div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 5: ACTIVITY 2 — COMPARE RIGHTS ============ -->
+  <div class="section">
+    <h2 class="section-title">🔍 Activity 2: Compare Rights</h2>
+    <div class="section-title-ar">النشاط الثاني: قارن الحقوق</div>
+    <p>Look at each picture. Is it a <strong>Civil Right</strong> or a <strong>Political Right</strong>? Tap to check!</p>
+    <p class="ar" style="color:#b8c5d6;">انظر إلى كل صورة. هل هي حق مدني أم حق سياسي؟ اضغط للتحقق!</p>
+
+    <div class="compare-grid">
+      <div class="compare-card" onclick="this.classList.toggle('active')">
+        <span class="compare-icon">🚗</span>
+        <div class="compare-desc">Travelling freely across the country</div>
+        <div class="compare-desc-ar">التنقل بحرية في البلد</div>
+        <div class="tap-label">👆 TAP TO ANSWER</div>
+        <div class="compare-answer">✓ CIVIL RIGHT / حق مدني</div>
+      </div>
+
+      <div class="compare-card" onclick="this.classList.toggle('active')">
+        <span class="compare-icon">✊</span>
+        <div class="compare-desc">People protesting peacefully</div>
+        <div class="compare-desc-ar">الناس يحتجون سلمياً</div>
+        <div class="tap-label">👆 TAP TO ANSWER</div>
+        <div class="compare-answer">✓ CIVIL RIGHT / حق مدني<br><small style="font-weight:400;">(freedom of expression / حرية التعبير)</small></div>
+      </div>
+
+      <div class="compare-card" onclick="this.classList.toggle('active')">
+        <span class="compare-icon">🗳️</span>
+        <div class="compare-desc">Voting in an election</div>
+        <div class="compare-desc-ar">التصويت في الانتخابات</div>
+        <div class="tap-label">👆 TAP TO ANSWER</div>
+        <div class="compare-answer">✓ POLITICAL RIGHT / حق سياسي</div>
+      </div>
+
+      <div class="compare-card" onclick="this.classList.toggle('active')">
+        <span class="compare-icon">🎤</span>
+        <div class="compare-desc">Taking an oath of public office</div>
+        <div class="compare-desc-ar">أداء قسم تولّي منصب عام</div>
+        <div class="tap-label">👆 TAP TO ANSWER</div>
+        <div class="compare-answer">✓ POLITICAL RIGHT / حق سياسي</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 6: ACTIVITY 3 — CATEGORIZE ============ -->
+  <div class="section">
+    <h2 class="section-title">📊 Activity 3: Categorize</h2>
+    <div class="section-title-ar">النشاط الثالث: صنّف</div>
+    <p>Tap each action to reveal whether it is a <strong>Right</strong> or a <strong>Responsibility</strong>.</p>
+    <p class="ar" style="color:#b8c5d6;">اضغط على كل فعل لمعرفة إذا كان حقاً أم واجباً.</p>
+
+    <table class="cat-table">
+      <thead>
+        <tr style="background: rgba(78,205,196,0.2);">
+          <th style="padding:14px 18px; text-align:left; border-radius:10px 0 0 10px;">Action / الفعل</th>
+          <th style="padding:14px 18px; text-align:center; border-radius:0 10px 10px 0;">Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cat-row" onclick="this.classList.toggle('revealed')">
+          <td>paying taxes <span class="cat-ar">دفع الضرائب</span></td>
+          <td><span class="cat-answer">✅ Responsibility<br><small>واجب</small></span></td>
+        </tr>
+        <tr class="cat-row" onclick="this.classList.toggle('revealed')">
+          <td>voting in an election <span class="cat-ar">التصويت في الانتخابات</span></td>
+          <td><span class="cat-answer">✅ Right<br><small>حق</small></span></td>
+        </tr>
+        <tr class="cat-row" onclick="this.classList.toggle('revealed')">
+          <td>knowing and obeying all laws of the country <span class="cat-ar">معرفة قوانين البلد والالتزام بها</span></td>
+          <td><span class="cat-answer">✅ Responsibility<br><small>واجب</small></span></td>
+        </tr>
+        <tr class="cat-row" onclick="this.classList.toggle('revealed')">
+          <td>behaving respectfully <span class="cat-ar">التصرف باحترام</span></td>
+          <td><span class="cat-answer">✅ Responsibility<br><small>واجب</small></span></td>
+        </tr>
+        <tr class="cat-row" onclick="this.classList.toggle('revealed')">
+          <td>living safely and securely <span class="cat-ar">العيش بأمان واطمئنان</span></td>
+          <td><span class="cat-answer">✅ Right<br><small>حق</small></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ SECTION 7: ACTIVITY 4 — CRITICAL THINKING ============ -->
+  <div class="section">
+    <h2 class="section-title">🧠 Activity 4: Critical Thinking</h2>
+    <div class="section-title-ar">النشاط الرابع: التفكير الناقد</div>
+    <p>Discuss with a partner. Tap to see sample ideas.</p>
+    <p class="ar" style="color:#b8c5d6;">ناقش مع زميلك. اضغط لرؤية أفكار نموذجية.</p>
+
+    <div class="think-card" onclick="this.classList.toggle('active')">
+      <div class="think-q">❓ How do people learn about rights and responsibilities?</div>
+      <div class="think-q-ar">كيف يتعرف الناس على الحقوق والواجبات؟</div>
+      <div class="tap-label">👆 TAP FOR IDEAS</div>
+      <div class="think-answer">
+        <p>• From <strong>parents and family</strong> at home.</p>
+        <p>• From <strong>teachers and schools</strong> through subjects like Social Studies.</p>
+        <p>• From <strong>news, books, and the internet</strong>.</p>
+        <p>• From government information and the country's <strong>constitution and laws</strong>.</p>
+        <div class="ar-text">من الوالدين والعائلة في البيت، ومن المعلمين والمدرسة في مواد مثل الدراسات الاجتماعية، ومن الأخبار والكتب والإنترنت، ومن الحكومة ودستور البلد وقوانينه.</div>
+      </div>
+    </div>
+
+    <div class="think-card" onclick="this.classList.toggle('active')">
+      <div class="think-q">❓ How are rights and responsibilities monitored and enforced?</div>
+      <div class="think-q-ar">كيف تتم مراقبة الحقوق والواجبات وتطبيقها؟</div>
+      <div class="tap-label">👆 TAP FOR IDEAS</div>
+      <div class="think-answer">
+        <p>• Through <strong>laws and the constitution</strong>.</p>
+        <p>• By the <strong>police</strong> who keep order.</p>
+        <p>• Through <strong>courts and judges</strong> who decide on cases.</p>
+        <p>• By <strong>government bodies</strong> that protect citizens' welfare.</p>
+        <div class="ar-text">من خلال القوانين والدستور، وعن طريق الشرطة التي تحفظ النظام، ومن خلال المحاكم والقضاة الذين يبتّون في القضايا، وعن طريق الهيئات الحكومية التي تحمي رفاهية المواطنين.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 8: ACTIVITY 5 — REFLECTION ============ -->
+  <div class="section">
+    <h2 class="section-title">✍️ Activity 5: Reflection</h2>
+    <div class="section-title-ar">النشاط الخامس: تأمل</div>
+
+    <div class="reflection-box">
+      <h4>🤔 Think and reflect:</h4>
+      <h4 class="ar">فكّر وتأمّل:</h4>
+
+      <div class="reflect-questions">
+        <div class="reflect-q">
+          Why is it important for people who live in a country to obey the laws?
+          <span class="ar-text">لماذا من المهم أن يلتزم الناس الذين يعيشون في بلد ما بالقوانين؟</span>
+        </div>
+        <div class="reflect-q">
+          What can happen if people ignore the laws?
+          <span class="ar-text">ماذا يحدث إذا تجاهل الناس القوانين؟</span>
+        </div>
+        <div class="reflect-q">
+          How do laws help people have a happy and successful life?
+          <span class="ar-text">كيف تساعد القوانين الناس على عيش حياة سعيدة وناجحة؟</span>
+        </div>
+      </div>
+
+      <button class="sample-toggle" onclick="toggleSample()">💡 Show Sample Answer / إظهار إجابة نموذجية</button>
+
+      <div class="sample-answer" id="sampleAns">
+        <p>Obeying laws is important because <strong>laws protect everyone</strong>. When people follow the rules, the country is safe and people can live without fear. If people ignore laws, there is <strong>chaos</strong> — people get hurt, property is damaged, and trust is lost. Laws help us have a happy life by giving us <strong>safety, fairness, and equal opportunities</strong>. They make sure every person — citizen or resident — is treated fairly and can enjoy their rights. When citizens balance their <strong>rights and responsibilities</strong>, the whole country becomes stronger and more successful.</p>
+        <div class="ar-text">الالتزام بالقوانين مهم لأن القوانين تحمي الجميع. عندما يلتزم الناس بالقوانين، يصبح البلد آمناً ويعيش الناس بدون خوف. وإذا تجاهل الناس القوانين، تحدث الفوضى — يتأذى الناس، وتتلف الممتلكات، وتضيع الثقة. القوانين تساعدنا على عيش حياة سعيدة من خلال توفير الأمان والعدالة وتكافؤ الفرص، فهي تضمن معاملة كل شخص — مواطناً كان أم مقيماً — بإنصاف، وتمكّنه من التمتع بحقوقه. وعندما يوازن المواطنون بين حقوقهم وواجباتهم، يصبح البلد بأكمله أقوى وأكثر نجاحاً.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>✨ Year 7 — Unit 1, Lesson 5 — Rights and Responsibilities ✨</p>
+    <p style="margin-top:6px;">The English College Dubai • Moral, Social and Cultural Studies</p>
+  </footer>
+
+</div>
+
+<script>
+  function addIdea(target, en, ar) {
+    const list = document.getElementById(target + '-list');
+    const div = document.createElement('div');
+    div.className = 'idea-item';
+    div.innerHTML = '<span class="ar">' + ar + '</span> • ' + en;
+    list.appendChild(div);
+  }
+  function toggleSample() {
+    document.getElementById('sampleAns').classList.toggle('show');
+  }
+</script>
+</body>
+</html>
