@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Arabic Alphabet Piano | بيانو الحروف العربية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', 'Tajawal', sans-serif;
+  background: linear-gradient(135deg, #F5F3FF 0%, #FAF5FF 50%, #F0FDF4 100%);
+  direction: rtl;
+  position: relative;
+  min-height: 100vh;
+}
+
+body.is-home {
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+body.is-piano {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.decoration { position: absolute; pointer-events: none; user-select: none; z-index: 0; }
+.sparkle-1 { top: 8%; left: 12%; font-size: 22px; color: #FCD34D; }
+.sparkle-2 { top: 6%; right: 14%; font-size: 18px; color: #C4B5FD; }
+.sparkle-3 { top: 30%; left: 5%; font-size: 22px; color: #6EE7B7; }
+.sparkle-4 { bottom: 15%; right: 4%; font-size: 18px; color: #FCA5A5; }
+.note-1 { top: 10%; left: 22%; font-size: 38px; color: #818CF8; transform: rotate(-15deg); }
+.note-2 { top: 12%; right: 10%; font-size: 42px; color: #34D399; transform: rotate(20deg); }
+.dot-1 { top: 18%; left: 30%; width: 8px; height: 8px; background: #FBBF24; border-radius: 50%; }
+.dot-2 { top: 22%; right: 26%; width: 8px; height: 8px; background: #F87171; border-radius: 50%; }
+
+.app-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ HOME SCREEN ============ */
+.home-screen { padding: 12px 12px; text-align: center; }
+.home-screen.hidden { display: none; }
+
+.home-piano-illu {
+  width: 100%;
+  max-width: 280px;
+  height: 80px;
+  margin: 0 auto 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  direction: ltr;
+}
+.home-piano-illu .bw {
+  width: 24px;
+  height: 80px;
+  background: #fff;
+  border: 2px solid #1E293B;
+  border-radius: 0 0 5px 5px;
+  margin: 0 1px;
+  box-shadow: inset 0 -5px 0 #F1F5F9;
+}
+.home-piano-illu .bb {
+  width: 16px;
+  height: 48px;
+  background: #1E293B;
+  position: absolute;
+  top: 0;
+  border-radius: 0 0 4px 4px;
+}
+
+.home-title-en {
+  color: #1E293B;
+  font-size: 38px;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-family: 'Inter', sans-serif;
+}
+.home-title-ar {
+  background: linear-gradient(135deg, #818CF8 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 26px;
+  margin: 0 0 6px;
+  font-weight: 800;
+  font-family: 'Tajawal', sans-serif;
+}
+.home-subtitle {
+  color: #6B7280;
+  font-size: 13px;
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.home-subtitle .dot { color: #A78BFA; margin: 0 8px; }
+
+/* ============ SECTION CARDS (Like the image) ============ */
+.sections-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section-card {
+  background: #fff;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 16px 12px 14px;
+  box-shadow: 0 4px 16px rgba(30, 41, 59, 0.06);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 70px;
+  border-radius: 0 18px 0 100%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.section-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 0 0 18px 18px;
+}
+.card-1::before { background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); }
+.card-2::before { background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); }
+.card-3::before { background: linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%); }
+.card-4::before { background: linear-gradient(135deg, #E9D5FF 0%, #D8B4FE 100%); }
+.card-5::before { background: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%); }
+.card-6::before { background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); }
+.card-7::before { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
+.card-1::after { background: #3B82F6; }
+.card-2::after { background: #10B981; }
+.card-3::after { background: #F97316; }
+.card-4::after { background: #8B5CF6; }
+.card-5::after { background: #EC4899; }
+.card-6::after { background: #EF4444; }
+.card-7::after { background: #14B8A6; }
+
+.section-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(30, 41, 59, 0.1);
+}
+.section-card:active { transform: translateY(-1px) scale(0.98); }
+
+.card-num-square {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+}
+.card-1 .card-num-square { background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); }
+.card-2 .card-num-square { background: linear-gradient(135deg, #10B981 0%, #059669 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
+.card-3 .card-num-square { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4); }
+.card-4 .card-num-square { background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%); box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); }
+.card-5 .card-num-square { background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%); box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4); }
+.card-6 .card-num-square { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); }
+.card-7 .card-num-square { background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4); }
+
+.card-title-en {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1E293B;
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+  margin-top: 2px;
+}
+.card-title-ar {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Tajawal', sans-serif;
+  z-index: 1;
+}
+.card-1 .card-title-ar { color: #3B82F6; }
+.card-2 .card-title-ar { color: #10B981; }
+.card-3 .card-title-ar { color: #F97316; }
+.card-4 .card-title-ar { color: #8B5CF6; }
+.card-5 .card-title-ar { color: #EC4899; }
+.card-6 .card-title-ar { color: #EF4444; }
+.card-7 .card-title-ar { color: #14B8A6; }
+
+.card-letters {
+  font-size: 17px;
+  color: #1E293B;
+  font-weight: 700;
+  margin-top: 4px;
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  letter-spacing: 2px;
+}
+
+.card-count {
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border-radius: 980px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+}
+.card-1 .card-count { background: #DBEAFE; color: #1E40AF; }
+.card-2 .card-count { background: #D1FAE5; color: #065F46; }
+.card-3 .card-count { background: #FED7AA; color: #9A3412; }
+.card-4 .card-count { background: #E9D5FF; color: #5B21B6; }
+.card-5 .card-count { background: #FCE7F3; color: #9D174D; }
+.card-6 .card-count { background: #FEE2E2; color: #991B1B; }
+.card-7 .card-count { background: #CCFBF1; color: #115E59; }
+
+.features-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 800px;
+  margin: 14px auto 0;
+}
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 12px;
+}
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.f-1 { background: #DBEAFE; color: #3B82F6; }
+.f-2 { background: #D1FAE5; color: #10B981; }
+.f-3 { background: #EDE9FE; color: #8B5CF6; }
+.feature-text { display: flex; flex-direction: column; text-align: right; }
+.feature-title { font-size: 12px; font-weight: 800; color: #1E293B; font-family: 'Tajawal', sans-serif; }
+.feature-desc { font-size: 10px; color: #6B7280; font-family: 'Tajawal', sans-serif; margin-top: 2px; }
+
+.home-watermark {
+  margin-top: 14px;
+  color: #94A3B8;
+  font-size: 11px;
+  text-align: center;
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* ============ WORKSHEET BUTTON ============ */
+.worksheet-btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 14px auto 0;
+}
+.worksheet-btn {
+  background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.35);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+.worksheet-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(249, 115, 22, 0.45);
+}
+.worksheet-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+.worksheet-btn-icon {
+  width: 30px;
+  height: 30px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.worksheet-btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+.worksheet-btn-en {
+  font-size: 13px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+}
+.worksheet-btn-ar {
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.95;
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* ============ PIANO SCREEN ============ */
+.piano-screen { display: none; height: 100vh; padding: 16px; flex-direction: column; }
+.piano-screen.active { display: flex; }
+
+.piano-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.home-button {
+  background: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.08);
+  transition: all 0.2s;
+  color: #1E293B;
+}
+.home-button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 41, 59, 0.12); }
+.home-icon { width: 26px; height: 26px; background: #EEF2FF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+.section-badge {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.section-badge-en {
+  color: #1E293B;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'Tajawal', sans-serif;
+}
+.section-badge-ar {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Tajawal', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.section-badge.s1 .section-badge-ar { color: #3B82F6; }
+.section-badge.s2 .section-badge-ar { color: #10B981; }
+.section-badge.s3 .section-badge-ar { color: #F97316; }
+.section-badge.s4 .section-badge-ar { color: #8B5CF6; }
+.section-badge.s5 .section-badge-ar { color: #EC4899; }
+.section-badge.s6 .section-badge-ar { color: #EF4444; }
+.section-badge.s7 .section-badge-ar { color: #14B8A6; }
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+.legend-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 7px 16px;
+  border-radius: 980px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.legend-square {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+.legend-square.fatha { background: #fff; border: 1.5px solid #CBD5E1; }
+.legend-square.damma { background: #1E293B; }
+.legend-square.kasra { background: #EF4444; }
+
+.piano-main-area {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.display-card {
+  width: 170px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 22px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(30, 41, 59, 0.08);
+}
+
+.display-bubble {
+  width: 115px;
+  height: 115px;
+  background: #EEF2FF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s;
+}
+.display-bubble .letter {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+}
+.display-bubble.empty .letter { color: #C7D2FE; font-size: 52px; }
+.s1 .display-bubble .letter { color: #3B82F6; }
+.s2 .display-bubble .letter { color: #10B981; }
+.s3 .display-bubble .letter { color: #F97316; }
+.s4 .display-bubble .letter { color: #8B5CF6; }
+.s5 .display-bubble .letter { color: #EC4899; }
+.s6 .display-bubble .letter { color: #EF4444; }
+.s7 .display-bubble .letter { color: #14B8A6; }
+
+.display-name-en {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 4px;
+}
+.s1 .display-name-en { color: #3B82F6; }
+.s2 .display-name-en { color: #10B981; }
+.s3 .display-name-en { color: #F97316; }
+.s4 .display-name-en { color: #8B5CF6; }
+.s5 .display-name-en { color: #EC4899; }
+.s6 .display-name-en { color: #EF4444; }
+.s7 .display-name-en { color: #14B8A6; }
+.display-name-ar {
+  font-size: 14px;
+  color: #1E293B;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.display-divider {
+  width: 30px;
+  height: 2px;
+  background: #CBD5E1;
+  border-radius: 2px;
+}
+
+.piano-board {
+  flex: 1;
+  background: #1E3A8A;
+  border-radius: 24px;
+  padding: 24px 22px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.piano-board::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 80px;
+  height: 80px;
+  background-image: radial-gradient(rgba(255,255,255,0.15) 2px, transparent 2px);
+  background-size: 12px 12px;
+  pointer-events: none;
+}
+
+.piano-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.piano-cell {
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  position: relative;
+}
+
+.piano-cell.fatha { background: #fff; color: #1E293B; box-shadow: 0 4px 0 rgba(30, 58, 138, 0.15); }
+.piano-cell.damma { background: #1E293B; color: #fff; box-shadow: 0 4px 0 rgba(0,0,0,0.3); }
+.piano-cell.kasra { background: #EF4444; color: #fff; box-shadow: 0 4px 0 #B91C1C; }
+
+.piano-cell:hover { transform: translateY(-2px); }
+.piano-cell.pressed { transform: translateY(4px); box-shadow: 0 0 0 transparent !important; }
+
+@media (max-width: 1100px) {
+  .sections-grid { grid-template-columns: repeat(4, 1fr); }
+  .piano-cell { font-size: 38px; }
+}
+
+@media (max-width: 768px) {
+  .sections-grid { grid-template-columns: repeat(3, 1fr); }
+  .home-title-en { font-size: 26px; }
+  .home-title-ar { font-size: 20px; }
+  .home-piano-illu { height: 60px; max-width: 220px; }
+  .home-piano-illu .bw { height: 60px; width: 18px; }
+  .home-piano-illu .bb { height: 36px; width: 12px; }
+  .display-card { width: 130px; padding: 14px 10px; }
+  .display-bubble { width: 90px; height: 90px; margin-bottom: 12px; }
+  .display-bubble .letter { font-size: 56px; }
+  .display-bubble.empty .letter { font-size: 40px; }
+  .display-name-en { font-size: 14px; }
+  .display-name-ar { font-size: 12px; }
+  .piano-cell { font-size: 30px; border-radius: 14px; }
+  .piano-grid { gap: 8px; }
+  .piano-board { padding: 16px 14px; border-radius: 20px; }
+  .legend-pill { font-size: 11px; padding: 5px 12px; }
+  .features-row { grid-template-columns: 1fr; max-width: 250px; }
+}
+
+@media (max-height: 750px) {
+  .home-piano-illu { height: 60px; margin-bottom: 8px; }
+  .home-piano-illu .bw { height: 60px; }
+  .home-piano-illu .bb { height: 36px; }
+  .home-title-en { font-size: 28px; }
+  .home-title-ar { font-size: 20px; }
+  .home-subtitle { margin-bottom: 12px; font-size: 12px; }
+  .section-card { padding: 12px 10px 10px; }
+  .card-num-square { width: 42px; height: 42px; font-size: 22px; }
+  .card-title-en { font-size: 12px; }
+  .card-title-ar { font-size: 11px; }
+  .card-letters { font-size: 14px; }
+  .card-count { font-size: 9px; margin-top: 5px; padding: 4px 8px; }
+  .features-row { margin-top: 10px; }
+  .feature-item { padding: 7px 10px; }
+  .home-watermark { margin-top: 8px; }
+  .piano-cell { font-size: 38px; }
+  .display-bubble { width: 100px; height: 100px; }
+  .display-bubble .letter { font-size: 60px; }
+}
+
+@media (max-height: 650px) {
+  .piano-cell { font-size: 32px; }
+  .display-card { padding: 14px 10px; width: 145px; }
+  .display-bubble { width: 85px; height: 85px; margin-bottom: 10px; }
+  .display-bubble .letter { font-size: 52px; }
+  .piano-board { padding: 18px 16px; }
+  .piano-grid { gap: 10px; }
+}
+</style>
+</head>
+<body class="is-home">
+
+<div class="decoration sparkle-1">✦</div>
+<div class="decoration sparkle-2">✦</div>
+<div class="decoration sparkle-3">✦</div>
+<div class="decoration sparkle-4">✦</div>
+<div class="decoration note-1">♪</div>
+<div class="decoration note-2">♫</div>
+<div class="decoration dot-1"></div>
+<div class="decoration dot-2"></div>
+
+<div class="app-container">
+
+  <div class="home-screen" id="home-screen">
+    <div class="home-piano-illu">
+      <div style="position: relative; display: flex;">
+        <div class="bw"></div><div class="bw"></div><div class="bw"></div><div class="bw"></div><div class="bw"></div><div class="bw"></div><div class="bw"></div><div class="bw"></div><div class="bw"></div><div class="bw"></div>
+        <div class="bb" style="left: 17px;"></div>
+        <div class="bb" style="left: 43px;"></div>
+        <div class="bb" style="left: 95px;"></div>
+        <div class="bb" style="left: 121px;"></div>
+        <div class="bb" style="left: 147px;"></div>
+        <div class="bb" style="left: 199px;"></div>
+        <div class="bb" style="left: 225px;"></div>
+      </div>
+    </div>
+    
+    <h1 class="home-title-en">Arabic Alphabet Piano</h1>
+    <h2 class="home-title-ar">بيانو الحروف العربية</h2>
+    <p class="home-subtitle">Choose a section to start <span class="dot">•</span> اختر القسم لتبدأ رحلتك في تعلم الحروف</p>
+    
+    <div class="sections-grid">
+      <button class="section-card card-1" data-section="1">
+        <div class="card-num-square">1</div>
+        <span class="card-title-en">Section One</span>
+        <span class="card-title-ar">القسم الأول</span>
+        <span class="card-letters">ا ب ت ث</span>
+        <span class="card-count">📋 letters • حروف</span>
+      </button>
+      
+      <button class="section-card card-2" data-section="2">
+        <div class="card-num-square">2</div>
+        <span class="card-title-en">Section Two</span>
+        <span class="card-title-ar">القسم الثاني</span>
+        <span class="card-letters">ج ح خ د</span>
+        <span class="card-count">📋 letters • حروف</span>
+      </button>
+      
+      <button class="section-card card-3" data-section="3">
+        <div class="card-num-square">3</div>
+        <span class="card-title-en">Section Three</span>
+        <span class="card-title-ar">القسم الثالث</span>
+        <span class="card-letters">ذ ر ز س</span>
+        <span class="card-count">📋 letters • حروف</span>
+      </button>
+      
+      <button class="section-card card-4" data-section="4">
+        <div class="card-num-square">4</div>
+        <span class="card-title-en">Section Four</span>
+        <span class="card-title-ar">القسم الرابع</span>
+        <span class="card-letters">ش ص ض ط</span>
+        <span class="card-count">📋 letters • حروف</span>
+      </button>
+      
+      <button class="section-card card-5" data-section="5">
+        <div class="card-num-square">5</div>
+        <span class="card-title-en">Section Five</span>
+        <span class="card-title-ar">القسم الخامس</span>
+        <span class="card-letters">ظ ع غ ف</span>
+        <span class="card-count">📋 letters • حروف</span>
+      </button>
+      
+      <button class="section-card card-6" data-section="6">
+        <div class="card-num-square">6</div>
+        <span class="card-title-en">Section Six</span>
+        <span class="card-title-ar">القسم السادس</span>
+        <span class="card-letters">ق ك ل م</span>
+        <span class="card-count">📋 letters • حروف</span>
+      </button>
+      
+      <button class="section-card card-7" data-section="7">
+        <div class="card-num-square">7</div>
+        <span class="card-title-en">Section Seven</span>
+        <span class="card-title-ar">القسم السابع</span>
+        <span class="card-letters">ن ه و ي</span>
+        <span class="card-count">📋 letters • حروف</span>
+      </button>
+    </div>
+    
+    <div class="features-row">
+      <div class="feature-item">
+        <div class="feature-icon f-1">⭐</div>
+        <div class="feature-text">
+          <span class="feature-title">تقدم مستمر</span>
+          <span class="feature-desc">تتبع إنجازاتك خطوة بخطوة</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon f-2">🎯</div>
+        <div class="feature-text">
+          <span class="feature-title">طريقة سهلة</span>
+          <span class="feature-desc">تعلم بالترتيب والممارسة</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon f-3">🎵</div>
+        <div class="feature-text">
+          <span class="feature-title">تعلم تفاعلي</span>
+          <span class="feature-desc">صوت وصورة لكل حرف</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="worksheet-btn-wrap">
+      <a href="https://ghadamortada.github.io/Arabic-interactive-lessons/arabic-piano-worksheet-2pianos.html" target="_blank" class="worksheet-btn">
+        <div class="worksheet-btn-icon">📝</div>
+        <div class="worksheet-btn-text">
+          <span class="worksheet-btn-en">Print Worksheet</span>
+          <span class="worksheet-btn-ar">ورقة عمل للطباعة 🖨️</span>
+        </div>
+      </a>
+    </div>
+    
+    <div class="home-watermark">إعداد المعلمة: غادة مرتضى • Created by Ms. Ghada Mortada</div>
+  </div>
+
+  <div class="piano-screen" id="piano-screen">
+    <div class="piano-top-bar">
+      <button class="home-button" id="home-btn">
+        <div class="home-icon">🏠</div>
+        <span>← Home • الرئيسية</span>
+      </button>
+      <div class="section-badge" id="section-badge">
+        <span class="section-badge-en">تعلم الحركات</span>
+        <span class="section-badge-ar" id="section-badge-ar">القسم الأول 🎵</span>
+      </div>
+    </div>
+    
+    <div class="legend">
+      <div class="legend-pill"><span>Kasra • كسرة</span><div class="legend-square kasra"></div></div>
+      <div class="legend-pill"><span>Damma • ضمة</span><div class="legend-square damma"></div></div>
+      <div class="legend-pill"><span>Fatha • فتحة</span><div class="legend-square fatha"></div></div>
+    </div>
+    
+    <div class="piano-main-area" id="piano-main-area">
+      <div class="display-card">
+        <div class="display-bubble empty" id="display-bubble">
+          <span class="letter" id="display-letter">🎹</span>
+        </div>
+        <div class="display-name-en" id="display-name-en">Press a key</div>
+        <div class="display-name-ar" id="display-name-ar">اضغط مفتاح</div>
+        <div class="display-divider"></div>
+      </div>
+      <div class="piano-board">
+        <div class="piano-grid" id="piano-grid"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const sections = {
+    1: { titleAr: 'القسم الأول', letters: ['ا','ب','ت','ث'], class: 's1' },
+    2: { titleAr: 'القسم الثاني', letters: ['ج','ح','خ','د'], class: 's2' },
+    3: { titleAr: 'القسم الثالث', letters: ['ذ','ر','ز','س'], class: 's3' },
+    4: { titleAr: 'القسم الرابع', letters: ['ش','ص','ض','ط'], class: 's4' },
+    5: { titleAr: 'القسم الخامس', letters: ['ظ','ع','غ','ف'], class: 's5' },
+    6: { titleAr: 'القسم السادس', letters: ['ق','ك','ل','م'], class: 's6' },
+    7: { titleAr: 'القسم السابع', letters: ['ن','ه','و','ي'], class: 's7' }
+  };
+  
+  const harakats = [
+    { mark: 'َ', nameEn: 'Fatha', nameAr: 'فتحة', cls: 'fatha' },
+    { mark: 'ُ', nameEn: 'Damma', nameAr: 'ضمة', cls: 'damma' },
+    { mark: 'ِ', nameEn: 'Kasra', nameAr: 'كسرة', cls: 'kasra' }
+  ];
+
+  // ============ AUDIO - EXACT SAME CODE AS WORKING ALPHABET MAP ============
+  let currentAudio = null;
+  const speed = 0.8;
+  
+  function speakWithGoogle(text) {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+    // Google Translate TTS: ar lang code consistently uses female voice
+    const url = 'https://translate.google.com/translate_tts?ie=UTF-8&q=' + 
+                encodeURIComponent(text) + '&tl=ar&client=tw-ob';
+    const audio = new Audio(url);
+    audio.playbackRate = speed;
+    currentAudio = audio;
+    audio.play().catch(() => {});
+  }
+  
+  function playLetterSound(letterWithHarakat) {
+    // ALWAYS use Google TTS — most reliable consistent female voice
+    speakWithGoogle(letterWithHarakat);
+  }
+
+  function getDisplayLetter(letter, harakat) {
+    if (letter === 'ا') {
+      if (harakat.mark === 'ِ') return 'إِ';
+      return 'أ' + harakat.mark;
+    }
+    return letter + harakat.mark;
+  }
+
+  function buildPiano(sectionNum) {
+    const section = sections[sectionNum];
+    const grid = document.getElementById('piano-grid');
+    const badge = document.getElementById('section-badge');
+    const mainArea = document.getElementById('piano-main-area');
+    
+    document.getElementById('section-badge-ar').innerHTML = section.titleAr + ' 🎵';
+    badge.className = 'section-badge ' + section.class;
+    mainArea.className = 'piano-main-area ' + section.class;
+    
+    grid.innerHTML = '';
+    
+    harakats.forEach(h => {
+      section.letters.forEach(letter => {
+        const cell = document.createElement('div');
+        cell.className = 'piano-cell ' + h.cls;
+        const displayLetter = getDisplayLetter(letter, h);
+        cell.textContent = displayLetter;
+        cell.dataset.letter = displayLetter;
+        cell.dataset.harakatEn = h.nameEn;
+        cell.dataset.harakatAr = h.nameAr;
+        cell.addEventListener('click', function() {
+          this.classList.add('pressed');
+          const bubble = document.getElementById('display-bubble');
+          const letterEl = document.getElementById('display-letter');
+          letterEl.textContent = this.dataset.letter;
+          bubble.classList.remove('empty');
+          document.getElementById('display-name-en').textContent = this.dataset.harakatEn;
+          document.getElementById('display-name-ar').textContent = this.dataset.harakatAr;
+          
+          // 🔊 Play sound (Google TTS - female Arabic voice)
+          playLetterSound(this.dataset.letter);
+          
+          setTimeout(() => this.classList.remove('pressed'), 200);
+        });
+        grid.appendChild(cell);
+      });
+    });
+  }
+
+  document.querySelectorAll('.section-card').forEach(btn => {
+    btn.addEventListener('click', function() {
+      buildPiano(this.dataset.section);
+      document.getElementById('home-screen').classList.add('hidden');
+      document.getElementById('piano-screen').classList.add('active');
+      document.body.classList.remove('is-home');
+      document.body.classList.add('is-piano');
+      const bubble = document.getElementById('display-bubble');
+      bubble.classList.add('empty');
+      document.getElementById('display-letter').textContent = '🎹';
+      document.getElementById('display-name-en').textContent = 'Press a key';
+      document.getElementById('display-name-ar').textContent = 'اضغط مفتاح';
+    });
+  });
+
+  document.getElementById('home-btn').addEventListener('click', function() {
+    document.getElementById('piano-screen').classList.remove('active');
+    document.getElementById('home-screen').classList.remove('hidden');
+    document.body.classList.remove('is-piano');
+    document.body.classList.add('is-home');
+    if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  });
+})();
+</script>
+
+</body>
+</html>
