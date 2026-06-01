@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة تفاعلية - وحدة الخطط المستقبلية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #f8f4ff 0%, #fff5f5 50%, #f0f9ff 100%);
+    min-height: 100vh;
+    color: #2d1b4e;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  .main-header {
+    background: linear-gradient(135deg, #6d2e8a 0%, #b8336a 100%);
+    color: white;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(109, 46, 138, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .main-header::before {
+    content: '✨';
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 30px;
+    opacity: 0.4;
+  }
+  .main-header::after {
+    content: '📚';
+    position: absolute;
+    bottom: 10px; left: 15px;
+    font-size: 30px;
+    opacity: 0.4;
+  }
+  .main-header h1 { font-size: 2em; font-weight: 800; margin-bottom: 8px; }
+  .main-header p { font-size: 1.1em; opacity: 0.95; }
+  .teacher-name {
+    margin-top: 12px;
+    font-size: 0.95em;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 18px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  /* Navigation */
+  .nav-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  .nav-tab {
+    background: white;
+    border: 2px solid #b8336a;
+    color: #b8336a;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    transition: all 0.3s;
+    box-shadow: 0 3px 10px rgba(184, 51, 106, 0.15);
+  }
+  .nav-tab:hover { transform: translateY(-2px); }
+  .nav-tab.active {
+    background: #b8336a;
+    color: white;
+    box-shadow: 0 5px 15px rgba(184, 51, 106, 0.4);
+  }
+
+  /* Sheet sections */
+  .sheet { display: none; }
+  .sheet.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sheet-title {
+    background: linear-gradient(135deg, #fff 0%, #fef7fa 100%);
+    border: 3px solid #b8336a;
+    border-radius: 18px;
+    padding: 18px 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #6d2e8a;
+    box-shadow: 0 5px 15px rgba(184, 51, 106, 0.1);
+  }
+
+  /* Text passage */
+  .passage {
+    background: white;
+    border-right: 6px solid #b8336a;
+    border-radius: 15px;
+    padding: 22px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    font-family: 'Amiri', serif;
+    font-size: 1.3em;
+    line-height: 2;
+    color: #2d1b4e;
+  }
+  .passage-label {
+    display: inline-block;
+    background: #b8336a;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.7em;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .highlight-pink { color: #b8336a; font-weight: 700; }
+  .highlight-purple { color: #6d2e8a; font-weight: 700; }
+  .highlight-teal { color: #00a9a5; font-weight: 700; }
+
+  /* English line-by-line translation */
+  .ar-line {
+    display: block;
+    margin-top: 14px;
+  }
+  .en-line {
+    display: block;
+    direction: ltr;
+    text-align: left;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.62em;
+    color: #7c6f9c;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    padding-right: 8px;
+    border-right: 2px dotted #d4b8e8;
+  }
+
+  /* Section heading */
+  .section-heading {
+    background: linear-gradient(135deg, #6d2e8a 0%, #b8336a 100%);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    margin: 25px 0 18px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(109, 46, 138, 0.25);
+  }
+
+  /* Question card */
+  .question {
+    background: white;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-right: 5px solid #00a9a5;
+    transition: all 0.25s;
+  }
+  .question:hover {
+    transform: translateX(-3px);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+  }
+  .q-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2d1b4e;
+    margin-bottom: 6px;
+  }
+  .q-translation {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-style: italic;
+    margin-bottom: 4px;
+    direction: ltr;
+    text-align: left;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .q-pronunciation {
+    font-size: 0.88em;
+    color: #00a9a5;
+    direction: ltr;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .option {
+    background: #f8f4ff;
+    border: 2px solid #e9d8fd;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #2d1b4e;
+    font-weight: 500;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+
+  /* Answer reveal */
+  .show-answer-btn {
+    background: linear-gradient(135deg, #00a9a5 0%, #02c39a 100%);
+    color: white;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 25px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.25s;
+    box-shadow: 0 3px 10px rgba(0, 169, 165, 0.3);
+  }
+  .show-answer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 169, 165, 0.45);
+  }
+  .show-answer-btn.shown {
+    background: linear-gradient(135deg, #6d2e8a 0%, #b8336a 100%);
+  }
+  .answer-box {
+    display: none;
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #e6fffa 0%, #f0fdfa 100%);
+    border-right: 4px solid #00a9a5;
+    border-radius: 10px;
+    animation: slideDown 0.3s ease;
+  }
+  .answer-box.visible { display: block; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answer-label {
+    font-weight: 700;
+    color: #00766c;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+  }
+  .answer-text {
+    color: #1a4d4a;
+    font-size: 1.05em;
+    font-weight: 600;
+  }
+  .answer-explain {
+    color: #475569;
+    font-size: 0.9em;
+    margin-top: 5px;
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* True/False questions */
+  .tf-question {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-right: 4px solid #f59e0b;
+    flex-wrap: wrap;
+  }
+  .tf-num {
+    background: #f59e0b;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .tf-text {
+    flex: 1;
+    min-width: 200px;
+    font-size: 1.05em;
+    color: #2d1b4e;
+    font-weight: 500;
+  }
+  .tf-trans {
+    font-size: 0.85em;
+    color: #6b7280;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+    margin-top: 3px;
+  }
+  .tf-pronounce {
+    font-size: 0.85em;
+    color: #00a9a5;
+    direction: ltr;
+    text-align: left;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .tf-mark-btn {
+    background: white;
+    border: 2px solid #f59e0b;
+    color: #f59e0b;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tf-mark-btn:hover { background: #fef3c7; }
+  .tf-mark-btn.revealed {
+    color: white;
+  }
+  .tf-mark-btn.correct { background: #10b981; border-color: #10b981; }
+  .tf-mark-btn.wrong { background: #ef4444; border-color: #ef4444; }
+
+  /* Matching exercise */
+  .matching-container {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-right: 5px solid #8b5cf6;
+  }
+  .match-pair {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #faf5ff;
+    border-radius: 10px;
+  }
+  .match-word {
+    background: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    color: #6d2e8a;
+    border: 2px solid #e9d8fd;
+    font-size: 1em;
+  }
+  .match-word small {
+    display: block;
+    font-size: 0.75em;
+    color: #9ca3af;
+    font-weight: 400;
+    font-style: italic;
+    direction: ltr;
+    margin-top: 2px;
+  }
+  .match-arrow {
+    color: #8b5cf6;
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  /* Footer note */
+  .footer-note {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #6d2e8a 0%, #b8336a 100%);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.95em;
+    box-shadow: 0 5px 15px rgba(109, 46, 138, 0.25);
+  }
+  .footer-note .star { color: #fbbf24; font-size: 1.3em; }
+
+  /* Show all toggle */
+  .show-all-bar {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .show-all-btn {
+    background: linear-gradient(135deg, #b8336a 0%, #6d2e8a 100%);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  .progress-text {
+    color: #6d2e8a;
+    font-weight: 700;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 600px) {
+    .main-header h1 { font-size: 1.5em; }
+    .passage { font-size: 1.1em; }
+    .nav-tab { padding: 8px 14px; font-size: 0.9em; }
+    .match-pair { grid-template-columns: 1fr; gap: 5px; text-align: center; }
+    .match-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Main Header -->
+  <div class="main-header">
+    <h1>🌟 مراجعة تفاعلية - وحدة الخطط المستقبلية 🌟</h1>
+    <p>Interactive Review – Future Plans Unit</p>
+    <div class="teacher-name">إعداد المعلمة: غادة مرتضى</div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSheet(1)">📄 الورقة 1</button>
+    <button class="nav-tab" onclick="showSheet(2)">📄 الورقة 2</button>
+    <button class="nav-tab" onclick="showSheet(3)">📄 الورقة 3</button>
+    <button class="nav-tab" onclick="showSheet(4)">📄 الورقة 4</button>
+  </div>
+
+  <!-- =================== SHEET 1 =================== -->
+  <div class="sheet active" id="sheet-1">
+    <div class="sheet-title">📘 الورقة 1 - السفر في الصيف</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على "إظهار الإجابة" لكل سؤال</span>
+      <button class="show-all-btn" onclick="toggleAll(1)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <!-- Passage -->
+    <div class="passage">
+      <span class="passage-label">📖 النص</span>
+      <span class="ar-line">في الصَّيفِ سَأَذهب إلى <span class="highlight-pink">بيروت</span> لأزور صَديقي بلالاً.</span>
+      <span class="en-line">In summer, I will go to Beirut to visit my friend Bilal.</span>
+      <span class="ar-line">في شَهر أغسطس سَأَعودُ من <span class="highlight-purple">لُبنان</span> لأبدأ دَراستي. آمَلُ أَن أَدرسَ الطِّبَّ في <span class="highlight-teal">الجَامعة</span>.</span>
+      <span class="en-line">In August, I will return from Lebanon to start my studies. I hope to study medicine at the university.</span>
+      <span class="ar-line">في المستقبل أُريد أَن أَعمَل كطبيب أَطفال وآمَل أَن أُسَافِرَ إلى <span class="highlight-pink">أمريكا</span>.</span>
+      <span class="en-line">In the future, I want to work as a pediatrician and I hope to travel to America.</span>
+    </div>
+
+    <!-- Question 1: Multiple Choice -->
+    <div class="section-heading">📝 (1) اختر الإجابة الصحيحة - Choose the correct answer</div>
+
+    <div class="question">
+      <div class="q-text">ماذا سأفعل في الصيف؟</div>
+      <div class="q-translation">What will I do in the summer?</div>
+      <div class="q-pronunciation">Maatha sa-af'al fil-sayf?</div>
+      <div class="options">
+        <div class="option">أ) أذهب إلى دبي</div>
+        <div class="option">ب) أذهب إلى بيروت</div>
+        <div class="option">ج) أذهب إلى القاهرة</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) أذهب إلى بيروت</div>
+        <div class="answer-explain">Correct: (b) I go to Beirut – "sa-azhab ila Beirut"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">في أي شهر سأعود من لبنان؟</div>
+      <div class="q-translation">In which month will I return from Lebanon?</div>
+      <div class="q-pronunciation">Fi ayy shahr sa-a'ood min Lubnan?</div>
+      <div class="options">
+        <div class="option">أ) يوليو</div>
+        <div class="option">ب) أغسطس</div>
+        <div class="option">ج) سبتمبر</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) أغسطس</div>
+        <div class="answer-explain">Correct: (b) August – "Aghustus"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">ماذا أريد أن أدرس في الجامعة؟</div>
+      <div class="q-translation">What do I want to study at university?</div>
+      <div class="q-pronunciation">Maatha ureed an adrus fil-jami'a?</div>
+      <div class="options">
+        <div class="option">أ) القانون</div>
+        <div class="option">ب) الطب</div>
+        <div class="option">ج) الاقتصاد</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) الطب</div>
+        <div class="answer-explain">Correct: (b) Medicine – "al-Tibb"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">ماذا أريد أن أعمل في المستقبل؟</div>
+      <div class="q-translation">What do I want to work as in the future?</div>
+      <div class="q-pronunciation">Maatha ureed an a'mal fil-mustaqbal?</div>
+      <div class="options">
+        <div class="option">أ) مهندس</div>
+        <div class="option">ب) طبيب أطفال</div>
+        <div class="option">ج) معلم</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) طبيب أطفال</div>
+        <div class="answer-explain">Correct: (b) Children's doctor (pediatrician) – "tabeeb atfaal"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">إلى أي بلد أريد أن أسافر؟</div>
+      <div class="q-translation">Which country do I want to travel to?</div>
+      <div class="q-pronunciation">Ila ayy balad ureed an usafer?</div>
+      <div class="options">
+        <div class="option">أ) بريطانيا</div>
+        <div class="option">ب) كندا</div>
+        <div class="option">ج) أمريكا</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ج) أمريكا</div>
+        <div class="answer-explain">Correct: (c) America – "Amreeka"</div>
+      </div>
+    </div>
+
+    <!-- True/False Section -->
+    <div class="section-heading">✔️ (2) ضع علامة (✓) أو (✗) - True or False</div>
+
+    <div class="tf-question">
+      <div class="tf-num">1</div>
+      <div>
+        <div class="tf-text">سأسافر إلى بيروت في فصل الشتاء.</div>
+        <div class="tf-trans">I will travel to Beirut in winter.</div>
+        <div class="tf-pronounce">Sa-usafer ila Beirut fi fasl al-shitaa'.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">2</div>
+      <div>
+        <div class="tf-text">سأعود من لبنان في شهر أغسطس.</div>
+        <div class="tf-trans">I will return from Lebanon in August.</div>
+        <div class="tf-pronounce">Sa-a'ood min Lubnan fi shahr Aghustus.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">3</div>
+      <div>
+        <div class="tf-text">أريد أن أدرس الهندسة في الجامعة.</div>
+        <div class="tf-trans">I want to study engineering at university.</div>
+        <div class="tf-pronounce">Ureed an adrus al-handasa fil-jami'a.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">4</div>
+      <div>
+        <div class="tf-text">أريد أن أعمل طبيب أطفال في المستقبل.</div>
+        <div class="tf-trans">I want to work as a children's doctor in the future.</div>
+        <div class="tf-pronounce">Ureed an a'mal tabeeb atfaal fil-mustaqbal.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">5</div>
+      <div>
+        <div class="tf-text">أريد أن أسافر إلى أمريكا في المستقبل.</div>
+        <div class="tf-trans">I want to travel to America in the future.</div>
+        <div class="tf-pronounce">Ureed an usafer ila Amreeka fil-mustaqbal.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <!-- Matching Section -->
+    <div class="section-heading">🔗 (3) صل الكلمة بضدها - Match opposites</div>
+
+    <div class="matching-container">
+      <div class="match-pair">
+        <div class="match-word">الماضي <small>The past</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">المستقبل <small>The future</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">لا أريد <small>I don't want</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">أريد <small>I want</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">أذهب <small>I go</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">أعود <small>I return</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">الشتاء <small>Winter</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">الصيف <small>Summer</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">أبدأ <small>I begin</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">أنهي <small>I finish</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 2 =================== -->
+  <div class="sheet" id="sheet-2">
+    <div class="sheet-title">📘 الورقة 2 - يوم في وسط المدينة</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على "إظهار الإجابة" لكل سؤال</span>
+      <button class="show-all-btn" onclick="toggleAll(2)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="passage">
+      <span class="passage-label">📖 النص</span>
+      <span class="ar-line">اليَوم <span class="highlight-pink">14 أبريل</span>، والآنَ السَّاعَةُ <span class="highlight-purple">السَّادسةُ مساءً</span>.</span>
+      <span class="en-line">Today is April 14th, and now the time is six o'clock in the evening.</span>
+      <span class="ar-line">سَأَذهَبُ إلى وَسطِ المَدينةِ مَع أُمِّي، وَسَنَأكُلُ <span class="highlight-teal">سَمكًا</span> في مَطعَمٍ.</span>
+      <span class="en-line">I will go to the city centre with my mother, and we will eat fish at a restaurant.</span>
+      <span class="ar-line"><span class="highlight-pink">غَدًا</span>، 15 أبريل، سَأَحضُرُ <span class="highlight-purple">اجتماعًا</span> في المَكتَبِ <span class="highlight-teal">صَباحًا</span>.</span>
+      <span class="en-line">Tomorrow, April 15th, I will attend a meeting at the office in the morning.</span>
+    </div>
+
+    <!-- Multiple Choice -->
+    <div class="section-heading">📝 (1) اختر الإجابة الصحيحة - Choose the correct answer</div>
+
+    <div class="question">
+      <div class="q-text">متى الساعة الآن؟</div>
+      <div class="q-translation">What time is it now?</div>
+      <div class="q-pronunciation">Mata al-saa'a al-aan?</div>
+      <div class="options">
+        <div class="option">أ) السادسة مساءً</div>
+        <div class="option">ب) السادسة صباحًا</div>
+        <div class="option">ج) الخامسة مساءً</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">أ) السادسة مساءً</div>
+        <div class="answer-explain">Correct: (a) Six in the evening – "al-sadisa masa'an"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">إلى أين سيذهب مع أمه؟</div>
+      <div class="q-translation">Where will he go with his mother?</div>
+      <div class="q-pronunciation">Ila ayna sa-yathhab ma'a ummih?</div>
+      <div class="options">
+        <div class="option">أ) إلى المدينة</div>
+        <div class="option">ب) إلى المكتب</div>
+        <div class="option">ج) إلى المطار</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">أ) إلى المدينة</div>
+        <div class="answer-explain">Correct: (a) To the city – "ila al-madeena"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">ماذا سيأكل في المطعم؟</div>
+      <div class="q-translation">What will he eat at the restaurant?</div>
+      <div class="q-pronunciation">Maatha sa-ya'kul fil-mat'am?</div>
+      <div class="options">
+        <div class="option">أ) دجاجًا</div>
+        <div class="option">ب) لحمًا</div>
+        <div class="option">ج) سمكًا</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ج) سمكًا</div>
+        <div class="answer-explain">Correct: (c) Fish – "samakan"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">متى سيكون الاجتماع؟</div>
+      <div class="q-translation">When will the meeting be?</div>
+      <div class="q-pronunciation">Mata sa-yakoon al-ijtimaa'?</div>
+      <div class="options">
+        <div class="option">أ) صباحًا اليوم</div>
+        <div class="option">ب) مساءً اليوم</div>
+        <div class="option">ج) صباحًا غدًا</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ج) صباحًا غدًا</div>
+        <div class="answer-explain">Correct: (c) Tomorrow morning – "sabaahan ghadan"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">في أي يوم سيكون الاجتماع؟</div>
+      <div class="q-translation">On which day will the meeting be?</div>
+      <div class="q-pronunciation">Fi ayy yawm sa-yakoon al-ijtimaa'?</div>
+      <div class="options">
+        <div class="option">أ) اليوم</div>
+        <div class="option">ب) غدًا</div>
+        <div class="option">ج) بعد غد</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) غدًا</div>
+        <div class="answer-explain">Correct: (b) Tomorrow – "ghadan" (15 April)</div>
+      </div>
+    </div>
+
+    <!-- True/False -->
+    <div class="section-heading">✔️ (2) ضع علامة (✓) أو (✗) - True or False</div>
+
+    <div class="tf-question">
+      <div class="tf-num">1</div>
+      <div>
+        <div class="tf-text">الساعة الآن السادسة مساءً.</div>
+        <div class="tf-trans">It is now six in the evening.</div>
+        <div class="tf-pronounce">Al-saa'a al-aan al-sadisa masa'an.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">2</div>
+      <div>
+        <div class="tf-text">سيذهب إلى وسط المدينة مع أبيه.</div>
+        <div class="tf-trans">He will go to the city center with his father.</div>
+        <div class="tf-pronounce">Sa-yathhab ila wasat al-madeena ma'a abeeh.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">3</div>
+      <div>
+        <div class="tf-text">سيأكل لحمًا في مطعم.</div>
+        <div class="tf-trans">He will eat meat at a restaurant.</div>
+        <div class="tf-pronounce">Sa-ya'kul lahman fi mat'am.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">4</div>
+      <div>
+        <div class="tf-text">سيحضر اجتماعًا في المكتب صباحًا غدًا.</div>
+        <div class="tf-trans">He will attend a meeting at the office tomorrow morning.</div>
+        <div class="tf-pronounce">Sa-yahdur ijtimaa'an fil-maktab sabaahan ghadan.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">5</div>
+      <div>
+        <div class="tf-text">الاجتماع سيكون اليوم في المساء.</div>
+        <div class="tf-trans">The meeting will be today in the evening.</div>
+        <div class="tf-pronounce">Al-ijtimaa' sa-yakoon al-yawm fil-masaa'.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <!-- Matching -->
+    <div class="section-heading">🔗 (3) صل الكلمة بضدها - Match opposites</div>
+
+    <div class="matching-container">
+      <div class="match-pair">
+        <div class="match-word">اليوم <small>Today</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">غدًا <small>Tomorrow</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">سأذهب <small>I will go</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">سأعود <small>I will return</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">صباحًا <small>In the morning</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">مساءً <small>In the evening</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">المدينة <small>The city</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">الريف <small>The countryside</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 3 =================== -->
+  <div class="sheet" id="sheet-3">
+    <div class="sheet-title">📘 الورقة 3 - رحلة إلى الأقصر</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على "إظهار الإجابة" لكل سؤال</span>
+      <button class="show-all-btn" onclick="toggleAll(3)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="passage">
+      <span class="passage-label">📖 النص</span>
+      <span class="ar-line"><span class="highlight-pink">غَدًا</span> سَيَزورُونَ الأقصرَ.</span>
+      <span class="en-line">Tomorrow they will visit Luxor.</span>
+      <span class="ar-line">الإفطارُ السَّاعةَ <span class="highlight-purple">الخامسةَ والثُّلثَ صَباحًا</span>.</span>
+      <span class="en-line">Breakfast is at twenty past five in the morning.</span>
+      <span class="ar-line">وَسَيَأخُذونَ الباصَ السَّاعةَ <span class="highlight-teal">السَّادسةَ</span> إلى وَادي المُلوكِ غَربَ النِّيل.</span>
+      <span class="en-line">They will take the bus at six o'clock to the Valley of the Kings, west of the Nile.</span>
+      <span class="ar-line">بَعدَ ثَلاثِ ساعاتٍ في وَادي المُلوكِ سَيَذهَبونَ إلى المَتحَفِ الفِرعَونيِّ في وَسَطِ المَدينةِ.</span>
+      <span class="en-line">After three hours in the Valley of the Kings, they will go to the Pharaonic Museum in the city centre.</span>
+      <span class="ar-line">الغَداءُ في مَطعَم "أمون" بِجانبِ مَعبَدِ الكَرنَكِ المَشهور.</span>
+      <span class="en-line">Lunch is at "Amun" restaurant next to the famous Karnak Temple.</span>
+      <span class="ar-line">وَبَعدَ الغَداءِ سَيَزورُونَ المَعبَدَ.</span>
+      <span class="en-line">And after lunch they will visit the temple.</span>
+      <span class="ar-line">سَتَرجَعونَ إلى الفُندُقِ لِلعَشاءِ السَّاعةَ <span class="highlight-pink">الثَّامنةَ مساءً</span>.</span>
+      <span class="en-line">You will return to the hotel for dinner at eight o'clock in the evening.</span>
+    </div>
+
+    <!-- Multiple Choice -->
+    <div class="section-heading">📝 (1) اختر الإجابة الصحيحة - Choose the correct answer</div>
+
+    <div class="question">
+      <div class="q-text">متى الإفطار؟</div>
+      <div class="q-translation">When is breakfast?</div>
+      <div class="q-pronunciation">Mata al-iftaar?</div>
+      <div class="options">
+        <div class="option">أ) الخامسة والثلث صباحًا</div>
+        <div class="option">ب) السادسة صباحًا</div>
+        <div class="option">ج) السادسة مساءً</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">أ) الخامسة والثلث صباحًا</div>
+        <div class="answer-explain">Correct: (a) Five-twenty in the morning – "al-khamisa wal-thulth sabaahan"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">متى سيأخذون الباص؟</div>
+      <div class="q-translation">When will they take the bus?</div>
+      <div class="q-pronunciation">Mata sa-ya'khuthoon al-baas?</div>
+      <div class="options">
+        <div class="option">أ) الخامسة صباحًا</div>
+        <div class="option">ب) السادسة</div>
+        <div class="option">ج) السابعة</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) السادسة</div>
+        <div class="answer-explain">Correct: (b) Six o'clock – "al-sadisa"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">إلى أين سيذهبون بالباص؟</div>
+      <div class="q-translation">Where will they go by bus?</div>
+      <div class="q-pronunciation">Ila ayna sa-yathhaboon bil-baas?</div>
+      <div class="options">
+        <div class="option">أ) المتحف</div>
+        <div class="option">ب) وادي الملوك غرب النيل</div>
+        <div class="option">ج) معبد الكرنك</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) وادي الملوك غرب النيل</div>
+        <div class="answer-explain">Correct: (b) Valley of the Kings, west of the Nile – "Wadi al-Mulook gharb al-Neel"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">ماذا سيفعلون بعد ثلاث ساعات في وادي الملوك؟</div>
+      <div class="q-translation">What will they do after three hours in the Valley of the Kings?</div>
+      <div class="q-pronunciation">Maatha sa-yaf'aloon ba'd thalath saa'aat fi Wadi al-Mulook?</div>
+      <div class="options">
+        <div class="option">أ) ستأكلون الغداء</div>
+        <div class="option">ب) سيزورون المتحف الفرعوني</div>
+        <div class="option">ج) ستعودون إلى الفندق</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) سيزورون المتحف الفرعوني</div>
+        <div class="answer-explain">Correct: (b) They will visit the Pharaonic Museum – "sa-yazooroon al-mathaf al-fir'awni"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">أين سيأكلون الغداء؟</div>
+      <div class="q-translation">Where will they eat lunch?</div>
+      <div class="q-pronunciation">Ayna sa-ya'kuloon al-ghadaa'?</div>
+      <div class="options">
+        <div class="option">أ) في مطعم "أمون"</div>
+        <div class="option">ب) في الفندق</div>
+        <div class="option">ج) في المتحف</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">أ) في مطعم "أمون"</div>
+        <div class="answer-explain">Correct: (a) At "Amoon" restaurant – "fi mat'am Amoon"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">متى ستعودون إلى الفندق؟</div>
+      <div class="q-translation">When will they return to the hotel?</div>
+      <div class="q-pronunciation">Mata sa-ta'oodoon ila al-funduq?</div>
+      <div class="options">
+        <div class="option">أ) بعد الغداء</div>
+        <div class="option">ب) بعد زيارة المعبد</div>
+        <div class="option">ج) مساءً للعشاء</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ج) مساءً للعشاء (الثامنة مساءً)</div>
+        <div class="answer-explain">Correct: (c) In the evening for dinner (8 PM) – "al-thamina masa'an lil-'ashaa'"</div>
+      </div>
+    </div>
+
+    <!-- True/False -->
+    <div class="section-heading">✔️ (2) ضع علامة (✓) أو (✗) - True or False</div>
+
+    <div class="tf-question">
+      <div class="tf-num">1</div>
+      <div>
+        <div class="tf-text">سيزورون الأقصر غدًا.</div>
+        <div class="tf-trans">They will visit Luxor tomorrow.</div>
+        <div class="tf-pronounce">Sa-yazooroon al-Uqsur ghadan.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">2</div>
+      <div>
+        <div class="tf-text">الإفطار الساعة السادسة إلا الثلث صباحًا.</div>
+        <div class="tf-trans">Breakfast is at twenty to six in the morning.</div>
+        <div class="tf-pronounce">Al-iftaar al-saa'a al-sadisa illa al-thulth sabaahan.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">3</div>
+      <div>
+        <div class="tf-text">سيذهبون إلى وادي الملوك شرق النيل.</div>
+        <div class="tf-trans">They will go to the Valley of the Kings east of the Nile.</div>
+        <div class="tf-pronounce">Sa-yathhaboon ila Wadi al-Mulook sharq al-Neel.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">4</div>
+      <div>
+        <div class="tf-text">سيزورون المتحف الفرعوني بعد ثلاث ساعات في وادي الملوك.</div>
+        <div class="tf-trans">They will visit the Pharaonic Museum after three hours in the Valley of the Kings.</div>
+        <div class="tf-pronounce">Sa-yazooroon al-mathaf al-fir'awni ba'd thalath saa'aat fi Wadi al-Mulook.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">5</div>
+      <div>
+        <div class="tf-text">الغداء في مطعم "أمون" بجانب معبد الكرنك.</div>
+        <div class="tf-trans">Lunch is at "Amoon" restaurant beside Karnak Temple.</div>
+        <div class="tf-pronounce">Al-ghadaa' fi mat'am Amoon bi-janib ma'bad al-Karnak.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">6</div>
+      <div>
+        <div class="tf-text">سيزورون المعبد قبل الغداء.</div>
+        <div class="tf-trans">They will visit the temple before lunch.</div>
+        <div class="tf-pronounce">Sa-yazooroon al-ma'bad qabl al-ghadaa'.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">7</div>
+      <div>
+        <div class="tf-text">سيعودون إلى الفندق للعشاء الساعة الثامنة مساءً.</div>
+        <div class="tf-trans">They will return to the hotel for dinner at 8 PM.</div>
+        <div class="tf-pronounce">Sa-ya'oodoon ila al-funduq lil-'ashaa' al-saa'a al-thamina masa'an.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <!-- Matching -->
+    <div class="section-heading">🔗 (3) صل الكلمة بضدها - Match opposites</div>
+
+    <div class="matching-container">
+      <div class="match-pair">
+        <div class="match-word">غدًا <small>Tomorrow</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">أمس <small>Yesterday</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">الصباح <small>The morning</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">المساء <small>The evening</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">ستعودون <small>You will return (pl.)</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">ستذهبون <small>You will go (pl.)</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">نهارًا <small>By day</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">ليلًا <small>By night</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">بَعد <small>After</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">قَبل <small>Before</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SHEET 4 =================== -->
+  <div class="sheet" id="sheet-4">
+    <div class="sheet-title">📘 الورقة 4 - زينة وخططها للمستقبل</div>
+
+    <div class="show-all-bar">
+      <span class="progress-text">💡 اضغط على "إظهار الإجابة" لكل سؤال</span>
+      <button class="show-all-btn" onclick="toggleAll(4)">إظهار / إخفاء كل الإجابات</button>
+    </div>
+
+    <div class="passage">
+      <span class="passage-label">📖 النص</span>
+      <span class="ar-line">قابَلتُ زَينةَ في المَكتَبةِ مُنذُ أُسبوعَين، وَسَأَلتُها عَن خُطَطِها لِلمُستَقبَل.</span>
+      <span class="en-line">I met Zeina at the library two weeks ago, and I asked her about her plans for the future.</span>
+      <span class="ar-line">فقالَت زَينةُ: "سأَدرُسُ في المدرسةِ حَتى شَهر <span class="highlight-pink">مايو</span>. شَهرُ <span class="highlight-pink">يونيو</span> هو شَهرُ الامتحانات. وفي <span class="highlight-purple">الصَّيفِ</span> سَأكونُ مُشغُولةً.</span>
+      <span class="en-line">Zeina said: "I will study at school until May. June is the month of exams. And in the summer, I will be busy.</span>
+      <span class="ar-line">في يوليو، سأُسافِرُ إلى بَيتِ جَدِّي وَجَدَّتي في الرِّيفِ، ثُمَّ سَأَطيرُ إلى بَيروت في شَهرِ <span class="highlight-teal">أغُسطُس</span> لأزورَ صَديقَتي في لُبنانَ.</span>
+      <span class="en-line">In July, I will travel to my grandfather and grandmother's house in the countryside, then I will fly to Beirut in August to visit my friend in Lebanon.</span>
+      <span class="ar-line">سَأرجِعُ في <span class="highlight-pink">سَبتَمبَر</span> لأبدأَ الدِّراسةَ في الجَامِعةِ".</span>
+      <span class="en-line">I will return in September to start my studies at university."</span>
+      <span class="ar-line">سَأَلتُها: "هَل تَعرِفينَ في أيِّ جامِعةٍ سَتَدرُسينَ؟"</span>
+      <span class="en-line">I asked her: "Do you know which university you will study at?"</span>
+      <span class="ar-line">قالَت زَينةُ: "في الحَقيقةِ أنا لا أعرفُ الآنَ، ولَكنّي سَأَعرفُ في آخرِ أُسبوعٍ مِن أُغسُطس.</span>
+      <span class="en-line">Zeina said: "In fact, I don't know now, but I will know in the last week of August.</span>
+      <span class="ar-line">سَتَبعَثُ الجامِعةُ خِطابًا رَسميًّا: آمَلُ أن يكونَ الخطابُ مِن جامعةِ <span class="highlight-purple">أكسفُورد</span> أو <span class="highlight-purple">كامبريج</span>".</span>
+      <span class="en-line">The university will send an official letter: I hope the letter will be from Oxford University or Cambridge."</span>
+    </div>
+
+    <!-- Multiple Choice -->
+    <div class="section-heading">📝 (1) اختر الإجابة الصحيحة - Choose the correct answer</div>
+
+    <div class="question">
+      <div class="q-text">من أين قابلت زينة الساردة؟</div>
+      <div class="q-translation">Where did the narrator meet Zeina?</div>
+      <div class="q-pronunciation">Min ayna qaabalat Zeena al-saarida?</div>
+      <div class="options">
+        <div class="option">أ) في المدرسة</div>
+        <div class="option">ب) في المكتبة</div>
+        <div class="option">ج) في الجامعة</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) في المكتبة</div>
+        <div class="answer-explain">Correct: (b) At the library – "fil-maktaba"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">حتى أي شهر ستدرس زينة في المدرسة؟</div>
+      <div class="q-translation">Until which month will Zeina study at school?</div>
+      <div class="q-pronunciation">Hatta ayy shahr sa-tadrus Zeena fil-madrasa?</div>
+      <div class="options">
+        <div class="option">أ) أبريل</div>
+        <div class="option">ب) مايو</div>
+        <div class="option">ج) يونيو</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) مايو</div>
+        <div class="answer-explain">Correct: (b) May – "Mayo"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">ما هو شهر الامتحانات؟</div>
+      <div class="q-translation">Which is the month of exams?</div>
+      <div class="q-pronunciation">Ma huwa shahr al-imtihaanaat?</div>
+      <div class="options">
+        <div class="option">أ) مايو</div>
+        <div class="option">ب) يوليو</div>
+        <div class="option">ج) يونيو</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ج) يونيو</div>
+        <div class="answer-explain">Correct: (c) June – "Yunyo"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">إلى أين ستسافر زينة في شهر يوليو؟</div>
+      <div class="q-translation">Where will Zeina travel in July?</div>
+      <div class="q-pronunciation">Ila ayna sa-tusafer Zeena fi shahr Yulyo?</div>
+      <div class="options">
+        <div class="option">أ) إلى بيروت</div>
+        <div class="option">ب) إلى الريف</div>
+        <div class="option">ج) إلى لندن</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) إلى الريف</div>
+        <div class="answer-explain">Correct: (b) To the countryside (her grandparents' house) – "ila al-reef"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">أين ستزور صديقتها زينة في شهر أغسطس؟</div>
+      <div class="q-translation">Where will Zeina visit her friend in August?</div>
+      <div class="q-pronunciation">Ayna sa-tazoor sadeeqatuha Zeena fi shahr Aghustus?</div>
+      <div class="options">
+        <div class="option">أ) في مصر</div>
+        <div class="option">ب) في لبنان</div>
+        <div class="option">ج) في فرنسا</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) في لبنان</div>
+        <div class="answer-explain">Correct: (b) In Lebanon – "fi Lubnan" (Beirut)</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">متى ستبدأ زينة الدراسة في الجامعة؟</div>
+      <div class="q-translation">When will Zeina start studying at university?</div>
+      <div class="q-pronunciation">Mata sa-tabda' Zeena al-diraasa fil-jami'a?</div>
+      <div class="options">
+        <div class="option">أ) في أغسطس</div>
+        <div class="option">ب) في سبتمبر</div>
+        <div class="option">ج) في أكتوبر</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) في سبتمبر</div>
+        <div class="answer-explain">Correct: (b) In September – "fi September"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">ماذا ستبعث الجامعة إلى زينة؟</div>
+      <div class="q-translation">What will the university send Zeina?</div>
+      <div class="q-pronunciation">Maatha sa-tab'ath al-jami'a ila Zeena?</div>
+      <div class="options">
+        <div class="option">أ) رسالة نصية</div>
+        <div class="option">ب) خطابًا رسميًا</div>
+        <div class="option">ج) بريدًا إلكترونيًا</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) خطابًا رسميًا</div>
+        <div class="answer-explain">Correct: (b) An official letter – "khitaaban rasmiyyan"</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">ماذا تأمل زينة أن يكون الخطاب من؟</div>
+      <div class="q-translation">Which university does Zeina hope the letter is from?</div>
+      <div class="q-pronunciation">Maatha ta'mul Zeena an yakoon al-khitaab min?</div>
+      <div class="options">
+        <div class="option">أ) جامعة القاهرة</div>
+        <div class="option">ب) جامعة أكسفورد أو كامبريج</div>
+        <div class="option">ج) جامعة هارفارد</div>
+      </div>
+      <button class="show-answer-btn" onclick="toggleAnswer(this)">إظهار الإجابة ✨</button>
+      <div class="answer-box">
+        <div class="answer-label">✅ الإجابة الصحيحة:</div>
+        <div class="answer-text">ب) جامعة أكسفورد أو كامبريج</div>
+        <div class="answer-explain">Correct: (b) Oxford or Cambridge University – "jami'at Oxford aw Cambridge"</div>
+      </div>
+    </div>
+
+    <!-- True/False -->
+    <div class="section-heading">✔️ (2) ضع علامة (✓) أو (✗) - True or False</div>
+
+    <div class="tf-question">
+      <div class="tf-num">1</div>
+      <div>
+        <div class="tf-text">قابلت زينة في المكتبة منذ شهرين.</div>
+        <div class="tf-trans">She met Zeina at the library two months ago.</div>
+        <div class="tf-pronounce">Qaabalat Zeena fil-maktaba munthu shahrayn.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">2</div>
+      <div>
+        <div class="tf-text">ستدرس زينة حتى شهر يونيو.</div>
+        <div class="tf-trans">Zeina will study until June.</div>
+        <div class="tf-pronounce">Sa-tadrus Zeena hatta shahr Yunyo.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">3</div>
+      <div>
+        <div class="tf-text">شهر الامتحانات هو شهر مايو.</div>
+        <div class="tf-trans">The month of exams is May.</div>
+        <div class="tf-pronounce">Shahr al-imtihaanaat huwa shahr Mayo.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">4</div>
+      <div>
+        <div class="tf-text">ستسافر زينة إلى بيروت في شهر مايو.</div>
+        <div class="tf-trans">Zeina will travel to Beirut in May.</div>
+        <div class="tf-pronounce">Sa-tusafer Zeena ila Beirut fi shahr Mayo.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">5</div>
+      <div>
+        <div class="tf-text">سترجع زينة لتبدأ الدراسة في الجامعة في أكتوبر.</div>
+        <div class="tf-trans">Zeina will return to start university in October.</div>
+        <div class="tf-pronounce">Sa-tarji' Zeena li-tabda' al-diraasa fil-jami'a fi October.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">6</div>
+      <div>
+        <div class="tf-text">زينة تعرف الآن في أي جامعة ستدرس.</div>
+        <div class="tf-trans">Zeina knows now which university she will study at.</div>
+        <div class="tf-pronounce">Zeena ta'rif al-aan fi ayy jami'a sa-tadrus.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, false)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">7</div>
+      <div>
+        <div class="tf-text">ستبعث الجامعة خطابًا رسميًا إلى زينة.</div>
+        <div class="tf-trans">The university will send Zeina an official letter.</div>
+        <div class="tf-pronounce">Sa-tab'ath al-jami'a khitaaban rasmiyyan ila Zeena.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <div class="tf-question">
+      <div class="tf-num">8</div>
+      <div>
+        <div class="tf-text">زينة تأمل أن يكون الخطاب من جامعة أكسفورد أو كامبريج.</div>
+        <div class="tf-trans">Zeina hopes the letter is from Oxford or Cambridge.</div>
+        <div class="tf-pronounce">Zeena ta'mul an yakoon al-khitaab min jami'at Oxford aw Cambridge.</div>
+      </div>
+      <button class="tf-mark-btn" onclick="markTF(this, true)">إظهار</button>
+    </div>
+
+    <!-- Matching -->
+    <div class="section-heading">🔗 (3) صل الكلمة بضدها - Match opposites</div>
+
+    <div class="matching-container">
+      <div class="match-pair">
+        <div class="match-word">لا تعرف <small>She doesn't know</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">تعرف <small>She knows</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">أخيرًا <small>Finally / lastly</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">أوّلًا <small>Firstly</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">غير مشغولة <small>Not busy</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">مشغولة <small>Busy</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">بَعدَ ذلك <small>After that</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">قَبلَ ذلك <small>Before that</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">المدينة <small>The city</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">الريف <small>The countryside</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">غير رَسمي <small>Informal</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">رَسمي <small>Formal / official</small></div>
+      </div>
+      <div class="match-pair">
+        <div class="match-word">لن أزور <small>I will not visit</small></div>
+        <div class="match-arrow">↔</div>
+        <div class="match-word">سأزور <small>I will visit</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <span class="star">⭐</span> أحسنتم! استمروا في التعلم <span class="star">⭐</span><br>
+    <span style="font-size: 0.85em; opacity: 0.9;">Well done! Keep learning – إعداد المعلمة: غادة مرتضى</span>
+  </div>
+
+</div>
+
+<script>
+  // Tab navigation
+  function showSheet(num) {
+    document.querySelectorAll('.sheet').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('sheet-' + num).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Toggle single answer
+  function toggleAnswer(btn) {
+    const answerBox = btn.nextElementSibling;
+    answerBox.classList.toggle('visible');
+    btn.classList.toggle('shown');
+    btn.textContent = answerBox.classList.contains('visible') ? 'إخفاء الإجابة 🙈' : 'إظهار الإجابة ✨';
+  }
+
+  // Toggle all answers in a sheet
+  function toggleAll(sheetNum) {
+    const sheet = document.getElementById('sheet-' + sheetNum);
+    const buttons = sheet.querySelectorAll('.show-answer-btn');
+    const tfButtons = sheet.querySelectorAll('.tf-mark-btn');
+
+    // Check if most are visible
+    const visibleCount = sheet.querySelectorAll('.answer-box.visible').length;
+    const shouldShow = visibleCount < buttons.length / 2;
+
+    buttons.forEach(btn => {
+      const answerBox = btn.nextElementSibling;
+      if (shouldShow && !answerBox.classList.contains('visible')) {
+        answerBox.classList.add('visible');
+        btn.classList.add('shown');
+        btn.textContent = 'إخفاء الإجابة 🙈';
+      } else if (!shouldShow && answerBox.classList.contains('visible')) {
+        answerBox.classList.remove('visible');
+        btn.classList.remove('shown');
+        btn.textContent = 'إظهار الإجابة ✨';
+      }
+    });
+
+    tfButtons.forEach(btn => {
+      if (shouldShow && !btn.classList.contains('revealed')) {
+        btn.click();
+      } else if (!shouldShow && btn.classList.contains('revealed')) {
+        btn.classList.remove('revealed', 'correct', 'wrong');
+        btn.textContent = 'إظهار';
+      }
+    });
+  }
+
+  // Mark True/False question
+  function markTF(btn, isTrue) {
+    if (btn.classList.contains('revealed')) {
+      btn.classList.remove('revealed', 'correct', 'wrong');
+      btn.textContent = 'إظهار';
+    } else {
+      btn.classList.add('revealed');
+      if (isTrue) {
+        btn.classList.add('correct');
+        btn.innerHTML = '✓ صحيحة';
+      } else {
+        btn.classList.add('wrong');
+        btn.innerHTML = '✗ خاطئة';
+      }
+    }
+  }
+</script>
+</body>
+</html>
