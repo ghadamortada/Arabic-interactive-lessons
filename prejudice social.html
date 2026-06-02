@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدراك الأحكام المسبقة في المجتمع — الوحدة 4 الدرس 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1130;
+    --bg2:#241640;
+    --purple:#7c3aed;
+    --purple-soft:#a78bfa;
+    --cream:#fdf6e3;
+    --gold:#f4b942;
+    --gold-soft:#fde68a;
+    --teal:#2dd4bf;
+    --rose:#fb7185;
+    --good:#34d399;
+    --bad:#f87171;
+    --ink:#1e1530;
+    --line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Tajawal',sans-serif;
+    background:
+      radial-gradient(900px 500px at 12% -8%, #3b2168 0%, transparent 58%),
+      radial-gradient(800px 460px at 110% 8%, #4a1d52 0%, transparent 55%),
+      var(--bg);
+    color:var(--cream);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  .en{display:block;font-family:'Tajawal',sans-serif;direction:ltr;text-align:right;
+    font-size:.78rem;font-weight:500;color:var(--purple-soft);font-style:italic;margin-top:3px;line-height:1.45}
+
+  /* progress + nav */
+  .progress{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--gold),var(--teal));width:0;z-index:50;transition:width .35s}
+  .counter{position:fixed;top:12px;left:16px;background:rgba(0,0,0,.35);border:1px solid var(--line);
+    padding:5px 14px;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--gold-soft);z-index:50}
+
+  .stage{display:flex;justify-content:center;min-height:100vh;padding:64px 18px 110px}
+  .slide{display:none;width:100%;max-width:860px;animation:fade .45s ease}
+  .slide.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+  .unit-tag{font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:700;color:var(--gold-soft);
+    background:rgba(244,185,66,.1);border:1px solid rgba(244,185,66,.3);padding:5px 14px;border-radius:999px}
+  .badge{font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:999px;border:1px solid}
+  .b-intro{color:#86efac;background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3)}
+  .b-revisit{color:var(--teal);background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3)}
+  .b-explore{color:var(--gold);background:rgba(244,185,66,.1);border-color:rgba(244,185,66,.3)}
+  .b-apply{color:var(--rose);background:rgba(251,113,133,.1);border-color:rgba(251,113,133,.3)}
+  .b-reflect{color:var(--purple-soft);background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.35)}
+
+  h2.title{font-family:'Cairo',sans-serif;font-weight:900;font-size:clamp(1.5rem,4.5vw,2.4rem);line-height:1.3;margin-bottom:6px}
+  .subtitle{color:var(--purple-soft);font-size:1.02rem;font-weight:500;margin-bottom:22px}
+
+  /* hero / title slide */
+  .hero{text-align:center;padding:36px 22px;border-radius:26px;
+    background:linear-gradient(150deg,#3b1d6e,#5b2280 55%,#7c3aed);
+    border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 60px rgba(0,0,0,.4)}
+  .hero .ds{font-family:'Cairo',sans-serif;color:var(--gold-soft);font-weight:700;letter-spacing:.06em;margin-bottom:10px}
+  .hero h1{font-family:'Cairo',sans-serif;font-weight:900;font-size:clamp(2rem,7vw,3.4rem);line-height:1.25;
+    text-shadow:0 4px 0 rgba(0,0,0,.25);margin-bottom:6px}
+  .hero .h-en{display:block;direction:ltr;color:#e9d5ff;font-size:1rem;font-weight:600;margin-top:10px;font-style:italic}
+  .pills{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 16px;border-radius:999px;font-size:.85rem;font-weight:700}
+
+  /* generic cards */
+  .card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px}
+  .big-q{background:linear-gradient(135deg,rgba(244,185,66,.16),rgba(124,58,237,.16));
+    border:2px solid rgba(244,185,66,.4);border-radius:22px;padding:26px;text-align:center;animation:pulse 2.6s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(244,185,66,.28)}50%{box-shadow:0 0 0 14px rgba(244,185,66,0)}}
+  .big-q .lbl{font-family:'Cairo',sans-serif;color:var(--gold);font-weight:700;margin-bottom:10px}
+  .big-q p{font-size:1.25rem;font-weight:700;line-height:1.6}
+
+  /* outcomes */
+  .outcome{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.05);
+    border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:11px}
+  .onum{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--gold));
+    display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;color:#fff}
+  .outcome p{font-weight:700;line-height:1.5}
+
+  /* vocab */
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .vcard{cursor:pointer;background:rgba(255,255,255,.05);border:2px solid var(--line);border-radius:18px;
+    padding:20px;text-align:center;transition:.2s;user-select:none}
+  .vcard:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .vcard .ic{font-size:2rem;display:block;margin-bottom:8px}
+  .vcard .w{font-family:'Cairo',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold-soft)}
+  .vcard .w .en{color:var(--purple-soft);font-size:.85rem;font-weight:600;font-style:normal}
+  .vcard .def{max-height:0;overflow:hidden;opacity:0;transition:.3s;font-size:.95rem;font-weight:500;line-height:1.55;margin-top:0}
+  .vcard.open .def{max-height:240px;opacity:1;margin-top:12px}
+  .vcard .hint{font-size:.78rem;color:var(--purple-soft);margin-top:8px}
+  .vcard.open .hint{display:none}
+
+  /* match game */
+  .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .match-col h4{font-family:'Cairo',sans-serif;text-align:center;color:var(--purple-soft);margin-bottom:10px;font-size:.95rem}
+  .mitem{background:rgba(255,255,255,.06);border:2px solid var(--line);border-radius:14px;padding:13px;margin-bottom:10px;
+    cursor:pointer;font-weight:700;transition:.18s;text-align:center}
+  .mitem:hover{border-color:var(--purple-soft)}
+  .mitem.sel{border-color:var(--gold);background:rgba(244,185,66,.14)}
+  .mitem.done{border-color:var(--good);background:rgba(52,211,153,.16);cursor:default;opacity:.85}
+  .mfb{text-align:center;margin-top:10px;font-weight:700;min-height:22px}
+
+  /* story */
+  .story{background:rgba(253,246,227,.06);border-right:4px solid var(--gold);border-radius:14px;
+    padding:20px 22px;line-height:2;font-size:1.05rem;font-weight:500}
+  .story .hl{background:rgba(244,185,66,.22);border-radius:5px;padding:0 4px;font-weight:700}
+  .story .hlg{background:rgba(52,211,153,.2);border-radius:5px;padding:0 4px;font-weight:700;color:#a7f3d0}
+  .story .name{color:var(--teal);font-weight:800}
+
+  /* reveal Q cards */
+  .qcard{cursor:pointer;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;
+    padding:18px 20px;margin-bottom:13px;transition:.2s;user-select:none}
+  .qcard:hover{border-color:var(--purple-soft)}
+  .qcard .q{font-weight:800;display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+  .qcard .q .qn{flex-shrink:0;color:var(--gold)}
+  .qcard .tap{font-size:.78rem;color:var(--purple-soft);margin-top:8px}
+  .qcard .ans{max-height:0;overflow:hidden;opacity:0;transition:.35s;margin-top:0;
+    background:rgba(52,211,153,.1);border-right:3px solid var(--good);border-radius:8px;padding:0 14px}
+  .qcard.open .ans{max-height:320px;opacity:1;margin-top:12px;padding:12px 14px}
+  .qcard.open .tap{display:none}
+  .ans .en{color:#86efac}
+
+  /* walking debate */
+  .stmt{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:13px}
+  .stmt p{font-weight:700;line-height:1.5;margin-bottom:12px}
+  .votes{display:flex;gap:10px;flex-wrap:wrap}
+  .vote{flex:1;min-width:80px;border:2px solid var(--line);background:transparent;color:var(--cream);
+    border-radius:12px;padding:10px;font-family:'Tajawal',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:.18s}
+  .vote:hover{transform:translateY(-2px)}
+  .vote.yes.on{background:rgba(52,211,153,.2);border-color:var(--good);color:#a7f3d0}
+  .vote.no.on{background:rgba(248,113,113,.18);border-color:var(--bad);color:#fecaca}
+  .vote.maybe.on{background:rgba(244,185,66,.18);border-color:var(--gold);color:var(--gold-soft)}
+  .debate-note{background:rgba(167,139,250,.1);border:1px dashed rgba(167,139,250,.4);border-radius:14px;
+    padding:14px 18px;margin-bottom:16px;font-weight:600;line-height:1.6}
+
+  /* culture inputs */
+  .crow{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+  .crank{flex-shrink:0;width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--rose));
+    display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-family:'Cairo',sans-serif}
+  .cinp{flex:1;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:12px;
+    padding:11px 14px;color:var(--cream);font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:600}
+  .cinp:focus{outline:none;border-color:var(--gold)}
+
+  /* teacher note */
+  .tnote{background:rgba(124,58,237,.14);border:1px solid rgba(167,139,250,.35);border-radius:14px;
+    padding:12px 16px;margin-top:14px;font-size:.92rem;font-weight:600;line-height:1.6}
+  .tnote b{color:var(--gold-soft)}
+
+  .reflect{background:linear-gradient(135deg,#3b1d6e,#7c3aed);border-radius:22px;padding:30px;text-align:center;
+    border:1px solid rgba(255,255,255,.16)}
+  .reflect .big{font-family:'Cairo',sans-serif;font-size:1.5rem;font-weight:900;color:var(--gold-soft);margin-bottom:14px}
+
+  .watermark{text-align:center;margin-top:26px;font-size:.85rem;color:var(--purple-soft);
+    border:1px dashed var(--line);border-radius:10px;padding:8px;display:inline-block}
+  .wm-wrap{text-align:center}
+
+  /* bottom nav */
+  .navbar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;
+    padding:14px;background:linear-gradient(0deg,rgba(15,9,30,.96),rgba(15,9,30,.6));border-top:1px solid var(--line);z-index:50}
+  .nbtn{background:linear-gradient(135deg,var(--purple),#5b2280);color:#fff;border:none;border-radius:12px;
+    padding:11px 26px;font-family:'Cairo',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:.18s}
+  .nbtn:hover{transform:translateY(-2px)}
+  .nbtn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+  .dots{display:flex;gap:7px}
+  .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:.2s}
+  .dot.active{background:var(--gold);transform:scale(1.35)}
+
+  @media(max-width:600px){
+    .vgrid,.match-wrap{grid-template-columns:1fr}
+    .stage{padding:60px 12px 100px}
+    .card,.hero{padding:18px}
+    .navbar .dots{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+<div class="counter" id="counter">1 / 13</div>
+
+<div class="stage">
+
+  <!-- 1 TITLE -->
+  <section class="slide active">
+    <div class="hero">
+      <div class="ds">الوحدة 4 · الدرس 4 — التربية الأخلاقية والاجتماعية والثقافية</div>
+      <h1>إدراك الأحكام المسبقة في المجتمع</h1>
+      <span class="h-en">Recognising Prejudice in Society</span>
+      <div class="pills">
+        <span class="pill">📖 الصف السابع · Year 7</span>
+        <span class="pill">⏱ 45 دقيقة</span>
+        <span class="pill">🖐️ تفاعلي</span>
+        <span class="pill">🏫 سبورة ذكية</span>
+      </div>
+    </div>
+    <div class="wm-wrap"><div class="watermark">إعداد المعلمة: غادة مرتضى</div></div>
+  </section>
+
+  <!-- 2 BIG QUESTION -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">السؤال الكبير · Big Question</span><span class="badge b-intro">🌱 تقديم · Introduce</span></div>
+    <div class="big-q">
+      <div class="lbl">🤔 فكّر معنا</div>
+      <p>لماذا نُصدر أحياناً حُكماً على الآخرين قبل أن نتعرّف إليهم حقاً؟<span class="en">Why do we sometimes judge others before we truly get to know them?</span></p>
+    </div>
+    <div class="tnote"><b>🎓 ملاحظة للمعلمة:</b> اطرحي السؤال واستمعي لـ 3–4 إجابات قبل البدء. <b>الوقت: دقيقتان</b></div>
+  </section>
+
+  <!-- 3 OUTCOMES -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">نواتج التعلم · Learning Outcomes</span><span class="badge b-intro">🌱 تقديم · Introduce</span></div>
+    <h2 class="title">في نهاية الدرس سأكون قادراً على... 🎯</h2>
+    <p class="subtitle">By the end of the lesson, I will be able to…</p>
+    <div class="outcome"><div class="onum">1</div><p>التحدّث عن بعض آرائي المسبقة واقتراح استراتيجيات للتغلّب عليها.<span class="en">Talk about some of my preconceived opinions and suggest strategies to overcome them.</span></p></div>
+    <div class="outcome"><div class="onum">2</div><p>إظهار الاحترام لأوجه الاختلاف وعدم التمييز في معاملة الأقران داخل الصف والمدرسة.<span class="en">Show respect for differences and avoid discrimination toward peers in class and school.</span></p></div>
+    <div class="outcome"><div class="onum">3</div><p>تعريف "التحيّز" وفهم من أين يأتي وكيف نتجاوزه.<span class="en">Define "prejudice", understand where it comes from, and how to overcome it.</span></p></div>
+  </section>
+
+  <!-- 4 VOCAB -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">المفردات الأساسية · Key Vocabulary</span><span class="badge b-revisit">🔄 مراجعة · Revisit</span></div>
+    <h2 class="title">المفردات الأساسية 📚</h2>
+    <p class="subtitle">اقرأ الكلمة وخمّن معناها، ثم اضغط لتكشف · Tap to reveal</p>
+    <div class="vgrid">
+      <div class="vcard" onclick="this.classList.toggle('open')">
+        <span class="ic">⚖️</span>
+        <span class="w">التحيّز<span class="en">Prejudice</span></span>
+        <div class="def">رأي غير عادل نُكوّنه عن شخص أو مجموعة دون معرفة حقيقية بهم.<span class="en">An unfair opinion about a person or group, formed without real knowledge of them.</span></div>
+        <div class="hint">👆 اضغط للكشف</div>
+      </div>
+      <div class="vcard" onclick="this.classList.toggle('open')">
+        <span class="ic">💗</span>
+        <span class="w">التعاطف<span class="en">Sympathy / Empathy</span></span>
+        <div class="def">مشاركة الآخر مشاعره وفهم موقفه والشعور معه.<span class="en">Sharing another person's feelings and understanding their situation.</span></div>
+        <div class="hint">👆 اضغط للكشف</div>
+      </div>
+    </div>
+    <div class="tnote"><b>🎓 ملاحظة للمعلمة:</b> اقرئي كل كلمة بصوت عالٍ قبل الكشف. <b>الوقت: 4 دقائق</b></div>
+  </section>
+
+  <!-- 5 MATCH GAME -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">نشاط · صل الكلمة بمعناها</span><span class="badge b-revisit">🔄 مراجعة · Revisit</span></div>
+    <h2 class="title">صل الكلمة بمعناها 🔗</h2>
+    <p class="subtitle">اضغط كلمة ثم معناها الصحيح · Match each word to its meaning</p>
+    <div class="match-wrap">
+      <div class="match-col">
+        <h4>الكلمات · Words</h4>
+        <div class="mitem" data-key="a" onclick="pickWord(this)">التحيّز</div>
+        <div class="mitem" data-key="b" onclick="pickWord(this)">التعاطف</div>
+        <div class="mitem" data-key="c" onclick="pickWord(this)">الاختلاف</div>
+      </div>
+      <div class="match-col">
+        <h4>المعاني · Meanings</h4>
+        <div class="mitem" data-key="b" onclick="pickDef(this)">أن نفهم شعور الآخر ونشاركه</div>
+        <div class="mitem" data-key="c" onclick="pickDef(this)">أن يكون الناس مختلفين عن بعضهم</div>
+        <div class="mitem" data-key="a" onclick="pickDef(this)">رأي غير عادل بلا معرفة حقيقية</div>
+      </div>
+    </div>
+    <div class="mfb" id="mfb"></div>
+  </section>
+
+  <!-- 6 ACTIVITY 1 — opening questions -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">النشاط 1 · Activity 1</span><span class="badge b-explore">🔍 استكشاف · Explore</span></div>
+    <h2 class="title">أسئلة نطرحها على أنفسنا 💭</h2>
+    <p class="subtitle">هل سألت نفسك من قبل أسئلة مثل هذه؟ · Have you ever asked yourself such questions?</p>
+    <div class="card">
+      <p style="font-weight:700;line-height:2">
+        ❓ لماذا تضايق مجموعةُ الطلبة المشهورة هذا الطفلَ البريطانيَّ الجديد؟<br>
+        ❓ كيف يُعقَل ألّا يُختار "هنري" مطلقاً للّعب في الفريق؟<br>
+        ❓ لماذا خربش هؤلاء الأطفال على حقيبة "فيرونيكا" الجديدة؟
+        <span class="en">Why did the popular group bully the new British boy? Why is Henry never picked for the team? Why did those kids scribble on Veronica's new bag?</span>
+      </p>
+    </div>
+    <div class="qcard" onclick="this.classList.toggle('open')">
+      <div class="q"><span class="qn">💡</span><span>ما الذي تشترك فيه كل هذه المواقف؟<span class="en">What do all these situations have in common?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">كلها أمثلة على <b>التحيّز</b> — حُكم غير عادل على شخص بسبب اختلافه، قبل معرفته حقاً.<span class="en">They are all examples of prejudice — judging someone unfairly for being different, before really knowing them.</span></div>
+    </div>
+  </section>
+
+  <!-- 7 ACTIVITY 2 STORY -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">النشاط 2 · قصة عن التحيّز</span><span class="badge b-explore">🔍 استكشاف · Explore</span></div>
+    <h2 class="title">اقرأ القصة 📖</h2>
+    <div class="story">
+      اعتاد الناس منذ القِدَم <span class="hl">الخوفَ من المختلفين</span> عنهم في الملبس أو الملامح أو طريقة الحياة. فلم تكن هناك وسائل نقل تنقلهم للقاء أناس جدد، فبقوا حيث وُلدوا مع الأشخاص أنفسهم، ولم يروا وجهاً غريباً. فلا عجب أنهم خافوا ممّن يبدو مختلفاً، بل ظنّوا أحياناً أنهم جاؤوا لِسرقتهم.<br><br>
+      أمّا اليوم فنملك <span class="hlg">الحرية ووسائل النقل</span> للسفر ولقاء أشخاص من خلفيات مختلفة باستمرار. كما نتعرّف على العالم عبر التلفاز ووسائل التواصل، فلم يكن البشر يوماً بهذا القُرب من بعضهم.<br><br>
+      إننا <span class="hlg">نعيش ونعمل جنباً إلى جنب</span>، لذا على كلٍّ منّا أن يحترم اختلاف الآخر وينبذ أحكامه المسبقة بحقه.
+    </div>
+    <div class="tnote"><b>🎓 ملاحظة للمعلمة:</b> اقرئي القصة بصوت عالٍ، وتوقّفي بعد الفقرة الأولى لتسألي: "لماذا خاف الناس قديماً؟"</div>
+  </section>
+
+  <!-- 8 ACTIVITY 2 QUESTIONS -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">النشاط 2 · أسئلة</span><span class="badge b-explore">🔍 استكشاف · Explore</span></div>
+    <h2 class="title">أجب عن الأسئلة ❓</h2>
+    <div class="qcard" onclick="this.classList.toggle('open')">
+      <div class="q"><span class="qn">أ.</span><span>"لا عجب في أنهم كانوا يشعرون بالخوف." لماذا قال الكاتب ذلك؟ عبّر عن رأيك.<span class="en">"No wonder they felt afraid." Why did the writer say this? Give your opinion.</span></span></div>
+      <div class="tap">👆 اضغط للإجابة المقترحة</div>
+      <div class="ans">لأن الناس قديماً لم يلتقوا بمختلفين عنهم، فكان المجهول يثير خوفهم. والخوف من المجهول شعور طبيعي، لكنه يزول بالمعرفة والتواصل.<span class="en">Because long ago people never met anyone different, so the unknown frightened them. Fear of the unknown is natural, but it fades with knowledge and contact.</span></div>
+    </div>
+    <div class="qcard" onclick="this.classList.toggle('open')">
+      <div class="q"><span class="qn">ب.</span><span>إذا أُتيحت للمجتمعات المتجاورة فرصةُ التعرّف على بعضها، فما الذي قد يحدث برأيك؟<span class="en">If neighbouring communities get to know one another, what might happen?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة المقترحة</div>
+      <div class="ans">يقلّ الخوف وتزداد الثقة، ويتعاون الناس ويتبادلون الأفكار، فيصبح المجتمع أكثر تسامحاً واستقراراً.<span class="en">Fear decreases, trust grows, people cooperate and share ideas, and society becomes more tolerant and stable.</span></div>
+    </div>
+    <div class="qcard" onclick="this.classList.toggle('open')">
+      <div class="q"><span class="qn">ج.</span><span>ما الدور الذي تلعبه وسائل الإعلام في مساعدة المجموعات المتنوعة على التعرّف على بعضها؟<span class="en">What role does media play in helping diverse groups know one another?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة المقترحة</div>
+      <div class="ans">تنقل لنا ثقافات الآخرين عبر الأفلام الوثائقية والبرامج ووسائل التواصل، فتقرّب المسافات وتزيل الصور النمطية الخاطئة.<span class="en">It shows us other cultures through documentaries, programmes and social media, bridging distances and breaking false stereotypes.</span></div>
+    </div>
+  </section>
+
+  <!-- 9 ACTIVITY 3 — JACK STORY -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">النشاط 3 · قصة جاك</span><span class="badge b-explore">🔍 استكشاف · Explore</span></div>
+    <h2 class="title">قصة جاك 📖</h2>
+    <div class="story">
+      التحق <span class="name">جاك</span> بصفّنا العام الماضي، بعد أن انتقلت أسرته من أمريكا الشمالية إلى أبوظبي. لم أكن قد قابلت أمريكياً من قبل، و<span class="hl">لم أتوقّع منه الكثير</span>؛ فعمّي مصطفى يقول إن معظم الأمريكيين يأكلون طعاماً غير صحي ويشاهدون التلفاز طوال اليوم، ولأنه عمّي المُحبَّب صدّقتُ كلامه.<br><br>
+      ذات يوم أجلسني المعلّم بجوار جاك، وفي الغداء أخبرني أن هوايته المفضّلة <span class="hlg">تسلّق الجدران</span> — فقلت: "وهي هوايتي أيضاً!" وضحكنا لأن والدتينا تخافان علينا من السقوط. وأخبرني أنه <span class="hlg">نادراً ما يشاهد التلفاز ويفضّل القراءة</span>، وأن أسرته نباتية ووالدته لا تسمح له بالسكّر كثيراً.<br><br>
+      تبيّن أنّ <span class="hlg">بيننا أشياء كثيرة مشتركة</span>، ونحن الآن صديقان مقرَّبان. والآن حين أقابل أشخاصاً جدداً، أحاول أن <span class="hlg">أحكم عليهم بعد معرفتهم لا قبلها</span>.
+    </div>
+    <div class="qcard" onclick="this.classList.toggle('open')" style="margin-top:14px">
+      <div class="q"><span class="qn">🎯</span><span>ما العبرة الأساسية من قصة جاك؟<span class="en">What is the main lesson of Jack's story?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">أن نتعرّف على الناس كأفراد قبل أن نُكوّن آراءنا عنهم — فالمعرفة تهزم التحيّز.<span class="en">Get to know people as individuals before forming opinions — knowledge defeats prejudice.</span></div>
+    </div>
+  </section>
+
+  <!-- 10 ACTIVITY 3 QUESTIONS -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">النشاط 3 · أسئلة</span><span class="badge b-explore">🔍 استكشاف · Explore</span></div>
+    <h2 class="title">أجب عن الأسئلة ❓</h2>
+    <div class="qcard" onclick="this.classList.toggle('open')">
+      <div class="q"><span class="qn">أ.</span><span>لماذا كوّن الكاتب وجهة النظر هذه عن الأمريكيين؟ وهل كان مُحقّاً؟<span class="en">Why did the writer form this view of Americans? Was he right?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة المقترحة</div>
+      <div class="ans">لأنه سمعها من عمّه وصدّقها دون أن يتحقّق بنفسه. ولم يكن مُحقّاً، فقد اكتشف عند معرفة جاك أن الصورة النمطية خاطئة.<span class="en">Because he heard it from his uncle and believed it without checking. He was not right — meeting Jack proved the stereotype wrong.</span></div>
+    </div>
+    <div class="qcard" onclick="this.classList.toggle('open')">
+      <div class="q"><span class="qn">ب.</span><span>يقول الكاتب إنه صدّق عمّه لأنه "عمّه المُحبَّب". ما العبرة في ذلك؟<span class="en">He believed his uncle because he was his "favourite uncle". What's the lesson?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة المقترحة</div>
+      <div class="ans">قد نصدّق آراءً خاطئة لمجرّد أن مصدرها شخص نحبّه ونثق به. لذا علينا أن نفكّر بأنفسنا ونتحقّق قبل أن نُصدر حكماً.<span class="en">We may believe wrong ideas just because someone we love said them. We should think for ourselves and check before judging.</span></div>
+    </div>
+  </section>
+
+  <!-- 11 ACTIVITY 4 — WALKING DEBATE -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">النشاط 4 · التصويت بالأقدام</span><span class="badge b-apply">🗳️ تطبيق · Apply</span></div>
+    <h2 class="title">صوّت بقدميك 🦶</h2>
+    <div class="debate-note">تذكّر: لا توجد إجابة صحيحة وأخرى خاطئة في هذا النشاط، ويمكنك تغيير رأيك في أي وقت! اضغط (نعم / لا / ربما) لكل عبارة.<span class="en">Remember: there are no right or wrong answers here, and you can change your mind anytime!</span></div>
+    <div class="stmt">
+      <p>١. الصورة النمطية عن مجموعة من الناس صحيحة دائماً.<span class="en">A stereotype about a group of people is always true.</span></p>
+      <div class="votes"><button class="vote yes" onclick="vote(this)">نعم</button><button class="vote no" onclick="vote(this)">لا</button><button class="vote maybe" onclick="vote(this)">ربما</button></div>
+    </div>
+    <div class="stmt">
+      <p>٢. التعرّف على شخص مختلف عنّا يجعلنا نتخلّى عن أحكامنا المسبقة.<span class="en">Getting to know someone different makes us drop our prejudices.</span></p>
+      <div class="votes"><button class="vote yes" onclick="vote(this)">نعم</button><button class="vote no" onclick="vote(this)">لا</button><button class="vote maybe" onclick="vote(this)">ربما</button></div>
+    </div>
+    <div class="stmt">
+      <p>٣. وسائل التواصل الاجتماعي تساعد دائماً على تقليل التحيّز.<span class="en">Social media always helps reduce prejudice.</span></p>
+      <div class="votes"><button class="vote yes" onclick="vote(this)">نعم</button><button class="vote no" onclick="vote(this)">لا</button><button class="vote maybe" onclick="vote(this)">ربما</button></div>
+    </div>
+  </section>
+
+  <!-- 12 ACTIVITY 5 — five cultures -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">النشاط 5 · مشروع</span><span class="badge b-apply">🗳️ تطبيق · Apply</span></div>
+    <h2 class="title">اذكر خمس ثقافات 🌍</h2>
+    <p class="subtitle">ابدأ بأكثر ثقافة تحبّها، ثم جهّز مشروعك للدرس القادم · Start with the culture you like most</p>
+    <div class="card">
+      <div class="crow"><span class="crank">1</span><input class="cinp" placeholder="الثقافة الأولى…"></div>
+      <div class="crow"><span class="crank">2</span><input class="cinp" placeholder="الثقافة الثانية…"></div>
+      <div class="crow"><span class="crank">3</span><input class="cinp" placeholder="الثقافة الثالثة…"></div>
+      <div class="crow"><span class="crank">4</span><input class="cinp" placeholder="الثقافة الرابعة…"></div>
+      <div class="crow"><span class="crank">5</span><input class="cinp" placeholder="الثقافة الخامسة…"></div>
+    </div>
+    <div class="tnote"><b>🎓 ملاحظة للمعلمة:</b> يكتب الطلاب جملتين عمّا يفخرون به على بطاقة لاصقة لعرضها في الصف.</div>
+  </section>
+
+  <!-- 13 REFLECT -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الختام · Reflection</span><span class="badge b-reflect">💜 تأمّل · Reflect</span></div>
+    <div class="reflect">
+      <div class="big">✨ أحسنت! ✨</div>
+      <p style="font-size:1.15rem;font-weight:700;line-height:1.8">
+        كون الإنسان مختلفاً ليس أمراً سلبياً — بل هو ما يُثري مجتمعنا.<br>
+        فلنحكم على الناس بعد معرفتهم، لا قبلها.
+        <span class="en" style="text-align:center;margin-top:12px">Being different is not negative — it enriches our society. Let's judge people after we know them, not before.</span>
+      </p>
+    </div>
+    <div class="wm-wrap"><div class="watermark">إعداد المعلمة: غادة مرتضى · The English College Dubai</div></div>
+  </section>
+
+</div>
+
+<div class="navbar">
+  <button class="nbtn" id="prev" onclick="go(-1)">السابق</button>
+  <div class="dots" id="dots"></div>
+  <button class="nbtn" id="next" onclick="go(1)">التالي</button>
+</div>
+
+<script>
+  var slides = document.querySelectorAll('.slide');
+  var cur = 0;
+  var dotsWrap = document.getElementById('dots');
+  for (var i=0;i<slides.length;i++){
+    var d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    (function(idx){ d.onclick = function(){ jump(idx); }; })(i);
+    dotsWrap.appendChild(d);
+  }
+  var dots = document.querySelectorAll('.dot');
+
+  function render(){
+    for (var i=0;i<slides.length;i++){
+      slides[i].classList.toggle('active', i===cur);
+      dots[i].classList.toggle('active', i===cur);
+    }
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    document.getElementById('prog').style.width = ((cur)/(slides.length-1)*100)+'%';
+    document.getElementById('prev').disabled = (cur===0);
+    document.getElementById('next').disabled = (cur===slides.length-1);
+    window.scrollTo(0,0);
+  }
+  function go(step){ var n=cur+step; if(n>=0 && n<slides.length){ cur=n; render(); } }
+  function jump(i){ cur=i; render(); }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowLeft') go(1);
+    if(e.key==='ArrowRight') go(-1);
+  });
+
+  /* match game */
+  var selWord=null, selKey=null, matched=0;
+  function pickWord(el){
+    if(el.classList.contains('done')) return;
+    var ws=document.querySelectorAll('.match-col')[0].querySelectorAll('.mitem');
+    for(var i=0;i<ws.length;i++) ws[i].classList.remove('sel');
+    el.classList.add('sel'); selWord=el; selKey=el.getAttribute('data-key');
+  }
+  function pickDef(el){
+    if(el.classList.contains('done')||!selWord) return;
+    var fb=document.getElementById('mfb');
+    if(el.getAttribute('data-key')===selKey){
+      el.classList.add('done'); selWord.classList.add('done'); selWord.classList.remove('sel');
+      matched++; fb.style.color='#34d399'; fb.textContent='✓ أحسنت! صحيح';
+      selWord=null; selKey=null;
+      if(matched===3){ fb.textContent='🎉 ممتاز! وصلت كل الكلمات بمعانيها'; }
+    } else {
+      fb.style.color='#f87171'; fb.textContent='✗ حاول مرة أخرى';
+    }
+  }
+
+  /* walking debate vote */
+  function vote(btn){
+    var group=btn.parentNode.querySelectorAll('.vote');
+    for(var i=0;i<group.length;i++) group[i].classList.remove('on');
+    btn.classList.add('on');
+  }
+
+  render();
+</script>
+</body>
+</html>
