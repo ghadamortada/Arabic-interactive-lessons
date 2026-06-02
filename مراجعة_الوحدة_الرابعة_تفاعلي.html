@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة الوحدة الرابعة — سؤال وجواب</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10243a;
+    --teal:#2dd4bf;
+    --teal-d:#0d9488;
+    --gold:#f4b942;
+    --gold-soft:#fde68a;
+    --cream:#fdf6e3;
+    --rose:#fb7185;
+    --green:#34d399;
+    --purple-soft:#a5b4fc;
+    --good:#34d399;
+    --bad:#f87171;
+    --line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Tajawal',sans-serif;
+    background:
+      radial-gradient(900px 480px at 10% -6%, #14507a 0%, transparent 56%),
+      radial-gradient(760px 420px at 112% 6%, #0e6b5e 0%, transparent 52%),
+      var(--bg);
+    color:var(--cream);min-height:100vh;overflow-x:hidden;
+  }
+  .en{display:block;direction:ltr;text-align:right;font-size:.78rem;font-weight:500;color:var(--purple-soft);font-style:italic;margin-top:3px;line-height:1.45}
+
+  .progress{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--gold),var(--teal));width:0;z-index:50;transition:width .35s}
+  .counter{position:fixed;top:12px;left:16px;background:rgba(0,0,0,.4);border:1px solid var(--line);
+    padding:5px 14px;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--gold-soft);z-index:50}
+  .score{position:fixed;top:12px;right:16px;background:rgba(0,0,0,.4);border:1px solid var(--line);
+    padding:5px 14px;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--teal);z-index:50}
+
+  .stage{display:flex;justify-content:center;min-height:100vh;padding:64px 18px 110px}
+  .slide{display:none;width:100%;max-width:860px;animation:fade .45s ease}
+  .slide.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+  .unit-tag{font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:700;color:var(--gold-soft);
+    background:rgba(244,185,66,.1);border:1px solid rgba(244,185,66,.3);padding:5px 14px;border-radius:999px}
+  .lesson-tag{font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:999px;border:1px solid}
+  .l3{color:var(--teal);background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3)}
+  .l4{color:var(--rose);background:rgba(251,113,133,.1);border-color:rgba(251,113,133,.3)}
+  .l-mix{color:var(--gold-soft);background:rgba(244,185,66,.1);border-color:rgba(244,185,66,.3)}
+
+  h2.title{font-family:'Cairo',sans-serif;font-weight:900;font-size:clamp(1.4rem,4.5vw,2.2rem);line-height:1.3;margin-bottom:6px}
+  .subtitle{color:var(--purple-soft);font-size:1rem;font-weight:500;margin-bottom:20px}
+
+  .hero{text-align:center;padding:38px 22px;border-radius:26px;
+    background:linear-gradient(150deg,#0d9488,#14507a 55%,#1e3a8a);
+    border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 60px rgba(0,0,0,.4)}
+  .hero .ds{font-family:'Cairo',sans-serif;color:var(--gold-soft);font-weight:700;letter-spacing:.05em;margin-bottom:10px}
+  .hero h1{font-family:'Cairo',sans-serif;font-weight:900;font-size:clamp(2rem,7vw,3.3rem);line-height:1.25;text-shadow:0 4px 0 rgba(0,0,0,.25)}
+  .hero .h-en{display:block;direction:ltr;color:#ccfbf1;font-size:1rem;font-weight:600;margin-top:10px;font-style:italic}
+  .pills{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 16px;border-radius:999px;font-size:.85rem;font-weight:700}
+
+  .big-q{background:linear-gradient(135deg,rgba(244,185,66,.16),rgba(45,212,191,.14));
+    border:2px solid rgba(244,185,66,.4);border-radius:22px;padding:26px;text-align:center}
+  .big-q .lbl{font-family:'Cairo',sans-serif;color:var(--gold);font-weight:700;margin-bottom:10px}
+  .big-q p{font-size:1.25rem;font-weight:700;line-height:1.6}
+
+  /* Q&A card */
+  .qcard{cursor:pointer;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;
+    padding:18px 20px;margin-bottom:13px;transition:.2s;user-select:none}
+  .qcard:hover{border-color:var(--teal)}
+  .qcard .q{font-weight:800;display:flex;gap:10px;align-items:flex-start;line-height:1.55;font-size:1.05rem}
+  .qcard .q .qn{flex-shrink:0;color:var(--gold);font-family:'Cairo',sans-serif}
+  .qcard .tap{font-size:.78rem;color:var(--teal);margin-top:8px}
+  .qcard .ans{max-height:0;overflow:hidden;opacity:0;transition:.35s;margin-top:0;
+    background:rgba(52,211,153,.1);border-right:3px solid var(--good);border-radius:8px;padding:0 14px;line-height:1.7}
+  .qcard.open .ans{max-height:340px;opacity:1;margin-top:12px;padding:13px 14px}
+  .qcard.open .tap{display:none}
+  .qcard .ans .en{color:#86efac}
+  .qcard .ans b{color:var(--gold-soft)}
+
+  /* match */
+  .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .match-col h4{font-family:'Cairo',sans-serif;text-align:center;color:var(--purple-soft);margin-bottom:10px;font-size:.95rem}
+  .mitem{background:rgba(255,255,255,.06);border:2px solid var(--line);border-radius:14px;padding:13px;margin-bottom:10px;
+    cursor:pointer;font-weight:700;transition:.18s;text-align:center}
+  .mitem:hover{border-color:var(--teal)}
+  .mitem.sel{border-color:var(--gold);background:rgba(244,185,66,.14)}
+  .mitem.done{border-color:var(--good);background:rgba(52,211,153,.16);cursor:default;opacity:.85}
+  .mfb{text-align:center;margin-top:10px;font-weight:700;min-height:22px}
+
+  /* MCQ */
+  .mcq-q{font-family:'Cairo',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:14px;line-height:1.5}
+  .opt{background:rgba(255,255,255,.05);border:2px solid var(--line);border-radius:13px;padding:13px 16px;
+    margin-bottom:10px;cursor:pointer;font-weight:700;transition:.18s}
+  .opt:hover{border-color:var(--teal)}
+  .opt.correct{border-color:var(--good);background:rgba(52,211,153,.18)}
+  .opt.wrong{border-color:var(--bad);background:rgba(248,113,113,.16)}
+  .mcq-fb{text-align:center;margin-top:8px;font-weight:700;min-height:22px}
+
+  /* self assessment */
+  .sa-table{width:100%;border-collapse:collapse;margin-top:6px}
+  .sa-table th,.sa-table td{border:1px solid var(--line);padding:12px 10px;text-align:center;font-weight:700}
+  .sa-table th{background:rgba(45,212,191,.12);font-family:'Cairo',sans-serif;color:var(--teal)}
+  .sa-table td:first-child{text-align:right;font-weight:600}
+  .sa-cell{cursor:pointer;font-size:1.3rem;user-select:none;color:rgba(255,255,255,.25)}
+  .sa-cell.on{color:var(--gold)}
+
+  .tnote{background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.35);border-radius:14px;
+    padding:12px 16px;margin-top:14px;font-size:.92rem;font-weight:600;line-height:1.6}
+  .tnote b{color:var(--gold-soft)}
+
+  .reflect{background:linear-gradient(135deg,#0d9488,#1e3a8a);border-radius:22px;padding:30px;text-align:center;border:1px solid rgba(255,255,255,.16)}
+  .reflect .big{font-family:'Cairo',sans-serif;font-size:1.5rem;font-weight:900;color:var(--gold-soft);margin-bottom:14px}
+
+  .watermark{text-align:center;margin-top:24px;font-size:.85rem;color:var(--purple-soft);
+    border:1px dashed var(--line);border-radius:10px;padding:8px;display:inline-block}
+  .wm-wrap{text-align:center}
+
+  .navbar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;
+    padding:14px;background:linear-gradient(0deg,rgba(8,20,32,.96),rgba(8,20,32,.55));border-top:1px solid var(--line);z-index:50}
+  .nbtn{background:linear-gradient(135deg,var(--teal-d),#155e75);color:#fff;border:none;border-radius:12px;
+    padding:11px 26px;font-family:'Cairo',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:.18s}
+  .nbtn:hover{transform:translateY(-2px)}
+  .nbtn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+  .dots{display:flex;gap:7px}
+  .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:.2s}
+  .dot.active{background:var(--gold);transform:scale(1.35)}
+
+  @media(max-width:600px){
+    .match-wrap{grid-template-columns:1fr}
+    .stage{padding:60px 12px 100px}
+    .hero{padding:20px}
+    .navbar .dots{display:none}
+    .sa-table th,.sa-table td{padding:9px 5px;font-size:.85rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+<div class="counter" id="counter">1 / 13</div>
+<div class="score" id="score">⭐ 0</div>
+
+<div class="stage">
+
+  <!-- 1 TITLE -->
+  <section class="slide active">
+    <div class="hero">
+      <div class="ds">التربية الأخلاقية والاجتماعية والثقافية · الصف السابع</div>
+      <h1>مراجعة الوحدة الرابعة</h1>
+      <span class="h-en">Unit 4 Revision — Respect &amp; Tolerance in a Diverse Society</span>
+      <div class="pills">
+        <span class="pill">📘 الدرس 3 + الدرس 4</span>
+        <span class="pill">❓ سؤال وجواب</span>
+        <span class="pill">🖐️ تفاعلي</span>
+        <span class="pill">🏫 سبورة ذكية</span>
+      </div>
+    </div>
+    <div class="wm-wrap"><div class="watermark">إعداد المعلمة: غادة مرتضى</div></div>
+  </section>
+
+  <!-- 2 BIG QUESTION -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 1 · السؤال الكبير</span><span class="lesson-tag l-mix">🌱 تمهيد</span></div>
+    <div class="big-q">
+      <div class="lbl">🤔 السؤال الكبير</div>
+      <p>لماذا يجب احترام ثقافات الآخرين؟<span class="en">Why should we respect other people's cultures?</span></p>
+    </div>
+    <div class="qcard" onclick="reveal(this)" style="margin-top:16px">
+      <div class="q"><span class="qn">💡</span><span>اضغط لرؤية الإجابة النموذجية<span class="en">Tap for the model answer</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">لأن احترام الثقافات <b>يساعد على التفاهم والتسامح</b>، ويمنع التمييز، ويجعل المجتمع أكثر تعاوناً واستقراراً.<span class="en">Because respecting cultures builds understanding and tolerance, prevents discrimination, and makes society more cooperative and stable.</span></div>
+    </div>
+  </section>
+
+  <!-- 3 VOCAB MATCH -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 2 · المفردات</span><span class="lesson-tag l-mix">🔗 صل الكلمة بالمعنى</span></div>
+    <h2 class="title">صل الكلمة بمعناها 🔗</h2>
+    <p class="subtitle">اضغط كلمة ثم معناها الصحيح · Match each word to its meaning</p>
+    <div class="match-wrap">
+      <div class="match-col">
+        <h4>الكلمة · Word</h4>
+        <div class="mitem" data-key="a" onclick="pickWord(this)">احترام الثقافات</div>
+        <div class="mitem" data-key="b" onclick="pickWord(this)">التسامح</div>
+        <div class="mitem" data-key="c" onclick="pickWord(this)">الثقافة</div>
+        <div class="mitem" data-key="d" onclick="pickWord(this)">التحيّز</div>
+        <div class="mitem" data-key="e" onclick="pickWord(this)">التعاطف</div>
+      </div>
+      <div class="match-col">
+        <h4>المعنى · Meaning</h4>
+        <div class="mitem" data-key="c" onclick="pickDef(this)">عادات وتقاليد</div>
+        <div class="mitem" data-key="e" onclick="pickDef(this)">فهم مشاعر الآخرين</div>
+        <div class="mitem" data-key="a" onclick="pickDef(this)">يساعد على التفاهم والتسامح</div>
+        <div class="mitem" data-key="d" onclick="pickDef(this)">حكم مسبق</div>
+        <div class="mitem" data-key="b" onclick="pickDef(this)">تقبّل الآخرين</div>
+      </div>
+    </div>
+    <div class="mfb" id="mfb"></div>
+  </section>
+
+  <!-- 4 ACTIVITY 1 jigsaw -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 3 · النشاط 1 (الجيكسو – ص 48)</span><span class="lesson-tag l3">📗 الدرس 3</span></div>
+    <h2 class="title">نشاط الأحجية 🧩</h2>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">س.</span><span>لماذا اختلفت رسومات الطلبة للصورة؟<span class="en">Why were the students' drawings of the picture different?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">لأن <b>لكل شخص وجهة نظر مختلفة</b> وطريقة خاصة في رؤية الأشياء وتخيّلها.<span class="en">Because each person has a different point of view and their own way of seeing and imagining things.</span></div>
+    </div>
+  </section>
+
+  <!-- 5 ACTIVITY 2 student story -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 4 · النشاط 2 (قصة الطالب – ص 49)</span><span class="lesson-tag l3">📗 الدرس 3</span></div>
+    <h2 class="title">قصة الطالب 📖</h2>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">أ.</span><span>لماذا ساعده التسامح في الدراسة؟<span class="en">Why did tolerance help him in his studies?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">لأن <b>المعلّم والطلاب دعموه</b> وتقبّلوا اختلافه ولم يسخروا منه، فشعر بالأمان والثقة.<span class="en">Because the teacher and students supported him, accepted his difference and didn't mock him, so he felt safe and confident.</span></div>
+    </div>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">ب.</span><span>كيف تصرّف زملاؤه معه؟<span class="en">How did his classmates treat him?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">تصرّفوا معه <b>بلطف وتقبّل</b>، ولم يسخروا منه كما كان يتوقّع، بل شاركوه اختلافاتهم هم أيضاً.<span class="en">They were kind and accepting, didn't mock him as he expected, and shared their own differences too.</span></div>
+    </div>
+  </section>
+
+  <!-- 6 ACTIVITY 3 diversity -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 5 · النشاط 3 (التنوع – ص 51)</span><span class="lesson-tag l3">📗 الدرس 3</span></div>
+    <h2 class="title">التنوّع والابتكار 💡</h2>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">س.</span><span>لماذا يساعد التنوّع على الابتكار؟<span class="en">Why does diversity help innovation?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">لأن تعدّد الخلفيات يعني <b>أفكاراً مختلفة ووجهات نظر متنوعة</b> ← حلولاً أفضل وابتكاراً أكثر.<span class="en">Different backgrounds mean different ideas and varied viewpoints → better solutions and more innovation.</span></div>
+    </div>
+  </section>
+
+  <!-- 7 ACTIVITY 4 dubai -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 6 · النشاط 4 (دبي – ص 52)</span><span class="lesson-tag l3">📗 الدرس 3</span></div>
+    <h2 class="title">دبي والثقافات 🏙️</h2>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">س.</span><span>كيف أثّرت الثقافات المختلفة على دبي؟<span class="en">How did different cultures affect Dubai?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">بفضل انفتاحها وتسامحها <b>أصبحت دبي مدينة متنوّعة ومتطوّرة</b>، ومركزاً عالمياً للابتكار والسياحة والعمل.<span class="en">Thanks to its openness and tolerance, Dubai became a diverse, developed city and a global hub for innovation, tourism and work.</span></div>
+    </div>
+  </section>
+
+  <!-- 8 ACTIVITY 5 prejudice past -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 7 · النشاط 5 (التحيّز – ص 55)</span><span class="lesson-tag l4">📕 الدرس 4</span></div>
+    <h2 class="title">التحيّز قديماً ⚖️</h2>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">س.</span><span>لماذا كان الناس يخافون من الآخرين في الماضي؟<span class="en">Why did people fear others in the past?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">بسبب <b>قلّة المعرفة والخوف من المختلف</b> — لم تكن لديهم وسائل نقل تلتقي بالغرباء، فظلّ المجهول يثير خوفهم.<span class="en">Because of little knowledge and fear of the different — they had no way to meet strangers, so the unknown frightened them.</span></div>
+    </div>
+  </section>
+
+  <!-- 9 ACTIVITY 6 jack -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 8 · النشاط 6 (قصة جاك – ص 57)</span><span class="lesson-tag l4">📕 الدرس 4</span></div>
+    <h2 class="title">قصة جاك 📖</h2>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">س.</span><span>لماذا تغيّرت نظرة الكاتب؟<span class="en">Why did the writer's view change?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة</div>
+      <div class="ans">لأنه <b>تعرّف على جاك واكتشف الحقيقة بنفسه</b> — فوجد أن الصورة النمطية التي صدّقها كانت خاطئة.<span class="en">Because he got to know Jack and discovered the truth himself — the stereotype he had believed was wrong.</span></div>
+    </div>
+  </section>
+
+  <!-- 10 MCQ QUICK CHECK -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">اختبر نفسك · Quick Check</span><span class="lesson-tag l-mix">🎯 اختيار من متعدد</span></div>
+    <h2 class="title">اختر الإجابة الصحيحة ✅</h2>
+    <div class="mcq-q">ما معنى "التحيّز"؟ · What does "prejudice" mean?</div>
+    <div class="opt" onclick="checkMcq(this,false)">🅐 احترام جميع الناس</div>
+    <div class="opt" onclick="checkMcq(this,true)">🅑 حكم مسبق غير عادل على الآخرين</div>
+    <div class="opt" onclick="checkMcq(this,false)">🅒 تعلّم لغة جديدة</div>
+    <div class="opt" onclick="checkMcq(this,false)">🅓 السفر إلى بلد آخر</div>
+    <div class="mcq-fb" id="mcqfb"></div>
+  </section>
+
+  <!-- 11 THINKING -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 9 · سؤال تفكير</span><span class="lesson-tag l-mix">💭 تفكير ناقد</span></div>
+    <h2 class="title">سؤال تفكير 💭</h2>
+    <div class="qcard" onclick="reveal(this)">
+      <div class="q"><span class="qn">س.</span><span>كيف يمكننا احترام الآخرين في المدرسة؟<span class="en">How can we respect others at school?</span></span></div>
+      <div class="tap">👆 اضغط للإجابة المقترحة</div>
+      <div class="ans">بأن نُصغي لزملائنا، ونتقبّل اختلافهم، ولا نسخر من أحد، ونساعد الطالب الجديد، ونحكم على الناس بعد معرفتهم لا قبلها.<span class="en">By listening to classmates, accepting differences, never mocking anyone, helping new students, and judging people after — not before — we know them.</span></div>
+    </div>
+    <div class="tnote"><b>🎓 ملاحظة للمعلمة:</b> اطلبي من الطلاب مشاركة أمثلة من حياتهم في المدرسة. <b>الوقت: 5 دقائق</b></div>
+  </section>
+
+  <!-- 12 SELF ASSESSMENT -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الجزء 10 · التقييم الذاتي</span><span class="lesson-tag l-mix">📊 قيّم نفسك</span></div>
+    <h2 class="title">التقييم الذاتي 📊</h2>
+    <p class="subtitle">اضغط الخانة المناسبة لكل مهارة · Tap the box that fits you</p>
+    <table class="sa-table">
+      <thead><tr><th>أستطيع أن…</th><th>نعم ✅</th><th>أحياناً ⚠️</th><th>لا ❌</th></tr></thead>
+      <tbody>
+        <tr><td>أشرح معنى التسامح</td><td><span class="sa-cell" onclick="saPick(this)">●</span></td><td><span class="sa-cell" onclick="saPick(this)">●</span></td><td><span class="sa-cell" onclick="saPick(this)">●</span></td></tr>
+        <tr><td>أميّز بين التحيّز والاحترام</td><td><span class="sa-cell" onclick="saPick(this)">●</span></td><td><span class="sa-cell" onclick="saPick(this)">●</span></td><td><span class="sa-cell" onclick="saPick(this)">●</span></td></tr>
+        <tr><td>أحترم الآخرين</td><td><span class="sa-cell" onclick="saPick(this)">●</span></td><td><span class="sa-cell" onclick="saPick(this)">●</span></td><td><span class="sa-cell" onclick="saPick(this)">●</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 13 REFLECT -->
+  <section class="slide">
+    <div class="topbar"><span class="unit-tag">الختام · Well Done</span><span class="lesson-tag l-mix">🌟 أحسنت</span></div>
+    <div class="reflect">
+      <div class="big">🌟 أحسنت! أكملت المراجعة 🌟</div>
+      <p style="font-size:1.15rem;font-weight:700;line-height:1.8">
+        احترام الاختلاف يُثري مجتمعنا، والمعرفة تهزم التحيّز.<br>
+        لنحكم على الناس بعد معرفتهم، لا قبلها.
+        <span class="en" style="text-align:center;margin-top:12px">Respecting difference enriches our society, and knowledge defeats prejudice.</span>
+      </p>
+    </div>
+    <div class="wm-wrap"><div class="watermark">إعداد المعلمة: غادة مرتضى · The English College Dubai</div></div>
+  </section>
+
+</div>
+
+<div class="navbar">
+  <button class="nbtn" id="prev" onclick="go(-1)">السابق</button>
+  <div class="dots" id="dots"></div>
+  <button class="nbtn" id="next" onclick="go(1)">التالي</button>
+</div>
+
+<script>
+  var slides=document.querySelectorAll('.slide');
+  var cur=0, stars=0;
+  var dotsWrap=document.getElementById('dots');
+  for(var i=0;i<slides.length;i++){
+    var d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');
+    (function(idx){ d.onclick=function(){jump(idx);}; })(i);
+    dotsWrap.appendChild(d);
+  }
+  var dots=document.querySelectorAll('.dot');
+
+  function render(){
+    for(var i=0;i<slides.length;i++){
+      slides[i].classList.toggle('active', i===cur);
+      dots[i].classList.toggle('active', i===cur);
+    }
+    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+    document.getElementById('prog').style.width=((cur)/(slides.length-1)*100)+'%';
+    document.getElementById('prev').disabled=(cur===0);
+    document.getElementById('next').disabled=(cur===slides.length-1);
+    window.scrollTo(0,0);
+  }
+  function go(s){var n=cur+s; if(n>=0&&n<slides.length){cur=n;render();}}
+  function jump(i){cur=i;render();}
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft') go(1);
+    if(e.key==='ArrowRight') go(-1);
+  });
+
+  function addStar(){ stars++; document.getElementById('score').textContent='⭐ '+stars; }
+
+  /* reveal answer */
+  function reveal(el){
+    var wasOpen=el.classList.contains('open');
+    el.classList.toggle('open');
+    if(!wasOpen && !el.dataset.counted){ el.dataset.counted='1'; addStar(); }
+  }
+
+  /* match */
+  var selWord=null, selKey=null, matched=0, totalPairs=5;
+  function pickWord(el){
+    if(el.classList.contains('done')) return;
+    var ws=document.querySelectorAll('.match-col')[0].querySelectorAll('.mitem');
+    for(var i=0;i<ws.length;i++) ws[i].classList.remove('sel');
+    el.classList.add('sel'); selWord=el; selKey=el.getAttribute('data-key');
+  }
+  function pickDef(el){
+    if(el.classList.contains('done')||!selWord) return;
+    var fb=document.getElementById('mfb');
+    if(el.getAttribute('data-key')===selKey){
+      el.classList.add('done'); selWord.classList.add('done'); selWord.classList.remove('sel');
+      matched++; addStar(); fb.style.color='#34d399'; fb.textContent='✓ أحسنت! صحيح';
+      selWord=null; selKey=null;
+      if(matched===totalPairs) fb.textContent='🎉 ممتاز! وصلت كل الكلمات بمعانيها';
+    } else { fb.style.color='#f87171'; fb.textContent='✗ حاول مرة أخرى'; }
+  }
+
+  /* mcq */
+  function checkMcq(el,correct){
+    var opts=el.parentNode.querySelectorAll('.opt');
+    for(var i=0;i<opts.length;i++) opts[i].style.pointerEvents='none';
+    var fb=document.getElementById('mcqfb');
+    if(correct){ el.classList.add('correct'); fb.style.color='#34d399'; fb.textContent='✓ إجابة صحيحة!'; addStar(); }
+    else{
+      el.classList.add('wrong'); fb.style.color='#f87171'; fb.textContent='✗ الإجابة الصحيحة مُحدّدة بالأخضر';
+      for(var j=0;j<opts.length;j++){ if(opts[j].getAttribute('onclick').indexOf('true')>-1) opts[j].classList.add('correct'); }
+    }
+  }
+
+  /* self assessment */
+  function saPick(el){
+    var row=el.closest('tr').querySelectorAll('.sa-cell');
+    for(var i=0;i<row.length;i++) row[i].classList.remove('on');
+    el.classList.add('on');
+  }
+
+  render();
+</script>
+</body>
+</html>
