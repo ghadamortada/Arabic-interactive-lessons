@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>MSC Grade 6 — Interactive Final Exam Revision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0c2340; --navy2:#123a66; --ink:#16263f; --red:#c0102e;
+    --gold:#e9b949; --green:#1f9d57; --greenbg:#e8f7ee; --line:#e4e9f1;
+    --card:#ffffff; --muted:#6c7a90;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Cairo',sans-serif;color:var(--ink);
+    background:linear-gradient(165deg,#eef2f8 0%,#f6f8fc 45%,#eaf0f7 100%);
+    background-attachment:fixed;min-height:100vh}
+  .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
+    background-image:repeating-linear-gradient(-30deg,transparent 0 180px,var(--navy) 180px 181px);}
+  /* header */
+  header{position:relative;z-index:2;text-align:center;padding:30px 18px 14px}
+  header img{width:96px;height:auto;background:#fff;padding:10px;border-radius:16px;
+    box-shadow:0 8px 22px rgba(12,35,64,.14);border:1px solid #e6ebf3}
+  header h1{font-weight:800;color:var(--navy);margin:14px 0 2px;font-size:25px;letter-spacing:.3px}
+  header .sub{color:var(--red);font-weight:800;font-size:16px;margin:0}
+  header .sub2{color:#52617a;font-weight:600;font-size:13px;margin:6px 0 0}
+  .hint{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--navy);
+    background:rgba(12,35,64,.06);border:1px solid rgba(12,35,64,.16);
+    padding:8px 16px;border-radius:999px;font-size:13px;font-weight:700}
+  .hint .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);
+    box-shadow:0 0 0 4px rgba(233,185,73,.3);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+  /* sticky nav */
+  nav{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;
+    padding:12px 14px;background:rgba(246,248,252,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(12,35,64,.1);scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  .pill{flex:0 0 auto;border:1px solid rgba(12,35,64,.2);background:#fff;
+    color:var(--navy);font-family:inherit;font-weight:700;font-size:12.5px;padding:8px 14px;
+    border-radius:999px;cursor:pointer;white-space:nowrap;transition:.2s}
+  .pill:hover,.pill.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  /* main */
+  main{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:18px 14px 60px}
+  .lesson{margin:22px 0 30px}
+  .lhead{background:linear-gradient(100deg,var(--navy2),#0e2c4f);border-left:6px solid var(--red);
+    border-radius:14px;padding:16px 18px;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.25);
+    position:relative;overflow:hidden}
+  .lhead::after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;
+    background:radial-gradient(circle,rgba(233,185,73,.25),transparent 70%)}
+  .ltag{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+  .lhead h2{margin:4px 0 0;font-size:21px;font-weight:800}
+  .showall{margin-top:12px;background:#fff;color:var(--navy);border:none;font-family:inherit;
+    font-weight:700;font-size:13px;padding:9px 16px;border-radius:999px;cursor:pointer;transition:.2s}
+  .showall:hover{background:var(--gold)}
+  .part{margin:18px 0}
+  .part-title{font-size:15px;font-weight:800;color:var(--navy);margin:18px 4px 10px;
+    padding-left:12px;border-left:4px solid var(--gold)}
+  .wordbox{background:#fff;border:1px dashed var(--navy2);border-radius:12px;
+    padding:11px 15px;margin:0 0 12px;font-size:14px;color:var(--ink);font-weight:600;
+    box-shadow:0 3px 10px rgba(12,35,64,.06)}
+  /* card */
+  .card{background:var(--card);border-radius:14px;padding:15px 16px 13px;margin:10px 0;
+    cursor:pointer;box-shadow:0 3px 12px rgba(12,35,64,.08);border:1px solid #e6ebf3;
+    transition:transform .12s,box-shadow .2s,border-color .2s}
+  .card:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(12,35,64,.13)}
+  .card.open{border-color:var(--green)}
+  .q{font-size:15.5px;line-height:1.7;font-weight:600;color:var(--ink)}
+  .num{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;
+    background:var(--navy);color:#fff;border-radius:7px;font-size:13px;font-weight:800;
+    margin-right:9px;padding:0 5px}
+  .num.sm{min-width:20px;height:20px;font-size:11px;margin-right:6px}
+  .opts{margin:10px 0 2px}
+  .opt{display:flex;align-items:center;gap:9px;padding:7px 11px;margin:5px 0;border-radius:9px;
+    background:#f3f6fb;font-size:14.5px;font-weight:600;transition:.2s}
+  .opt .ol{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;
+    background:#fff;border:1px solid var(--line);border-radius:6px;font-weight:800;font-size:12px}
+  .opt .tick{margin-left:auto;color:var(--green);font-weight:900;opacity:0;transition:.2s}
+  .card.open .opt.correct{background:var(--greenbg);outline:2px solid var(--green)}
+  .card.open .opt.correct .ol{background:var(--green);color:#fff;border-color:var(--green)}
+  .card.open .opt.correct .tick{opacity:1}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid var(--navy2);margin:0 4px}
+  /* answer panel */
+  .ans{max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .3s,margin .3s;
+    font-size:14.5px;line-height:1.7;color:#0d3a22;font-weight:600}
+  .card.open .ans{max-height:600px;opacity:1;margin-top:12px;background:var(--greenbg);
+    border-left:4px solid var(--green);border-radius:9px;padding:11px 14px}
+  .ans b{color:var(--green)}
+  .hl{background:var(--gold);padding:1px 9px;border-radius:6px;font-weight:800;color:#1a1300}
+  .verdict{display:inline-block;padding:2px 12px;border-radius:999px;font-weight:800;color:#fff}
+  .verdict.tp{background:var(--green)} .verdict.fp{background:var(--red)}
+  .reveal{display:flex;align-items:center;gap:7px;margin-top:11px;font-size:12px;font-weight:700;
+    color:var(--muted);transition:.2s}
+  .reveal .dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .card.open .reveal{color:var(--green)} .card.open .reveal .dot{background:var(--green)}
+  .card.open .reveal::after{content:" — shown";white-space:pre}
+  /* tables */
+  .mtable,.ctable{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+  .mtable th,.ctable th{background:var(--navy);color:#fff;padding:9px 10px;text-align:left;font-size:13px}
+  .mtable td,.ctable td{border:1px solid var(--line);padding:9px 10px;vertical-align:middle}
+  .mc-a{text-align:center;width:40px;background:#f3f6fb}
+  .ansletter,.catpill{opacity:0;transition:.2s;font-weight:800}
+  .ansletter{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;
+    background:var(--gold);color:#1a1300;border-radius:7px}
+  .catpill{display:inline-block;background:var(--green);color:#fff;padding:3px 11px;border-radius:999px;font-size:12.5px}
+  .card.open .ansletter,.card.open .catpill{opacity:1}
+  .cz-a{text-align:center;white-space:nowrap}
+  /* ordering */
+  .order{margin-top:4px}
+  .orow{display:flex;align-items:center;gap:11px;background:#f3f6fb;border-radius:10px;
+    padding:9px 12px;margin:6px 0;font-size:14.5px;font-weight:600}
+  .badge{flex:0 0 auto;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;background:#dde4ee;color:#dde4ee;font-weight:900;transition:.25s}
+  .card.open .badge{background:var(--gold);color:#1a1300}
+  footer{position:relative;z-index:2;text-align:center;color:#566380;font-size:12.5px;
+    padding:26px 16px 40px;line-height:1.8}
+  footer b{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="watermark"></div>
+
+<header>
+  <img src="data:image/png;base64,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" alt="The English College Dubai">
+  <h1>Moral, Social &amp; Cultural Studies</h1>
+  <p class="sub">Final Exam Revision · Grade 6</p>
+  <p class="sub2">The English College — Dubai</p>
+  <div class="hint"><span class="dot"></span>Tap any question to reveal the answer</div>
+</header>
+
+<nav id="nav"><button class="pill" onclick="jump(0)">Unit 4 · Lesson 2</button><button class="pill" onclick="jump(1)">Unit 4 · Lesson 3</button><button class="pill" onclick="jump(2)">Unit 4 · Lesson 4</button><button class="pill" onclick="jump(3)">Unit 5 · Lesson 1</button><button class="pill" onclick="jump(4)">Unit 5 · Lesson 2</button><button class="pill" onclick="jump(5)">Unit 7 · Lesson 3</button><button class="pill" onclick="jump(6)">Unit 7 · Lesson 6</button></nav>
+
+<main>
+  <section class="lesson" id="lesson-0">
+    <div class="lhead">
+      <div class="ltag">Unit 4 — Lesson 2</div>
+      <h2>How Tolerance Appears in Society</h2>
+      <button class="showall" onclick="event.stopPropagation();revealLesson(0,this)">Reveal all answers</button>
+    </div>
+    <div class="part"><h3 class="part-title">Part A — Key Vocabulary: Match each word to its meaning.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>diversity</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>a)</b> a quick opinion formed about someone before knowing the facts</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>snap judgment</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>b)</b> a rule or plan that a group or school follows</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>multiple perspectives</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>c)</b> the existence of many different kinds of people or things</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>policy</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>d)</b> many different points of view</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part B — Multiple Choice: Choose the correct answer.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>In the story “The Boots”, why did Abdallah wear dusty black boots?<div class="opts"><div class="opt"><span class="ol">a</span> He liked the colour black<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> He had to walk a long way to and from school<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> It was the school uniform<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> He wanted to copy Khaled<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) He had to walk a long way to and from school</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>What was Khaled’s first impression of Abdallah?<div class="opts"><div class="opt"><span class="ol">a</span> That he was very interesting<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> That he was rich<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> That he was not a very interesting person<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> That he was a good football player<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) That he was not a very interesting person</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>A “snap judgment” is best described as:<div class="opts"><div class="opt"><span class="ol">a</span> a careful decision made over time<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> a quick opinion made before knowing the facts<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> a type of photograph<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> a school uniform rule<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) a quick opinion made before knowing the facts</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>According to the reading, working with students from around the world helps learners to:<div class="opts"><div class="opt correct"><span class="ol">a</span> think flexibly and be open-minded<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> finish their work faster<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> avoid making new friends<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> speak only one language<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> a) think flexibly and be open-minded</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part C — True or False: Write True or False.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>The school in “The Boots” had a strict uniform policy, except for shoes.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Khaled became friends with Abdallah immediately, before knowing anything about him.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Diversity means respect for difference.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>Africa is home to over 2,000 languages — about one-third of the world’s total.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>There are only a few types of potatoes in the world.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False (there are over 4,500 types)</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part D — Fill in the Blanks: Use the words in the box.</h3><div class="wordbox"><b>Word box:</b> diversity &nbsp;•&nbsp; perspectives &nbsp;•&nbsp; snap judgment &nbsp;•&nbsp; tolerance &nbsp;•&nbsp; open-minded</div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span><span class="blank"></span> means the existence of many different kinds of people or things.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">diversity</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Working with people who have multiple <span class="blank"></span> helps us solve problems in better ways.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">perspectives</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Khaled made a <span class="blank"></span> about Abdallah before he got to know him.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">snap judgment</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>The UAE is proud of the diversity and <span class="blank"></span> in its school community.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">tolerance</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>Meeting people from different backgrounds helps students become balanced and <span class="blank"></span>.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">open-minded</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part E — Short Answer: Answer in full sentences.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Why did Khaled change his mind about Abdallah?</div>
+    <div class="ans"><b>Model answer:</b> He saw Abdallah walking home very late and exhausted, and realised that Abdallah wore those boots because he had to walk a long way to school. Khaled understood that his first judgment was unfair.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>How can diversity at a young age help a person become a global citizen?</div>
+    <div class="ans"><b>Model answer:</b> Working with people from different backgrounds helps young people think flexibly, stay open-minded and become inter-culturally aware, which prepares them to live and work with all kinds of people in the future.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Give one example of a time you made a snap judgment about someone and then changed your mind.</div>
+    <div class="ans"><b>Model answer:</b> (Open answer.) Model: I once thought a new classmate was unfriendly because he was quiet, but after we worked together I found he was kind and helpful, so I changed my opinion.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div>
+  </section>
+  <section class="lesson" id="lesson-1">
+    <div class="lhead">
+      <div class="ltag">Unit 4 — Lesson 3</div>
+      <h2>Exploring Our Own Beliefs and Attitudes</h2>
+      <button class="showall" onclick="event.stopPropagation();revealLesson(1,this)">Reveal all answers</button>
+    </div>
+    <div class="part"><h3 class="part-title">Part A — Key Vocabulary: Match each word to its meaning.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>enriched culture</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>a)</b> accepting and respecting people who are different from us</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>tolerance</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>b)</b> full of new ideas and creative</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>multiple perspectives</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>c)</b> a culture made fuller and better by people from different backgrounds</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>innovative</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>d)</b> different points of view</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part B — Multiple Choice: Choose the correct answer.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>What learning difficulty did the writer of the school story have?<div class="opts"><div class="opt correct"><span class="ol">a</span> dyslexia<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> short-sightedness<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> a hearing problem<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> none<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> a) dyslexia</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>According to the article, diverse groups of people are usually more ______ than groups with similar backgrounds.<div class="opts"><div class="opt"><span class="ol">a</span> slow<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> innovative<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> quiet<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> tired<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) innovative</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Which example is used to show why diverse expertise is needed?<div class="opts"><div class="opt"><span class="ol">a</span> baking a cake<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> building an aeroplane<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> cleaning a house<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> playing football<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) building an aeroplane</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>Dubai has become a global centre for:<div class="opts"><div class="opt"><span class="ol">a</span> farming and fishing<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> innovation, tourism and business<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> mining and oil only<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> sports only<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) innovation, tourism and business</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part C — True or False: Write True or False.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Dyslexia makes reading, spelling and writing very difficult.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>The writer’s classmates made fun of him when he explained his dyslexia.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Research shows that diverse teams are usually less creative.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>Living in an open-minded, tolerant environment can give people the confidence to discover their true calling.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part D — Fill in the Blanks: Use the words in the box.</h3><div class="wordbox"><b>Word box:</b> tolerance &nbsp;•&nbsp; perspectives &nbsp;•&nbsp; enriched &nbsp;•&nbsp; different &nbsp;•&nbsp; innovative</div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Acceptance and <span class="blank"></span> made the writer’s school years bearable.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">tolerance</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Multiple <span class="blank"></span> improve creativity and lead to better problem-solving.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">perspectives</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Dubai’s spirit of freedom has <span class="blank"></span> the lives of many individuals.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">enriched</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>The lesson teaches that being <span class="blank"></span> is not necessarily a disadvantage.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">different</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>Diverse groups are often more <span class="blank"></span> than groups of similar people.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">innovative</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part E — Short Answer: Answer in full sentences.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Name two members of an aeronautical (aeroplane) team and explain why different experts are needed.</div>
+    <div class="ans"><b>Model answer:</b> An aeronautical team includes engineers, physicists, designers and mechanics. Different experts are needed because each one brings special knowledge, and all of them together are needed to complete the project.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>How can a diverse group of employees benefit an international company?</div>
+    <div class="ans"><b>Model answer:</b> Diverse employees bring a variety of opinions, information and perspectives. This improves creativity and problem-solving and helps the company understand customers from many different cultures.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>What did the writer learn from the students and teachers at school?</div>
+    <div class="ans"><b>Model answer:</b> The writer learned that everyone is different in some way, and that being different is not necessarily a disadvantage.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part F — Critical Thinking.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>His Highness Sheikh Mohammed Bin Rashid Al Maktoum said that to be creative is to add something new to life. Explain in your own words what this idea means and give one example.</div>
+    <div class="ans"><b>Model answer:</b> (Open answer.) Model: It means a creative person does not just copy what already exists — they invent or add something new and useful, for example designing a new app, writing a new story or finding a new way to solve a problem.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div>
+  </section>
+  <section class="lesson" id="lesson-2">
+    <div class="lhead">
+      <div class="ltag">Unit 4 — Lesson 4</div>
+      <h2>Recognising Prejudice in Society</h2>
+      <button class="showall" onclick="event.stopPropagation();revealLesson(2,this)">Reveal all answers</button>
+    </div>
+    <div class="part"><h3 class="part-title">Part A — Key Vocabulary: Match each word to its meaning.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>prejudice</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>a)</b> a quick opinion made before knowing the facts</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>sympathies</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>b)</b> an unfair opinion about a person or group formed before knowing them</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>snap judgment</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>c)</b> accepting people who are different from us</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>tolerance</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>d)</b> feelings of understanding and shared feeling with another person</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part B — Multiple Choice: Choose the correct answer.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>In the first story, why were people long ago afraid of strangers?<div class="opts"><div class="opt"><span class="ol">a</span> Strangers were dangerous animals<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> They had no transport to travel and meet different people, so strangers were unfamiliar<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> Strangers spoke too loudly<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> There were too many strangers<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) They had no transport to travel and meet different people, so strangers were unfamiliar</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Where did Jack’s family move from?<div class="opts"><div class="opt"><span class="ol">a</span> France<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> India<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> the United States<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> Japan<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) the United States</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>What hobby did Jack and the narrator both love?<div class="opts"><div class="opt"><span class="ol">a</span> football<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> indoor wall climbing<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> painting<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> swimming<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) indoor wall climbing</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>By the end of the second story, the narrator decides to judge people:<div class="opts"><div class="opt"><span class="ol">a</span> before meeting them<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> after getting to know them, not before<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> by what their uncle says<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> by the country they come from<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) after getting to know them, not before</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>What is “prejudice”?<div class="opts"><div class="opt"><span class="ol">a</span> a kind of food<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> an unfair opinion formed about someone before knowing them<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> a type of school<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> a friendly greeting<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) an unfair opinion formed about someone before knowing them</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part C — True or False: Write True or False.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Long ago, most people travelled far and met many people from other places.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Television and social media can help us learn about other cultures.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>The narrator believed his uncle’s opinion about Americans because he was his favourite uncle.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>Jack’s family eat a lot of unhealthy food and watch TV all day.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>Jack and the narrator became best friends.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part D — Fill in the Blanks: Use the words in the box.</h3><div class="wordbox"><b>Word box:</b> prejudice &nbsp;•&nbsp; transport &nbsp;•&nbsp; media &nbsp;•&nbsp; respect</div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>A <span class="blank"></span> is an unfair opinion formed about someone before we get to know them.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">prejudice</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Long ago, people had no means of <span class="blank"></span> to travel and meet others.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">transport</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Documentaries and social <span class="blank"></span> help us learn about other cultures.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">media</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>We need to <span class="blank"></span> each other’s differences and overcome our prejudices.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">respect</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part E — Short Answer: Answer in full sentences.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Why was the narrator’s first opinion of Jack wrong?</div>
+    <div class="ans"><b>Model answer:</b> The narrator judged Jack based on his uncle’s opinion of Americans, before meeting him. After getting to know Jack, he found they had a lot in common and that the opinion was unfair and untrue.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>What role has the media played in helping people from different cultures get to know each other?</div>
+    <div class="ans"><b>Model answer:</b> Documentaries, TV shows and social media let us learn about other cultures and people from all over the world, even those we have never met in real life.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>What lesson can we learn from the fact that the narrator believed his uncle just because he was his “favourite uncle”?</div>
+    <div class="ans"><b>Model answer:</b> We should not accept an opinion as true just because we like or trust the person who said it. We should find out the facts and judge people for ourselves.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div>
+  </section>
+  <section class="lesson" id="lesson-3">
+    <div class="lhead">
+      <div class="ltag">Unit 5 — Lesson 1</div>
+      <h2>Museums in the UAE</h2>
+      <button class="showall" onclick="event.stopPropagation();revealLesson(3,this)">Reveal all answers</button>
+    </div>
+    <div class="part"><h3 class="part-title">Part A — Key Vocabulary: Match each word to its meaning.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>museum</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>a)</b> the traditions, history and objects passed down from the past</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>archaeology</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>b)</b> the study of the past through objects people left behind</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>heritage</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>c)</b> the way of life, beliefs and customs of a group of people</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>culture</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>d)</b> a place where important objects are kept and displayed</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part B — Multiple Choice: Choose the correct answer.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Where is the Louvre museum mentioned in the lesson located?<div class="opts"><div class="opt"><span class="ol">a</span> London<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> Sharjah<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> Abu Dhabi<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> Dubai<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) Abu Dhabi</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>In the story, where did Zafar’s father take him?<div class="opts"><div class="opt"><span class="ol">a</span> the zoo<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> a shopping mall<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> the Sharjah Museum of Islamic Civilisation<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> the park<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) the Sharjah Museum of Islamic Civilisation</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>What was Zafar’s favourite part of the museum?<div class="opts"><div class="opt"><span class="ol">a</span> the Islamic coins<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> the golden dome<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> the Ibn Al-Haytham Gallery of Science and Technology<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> the gift shop<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) the Ibn Al-Haytham Gallery of Science and Technology</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>An astrolabe is an instrument used to:<div class="opts"><div class="opt correct"><span class="ol">a</span> measure the height of the stars and tell time and directions<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> cook food<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> play music<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> draw maps of cities only<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> a) measure the height of the stars and tell time and directions</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>The Blacas Ewer is an important example of ______ metalwork.<div class="opts"><div class="opt"><span class="ol">a</span> Roman<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> Mosul<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> Chinese<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> Egyptian<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) Mosul</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">6</span>The British Museum is described as:<div class="opts"><div class="opt"><span class="ol">a</span> the newest museum in the world<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> the first national public museum in the world<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> a museum only for paintings<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> a private museum<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) the first national public museum in the world</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part C — True or False: Write True or False.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Museums tell us about our past and our heritage.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Zafar was very excited to visit the museum from the very beginning.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>The astrolabe was invented by the Greeks and later developed by medieval Islamic astronomers.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>“Arrangement in Grey and Black No. 1” is more commonly known as Whistler’s Mother.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>The Blacas Ewer is displayed in the Louvre Abu Dhabi.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False (it is in the British Museum)</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part D — Matching: Match each museum to a famous object found in it.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>The British Museum</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>a)</b> La belle ferronnière, by Leonardo da Vinci</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>Sharjah Museum of Islamic Civilisation</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>b)</b> The Mask from Sutton Hoo</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>Louvre Abu Dhabi</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>c)</b> The ‘Sitara’ (curtain for the door of the Ka’aba)</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part E — Fill in the Blanks: Use the words in the box.</h3><div class="wordbox"><b>Word box:</b> illuminate &nbsp;•&nbsp; manuscripts &nbsp;•&nbsp; coins &nbsp;•&nbsp; heritage</div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Zafar’s father said that museums <span class="blank"></span> the past for us.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">illuminate</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>The museum held rare <span class="blank"></span> in the Abu Bakr Gallery of Islamic Faith.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">manuscripts</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Zafar’s father was most impressed by the collection of Islamic <span class="blank"></span>.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">coins</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>It is important to respect other cultures and also our own <span class="blank"></span>.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">heritage</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part F — Short Answer: Answer in full sentences.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Why did Zafar’s father think it was important to visit the museum?</div>
+    <div class="ans"><b>Model answer:</b> He wanted Zafar to learn about his past, culture and heritage, and to feel proud of it, because modern life changes quickly and people sometimes forget where they came from.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>How can museums help us become more tolerant and understanding of other cultures?</div>
+    <div class="ans"><b>Model answer:</b> Museums show us the history, art and achievements of many different cultures. Learning about them helps us respect and value people who are different from us.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Why is the Blacas Ewer an important artefact, and what does it tell us?</div>
+    <div class="ans"><b>Model answer:</b> It is a beautiful example of Mosul metalwork with scenes of court life. Like a history book, it teaches us about how people lived in the past, including their clothing, food and traditions, and shows the value of Islamic heritage.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div>
+  </section>
+  <section class="lesson" id="lesson-4">
+    <div class="lhead">
+      <div class="ltag">Unit 5 — Lesson 2</div>
+      <h2>Cultural Change</h2>
+      <button class="showall" onclick="event.stopPropagation();revealLesson(4,this)">Reveal all answers</button>
+    </div>
+    <div class="part"><h3 class="part-title">Part A — Key Vocabulary: Match each word to its meaning.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>multiculturalism</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>a)</b> all the people living in a place</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>diversity</td>
+        <td class="mc-a"><span class="ansletter">e</span></td>
+        <td class="mc-r"><b>b)</b> facts and figures about a population, such as its size and growth</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>identity</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>c)</b> many different cultures living together in one society</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>population</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>d)</b> who a person is and what makes them themselves</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">5</span>demographics</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>e)</b> the existence of many different kinds of people</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part B — Multiple Choice: Choose the correct answer.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>In which city does Bernard live?<div class="opts"><div class="opt"><span class="ol">a</span> Paris, France<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> Marseilles, France<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> Dubai, UAE<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> London, UK<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) Marseilles, France</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>What caused the big change in UAE demographics from the 1970s?<div class="opts"><div class="opt correct"><span class="ol">a</span> the discovery of oil and rapid population growth<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> a fall in the population<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> the closing of the borders<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> a lack of jobs<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> a) the discovery of oil and rapid population growth</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>By the early 1980s, the UAE population was about ______ times that of the 1970s.<div class="opts"><div class="opt"><span class="ol">a</span> two<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> three<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> five<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> ten<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) five</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>Today, how many different nationalities live in the UAE?<div class="opts"><div class="opt"><span class="ol">a</span> about 20<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> about 50<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> over 100<span class="tick">✓</span></div><div class="opt correct"><span class="ol">d</span> over 200<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> d) over 200</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>An “expatriate” is a person who:<div class="opts"><div class="opt"><span class="ol">a</span> was born in the UAE<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> lives and works in a country that is not their own<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> never leaves their home country<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> is a tourist for one day<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) lives and works in a country that is not their own</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part C — True or False: Write True or False.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>The UAE population grew between 2006 and 2016.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Bernard was not interested in other people or cultures.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>The Armenian couple in the story own a jewellery shop.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>As expatriates settle in the UAE for longer, they often get better at speaking Arabic.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>The UAE has given up its own traditions in order to become multicultural.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part D — Fill in the Blanks: Use the words in the box.</h3><div class="wordbox"><b>Word box:</b> multiculturalism &nbsp;•&nbsp; oil &nbsp;•&nbsp; expatriates &nbsp;•&nbsp; nationalities &nbsp;•&nbsp; demographics</div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span><span class="blank"></span> means many different cultures living together in one society.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">multiculturalism</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>From the 1970s, the discovery of <span class="blank"></span> changed the UAE’s demographics.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">oil</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>The population grew mainly because of a steady inflow of <span class="blank"></span>.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">expatriates</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>Today, people from over 200 <span class="blank"></span> live in the UAE.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">nationalities</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span><span class="blank"></span> are facts about a population, such as its size and growth.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">demographics</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part E — Short Answer: Answer in full sentences.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>In your own words, define “National” and “Expatriate”.</div>
+    <div class="ans"><b>Model answer:</b> A national is a citizen of a country who was born there or belongs to it. An expatriate is a person who lives and works in a country that is not their own.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Explain why the UAE population increased quickly from the 1970s.</div>
+    <div class="ans"><b>Model answer:</b> After oil was discovered, the country grew rapidly. A steady inflow of expatriates came for work, and birth rates and the life expectancy of UAE nationals also increased.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>What is Bernard’s attitude towards multiculturalism? Give evidence from the story.</div>
+    <div class="ans"><b>Model answer:</b> Bernard has a positive, friendly attitude. He is a ‘people person’ who makes an effort to know his Vietnamese, Armenian and North African neighbours and wants to learn about their cultures.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div>
+  </section>
+  <section class="lesson" id="lesson-5">
+    <div class="lhead">
+      <div class="ltag">Unit 7 — Lesson 3</div>
+      <h2>How Laws Are Made</h2>
+      <button class="showall" onclick="event.stopPropagation();revealLesson(5,this)">Reveal all answers</button>
+    </div>
+    <div class="part"><h3 class="part-title">Part A — Key Vocabulary: Match each word to its meaning.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>to interpret</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>a)</b> to choose someone for a job (without a vote)</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>to execute</td>
+        <td class="mc-a"><span class="ansletter">e</span></td>
+        <td class="mc-r"><b>b)</b> to write a first version of something</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>to draft</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>c)</b> to explain the meaning of a law</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>to elect</td>
+        <td class="mc-a"><span class="ansletter">f</span></td>
+        <td class="mc-r"><b>d)</b> a person who is said to have broken the law</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">5</span>to appoint</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>e)</b> to carry out or enforce</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">6</span>accused</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>f)</b> to choose by voting</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part B — Multiple Choice: Choose the correct answer.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Which branch of government creates laws?<div class="opts"><div class="opt correct"><span class="ol">a</span> legislative<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> executive<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> judicial<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> military<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> a) legislative</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Which branch interprets laws?<div class="opts"><div class="opt"><span class="ol">a</span> legislative<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> executive<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> judicial<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> police<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) judicial</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Which branch executes or carries out laws?<div class="opts"><div class="opt"><span class="ol">a</span> legislative<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> executive<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> judicial<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> jury<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) executive</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>In a presidential system, keeping the legislative and executive branches separate is called:<div class="opts"><div class="opt"><span class="ol">a</span> the rule of one<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> separation of powers<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> a parliamentary system<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> majority rule<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) separation of powers</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>A jury is a group of people who:<div class="opts"><div class="opt"><span class="ol">a</span> write new laws<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> listen to the evidence and decide the innocence or guilt of the accused<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> appoint the leader<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> collect taxes<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) listen to the evidence and decide the innocence or guilt of the accused</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">6</span>Civil law deals mainly with:<div class="opts"><div class="opt"><span class="ol">a</span> crimes against the state<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> problems between individuals<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> making new countries<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> building roads<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) problems between individuals</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">7</span>Criminal law focuses on:<div class="opts"><div class="opt"><span class="ol">a</span> problems between neighbours only<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> violations of state or national laws<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> family celebrations<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> school rules<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) violations of state or national laws</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part C — True or False: Write True or False.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Laws are rules that every member of society must obey.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>All countries create and enforce laws in exactly the same way.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>In a parliamentary system, the people elect a single leader directly.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>In criminal law, disputes may be decided by a judge or a jury.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>Laws are created to protect people’s interests and the safety of society.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part D — Fill in the Blanks: Use the words in the box.</h3><div class="wordbox"><b>Word box:</b> legislative &nbsp;•&nbsp; executive &nbsp;•&nbsp; judicial &nbsp;•&nbsp; jury &nbsp;•&nbsp; Civil &nbsp;•&nbsp; Criminal</div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>The <span class="blank"></span> branch creates laws.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">legislative</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>The <span class="blank"></span> branch carries out or enforces laws.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">executive</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>The <span class="blank"></span> branch interprets laws.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">judicial</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>A <span class="blank"></span> decides the innocence or guilt of the accused.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">jury</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span><span class="blank"></span> law deals with problems between individuals.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">Civil</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">6</span><span class="blank"></span> law focuses on crimes against the state.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">Criminal</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part E — Concept Check: Match each legal concept to the correct fact.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>Legislative Branch</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>a)</b> focuses on crimes against the state</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>Presidential System</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>b)</b> drafts and debates laws</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>Civil Law</td>
+        <td class="mc-a"><span class="ansletter">e</span></td>
+        <td class="mc-r"><b>c)</b> listens to evidence and makes decisions in a law court</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>Criminal Law</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>d)</b> keeps the legislative and executive branches separate</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">5</span>Jury</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>e)</b> focuses on issues between individuals</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part F — Ordering: Put the steps of the legal process in the correct order (1–6). Start when the bill is created and end when a decision is made about an accused person.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><div class="order"><div class="orow"><span class="badge">6</span><span class="otext">The judge or jury interprets the law and decides the case.</span></div><div class="orow"><span class="badge">3</span><span class="otext">The bill is approved and becomes a law.</span></div><div class="orow"><span class="badge">1</span><span class="otext">The bill is drafted.</span></div><div class="orow"><span class="badge">5</span><span class="otext">The accused person goes to trial.</span></div><div class="orow"><span class="badge">2</span><span class="otext">The bill is debated.</span></div><div class="orow"><span class="badge">4</span><span class="otext">The law is executed or enforced by police.</span></div></div></div>
+    <div class="ans"><b>Correct order shown in the gold circles.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part G — Matching: Does each statement refer to Civil law, Criminal law, or Both? Tick the correct column.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="ctable"><tr><th>Statement</th><th>Civil / Criminal / Both</th></tr><tr>
+        <td class="cz-q"><span class="num sm">1</span>A law that deals with people’s rights.</td>
+        <td class="cz-a"><span class="catpill">Civil</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">2</span>A law that is designed to protect people from others.</td>
+        <td class="cz-a"><span class="catpill">Criminal</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">3</span>With this law, disputes are settled by a jury.</td>
+        <td class="cz-a"><span class="catpill">Criminal</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">4</span>A law that deals with people who break national laws.</td>
+        <td class="cz-a"><span class="catpill">Criminal</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">5</span>A law that is designed to keep society safe.</td>
+        <td class="cz-a"><span class="catpill">Both</span></td>
+      </tr></table></div>
+    <div class="ans"><b>Answers shown above in green.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part H — Short Answer: Answer in full sentences.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Name the three branches of government and say what each one does.</div>
+    <div class="ans"><b>Model answer:</b> The legislative branch creates laws, the executive branch carries out or enforces laws, and the judicial branch interprets laws.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Explain the difference between civil law and criminal law.</div>
+    <div class="ans"><b>Model answer:</b> Civil law deals mainly with problems between individuals, while criminal law focuses on violations of state or national laws. In criminal cases a judge or jury decides the innocence or guilt of the accused.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Why are laws important for a society?</div>
+    <div class="ans"><b>Model answer:</b> Laws protect people’s interests and the general safety of society. The legal system is one of the most important tools a government uses to keep society working properly and fairly.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div>
+  </section>
+  <section class="lesson" id="lesson-6">
+    <div class="lhead">
+      <div class="ltag">Unit 7 — Lesson 6</div>
+      <h2>Rights and Responsibilities</h2>
+      <button class="showall" onclick="event.stopPropagation();revealLesson(6,this)">Reveal all answers</button>
+    </div>
+    <div class="part"><h3 class="part-title">Part A — Key Vocabulary: Match each word or phrase to its meaning.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="mtable"><tr><th>Column A</th><th>→</th><th>Column B</th></tr><tr>
+        <td class="mc-l"><span class="num sm">1</span>right</td>
+        <td class="mc-a"><span class="ansletter">b</span></td>
+        <td class="mc-r"><b>a)</b> to reach or apply to someone</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">2</span>to categorize</td>
+        <td class="mc-a"><span class="ansletter">e</span></td>
+        <td class="mc-r"><b>b)</b> something a person is allowed to have or do</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">3</span>to hold office</td>
+        <td class="mc-a"><span class="ansletter">d</span></td>
+        <td class="mc-r"><b>c)</b> to be kept only for a particular group</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">4</span>to extend to</td>
+        <td class="mc-a"><span class="ansletter">a</span></td>
+        <td class="mc-r"><b>d)</b> to have an official position in government</td>
+      </tr><tr>
+        <td class="mc-l"><span class="num sm">5</span>to be reserved for</td>
+        <td class="mc-a"><span class="ansletter">c</span></td>
+        <td class="mc-r"><b>e)</b> to put things into groups by type</td>
+      </tr></table></div>
+    <div class="ans"><b>Matches shown above in gold.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part B — Multiple Choice: Choose the correct answer.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Citizens are people who:<div class="opts"><div class="opt"><span class="ol">a</span> are only visitors or tourists<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> have the nationality of the country<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> live in another country<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> have no rights at all<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) have the nationality of the country</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>The lesson describes two types of rights. They are:<div class="opts"><div class="opt correct"><span class="ol">a</span> civil rights and political rights<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> old rights and new rights<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> home rights and school rights<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> big rights and small rights<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> a) civil rights and political rights</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Which of these is an example of a civil right?<div class="opts"><div class="opt"><span class="ol">a</span> voting in an election<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> holding political office<span class="tick">✓</span></div><div class="opt correct"><span class="ol">c</span> the right to own property<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> being appointed to the FNC<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> c) the right to own property</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>Which of these is an example of a political right?<div class="opts"><div class="opt"><span class="ol">a</span> moving freely inside the country<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> voting in an election<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> owning property<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> being treated equally<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) voting in an election</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>In the UAE, who may vote in the FNC elections or be appointed to FNC seats?<div class="opts"><div class="opt correct"><span class="ol">a</span> only citizens<span class="tick">✓</span></div><div class="opt"><span class="ol">b</span> only residents<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> tourists<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> everyone in the world<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> a) only citizens</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">6</span>What is the difference between a right and a responsibility?<div class="opts"><div class="opt"><span class="ol">a</span> There is no difference<span class="tick">✓</span></div><div class="opt correct"><span class="ol">b</span> A right is something people can have, but a responsibility is something people must do<span class="tick">✓</span></div><div class="opt"><span class="ol">c</span> A right is only for adults<span class="tick">✓</span></div><div class="opt"><span class="ol">d</span> A responsibility is only for the government<span class="tick">✓</span></div></div></div>
+    <div class="ans"><b>Correct answer:</b> b) A right is something people can have, but a responsibility is something people must do</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part C — True or False: Write True or False.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Residents are people who have the nationality of the country.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict fp">False</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Civil rights typically extend to both citizens and residents.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Political rights are normally reserved for citizens.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>It is the responsibility of everyone who lives in a country to understand and obey its laws.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>Rights and responsibilities balance each other.</div>
+    <div class="ans"><b>Answer:</b> <span class="verdict tp">True</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part D — Fill in the Blanks: Use the words in the box.</h3><div class="wordbox"><b>Word box:</b> Citizens &nbsp;•&nbsp; Residents &nbsp;•&nbsp; civil &nbsp;•&nbsp; political &nbsp;•&nbsp; responsibility</div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span><span class="blank"></span> are people who have the nationality of the country.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">Citizens</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span><span class="blank"></span> are people who live in the country but are not citizens.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">Residents</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>The right to own property and to move around the country are examples of <span class="blank"></span> rights.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">civil</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">4</span>The right to vote and to hold office are examples of <span class="blank"></span> rights.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">political</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">5</span>It is the <span class="blank"></span> of everyone living in a country to obey its laws.</div>
+    <div class="ans"><b>Answer:</b> <span class="hl">responsibility</span></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part E — Categorize: Is each action a Right or a Responsibility? Tick the correct column.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="ctable"><tr><th>Statement</th><th>Right / Responsibility</th></tr><tr>
+        <td class="cz-q"><span class="num sm">1</span>paying taxes</td>
+        <td class="cz-a"><span class="catpill">Responsibility</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">2</span>voting in an election</td>
+        <td class="cz-a"><span class="catpill">Right</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">3</span>knowing and obeying all the laws of the country</td>
+        <td class="cz-a"><span class="catpill">Responsibility</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">4</span>behaving respectfully</td>
+        <td class="cz-a"><span class="catpill">Responsibility</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">5</span>living safely and securely</td>
+        <td class="cz-a"><span class="catpill">Right</span></td>
+      </tr></table></div>
+    <div class="ans"><b>Answers shown above in green.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part F — Compare Rights: Is each one a Civil right or a Political right? Tick the correct column.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><table class="ctable"><tr><th>Statement</th><th>Civil / Political</th></tr><tr>
+        <td class="cz-q"><span class="num sm">1</span>owning property</td>
+        <td class="cz-a"><span class="catpill">Civil</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">2</span>moving freely around the country</td>
+        <td class="cz-a"><span class="catpill">Civil</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">3</span>voting in an election</td>
+        <td class="cz-a"><span class="catpill">Political</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">4</span>running for or holding office</td>
+        <td class="cz-a"><span class="catpill">Political</span></td>
+      </tr><tr>
+        <td class="cz-q"><span class="num sm">5</span>being treated equally regardless of race, gender or religion</td>
+        <td class="cz-a"><span class="catpill">Civil</span></td>
+      </tr></table></div>
+    <div class="ans"><b>Answers shown above in green.</b></div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div><div class="part"><h3 class="part-title">Part G — Short Answer: Answer in full sentences.</h3><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">1</span>Explain the difference between a citizen and a resident.</div>
+    <div class="ans"><b>Model answer:</b> A citizen is a person who has the nationality of the country. A resident is a person who lives in the country but is not a citizen. Their rights may differ according to the law.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">2</span>Give two examples of civil rights and two examples of political rights.</div>
+    <div class="ans"><b>Model answer:</b> Civil rights include owning property and moving freely inside the country (and equality for everyone). Political rights include voting in elections and holding office.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div><div class="card" onclick="tog(this)">
+    <div class="q"><span class="num">3</span>Why is it important for everyone who lives in a country to obey its laws?</div>
+    <div class="ans"><b>Model answer:</b> Obeying the laws keeps society safe, fair and orderly. Rights come with responsibilities, so when people obey the laws, everyone’s rights are protected and rights and responsibilities stay balanced.</div>
+    <div class="reveal"><span class="dot"></span>Tap to reveal answer</div>
+  </div></div>
+  </section></main>
+
+<footer>
+  Prepared by <b>Ms Ghada Mortada — غادة مرتضى</b><br>
+  Moral, Social &amp; Cultural Studies · Grade 6 · End-of-Year Revision
+</footer>
+
+<script>
+  function tog(el){ el.classList.toggle('open'); }
+  function jump(i){
+    document.getElementById('lesson-'+i).scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function revealLesson(i,btn){
+    var sec=document.getElementById('lesson-'+i);
+    var cards=sec.querySelectorAll('.card');
+    var anyClosed=[].some.call(cards,function(c){return !c.classList.contains('open')});
+    [].forEach.call(cards,function(c){ if(anyClosed)c.classList.add('open'); else c.classList.remove('open'); });
+    btn.textContent = anyClosed ? 'Hide all answers' : 'Reveal all answers';
+  }
+  // active nav highlight on scroll
+  var pills=[].slice.call(document.querySelectorAll('.pill'));
+  var secs=[].slice.call(document.querySelectorAll('.lesson'));
+  var io=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){
+      if(e.isIntersecting){
+        var i=secs.indexOf(e.target);
+        pills.forEach(function(p,j){p.classList.toggle('active',j===i)});
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(function(s){io.observe(s)});
+</script>
+</body>
+</html>
