@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moral Studies Y7 – Unit 4 Lesson 4: Recognising Prejudice in Society</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap');
+
+  :root {
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --red-dark: #991b1b;
+    --orange: #ea580c;
+    --orange-light: #ffedd5;
+    --gold: #c9a800;
+    --gold-light: #fef9c3;
+    --gold-dark: #a16207;
+    --green: #16a34a;
+    --green-light: #dcfce7;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+    --purple: #7c3aed;
+    --purple-light: #ede9fe;
+    --slate: #1e293b;
+    --cream: #fffdf0;
+    --white: #ffffff;
+    --shadow: 0 4px 24px rgba(0,0,0,0.10);
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--slate);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 40%, #991b1b 70%, #b91c1c 100%);
+    padding: 34px 40px 26px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='18' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E") repeat;
+  }
+  header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: #fff;
+    text-shadow: 2px 3px 0 rgba(0,0,0,0.25);
+    position: relative;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+  header .subtitle {
+    font-size: 0.97rem; color: #fca5a5;
+    margin-top: 6px; font-weight: 700; position: relative;
+  }
+  .badge-row { display: flex; gap: 10px; justify-content: center; margin-top: 14px; flex-wrap: wrap; position: relative; }
+  .badge {
+    background: rgba(252,165,165,0.2); border: 2px solid rgba(252,165,165,0.45);
+    color: #fca5a5; padding: 5px 16px; border-radius: 30px; font-size: 0.84rem; font-weight: 800;
+  }
+
+  /* NAV */
+  .nav-strip {
+    background: #1c0000; display: flex; overflow-x: auto; white-space: nowrap;
+    scrollbar-width: none; border-bottom: 2px solid rgba(252,165,165,0.15);
+  }
+  .nav-strip::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    flex: 1; min-width: 105px; padding: 12px 7px;
+    border: none; background: transparent; color: rgba(255,255,255,0.45);
+    font-family: 'Nunito', sans-serif; font-size: 0.76rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; border-bottom: 3px solid transparent; text-align: center;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    color: #fca5a5; border-bottom-color: #fca5a5; background: rgba(252,165,165,0.07);
+  }
+
+  /* PROGRESS */
+  .progress-wrap { background: #e2e8f0; border-radius: 30px; height: 8px; overflow: hidden; }
+  .progress-bar {
+    height: 100%; border-radius: 30px;
+    background: linear-gradient(90deg, var(--red-dark), #ef4444);
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  }
+  .progress-label { font-size: 0.75rem; font-weight: 700; color: var(--red-dark); text-align: right; margin-top: 3px; }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 30px 22px 60px; }
+
+  /* SECTION CARD */
+  .section-card {
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); margin-bottom: 28px;
+    overflow: hidden; animation: fadeUp 0.45s ease both; display: none;
+  }
+  .section-card.visible { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 24px; border-bottom: 2px solid var(--red-light);
+  }
+  .card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .card-title { font-family: 'Fredoka One', cursive; font-size: 1.42rem; color: var(--red-dark); letter-spacing: 0.3px; }
+  .section-number { background: var(--red-dark); color: #fff; font-family: 'Fredoka One', cursive; font-size: 0.8rem; padding: 3px 12px; border-radius: 20px; margin-left: auto; white-space: nowrap; }
+  .card-body { padding: 24px; }
+
+  /* TEACHER BOX */
+  .teacher-box {
+    background: linear-gradient(135deg, var(--red-light), #fecaca);
+    border-left: 5px solid var(--red); border-radius: 10px;
+    padding: 13px 17px; margin-bottom: 18px; display: flex; gap: 11px; align-items: flex-start;
+  }
+  .teacher-box .icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 1px; }
+  .teacher-box .label { font-size: 0.67rem; font-weight: 900; color: var(--red-dark); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .teacher-box p { font-size: 0.9rem; color: var(--red-dark); font-weight: 600; font-style: italic; }
+
+  /* BIG QUESTION */
+  .big-question {
+    background: linear-gradient(135deg, #450a0a, #7f1d1d, #991b1b);
+    border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 18px;
+  }
+  .big-question .q-text { font-family: 'Fredoka One', cursive; font-size: clamp(1.2rem, 3vw, 1.85rem); color: #fff; line-height: 1.4; }
+
+  /* REVEAL BTN */
+  .reveal-btn {
+    background: var(--red-dark); color: #fff; border: none; border-radius: 30px;
+    padding: 12px 26px; font-family: 'Nunito', sans-serif; font-size: 0.97rem; font-weight: 800;
+    cursor: pointer; margin-top: 14px;
+    box-shadow: 0 4px 14px rgba(153,27,27,0.35);
+    transition: transform 0.15s, box-shadow 0.15s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .reveal-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(153,27,27,0.4); }
+  .reveal-btn:active { transform: scale(0.97); }
+  .reveal-btn.green { background: var(--green); box-shadow: 0 4px 14px rgba(22,163,74,0.3); }
+  .reveal-btn.green:hover { box-shadow: 0 7px 20px rgba(22,163,74,0.4); }
+  .reveal-btn.full { width: 100%; justify-content: center; }
+
+  .reveal-content { display: none; margin-top: 14px; animation: fadeUp 0.35s ease; }
+  .reveal-content.shown { display: block; }
+
+  /* OBJECTIVES */
+  .obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 13px; }
+  .obj-item {
+    background: var(--red-light); border-radius: 14px; padding: 17px 14px;
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 9px;
+    border: 2px solid rgba(220,38,38,0.3); transition: transform 0.2s;
+  }
+  .obj-item:hover { transform: translateY(-3px); }
+  .obj-item .obj-icon { font-size: 1.8rem; }
+  .obj-item p { font-size: 0.86rem; font-weight: 700; color: var(--red-dark); line-height: 1.4; }
+
+  /* VOCAB CARDS */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 12px; }
+  .vcard {
+    background: var(--red-light); border: 2px solid rgba(220,38,38,0.3);
+    border-radius: 16px; padding: 17px 13px; text-align: center; cursor: pointer; transition: all 0.22s;
+  }
+  .vcard:hover { transform: translateY(-3px); border-color: var(--red); }
+  .vcard.flipped { border-color: var(--red); background: #fecaca; }
+  .vcard-icon { font-size: 1.7rem; display: block; margin-bottom: 7px; }
+  .vcard-word { font-family: 'Fredoka One', cursive; font-size: 1.05rem; color: var(--red-dark); display: block; margin-bottom: 5px; }
+  .vcard-def { font-size: 0.8rem; color: var(--red-dark); font-weight: 600; line-height: 1.5; display: none; }
+  .vcard.flipped .vcard-def { display: block; }
+  .vcard-hint { font-size: 0.68rem; color: rgba(153,27,27,0.5); font-weight: 700; margin-top: 5px; }
+  .vcard.flipped .vcard-hint { display: none; }
+
+  /* STORY BOX */
+  .story-box {
+    background: linear-gradient(135deg, #1c0505, #2a0808);
+    border-radius: 16px; padding: 22px 24px; margin-bottom: 14px;
+    border: 2px solid rgba(252,165,165,0.2);
+  }
+  .story-text { font-size: clamp(14px,1.8vw,18px); color: rgba(255,255,255,0.9); line-height: 1.95; }
+  .story-text .hl  { background: rgba(252,165,165,0.22); border-radius: 4px; padding: 1px 5px; color: #fca5a5; }
+  .story-text .hlg { background: rgba(74,222,128,0.18); border-radius: 4px; padding: 1px 5px; color: #86efac; }
+  .story-text .hly { background: rgba(253,224,71,0.2);  border-radius: 4px; padding: 1px 5px; color: #fde047; }
+
+  /* THINK BOX */
+  .think-box {
+    background: rgba(253,224,71,0.1); border: 2px solid rgba(253,224,71,0.4);
+    border-radius: 14px; padding: 16px 20px; margin-bottom: 14px;
+  }
+  .think-box .th-icon { font-size: 1.8rem; margin-bottom: 5px; display: block; }
+  .think-box p { font-size: 0.93rem; font-weight: 700; color: var(--slate); line-height: 1.65; }
+
+  /* KEY FACT */
+  .key-fact {
+    background: var(--blue-light); border: 2px solid rgba(37,99,235,0.3);
+    border-radius: 12px; padding: 13px 18px; margin-bottom: 14px;
+    display: flex; gap: 11px; align-items: flex-start;
+  }
+  .key-fact .kf-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .key-fact p { font-size: 0.9rem; font-weight: 700; color: var(--blue); line-height: 1.6; }
+
+  /* RULE / TIP / WARN */
+  .rule-box { background: rgba(220,38,38,0.07); border: 2px solid rgba(220,38,38,0.25); border-radius: 14px; padding: 16px 20px; margin-bottom: 14px; }
+  .tip { background: rgba(22,163,74,0.07); border: 1.5px solid rgba(22,163,74,0.3); border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; }
+  .warn { background: rgba(253,224,71,0.1); border: 1.5px solid rgba(253,224,71,0.4); border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; }
+
+  /* TEACHER NOTE */
+  .tnote { background: rgba(15,23,42,0.05); border: 1.5px dashed #cbd5e1; border-radius: 10px; padding: 10px 16px; font-size: 0.8rem; color: #64748b; margin-top: 14px; line-height: 1.6; }
+  .tnote-lbl { font-size: 0.66rem; font-weight: 900; letter-spacing:.12em; text-transform:uppercase; color:#94a3b8; display:block; margin-bottom:3px; }
+
+  /* KCHIP */
+  .kchip { display: inline-block; background: rgba(220,38,38,0.1); border: 1.5px solid rgba(220,38,38,0.35); color: var(--red-dark); padding: 5px 13px; border-radius: 20px; font-size: 0.82rem; font-weight: 800; margin: 3px; }
+
+  /* Q CARDS */
+  .q-card { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 14px; padding: 15px 17px; margin-bottom: 11px; }
+  .q-num { background: var(--red-dark); color: #fff; width: 27px; height: 27px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; flex-shrink: 0; }
+  .q-text { font-size: clamp(14px,1.8vw,19px); font-weight: 700; color: var(--slate); margin-bottom: 9px; margin-top: 7px; }
+  .q-answer { background: rgba(220,38,38,0.07); border: 1.5px solid var(--red); border-radius: 10px; padding: 11px 14px; display: none; }
+  .q-answer-text { font-size: clamp(13px,1.5vw,16px); color: var(--red-dark); font-weight: 700; }
+  .q-keywords { font-size: 0.74rem; color: #64748b; margin-top: 5px; }
+
+  /* MC */
+  .mc-question { font-size: 0.98rem; font-weight: 700; color: var(--slate); margin-bottom: 11px; line-height: 1.5; }
+  .mc-options { display: flex; flex-direction: column; gap: 8px; }
+  .mc-opt {
+    background: var(--red-light); border: 2px solid rgba(220,38,38,0.35);
+    border-radius: 12px; padding: 11px 15px;
+    font-size: 0.9rem; font-weight: 700; color: var(--red-dark);
+    cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.18s;
+  }
+  .mc-opt:hover { background: #fecaca; }
+  .mc-opt.correct { background: #dcfce7; border-color: var(--green); color: #14532d; }
+  .mc-opt.wrong   { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
+  .mc-opt.disabled { pointer-events: none; opacity: 0.65; }
+  .mc-feedback { margin-top: 10px; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.88rem; display: none; }
+  .mc-feedback.show { display: block; }
+  .mc-feedback.good { background: #dcfce7; color: #14532d; border: 1.5px solid var(--green); }
+  .mc-feedback.bad  { background: #fee2e2; color: #7f1d1d; border: 1.5px solid #ef4444; }
+  .mc-reset-btn { margin-top: 9px; background: #64748b; color: #fff; border: none; border-radius: 20px; padding: 7px 17px; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; display:none; }
+  .mc-reset-btn.show { display: inline-block; }
+
+  /* SCENARIO */
+  .scenario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 13px; }
+  .scenario-card { border-radius: 14px; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+  .scenario-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.12); }
+  .sc-top { padding: 17px 15px 12px; font-weight: 800; font-size: 0.93rem; line-height: 1.5; }
+  .sc-bottom { padding: 12px 15px; font-size: 0.84rem; font-weight: 700; display: none; animation: fadeUp 0.3s ease; }
+  .sc-bottom.shown { display: block; }
+  .sc-hint { font-size: 0.7rem; font-weight: 700; opacity: 0.65; margin-top: 5px; }
+
+  /* TPS */
+  .tps-steps { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+  .tps-step { flex: 1; min-width: 150px; border-radius: 14px; padding: 16px 13px; text-align: center; font-weight: 800; font-size: 0.87rem; }
+  .tps-step .step-num { font-family: 'Fredoka One', cursive; font-size: 1.85rem; display: block; margin-bottom: 5px; }
+  .tps-think { background: var(--teal-light); border: 2px solid var(--teal); color: var(--teal); }
+  .tps-pair  { background: var(--purple-light); border: 2px solid var(--purple); color: var(--purple); }
+  .tps-share { background: var(--gold-light); border: 2px solid var(--gold-dark); color: var(--gold-dark); }
+
+  /* REFLECTION */
+  .reflection-box { background: linear-gradient(135deg, var(--red-light), #fecaca); border: 2px dashed var(--red); border-radius: 16px; padding: 24px; text-align: center; margin-top: 14px; }
+  .reflection-box .r-icon { font-size: 2.2rem; margin-bottom: 7px; }
+  .reflection-box .r-q { font-family: 'Fredoka One', cursive; font-size: 1.22rem; color: var(--red-dark); margin-bottom: 12px; line-height: 1.4; }
+  .refl-area { width: 100%; min-height: 72px; border: 2px solid var(--red); border-radius: 10px; padding: 10px 12px; font-family:'Nunito',sans-serif; font-size:0.9rem; color:var(--slate); resize: vertical; outline: none; background: #fff; }
+  .refl-area:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+
+  /* ALINE */
+  .aline { border-bottom: 2px dashed #e2e8f0; height: 32px; margin-bottom: 10px; }
+
+  /* DISC */
+  .disc-list { display: flex; flex-direction: column; gap: 10px; }
+  .disc-item { background: var(--purple-light); border-left: 5px solid var(--purple); border-radius: 10px; padding: 13px 15px; font-size: 0.92rem; font-weight: 700; color: var(--purple); cursor: pointer; transition: background 0.2s; display: flex; gap: 10px; }
+  .disc-item:hover { background: #ddd6fe; }
+  .disc-item .di-icon { font-size: 1.25rem; flex-shrink: 0; }
+  .disc-answer { font-size: 0.85rem; color: var(--slate); margin-top: 7px; font-weight: 600; font-style: italic; display: none; animation: fadeUp 0.3s ease; }
+  .disc-answer.shown { display: block; }
+
+  /* WORD WALL */
+  .word-wall { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 10px; }
+  .word-pill { background: var(--red-light); border: 2px solid rgba(220,38,38,0.4); color: var(--red-dark); border-radius: 30px; padding: 6px 15px; font-size: 0.84rem; font-weight: 800; cursor: pointer; transition: all 0.18s; }
+  .word-pill:hover, .word-pill.active { background: var(--red-dark); color: #fff; transform: scale(1.05); }
+  .word-def { display: none; width: 100%; background: #fff; border: 2px solid var(--red-dark); border-radius: 12px; padding: 11px 14px; margin-top: 8px; font-size: 0.88rem; font-weight: 600; color: var(--slate); animation: fadeUp 0.3s ease; }
+  .word-def.shown { display: block; }
+
+  /* EXIT */
+  .exit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 13px; }
+  .exit-card { border-radius: 14px; padding: 18px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 2.5px solid transparent; }
+  .exit-card:hover { transform: scale(1.03); box-shadow: 0 8px 22px rgba(0,0,0,0.11); }
+  .exit-card.selected { transform: scale(1.05); }
+  .exit-card .ec-emoji { font-size: 2.1rem; margin-bottom: 7px; display: block; }
+  .exit-card .ec-label { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
+  .exit-card .ec-text  { font-size: 0.83rem; font-weight: 600; margin-top: 5px; line-height: 1.4; }
+  .exit-c1 { background: var(--green-light); border-color: var(--green); color: #14532d; }
+  .exit-c2 { background: var(--gold-light); border-color: var(--gold-dark); color: var(--gold-dark); }
+  .exit-c3 { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
+  .exit-confirm { display: none; margin-top: 18px; text-align: center; animation: fadeUp 0.35s ease; }
+  .exit-confirm.show { display: block; }
+  .exit-confirm .conf-msg { font-family: 'Fredoka One', cursive; font-size: 1.28rem; color: var(--red-dark); }
+
+  /* TIMER */
+  .timer-box { display: inline-flex; align-items: center; gap: 9px; background: var(--orange-light); border: 2px solid var(--orange); border-radius: 12px; padding: 9px 16px; margin-top: 10px; }
+  .timer-display { font-family:'Fredoka One',cursive; font-size:1.65rem; color:var(--orange); min-width:60px; text-align:center; }
+  .timer-btn { background:var(--orange); color:#fff; border:none; border-radius:8px; padding:6px 12px; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:800; cursor:pointer; transition:background .15s; }
+  .timer-btn:hover { background:#c2410c; }
+  .timer-btn.ghost { background:#94a3b8; }
+  .timer-btn.ghost:hover { background:#64748b; }
+
+  /* WALKING DEBATE */
+  .debate-option {
+    border-radius: 14px; padding: 16px 20px; cursor: pointer;
+    font-family: 'Fredoka One', cursive; font-size: 1.5rem;
+    text-align: center; transition: all 0.2s; border: 3px solid transparent;
+    margin-bottom: 10px;
+  }
+  .debate-option:hover { transform: scale(1.03); }
+  .debate-option.yes-opt { background: var(--green-light); border-color: var(--green); color: var(--green); }
+  .debate-option.no-opt  { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  .debate-option.maybe-opt { background: var(--gold-light); border-color: var(--gold-dark); color: var(--gold-dark); }
+  .debate-option.selected { transform: scale(1.05); box-shadow: 0 8px 22px rgba(0,0,0,0.15); }
+  .debate-reveal { display: none; animation: fadeUp 0.3s ease; margin-top: 10px; }
+  .debate-reveal.shown { display: block; }
+
+  /* CULTURE RANKING */
+  .rank-item {
+    background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px;
+    padding: 12px 16px; margin-bottom: 9px; display: flex; align-items: center; gap: 12px;
+    cursor: grab; transition: all 0.2s;
+  }
+  .rank-item:hover { border-color: var(--red); background: var(--red-light); }
+  .rank-num { background: var(--red-dark); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family:'Fredoka One',cursive; font-size: 0.9rem; flex-shrink: 0; }
+  .rank-text { font-size: 0.9rem; font-weight: 700; color: var(--slate); }
+
+  /* PREJUDICE vs TOLERANCE comparison */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .compare-col { border-radius: 14px; padding: 18px; }
+  .compare-col.prej { background: var(--red-light); border: 2px solid rgba(220,38,38,0.4); }
+  .compare-col.tol  { background: var(--green-light); border: 2px solid rgba(22,163,74,0.4); }
+  .compare-title { font-family: 'Fredoka One', cursive; font-size: 1.2rem; margin-bottom: 12px; }
+  .compare-col.prej .compare-title { color: var(--red-dark); }
+  .compare-col.tol  .compare-title { color: var(--green); }
+  .compare-item { font-size: 0.87rem; font-weight: 700; color: var(--slate); margin-bottom: 8px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+
+  /* CELEBRATE */
+  .celebrate { background: linear-gradient(135deg, #450a0a, #7f1d1d, #991b1b); border-radius: 20px; padding: 28px 32px; text-align: center; border: 2px solid rgba(252,165,165,0.3); max-width: 720px; margin: 0 auto; }
+
+  /* UTILS */
+  .divider { border: none; border-top: 2px dashed var(--red-light); margin: 18px 0; }
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  footer { text-align: center; padding: 16px; font-size: 0.74rem; font-weight: 700; color: var(--red-dark); letter-spacing: 0.5px; }
+
+  @media (max-width: 600px) {
+    .card-body { padding: 15px 13px; }
+    header { padding: 22px 14px 16px; }
+    .g2, .g3, .compare-grid { grid-template-columns: 1fr; }
+    .tps-steps { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚠️ Recognising Prejudice in Society</h1>
+  <p class="subtitle">Moral, Social & Cultural Studies · Year 7 · Unit 4 · Lesson 4</p>
+  <div class="badge-row">
+    <span class="badge">📖 Year 7</span>
+    <span class="badge">⏱ 50 Minutes</span>
+    <span class="badge">👥 Interactive</span>
+    <span class="badge">🏫 Smart Board Ready</span>
+  </div>
+</header>
+
+<nav class="nav-strip" id="mainNav">
+  <button class="nav-btn active" onclick="showSection(0,this)">🎯 Intro</button>
+  <button class="nav-btn" onclick="showSection(1,this)">📖 Vocab</button>
+  <button class="nav-btn" onclick="showSection(2,this)">👀 Act. 1</button>
+  <button class="nav-btn" onclick="showSection(3,this)">📖 Act. 2</button>
+  <button class="nav-btn" onclick="showSection(4,this)">❓ Questions</button>
+  <button class="nav-btn" onclick="showSection(5,this)">📖 Act. 3 — Jack</button>
+  <button class="nav-btn" onclick="showSection(6,this)">❓ Questions</button>
+  <button class="nav-btn" onclick="showSection(7,this)">🗳️ Act. 4 — Debate</button>
+  <button class="nav-btn" onclick="showSection(8,this)">🌍 Act. 5</button>
+  <button class="nav-btn" onclick="showSection(9,this)">💬 Discussion</button>
+  <button class="nav-btn" onclick="showSection(10,this)">📝 Summary</button>
+  <button class="nav-btn" onclick="showSection(11,this)">🚪 Exit</button>
+  <button class="nav-btn" onclick="showSection(12,this)">🌟 Well Done</button>
+</nav>
+
+<div style="max-width:1000px;margin:0 auto;padding:10px 22px 0;">
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar" style="width:7.7%"></div></div>
+  <div class="progress-label" id="progressLabel">Section 1 of 13</div>
+</div>
+
+<main>
+
+<!-- S0 INTRO -->
+<div class="section-card visible" id="sec-0">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--red-light);">🎯</div>
+    <div class="card-title">Lesson Overview</div>
+    <span class="section-number">1 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="big-question">
+      <p class="q-text">😠 Why do you think people can sometimes be mean to each other?<br><span style="font-size:0.7em;opacity:0.8;">Why do some people have prejudices against other countries?</span></p>
+      <button class="reveal-btn" onclick="toggleReveal('hook-r',this)">💡 Think About It</button>
+    </div>
+    <div class="reveal-content" id="hook-r">
+      <div class="rule-box">
+        <p style="font-size:0.97rem;font-weight:700;color:var(--red-dark);">Often, people are mean or prejudiced because of <strong>fear of the unknown</strong>. When we don't know someone, we make assumptions — and those assumptions can lead to unfair judgements. Today, we'll explore what <strong>prejudice</strong> really is, where it comes from, and how we can overcome it.</p>
+      </div>
+    </div>
+    <hr class="divider">
+    <p style="font-size:0.93rem;font-weight:800;color:var(--red-dark);margin-bottom:13px;">By the end of this lesson, I will be able to:</p>
+    <div class="obj-grid">
+      <div class="obj-item"><span class="obj-icon">🔍</span><p>Define prejudice and explain where it comes from</p></div>
+      <div class="obj-item"><span class="obj-icon">📖</span><p>Analyse two stories showing prejudice in action</p></div>
+      <div class="obj-item"><span class="obj-icon">🗳️</span><p>Participate in a walking debate on statements about prejudice</p></div>
+      <div class="obj-item"><span class="obj-icon">💪</span><p>Suggest ways to challenge and overcome prejudice</p></div>
+    </div>
+    <hr class="divider">
+    <div class="warn"><span style="color:var(--gold-dark);font-weight:800;">🔑 Key Vocabulary: </span><span class="kchip">prejudice</span><span class="kchip">sympathies</span><span class="kchip">snap judgment</span><span class="kchip">stereotype</span></div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Ask the two opening questions before starting. Take 3–4 student answers. <strong>Time: 2 min</strong></div>
+  </div>
+</div>
+
+<!-- S1 VOCAB -->
+<div class="section-card" id="sec-1">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--red-light);">📖</div>
+    <div class="card-title">Key Vocabulary — Click to Reveal!</div>
+    <span class="section-number">2 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Read each word aloud BEFORE clicking. Try to guess the meaning — then click to check!"</p>
+      </div>
+    </div>
+    <div class="vocab-grid">
+      <div class="vcard" onclick="flipCard(this)">
+        <span class="vcard-icon">⚠️</span>
+        <span class="vcard-word">Prejudice</span>
+        <span class="vcard-def">An unfair opinion about a person or group, formed without real knowledge or experience of them.</span>
+        <span class="vcard-hint">👆 Click to reveal</span>
+      </div>
+      <div class="vcard" onclick="flipCard(this)">
+        <span class="vcard-icon">💭</span>
+        <span class="vcard-word">Sympathies</span>
+        <span class="vcard-def">Feelings of agreement, support or loyalty toward a person, group or idea.</span>
+        <span class="vcard-hint">👆 Click to reveal</span>
+      </div>
+      <div class="vcard" onclick="flipCard(this)">
+        <span class="vcard-icon">⚡</span>
+        <span class="vcard-word">Snap Judgment</span>
+        <span class="vcard-def">A very quick decision or opinion formed about someone before getting to know them properly.</span>
+        <span class="vcard-hint">👆 Click to reveal</span>
+      </div>
+      <div class="vcard" onclick="flipCard(this)">
+        <span class="vcard-icon">🎭</span>
+        <span class="vcard-word">Stereotype</span>
+        <span class="vcard-def">Assuming all people in a group are the same — without considering them as individuals.</span>
+        <span class="vcard-hint">👆 Click to reveal</span>
+      </div>
+      <div class="vcard" onclick="flipCard(this)">
+        <span class="vcard-icon">😨</span>
+        <span class="vcard-word">Fear of the Unknown</span>
+        <span class="vcard-def">Feeling uncomfortable or suspicious about people or things that are unfamiliar to you.</span>
+        <span class="vcard-hint">👆 Click to reveal</span>
+      </div>
+      <div class="vcard" onclick="flipCard(this)">
+        <span class="vcard-icon">🔓</span>
+        <span class="vcard-word">Overcome</span>
+        <span class="vcard-def">To successfully deal with and move past a problem, fear or negative attitude.</span>
+        <span class="vcard-hint">👆 Click to reveal</span>
+      </div>
+    </div>
+    <hr class="divider">
+    <div id="mc-v1">
+      <p class="mc-question">🎯 A "snap judgment" means…</p>
+      <div class="mc-options">
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-v1')">🅐 A decision made after careful research</div>
+        <div class="mc-opt" onclick="checkAnswer(this,true,'mc-v1')">🅑 A quick opinion formed before getting to know someone</div>
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-v1')">🅒 A fair and balanced judgement</div>
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-v1')">🅓 A judgement that changes over time</div>
+      </div>
+      <div class="mc-feedback" id="mc-v1-fb"></div>
+      <button class="mc-reset-btn" id="mc-v1-rst" onclick="resetMC('mc-v1')">Try Again ↺</button>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Students read word aloud BEFORE clicking. <strong>Time: 4 min</strong></div>
+  </div>
+</div>
+
+<!-- S2 ACTIVITY 1 -->
+<div class="section-card" id="sec-2">
+  <div class="card-header">
+    <div class="card-icon" style="background:#ffedd5;">👀</div>
+    <div class="card-title">Activity 1 — Bullying & Exclusion: What's Going On?</div>
+    <span class="section-number">3 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Think about situations you might have seen in school. These questions are about REAL things that happen. How would you answer them?"</p>
+      </div>
+    </div>
+    <div class="big-question" style="padding:22px;">
+      <p class="q-text" style="font-size:clamp(1rem,2.5vw,1.5rem);">Have you ever asked yourself questions like these?<br><span style="font-size:0.75em;opacity:0.85;">Why is the popular group teasing that new kid?<br>How come he never gets picked to play on the team?<br>Why are those kids drawing on her new bag?</span></p>
+    </div>
+
+    <p style="font-size:0.93rem;font-weight:800;color:var(--red-dark);margin-bottom:12px;">💭 How would you answer these questions? Click each scenario to explore!</p>
+
+    <div class="scenario-grid">
+      <div class="scenario-card" style="border-color:var(--red);" onclick="toggleScenario(this)">
+        <div class="sc-top" style="background:var(--red-light);color:var(--red-dark);">
+          <span style="font-size:1.3rem;">😤</span>
+          <p style="margin-top:7px;">Why is the popular group teasing the new kid?</p>
+          <p class="sc-hint" style="color:var(--red-dark);">👆 Click to explore</p>
+        </div>
+        <div class="sc-bottom" style="background:#fecaca;color:var(--red-dark);">
+          <strong>What's likely happening:</strong> The new kid is different — unfamiliar. Some students feel threatened by what they don't understand. Teasing is a way to feel powerful over someone who seems vulnerable. This is often rooted in <strong>prejudice and insecurity</strong>.
+        </div>
+      </div>
+      <div class="scenario-card" style="border-color:var(--orange);" onclick="toggleScenario(this)">
+        <div class="sc-top" style="background:var(--orange-light);color:var(--orange);">
+          <span style="font-size:1.3rem;">🏃</span>
+          <p style="margin-top:7px;">How come he never gets picked to play on the team?</p>
+          <p class="sc-hint" style="color:var(--orange);">👆 Click to explore</p>
+        </div>
+        <div class="sc-bottom" style="background:#ffedd5;color:#7c2d12;">
+          <strong>What's likely happening:</strong> Perhaps assumptions are being made about his abilities based on how he looks, where he's from, or a stereotype — without actually giving him a fair chance. This is <strong>discrimination driven by prejudice</strong>.
+        </div>
+      </div>
+      <div class="scenario-card" style="border-color:var(--purple);" onclick="toggleScenario(this)">
+        <div class="sc-top" style="background:var(--purple-light);color:var(--purple);">
+          <span style="font-size:1.3rem;">🎒</span>
+          <p style="margin-top:7px;">Why are those kids drawing on her new bag?</p>
+          <p class="sc-hint" style="color:var(--purple);">👆 Click to explore</p>
+        </div>
+        <div class="sc-bottom" style="background:var(--purple-light);color:#4c1d95;">
+          <strong>What's likely happening:</strong> This is targeted bullying — possibly because she is seen as different or an outsider. It can be linked to prejudice based on appearance, background, or not fitting into the group's idea of "normal."
+        </div>
+      </div>
+    </div>
+
+    <div class="aline" style="margin-top:16px;"></div>
+    <div class="aline"></div>
+
+    <button class="reveal-btn full" style="margin-top:12px;" onclick="toggleReveal('act1-ans',this)">
+      💡 Key Insight: What's Behind This Behaviour?
+    </button>
+    <div class="reveal-content" id="act1-ans">
+      <div class="rule-box">
+        <p style="font-size:0.95rem;font-weight:700;color:var(--red-dark);">All of these situations are likely driven by <strong>prejudice</strong> — unfair assumptions or judgements about people we don't really know. Prejudice leads to exclusion, bullying and discrimination. The antidote? <strong>Getting to know people as individuals</strong>, not as categories.</p>
+      </div>
+    </div>
+
+    <!-- TPS -->
+    <hr class="divider">
+    <p style="font-size:0.93rem;font-weight:800;color:var(--red-dark);margin-bottom:10px;">🤝 Think — Pair — Share!</p>
+    <div class="tps-steps">
+      <div class="tps-step tps-think"><span class="step-num">🧠</span><strong>THINK</strong><br>Have you seen prejudice in action? Think of an example.</div>
+      <div class="tps-step tps-pair"><span class="step-num">👥</span><strong>PAIR</strong><br>Share your example with a partner.</div>
+      <div class="tps-step tps-share"><span class="step-num">📢</span><strong>SHARE</strong><br>Be ready to share with the class!</div>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>This is a safe space — no names needed. Focus on the behaviour, not the individual. <strong>Time: 5 min</strong></div>
+  </div>
+</div>
+
+<!-- S3 ACTIVITY 2 — STORY (Long Ago) -->
+<div class="section-card" id="sec-3">
+  <div class="card-header">
+    <div class="card-icon" style="background:#fef9c3;">📖</div>
+    <div class="card-title">Activity 2 — Where Does Prejudice Come From?</div>
+    <span class="section-number">4 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Let's go back in time to understand WHY prejudice exists. Read this article carefully — it explains the roots of fear and prejudice."</p>
+      </div>
+    </div>
+    <div class="story-box">
+      <div class="story-text">
+        Long ago, people used to be afraid of others who wore <span class="hl">different clothes</span>, had different facial features, or who did things in a different way. Long ago, there were no cars or aeroplanes either. That meant that people didn't have the means of transport to travel and meet different people. They usually stayed in the place where they were born, with the same people they had grown up with and <span class="hl">never saw an unfamiliar face or tried unfamiliar food</span>.<br><br>
+        It's no wonder then that people were afraid when they saw strangers from neighbouring communities. They probably thought they were there to rob them! Maybe we have even heard stories that have been passed down through the generations about <span class="hl">'bad' people from faraway places</span>.<br><br>
+        Nowadays, we all have the freedom and the ability to visit or live in different places. Therefore, we are constantly meeting new people from different backgrounds. Not only are we meeting different people in real life, but we are also getting to know the world through <span class="hlg">television and social media</span>. Documentaries and TV shows enable us to learn about other cultures and social media provides us with even more information.<br><br>
+        Never before have people from all over the world been so close. We live and work side by side, so we need to <span class="hlg">respect each other's differences and overcome any prejudices that we have</span>.
+      </div>
+    </div>
+    <div class="think-box">
+      <span class="th-icon">💭</span>
+      <p>Why were people afraid of strangers long ago? Does that same fear still exist today — even without the same reasons?</p>
+    </div>
+    <div id="mc-a2">
+      <p class="mc-question">🎯 Why were people in the past more likely to be afraid of strangers?</p>
+      <div class="mc-options">
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-a2')">🅐 Because strangers were always dangerous criminals</div>
+        <div class="mc-opt" onclick="checkAnswer(this,true,'mc-a2')">🅑 Because they had no way to travel and never met people from different places</div>
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-a2')">🅒 Because they were taught to be prejudiced in school</div>
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-a2')">🅓 Because they watched too many scary TV shows</div>
+      </div>
+      <div class="mc-feedback" id="mc-a2-fb"></div>
+      <button class="mc-reset-btn" id="mc-a2-rst" onclick="resetMC('mc-a2')">Try Again ↺</button>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Read aloud paragraph by paragraph. Pause after paragraph 1. Ask: "Does this fear still exist today?" <strong>Time: 5 min</strong></div>
+  </div>
+</div>
+
+<!-- S4 STORY QUESTIONS (Long Ago) -->
+<div class="section-card" id="sec-4">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--green-light);">❓</div>
+    <div class="card-title">Activity 2 — Answer the Questions!</div>
+    <span class="section-number">5 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Write your answers in full sentences in your books first — then click to check. Use keywords!"</p>
+      </div>
+    </div>
+    <div class="q-card">
+      <div style="display:flex;align-items:flex-start;gap:11px;">
+        <div class="q-num">a</div>
+        <div style="flex:1;">
+          <p class="q-text">"It's no wonder they were afraid." Why do you think the writer said this?</p>
+          <button class="reveal-btn" style="padding:9px 18px;font-size:0.86rem;display:inline-flex;" onclick="revealQ(this)">👁️ Show Answer</button>
+          <div class="q-answer">
+            <p class="q-answer-text">People long ago never travelled or met people from different places, so strangers were completely unknown to them. Without knowledge or experience, they assumed the worst. Their fear was based on ignorance — not facts. The writer is showing empathy for why this happened.</p>
+            <p class="q-keywords">Keywords: fear · ignorance · unknown · strangers · no transport</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card">
+      <div style="display:flex;align-items:flex-start;gap:11px;">
+        <div class="q-num">b</div>
+        <div style="flex:1;">
+          <p class="q-text">If the neighbouring communities had an opportunity to get to know each other, what do you think might have happened?</p>
+          <button class="reveal-btn" style="padding:9px 18px;font-size:0.86rem;display:inline-flex;" onclick="revealQ(this)">👁️ Show Answer</button>
+          <div class="q-answer">
+            <p class="q-answer-text">They might have discovered shared interests and values, built friendships, and traded goods. Their fears and prejudices would likely have disappeared once they got to know each other as individuals. Getting to know people is the best antidote to prejudice.</p>
+            <p class="q-keywords">Keywords: friendship · trade · shared values · overcome · knowledge</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card">
+      <div style="display:flex;align-items:flex-start;gap:11px;">
+        <div class="q-num">c</div>
+        <div style="flex:1;">
+          <p class="q-text">What role do you think the media has played in helping diverse groups of people get to know each other?</p>
+          <button class="reveal-btn" style="padding:9px 18px;font-size:0.86rem;display:inline-flex;" onclick="revealQ(this)">👁️ Show Answer</button>
+          <div class="q-answer">
+            <p class="q-answer-text">TV documentaries, films, news and social media have exposed people to cultures from around the world without needing to travel. This helps break down prejudice by showing that people from different backgrounds are not scary — they have families, dreams and struggles just like us. However, media can also reinforce prejudice if it only shows negative stereotypes.</p>
+            <p class="q-keywords">Keywords: media · documentaries · social media · break down · stereotypes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reflection-box">
+      <div class="r-icon">🪞</div>
+      <p class="r-q">"Have you ever felt prejudice from someone? Or caught yourself making an unfair assumption about someone? How did it feel?"</p>
+      <p style="font-size:0.82rem;font-weight:700;color:var(--red-dark);margin-bottom:10px;">Private reflection — write your thoughts below.</p>
+      <textarea class="refl-area" placeholder="Write your reflection here..."></textarea>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Students write first. Take 1–2 responses per question. <strong>Time: 7 min</strong></div>
+  </div>
+</div>
+
+<!-- S5 ACTIVITY 3 — JACK'S STORY -->
+<div class="section-card" id="sec-5">
+  <div class="card-header">
+    <div class="card-icon" style="background:#ffedd5;">📖</div>
+    <div class="card-title">Activity 3 — Jack's Story</div>
+    <span class="section-number">6 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Read this story carefully. Think about how a prejudice — formed from someone else's opinion — was shattered by actually getting to know the person."</p>
+      </div>
+    </div>
+    <div class="story-box">
+      <div class="story-text">
+        Last year, <span class="hly">Jack</span> joined our class. His family had recently moved to Abu Dhabi from the United States. I had never met anyone from America before. To be honest, <span class="hl">I wasn't expecting much</span>. My uncle Mustapha says that most Americans eat unhealthy foods and watch TV all day. As he's my favourite uncle, I tend to believe what he says.<br><br>
+        One day, the teacher put Jack next to me in class. During our lunchbreak, we sat together, and he told me that his favourite hobby is <span class="hlg">indoor wall climbing</span>. "That's my all-time favourite thing too!" I said. Jack told me that his mother worries he might fall, and we laughed because mine does too. Jack told me that he <span class="hlg">hardly ever watches TV and prefers to read</span>. I told him what my uncle said about Americans eating unhealthy food.<br><br>
+        Jack said that some Americans do eat unhealthy food but that many don't. <span class="hlg">His family are vegetarian, and his mother hardly ever lets him eat sugar</span>. I sympathised because mine is very strict about treats too. It turns out that <span class="hlg">Jack and I have a lot in common</span> and we are now best friends.<br><br>
+        These days when I meet new people, I try to <span class="hlg">judge them after I get to know them, not before</span>.
+      </div>
+    </div>
+    <div class="think-box">
+      <span class="th-icon">💭</span>
+      <p>Where did the writer's prejudice about Americans come from? What changed it? Could you think of an example from your own life?</p>
+    </div>
+    <div id="mc-jack">
+      <p class="mc-question">🎯 What is the main lesson from Jack's story?</p>
+      <div class="mc-options">
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-jack')">🅐 Americans are very different from people in the UAE</div>
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-jack')">🅑 You should always trust what your family tells you about other cultures</div>
+        <div class="mc-opt" onclick="checkAnswer(this,true,'mc-jack')">🅒 Get to know people as individuals before forming opinions about them</div>
+        <div class="mc-opt" onclick="checkAnswer(this,false,'mc-jack')">🅓 People from different countries always have a lot in common</div>
+      </div>
+      <div class="mc-feedback" id="mc-jack-fb"></div>
+      <button class="mc-reset-btn" id="mc-jack-rst" onclick="resetMC('mc-jack')">Try Again ↺</button>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Read aloud. Pause after paragraph 1 — ask: "Is Uncle Mustapha right?" Then continue. <strong>Time: 5 min</strong></div>
+  </div>
+</div>
+
+<!-- S6 JACK'S STORY QUESTIONS -->
+<div class="section-card" id="sec-6">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--green-light);">❓</div>
+    <div class="card-title">Activity 3 — Answer the Questions!</div>
+    <span class="section-number">7 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Write your answers first — full sentences, use keywords! Then click to check."</p>
+      </div>
+    </div>
+    <div class="q-card">
+      <div style="display:flex;align-items:flex-start;gap:11px;">
+        <div class="q-num">a</div>
+        <div style="flex:1;">
+          <p class="q-text">Why do you think the writer had this view of Americans? Was he right?</p>
+          <button class="reveal-btn" style="padding:9px 18px;font-size:0.86rem;display:inline-flex;" onclick="revealQ(this)">👁️ Show Answer</button>
+          <div class="q-answer">
+            <p class="q-answer-text">The writer's view came from his uncle Mustapha, who held a stereotype about Americans. He was NOT right — he was making a snap judgement based on a generalisation, not on real knowledge. Jack proved that stereotypes are unfair and inaccurate.</p>
+            <p class="q-keywords">Keywords: stereotype · snap judgment · generalisation · unfair · inaccurate</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card">
+      <div style="display:flex;align-items:flex-start;gap:11px;">
+        <div class="q-num">b</div>
+        <div style="flex:1;">
+          <p class="q-text">The writer says he believed his uncle because he was his "favourite uncle." What lesson can we learn from this?</p>
+          <button class="reveal-btn" style="padding:9px 18px;font-size:0.86rem;display:inline-flex;" onclick="revealQ(this)">👁️ Show Answer</button>
+          <div class="q-answer">
+            <p class="q-answer-text">Even the people we love and trust can hold prejudices and pass them on to us. We should question what we are told about other groups — even from people we respect. Trusted people are not always right about everything, especially about cultures they don't know well.</p>
+            <p class="q-keywords">Keywords: inherited prejudice · question · critical thinking · trusted sources</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario comparison -->
+    <hr class="divider">
+    <p style="font-size:0.93rem;font-weight:800;color:var(--red-dark);margin-bottom:12px;">⚖️ Prejudice vs Tolerance — Spot the Difference!</p>
+    <div class="compare-grid">
+      <div class="compare-col prej">
+        <p class="compare-title">❌ Prejudice</p>
+        <div class="compare-item"><span>⚠️</span><span>Judging before getting to know someone</span></div>
+        <div class="compare-item"><span>⚠️</span><span>Assuming all members of a group are the same</span></div>
+        <div class="compare-item"><span>⚠️</span><span>Believing gossip or second-hand opinions</span></div>
+        <div class="compare-item"><span>⚠️</span><span>Excluding or bullying based on appearance</span></div>
+      </div>
+      <div class="compare-col tol">
+        <p class="compare-title">✅ Tolerance</p>
+        <div class="compare-item"><span>💚</span><span>Getting to know people as individuals first</span></div>
+        <div class="compare-item"><span>💚</span><span>Recognising that every person is unique</span></div>
+        <div class="compare-item"><span>💚</span><span>Forming your own opinions through experience</span></div>
+        <div class="compare-item"><span>💚</span><span>Including everyone regardless of background</span></div>
+      </div>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Students write first. Use the comparison table as a class summary activity. <strong>Time: 7 min</strong></div>
+  </div>
+</div>
+
+<!-- S7 ACTIVITY 4 — WALKING DEBATE -->
+<div class="section-card" id="sec-7">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gold-light);">🗳️</div>
+    <div class="card-title">Activity 4 — Walking Debate!</div>
+    <span class="section-number">8 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"For each statement, vote by clicking YES, NO or MAYBE. There are NO right or wrong answers — and you can change your mind! This is about honest thinking."</p>
+      </div>
+    </div>
+    <div class="rule-box">
+      <p style="font-size:0.93rem;font-weight:700;color:var(--red-dark);">📋 In a real Walking Debate, students stand in different corners of the room for YES / NO / MAYBE. On the Smart Board, vote by clicking!</p>
+    </div>
+
+    <!-- Statement 1 -->
+    <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:14px;">
+      <p style="font-size:1rem;font-weight:800;color:var(--slate);margin-bottom:14px;">💬 Statement 1: <em>"It is impossible to completely get rid of your prejudices."</em></p>
+      <div class="debate-option yes-opt" onclick="selectDebate(this,'d1')">✅ YES</div>
+      <div class="debate-option no-opt" onclick="selectDebate(this,'d1')">❌ NO</div>
+      <div class="debate-option maybe-opt" onclick="selectDebate(this,'d1')">🤔 MAYBE</div>
+      <div class="debate-reveal" id="d1">
+        <div class="tip"><p style="font-size:0.9rem;font-weight:700;color:#14532d;">💬 <strong>Discussion:</strong> Most experts believe prejudices can be <em>reduced</em> through education and experience, but may never fully disappear. Awareness is the first step — recognising your own prejudices is key to overcoming them.</p></div>
+      </div>
+    </div>
+
+    <!-- Statement 2 -->
+    <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:14px;">
+      <p style="font-size:1rem;font-weight:800;color:var(--slate);margin-bottom:14px;">💬 Statement 2: <em>"Social media helps reduce prejudice."</em></p>
+      <div class="debate-option yes-opt" onclick="selectDebate(this,'d2')">✅ YES</div>
+      <div class="debate-option no-opt" onclick="selectDebate(this,'d2')">❌ NO</div>
+      <div class="debate-option maybe-opt" onclick="selectDebate(this,'d2')">🤔 MAYBE</div>
+      <div class="debate-reveal" id="d2">
+        <div class="tip"><p style="font-size:0.9rem;font-weight:700;color:#14532d;">💬 <strong>Discussion:</strong> Social media can connect people across cultures (positive!) but can also create echo chambers and spread harmful stereotypes (negative!). Both sides have merit — this is a genuine debate!</p></div>
+      </div>
+    </div>
+
+    <!-- Statement 3 -->
+    <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:14px;">
+      <p style="font-size:1rem;font-weight:800;color:var(--slate);margin-bottom:14px;">💬 Statement 3: <em>"Everyone holds some form of prejudice."</em></p>
+      <div class="debate-option yes-opt" onclick="selectDebate(this,'d3')">✅ YES</div>
+      <div class="debate-option no-opt" onclick="selectDebate(this,'d3')">❌ NO</div>
+      <div class="debate-option maybe-opt" onclick="selectDebate(this,'d3')">🤔 MAYBE</div>
+      <div class="debate-reveal" id="d3">
+        <div class="tip"><p style="font-size:0.9rem;font-weight:700;color:#14532d;">💬 <strong>Discussion:</strong> Psychologists suggest that everyone has <em>unconscious biases</em> — prejudices we don't even know we hold. The important thing is not to act on them and to challenge them when we notice them.</p></div>
+      </div>
+    </div>
+
+    <!-- Statement 4 -->
+    <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:14px;">
+      <p style="font-size:1rem;font-weight:800;color:var(--slate);margin-bottom:14px;">💬 Statement 4: <em>"Children are not prejudiced — only adults are."</em></p>
+      <div class="debate-option yes-opt" onclick="selectDebate(this,'d4')">✅ YES</div>
+      <div class="debate-option no-opt" onclick="selectDebate(this,'d4')">❌ NO</div>
+      <div class="debate-option maybe-opt" onclick="selectDebate(this,'d4')">🤔 MAYBE</div>
+      <div class="debate-reveal" id="d4">
+        <div class="tip"><p style="font-size:0.9rem;font-weight:700;color:#14532d;">💬 <strong>Discussion:</strong> Children can absorb prejudices from family, friends and media from a very young age — like the writer who absorbed his uncle's views. Education and positive role models can help children develop fairer attitudes from early on.</p></div>
+      </div>
+    </div>
+
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>In a physical classroom: use corners for YES / NO / MAYBE. Students move when they change their mind. There are NO wrong answers. <strong>Time: 7 min</strong></div>
+  </div>
+</div>
+
+<!-- S8 ACTIVITY 5 — CULTURE RANKING -->
+<div class="section-card" id="sec-8">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--blue-light);">🌍</div>
+    <div class="card-title">Activity 5 — Which Cultures Do You Know?</div>
+    <span class="section-number">9 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"List five cultures in the order you like them best — starting with the one you know most about. Then ask yourself: are you ranking them fairly, or based on prejudice?"</p>
+      </div>
+    </div>
+
+    <div class="think-box">
+      <span class="th-icon">🤔</span>
+      <p>List 5 cultures you know in the order you like them best. <strong>Then discuss:</strong> Why did you rank them this way? Is your ranking based on real experience — or on assumptions?</p>
+    </div>
+
+    <div id="rankList">
+      <div class="rank-item"><div class="rank-num">1</div><div class="rank-text" contenteditable="true" style="outline:none;flex:1;" placeholder="Type a culture here...">Click to type your #1 culture</div></div>
+      <div class="rank-item"><div class="rank-num">2</div><div class="rank-text" contenteditable="true" style="outline:none;flex:1;">Click to type your #2 culture</div></div>
+      <div class="rank-item"><div class="rank-num">3</div><div class="rank-text" contenteditable="true" style="outline:none;flex:1;">Click to type your #3 culture</div></div>
+      <div class="rank-item"><div class="rank-num">4</div><div class="rank-text" contenteditable="true" style="outline:none;flex:1;">Click to type your #4 culture</div></div>
+      <div class="rank-item"><div class="rank-num">5</div><div class="rank-text" contenteditable="true" style="outline:none;flex:1;">Click to type your #5 culture</div></div>
+    </div>
+
+    <button class="reveal-btn full" style="margin-top:16px;" onclick="toggleReveal('rank-reflect',this)">
+      💡 Reflect: Why Did You Rank Them This Way?
+    </button>
+    <div class="reveal-content" id="rank-reflect">
+      <div class="rule-box">
+        <p style="font-size:0.95rem;font-weight:700;color:var(--red-dark);margin-bottom:10px;"><strong>Something to think about:</strong></p>
+        <p style="font-size:0.9rem;font-weight:700;color:#78350f;line-height:1.8;">
+          🔍 Did you rank cultures you know most about higher?<br>
+          🔍 Did you rank cultures you've heard negative things about lower?<br>
+          🔍 Did you consider that cultures you rank lower might have amazing food, music, history and people?<br>
+          🔍 <strong>If your ranking was based on assumptions rather than real experience — that's prejudice!</strong>
+        </p>
+      </div>
+      <div class="tip">
+        <p style="font-size:0.9rem;font-weight:700;color:#14532d;">✅ The goal is NOT to rank cultures at all — but to recognise that we often have biases about things we haven't fully experienced. The more we learn, the fairer we become!</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <p style="font-size:0.88rem;font-weight:700;color:var(--slate);margin-bottom:10px;">✍️ Prepare your project for the next lesson! Choose one culture from your list and find out:</p>
+    <div style="background:var(--red-light);border-radius:12px;padding:14px 18px;border:2px solid rgba(220,38,38,0.3);">
+      <p style="font-size:0.9rem;font-weight:700;color:var(--red-dark);line-height:1.9;">
+        🎭 What traditions or celebrations does this culture have?<br>
+        🍽️ What foods are they known for?<br>
+        🗣️ What languages do they speak?<br>
+        🎨 What art, music or literature are they famous for?<br>
+        🌟 What is ONE thing you admire about this culture?
+      </p>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>This prepares students for the Lesson 5 project on cultural diversity. Encourage honest reflection about their own biases. <strong>Time: 5 min</strong></div>
+  </div>
+</div>
+
+<!-- S9 DISCUSSION -->
+<div class="section-card" id="sec-9">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--purple-light);">💬</div>
+    <div class="card-title">Class Discussion Questions</div>
+    <span class="section-number">10 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Click each question to reveal ideas — but discuss FIRST! These questions have no single right answer."</p>
+      </div>
+    </div>
+    <div class="disc-list">
+      <div class="disc-item" onclick="toggleDisc(this)">
+        <span class="di-icon">😠</span>
+        <div>
+          <span>Why do people sometimes bully or exclude others who are different?</span>
+          <div class="disc-answer">Often it comes from insecurity, fear, or wanting to feel superior. When we don't understand something, we can fear it — and that fear can turn into meanness. Prejudice is often a mask for our own insecurities about being different ourselves.</div>
+        </div>
+      </div>
+      <div class="disc-item" onclick="toggleDisc(this)">
+        <span class="di-icon">🧠</span>
+        <div>
+          <span>Is it possible to hold prejudices without realising it? How?</span>
+          <div class="disc-answer">Yes — these are called unconscious biases. They can come from family (like Uncle Mustapha), media, social circles, or cultural narratives. We absorb these views without realising it. Awareness — noticing when we're making assumptions — is the first step to overcoming them.</div>
+        </div>
+      </div>
+      <div class="disc-item" onclick="toggleDisc(this)">
+        <span class="di-icon">📱</span>
+        <div>
+          <span>Can social media make prejudice better OR worse? How?</span>
+          <div class="disc-answer">Both! Social media can help by exposing us to diverse cultures and stories. But it can also reinforce stereotypes through biased content, echo chambers (only seeing what we already believe), and online bullying that targets people for being different.</div>
+        </div>
+      </div>
+      <div class="disc-item" onclick="toggleDisc(this)">
+        <span class="di-icon">💪</span>
+        <div>
+          <span>What is the BEST way to overcome prejudice against a group you don't know?</span>
+          <div class="disc-answer">Get to know individuals from that group — like the writer did with Jack. Read about their culture, eat their food, watch their films, listen to their music. Real knowledge built on genuine connection is the most powerful antidote to prejudice.</div>
+        </div>
+      </div>
+      <div class="disc-item" onclick="toggleDisc(this)">
+        <span class="di-icon">🏫</span>
+        <div>
+          <span>What can students do to challenge prejudice when they see it at school?</span>
+          <div class="disc-answer">Speak up when you see bullying or exclusion. Include people who are being left out. Challenge stereotyped comments by asking "How do you know that?" Don't laugh at jokes that mock a culture or group. Be a positive role model — your attitude influences those around you.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Use these for pair or whole-class discussion. <strong>Time: 5 min</strong></div>
+  </div>
+</div>
+
+<!-- S10 SUMMARY -->
+<div class="section-card" id="sec-10">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--red-light);">📝</div>
+    <div class="card-title">Keywords Summary — Copy & Remember!</div>
+    <span class="section-number">11 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Copy these definitions. Click the Word Wall to test yourself before the exit ticket!"</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+      <div style="background:var(--red-light);border:2px solid rgba(220,38,38,0.35);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:2rem;">⚠️</span>
+        <div><p style="font-size:0.98rem;font-weight:800;color:var(--red-dark);">Prejudice</p><p style="font-size:0.86rem;font-weight:700;color:var(--red-dark);">An unfair opinion formed about a person or group without real knowledge or experience of them.</p></div>
+      </div>
+      <div style="background:var(--orange-light);border:2px solid rgba(234,88,12,0.3);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:2rem;">💭</span>
+        <div><p style="font-size:0.98rem;font-weight:800;color:var(--orange);">Sympathies</p><p style="font-size:0.86rem;font-weight:700;color:#7c2d12;">Feelings of agreement or loyalty toward a person, group or belief — even if that belief is wrong.</p></div>
+      </div>
+      <div style="background:var(--blue-light);border:2px solid rgba(37,99,235,0.25);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:2rem;">⚡</span>
+        <div><p style="font-size:0.98rem;font-weight:800;color:var(--blue);">Snap Judgment</p><p style="font-size:0.86rem;font-weight:700;color:#1e3a8a;">A very quick decision formed about someone before getting to know them — often based on appearance alone.</p></div>
+      </div>
+      <div style="background:var(--green-light);border:2px solid rgba(22,163,74,0.3);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:2rem;">🔓</span>
+        <div><p style="font-size:0.98rem;font-weight:800;color:var(--green);">Overcome</p><p style="font-size:0.86rem;font-weight:700;color:#14532d;">To successfully challenge and move past a prejudice — usually through knowledge, experience and connection.</p></div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <p style="font-size:0.88rem;font-weight:800;color:var(--red-dark);margin-bottom:10px;">🧠 Quick Recall — Click to check!</p>
+    <div class="word-wall">
+      <span class="word-pill" onclick="showWallDef('wd-prej',this)">Prejudice</span>
+      <span class="word-pill" onclick="showWallDef('wd-snap',this)">Snap Judgment</span>
+      <span class="word-pill" onclick="showWallDef('wd-symp',this)">Sympathies</span>
+      <span class="word-pill" onclick="showWallDef('wd-over',this)">Overcome</span>
+      <span class="word-pill" onclick="showWallDef('wd-stereo',this)">Stereotype</span>
+      <span class="word-pill" onclick="showWallDef('wd-bias',this)">Bias</span>
+    </div>
+    <div class="word-def" id="wd-prej">⚠️ <strong>Prejudice</strong> — An unfair opinion about a person or group formed without real knowledge of them.</div>
+    <div class="word-def" id="wd-snap">⚡ <strong>Snap Judgment</strong> — A very quick opinion formed before getting to know someone properly.</div>
+    <div class="word-def" id="wd-symp">💭 <strong>Sympathies</strong> — Feelings of loyalty or agreement toward a person or belief — even if they are wrong.</div>
+    <div class="word-def" id="wd-over">🔓 <strong>Overcome</strong> — To challenge and move past prejudice through knowledge, experience and open-mindedness.</div>
+    <div class="word-def" id="wd-stereo">🎭 <strong>Stereotype</strong> — Assuming all people in a group are the same without knowing them as individuals.</div>
+    <div class="word-def" id="wd-bias">🔍 <strong>Bias</strong> — A tendency to prefer one view unfairly, often without realising it.</div>
+
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>Students copy definitions. Use the word wall as a quick oral drill. <strong>Time: 3 min</strong></div>
+  </div>
+</div>
+
+<!-- S11 EXIT TICKET -->
+<div class="section-card" id="sec-11">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--green-light);">🚪</div>
+    <div class="card-title">Exit Ticket — Before You Go!</div>
+    <span class="section-number">12 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="teacher-box">
+      <div class="icon">🎤</div>
+      <div>
+        <div class="label">Teacher says</div>
+        <p>"Write your answers first, then click Check. Full sentences — use keywords!"</p>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-bottom:14px;">
+      <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:15px;">
+        <p style="font-size:0.9rem;font-weight:800;color:var(--red-dark);margin-bottom:7px;">Task 1 — Define It!</p>
+        <p style="font-size:0.86rem;font-weight:700;color:var(--slate);margin-bottom:9px;">What is "prejudice"? Give ONE example from the lesson.</p>
+        <div class="aline"></div>
+        <button class="reveal-btn" style="padding:8px 18px;font-size:0.83rem;margin-top:10px;" onclick="toggleReveal('xt1',this)">Check ✓</button>
+        <div class="reveal-content" id="xt1">
+          <div class="tip" style="margin-top:8px;margin-bottom:0;"><p style="font-size:0.86rem;font-weight:700;color:#14532d;">✅ Prejudice is an unfair opinion formed without real knowledge. Example: the writer assumed Jack would be boring because his uncle said Americans eat unhealthy food — without ever meeting Jack.</p></div>
+        </div>
+      </div>
+      <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:15px;">
+        <p style="font-size:0.9rem;font-weight:800;color:var(--red-dark);margin-bottom:7px;">Task 2 — Explain It!</p>
+        <p style="font-size:0.86rem;font-weight:700;color:var(--slate);margin-bottom:9px;">Why were people long ago more likely to be afraid of strangers?</p>
+        <div class="aline"></div>
+        <button class="reveal-btn" style="padding:8px 18px;font-size:0.83rem;margin-top:10px;" onclick="toggleReveal('xt2',this)">Check ✓</button>
+        <div class="reveal-content" id="xt2">
+          <div class="tip" style="margin-top:8px;margin-bottom:0;"><p style="font-size:0.86rem;font-weight:700;color:#14532d;">✅ They had no transport to travel and meet people from different places, so strangers were completely unknown. Without knowledge, they feared what they didn't understand — their prejudice came from ignorance, not experience.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:15px;margin-bottom:16px;">
+      <p style="font-size:0.9rem;font-weight:800;color:var(--red-dark);margin-bottom:7px;">Task 3 — Apply It!</p>
+      <p style="font-size:0.86rem;font-weight:700;color:var(--slate);margin-bottom:9px;">Describe ONE thing YOU can do this week to challenge a prejudice you might hold.</p>
+      <div class="aline"></div><div class="aline" style="margin-top:6px;"></div>
+      <button class="reveal-btn" style="padding:8px 18px;font-size:0.83rem;margin-top:10px;" onclick="toggleReveal('xt3',this)">Check ✓</button>
+      <div class="reveal-content" id="xt3">
+        <div class="tip" style="margin-top:8px;margin-bottom:0;"><p style="font-size:0.86rem;font-weight:700;color:#14532d;">✅ Examples: "I will learn 3 facts about a culture I don't know well." / "I will have a conversation with someone I've never spoken to before." / "I will notice when I'm making an assumption and ask myself if it's fair."</p></div>
+      </div>
+    </div>
+
+    <!-- Self assessment -->
+    <p style="font-size:0.93rem;font-weight:800;color:var(--red-dark);margin-bottom:12px;">🧠 How do you feel about today's lesson?</p>
+    <div class="exit-grid">
+      <div class="exit-card exit-c1" onclick="selectExit(this,'got-it')">
+        <span class="ec-emoji">🌟</span>
+        <div class="ec-label">Got It!</div>
+        <div class="ec-text">I can define prejudice and explain where it comes from.</div>
+      </div>
+      <div class="exit-card exit-c2" onclick="selectExit(this,'almost')">
+        <span class="ec-emoji">🤔</span>
+        <div class="ec-label">Almost There</div>
+        <div class="ec-text">I understand most of it but still have a question or two.</div>
+      </div>
+      <div class="exit-card exit-c3" onclick="selectExit(this,'lost')">
+        <span class="ec-emoji">🙋</span>
+        <div class="ec-label">Need More Help</div>
+        <div class="ec-text">I'm still confused — I'd like to go over this again.</div>
+      </div>
+    </div>
+    <div class="exit-confirm" id="exitConfirm"></div>
+
+    <hr class="divider">
+    <div style="background:rgba(220,38,38,0.07);border:1.5px solid rgba(220,38,38,0.25);border-radius:14px;padding:14px 18px;">
+      <p style="font-size:0.86rem;font-weight:800;color:var(--red-dark);margin-bottom:10px;">I can… ✅</p>
+      <div class="g2" style="gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:var(--slate);font-weight:700;"><div style="width:17px;height:17px;min-width:17px;border:2px solid var(--red-dark);border-radius:4px;background:rgba(220,38,38,0.07);"></div>Define prejudice and snap judgment</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:var(--slate);font-weight:700;"><div style="width:17px;height:17px;min-width:17px;border:2px solid var(--red-dark);border-radius:4px;background:rgba(220,38,38,0.07);"></div>Explain why prejudice exists historically</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:var(--slate);font-weight:700;"><div style="width:17px;height:17px;min-width:17px;border:2px solid var(--red-dark);border-radius:4px;background:rgba(220,38,38,0.07);"></div>Analyse Jack's story and the lesson it teaches</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.83rem;color:var(--slate);font-weight:700;"><div style="width:17px;height:17px;min-width:17px;border:2px solid var(--red-dark);border-radius:4px;background:rgba(220,38,38,0.07);"></div>Suggest ways to challenge my own prejudices</div>
+      </div>
+    </div>
+    <div class="tnote"><span class="tnote-lbl">🎓 Teacher Note</span>📝 <strong>Homework / Project Prep:</strong> List 5 cultures. Research one and prepare a short presentation for Lesson 5.</div>
+  </div>
+</div>
+
+<!-- S12 WELL DONE -->
+<div class="section-card" id="sec-12">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--red-light);">🌟</div>
+    <div class="card-title">Well Done! 🎉</div>
+    <span class="section-number">13 / 13</span>
+  </div>
+  <div class="card-body">
+    <div class="celebrate">
+      <div style="font-size:clamp(48px,8vw,86px);margin-bottom:12px;">⚠️🔍✅</div>
+      <p style="font-family:'Fredoka One',cursive;font-size:clamp(2rem,5vw,3.3rem);color:#fff;margin-bottom:8px;">Well Done!</p>
+      <p style="font-size:0.97rem;color:rgba(255,255,255,0.8);margin-bottom:6px;">You've completed Unit 4, Lesson 4</p>
+      <p style="font-size:0.86rem;color:rgba(255,255,255,0.55);margin-bottom:24px;">📝 Homework: List 5 cultures, rank them, then research one to present in Lesson 5!</p>
+      <div class="g3" style="gap:12px;">
+        <div style="background:rgba(255,255,255,0.12);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">🔍</div>
+          <p style="font-family:'Fredoka One',cursive;font-size:1.05rem;color:#fca5a5;margin-bottom:3px;">Recognise It</p>
+          <p style="font-size:0.76rem;color:rgba(255,255,255,0.5);">Notice your own prejudices</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">🤝</div>
+          <p style="font-family:'Fredoka One',cursive;font-size:1.05rem;color:#86efac;margin-bottom:3px;">Get to Know</p>
+          <p style="font-size:0.76rem;color:rgba(255,255,255,0.5);">Judge after, not before</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:14px;padding:15px;text-align:center;">
+          <div style="font-size:1.9rem;margin-bottom:5px;">💪</div>
+          <p style="font-family:'Fredoka One',cursive;font-size:1.05rem;color:#fde047;margin-bottom:3px;">Overcome It</p>
+          <p style="font-size:0.76rem;color:rgba(255,255,255,0.5);">Be the change</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+<footer>✦ Moral, Social & Cultural Studies · Year 7 · Unit 4 · Lesson 4 — Recognising Prejudice in Society ✦ &nbsp;|&nbsp; Smart Board Ready</footer>
+
+<script>
+const sections = document.querySelectorAll('.section-card');
+const N = sections.length;
+let cur = 0;
+
+function showSection(idx, btn) {
+  sections.forEach((s,i) => s.classList.toggle('visible', i === idx));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  cur = idx;
+  const pct = Math.round(((idx+1)/N)*100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Section ${idx+1} of ${N}`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.addEventListener('keydown', e => {
+  const btns = document.querySelectorAll('.nav-btn');
+  if(e.key==='ArrowRight' && cur < N-1) showSection(cur+1, btns[cur+1]);
+  if(e.key==='ArrowLeft' && cur > 0) showSection(cur-1, btns[cur-1]);
+});
+
+function toggleReveal(id, btn) {
+  const el = document.getElementById(id);
+  const shown = el.classList.toggle('shown');
+  if(btn){
+    const orig = btn.dataset.orig || btn.innerHTML;
+    if(!btn.dataset.orig) btn.dataset.orig = orig;
+    btn.innerHTML = shown
+      ? orig.replace('👁️','✅').replace('💡','✅').replace('Show','Hide').replace('See','Hide').replace('Reveal','Hide')
+      : orig;
+  }
+  if(shown){el.style.animation='none';el.offsetHeight;el.style.animation='';}
+}
+
+function flipCard(el){ el.classList.toggle('flipped'); }
+
+function revealQ(btn){
+  btn.nextElementSibling.style.display='block';
+  btn.style.display='none';
+}
+
+function toggleScenario(card){
+  const b=card.querySelector('.sc-bottom');
+  const shown=b.classList.toggle('shown');
+  const h=card.querySelector('.sc-hint');
+  if(h) h.textContent=shown?'👆 Click to close':'👆 Click to explore';
+}
+
+function checkAnswer(opt, correct, gid){
+  const parent=document.getElementById(gid);
+  parent.querySelectorAll('.mc-opt').forEach(o=>o.classList.add('disabled'));
+  opt.classList.add(correct?'correct':'wrong');
+  if(!correct) parent.querySelectorAll('.mc-opt').forEach(o=>{
+    if(o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+  });
+  const fb=document.getElementById(gid+'-fb');
+  fb.className='mc-feedback show '+(correct?'good':'bad');
+  fb.textContent=correct?'✅ Correct! Well done!':'❌ Not quite — see the highlighted correct answer.';
+  const rst=document.getElementById(gid+'-rst');
+  if(rst) rst.className='mc-reset-btn show';
+}
+function resetMC(gid){
+  document.getElementById(gid).querySelectorAll('.mc-opt').forEach(o=>o.classList.remove('correct','wrong','disabled'));
+  document.getElementById(gid+'-fb').className='mc-feedback';
+  const rst=document.getElementById(gid+'-rst');
+  if(rst) rst.className='mc-reset-btn';
+}
+
+function toggleDisc(item){ item.querySelector('.disc-answer').classList.toggle('shown'); }
+
+let awDef=null, awPill=null;
+function showWallDef(id, pill){
+  if(awPill&&awPill!==pill){awPill.classList.remove('active');if(awDef)awDef.classList.remove('shown');}
+  const def=document.getElementById(id);
+  const shown=def.classList.toggle('shown');
+  pill.classList.toggle('active',shown);
+  awDef=shown?def:null; awPill=shown?pill:null;
+}
+
+function selectExit(card,type){
+  document.querySelectorAll('.exit-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  const c=document.getElementById('exitConfirm');
+  c.className='exit-confirm show';
+  const msgs={
+    'got-it':'🌟 Excellent! You are ready for Lesson 5. Great work today!',
+    'almost':'🤔 Well done! Write your question and ask at the start of next lesson.',
+    'lost':'🙋 No worries — your teacher will help you revisit this. Keep going!'
+  };
+  c.innerHTML=`<p class="conf-msg">${msgs[type]}</p>`;
+}
+
+/* Walking Debate */
+function selectDebate(btn, debateId) {
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.debate-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const reveal = document.getElementById(debateId);
+  reveal.classList.add('shown');
+  reveal.style.animation='none'; reveal.offsetHeight; reveal.style.animation='';
+}
+
+/* Timers */
+const timers={};
+function startCustomTimer(id,total){
+  if(timers[id]) clearInterval(timers[id]);
+  let rem=total;
+  const el=document.getElementById(id);
+  timers[id]=setInterval(()=>{
+    rem--;
+    el.textContent=fmt(rem);
+    if(rem<=0){clearInterval(timers[id]);el.textContent='⏰';}
+  },1000);
+}
+function resetCustomTimer(id,label){
+  clearInterval(timers[id]);
+  document.getElementById(id).textContent=label;
+}
+function fmt(s){const m=Math.floor(s/60);return m+':'+(s%60).toString().padStart(2,'0');}
+</script>
+</body>
+</html>
