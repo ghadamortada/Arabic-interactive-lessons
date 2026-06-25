@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSC Key Vocabulary — Answers &amp; Emoji Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap');
+
+  :root{
+    --gold:#c9a800; --gold-light:#fef9c3; --gold-mid:#fde047; --gold-dark:#a16207;
+    --cream:#fffdf0; --slate:#1e293b; --white:#fff;
+    --shadow:0 4px 22px rgba(0,0,0,0.10);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--slate);min-height:100vh;overflow-x:hidden;}
+
+  /* HEADER */
+  header{
+    background:linear-gradient(135deg,#713f12 0%,#92400e 40%,#a16207 70%,#c9a800 100%);
+    padding:30px 22px 24px;text-align:center;position:relative;overflow:hidden;
+  }
+  header h1{
+    font-family:'Fredoka',sans-serif;font-weight:600;
+    font-size:clamp(1.6rem,4.5vw,2.7rem);color:#fff;
+    text-shadow:2px 3px 0 rgba(0,0,0,0.22);line-height:1.15;letter-spacing:.5px;
+  }
+  header .sub{font-size:.95rem;color:var(--gold-mid);font-weight:700;margin-top:8px;}
+  header .hint{
+    display:inline-block;margin-top:14px;background:rgba(253,224,71,.18);
+    border:1.5px solid rgba(253,224,71,.5);color:var(--gold-mid);
+    font-size:.82rem;font-weight:800;padding:6px 16px;border-radius:24px;
+  }
+
+  /* TABS */
+  .tabs{
+    display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
+    background:#1c1400;padding:10px;position:sticky;top:0;z-index:20;
+  }
+  .tab{
+    border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;
+    font-size:.82rem;color:rgba(255,255,255,.55);background:transparent;
+    padding:9px 15px;border-radius:24px;transition:.2s;border:2px solid transparent;
+  }
+  .tab small{display:block;font-size:.68rem;font-weight:700;opacity:.8;margin-top:1px;}
+  .tab.active{color:#1c1400;background:var(--gold-mid);border-color:var(--gold-mid);}
+  .tab:not(.active):hover{color:var(--gold-mid);}
+
+  main{max-width:1000px;margin:0 auto;padding:24px 16px 70px;}
+
+  .panel{display:none;animation:fade .4s ease both;}
+  .panel.show{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  .panel-head{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .panel-head .pt{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.3rem;color:var(--gold-dark);
+  }
+  .panel-head .pmeta{font-size:.82rem;font-weight:700;color:#a08a3c;}
+  .reveal-all{
+    margin-left:auto;border:none;cursor:pointer;
+    background:var(--gold-dark);color:#fff;font-family:'Nunito',sans-serif;
+    font-weight:800;font-size:.83rem;padding:9px 18px;border-radius:24px;
+    box-shadow:0 4px 12px rgba(161,98,7,.3);transition:.15s;
+  }
+  .reveal-all:active{transform:scale(.96);}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;}
+
+  .card{
+    background:var(--white);border-radius:16px;border:2px solid #eee3c4;
+    border-top:6px solid var(--accent);box-shadow:var(--shadow);
+    cursor:pointer;overflow:hidden;transition:.18s;user-select:none;
+  }
+  .card:active{transform:scale(.985);}
+  .card-top{display:flex;align-items:center;gap:13px;padding:15px 16px;}
+  .emoji{
+    font-size:2.5rem;line-height:1;flex-shrink:0;
+    width:58px;height:58px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--accent-bg);
+  }
+  .word{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.18rem;color:var(--accent);line-height:1.1;}
+  .tap{font-size:.72rem;font-weight:800;color:#b3a263;letter-spacing:.4px;margin-top:3px;text-transform:uppercase;}
+
+  .def{
+    max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;
+    padding:0 16px;background:linear-gradient(180deg,#fffdf2,#fef9e3);
+  }
+  .card.open .def{max-height:240px;padding:13px 16px 16px;border-top:1.5px dashed var(--accent);}
+  .def .dl{font-size:.68rem;font-weight:900;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+  .def p{font-size:.96rem;font-weight:600;color:#3f3a2a;line-height:1.45;}
+  .card.open .tap{color:var(--accent);}
+
+  footer{
+    text-align:center;padding:22px 16px 30px;color:#a08a3c;font-size:.8rem;font-weight:700;
+    border-top:1px solid #efe4c2;
+  }
+  footer b{color:var(--gold-dark);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Key Vocabulary — Answers &amp; Emoji Guide</h1>
+  <div class="sub">Moral, Social &amp; Cultural Studies · Self-Check Your Worksheets</div>
+  <div class="hint">👆 Tap any word to reveal its meaning &amp; a suggested emoji</div>
+</header>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" onclick="showTab(0,this)">Year 7 · U4 L3<small>Beliefs &amp; Attitudes</small></button>
+  <button class="tab" onclick="showTab(1,this)">Revision · Sheet 1<small>Unit 4</small></button>
+  <button class="tab" onclick="showTab(2,this)">Revision · Sheet 2<small>Units 5 &amp; 7</small></button>
+</div>
+
+<main>
+  <!-- PANEL 0 -->
+  <section class="panel show" id="panel-0">
+    <div class="panel-head">
+      <div>
+        <div class="pt">Year 7 · Unit 4 · Lesson 3</div>
+        <div class="pmeta">Exploring Our Own Beliefs &amp; Attitudes — 6 key words</div>
+      </div>
+      <button class="reveal-all" onclick="revealAll(0,this)">Reveal all answers</button>
+    </div>
+    <div class="grid" id="grid-0"></div>
+  </section>
+
+  <!-- PANEL 1 -->
+  <section class="panel" id="panel-1">
+    <div class="panel-head">
+      <div>
+        <div class="pt">Grade 6 Revision · Sheet 1</div>
+        <div class="pmeta">Unit 4 — Beliefs, Tolerance &amp; Diversity — 8 key words</div>
+      </div>
+      <button class="reveal-all" onclick="revealAll(1,this)">Reveal all answers</button>
+    </div>
+    <div class="grid" id="grid-1"></div>
+  </section>
+
+  <!-- PANEL 2 -->
+  <section class="panel" id="panel-2">
+    <div class="panel-head">
+      <div>
+        <div class="pt">Grade 6 Revision · Sheet 2</div>
+        <div class="pmeta">Units 5 &amp; 7 — Culture, Heritage, Law &amp; Rights — 8 key words</div>
+      </div>
+      <button class="reveal-all" onclick="revealAll(2,this)">Reveal all answers</button>
+    </div>
+    <div class="grid" id="grid-2"></div>
+  </section>
+</main>
+
+<footer>
+  ✦ Created by <b>Ms. Ghada Mortada</b> ✦ &nbsp;|&nbsp; Moral, Social &amp; Cultural Studies
+</footer>
+
+<script>
+  const PALETTE = ["#a16207","#16a34a","#2563eb","#7c3aed","#d97706","#0d9488","#e11d48","#475569"];
+
+  const DATA = [
+    [ // 0 — Year 7 U4 L3
+      ["🌍","Enriched Culture","A culture made richer and more vibrant by the influence of many different people, traditions and ideas."],
+      ["🤝","Tolerance","Accepting and respecting people who are different from you in their beliefs, culture or background."],
+      ["👥","Diversity","The range of different people, backgrounds, skills and ideas within a group or society."],
+      ["👁️","Perspective","A unique point of view, shaped by a person's own experience, background and beliefs."],
+      ["💡","Innovation","Creating new ideas, products or better ways of doing things. Diverse teams are often more innovative."],
+      ["🧠","Beliefs &amp; Attitudes","Beliefs are things we think are true; attitudes are how we feel and act toward people or situations."]
+    ],
+    [ // 1 — Revision Sheet 1 (Unit 4)
+      ["👥","Diversity","The existence of many different kinds of people or things."],
+      ["🤝","Tolerance","Accepting and respecting people who are different from us."],
+      ["🌍","Enriched Culture","A culture made fuller and better by people from different backgrounds."],
+      ["👀","Multiple Perspectives","Many different points of view about the same thing."],
+      ["⚡","Snap Judgment","A quick opinion formed about someone before knowing the facts."],
+      ["🚫","Prejudice","An unfair opinion about a person or group, formed before truly knowing them."],
+      ["💗","Sympathies","Feelings of understanding and shared feeling with another person."],
+      ["📋","Policy","A rule or plan that a group or school chooses to follow."]
+    ],
+    [ // 2 — Revision Sheet 2 (Units 5 & 7)
+      ["🏛️","Museum","A place where important objects are kept and displayed for people to see."],
+      ["🏺","Heritage","The traditions, history and objects passed down to us from the past."],
+      ["🌐","Multiculturalism","Many different cultures living together in one society."],
+      ["🪞","Identity","Who a person is and what makes them themselves."],
+      ["📜","Legislative Branch","The part of government that drafts and debates the laws."],
+      ["⚖️","Civil Law","Law that focuses on issues and disagreements between individuals."],
+      ["🧑‍⚖️","Jury","A group of people who listen to the evidence and make a decision in a law court."],
+      ["✋","Right","Something a person is allowed to have or to do."]
+    ]
+  ];
+
+  function buildCard(emoji, word, def, accent){
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.setProperty('--accent', accent);
+    card.style.setProperty('--accent-bg', accent + '1a');
+    card.innerHTML =
+      '<div class="card-top">'+
+        '<div class="emoji">'+emoji+'</div>'+
+        '<div><div class="word">'+word+'</div><div class="tap">Tap to reveal</div></div>'+
+      '</div>'+
+      '<div class="def"><div class="dl">Meaning</div><p>'+def+'</p></div>';
+    card.addEventListener('click', ()=> card.classList.toggle('open'));
+    return card;
+  }
+
+  DATA.forEach((group, gi)=>{
+    const grid = document.getElementById('grid-'+gi);
+    group.forEach((t, i)=> grid.appendChild(buildCard(t[0], t[1], t[2], PALETTE[i % PALETTE.length])));
+  });
+
+  function showTab(idx, btn){
+    document.querySelectorAll('.panel').forEach((p,i)=> p.classList.toggle('show', i===idx));
+    document.querySelectorAll('.tab').forEach(b=> b.classList.remove('active'));
+    btn.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function revealAll(gi, btn){
+    const cards = document.getElementById('grid-'+gi).querySelectorAll('.card');
+    const anyClosed = [...cards].some(c=> !c.classList.contains('open'));
+    cards.forEach(c=> c.classList.toggle('open', anyClosed));
+    btn.textContent = anyClosed ? 'Hide all answers' : 'Reveal all answers';
+  }
+</script>
+</body>
+</html>
